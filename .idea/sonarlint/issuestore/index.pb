@@ -7,3 +7,17 @@ F
 src/test/java/baha.txt,c\1\c171ab9e4c6e11c89a28d6c85a4bc189e86b6644
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+O
+src/test/features/login.feature,f\d\fd79e5c6b6f7b4c3a502f75a1678e85733274923
+Q
+!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+P
+ src/main/java/models/Person.java,4\7\479de81afd9a8cc58e5275bb43b6459a4e7d8f3b
+N
+src/main/java/models/Name.java,0\f\0f27e1a9e3c3dd534467d7c7d74566155dc3abda
+X
+(src/main/java/models/Authentication.java,9\d\9db73785113a9f6b39cbd1d776e2e13addb3c7dc
+Q
+!src/main/java/models/Address.java,d\b\db8485a31c7736ee966cfe0ba1df59bc7f686b34
+U
+%src/main/java/models/ContactInfo.java,2\c\2c3e737113a0e97af88d0dcc48aabeadb64d2e4c
