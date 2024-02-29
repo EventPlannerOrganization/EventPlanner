@@ -1,4 +1,7 @@
 
-Q
-java:S1172"/Remove this unused method parameter "username".(éú¸ªøÿÿÿÿ8å¨Î¯ß1
-]	java:S125"<This block of commented-out lines of code should be removed.(ºí›®ûÿÿÿÿ8ç¨Î¯ß1
+X
+java:S1854!";Remove this useless assignment to local variable "result2".(‹¸×‹8Èª‡²ß1
+<
+java:S1872 "Use "isAssignableFrom" instead.(ñÈÿæ8ìÝ²ß1
+I
+java:S1481!",Remove this unused "result2" local variable.(‹¸×‹8Ìª‡²ß1
