@@ -59,3 +59,5 @@ V
 &src/main/java/enumerations/Colors.java,d\1\d160e72514bf507b6927139e4f3496bbcc82c001
 ^
 .src/main/java/printers/CollectionsPrinter.java,2\4\242052583b197684432a2679c5c1f15700fd242e
+Y
+)src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
