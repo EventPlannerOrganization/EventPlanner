@@ -32,12 +32,10 @@ public class EventPlanner {
 
         if (result.isEmpty())
             throw new UserNotFoundException();
-<<<<<<< HEAD
 
-        return result.getFirst();
-=======
+
+
         return result.get(0);
->>>>>>> 86d3fec84ccfea8c4bf85421774284666f995e4d
     }
     public static Person getCurrentUser() {
         return currentUser;
