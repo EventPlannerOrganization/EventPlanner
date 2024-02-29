@@ -7,32 +7,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventPlanner {
-    private static final List<User> users = new ArrayList<>();
+    private static final List<Person> users = new ArrayList<>();
 
     private EventPlanner() {
     }
 
-    private User currentUser;
+    private Person currentUser;
 
-    public static void addUser(User user) throws UserIsAlreadyExist {
+    public static void addUser(Person user) throws UserIsAlreadyExist {
         if (users.contains(user))
             throw new UserIsAlreadyExist();
         users.add(user);
     }
 
-    public static void removeUser(User user) throws UserNotFoundException {
+
+    public static void removeUser(Person user) throws UserNotFoundException {
         if (!users.contains(user)) {
             throw new UserNotFoundException();
         }
     }
+    public static Person getUserByUsername(String username) throws UserNotFoundException {
+        List<Person> result = users.stream().filter(user -> user.getAuthentication().getUsername().equals(username)).toList();
 
-    public User getCurrentUser() {
+        if (result.isEmpty())
+            throw new UserNotFoundException();
+        return result.getFirst();
+    }
+    public Person getCurrentUser() {
         return currentUser;
+
+    }
+    public void setCurrentUser(Person currentUser) {
+        this.currentUser = currentUser;
+
     }
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
 
 
 }

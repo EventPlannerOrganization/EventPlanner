@@ -31,3 +31,11 @@ c
 3src/main/java/Exceptions/UserNotFoundException.java,0\0\00de162b628ad8ffe5195bb01bfb6e3313f43136
 `
 0src/main/java/Exceptions/UserIsAlreadyExist.java,2\b\2b93830be2159dcf5f402e5d7312bef91469f44c
+[
++src/main/java/enumerations/ServiceType.java,2\6\26412306aedc2ff4f69dd6c18b01d8b135fe26a1
+]
+-src/main/java/controllers/UserController.java,3\a\3abf0e5c491599a520b3810b371a7e928bfc95ec
+^
+.src/main/java/controllers/LoginController.java,e\7\e7c3324293af4a0146a78e5c2cbb4cec9472ab7f
+Q
+!src/main/java/models/Service.java,2\3\237237ce853bd2836f8c3c871955cebcb245b46d
