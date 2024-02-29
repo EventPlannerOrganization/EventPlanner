@@ -1,7 +1,7 @@
 package Exceptions;
 
-public class UserIsAlreadyExist extends Throwable {
+public class UserIsAlreadyExist extends Exception {
     public UserIsAlreadyExist() {
-
+        super();
     }
 }
