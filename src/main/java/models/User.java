@@ -9,9 +9,12 @@ public class User extends Person{
     private UserType usertype;
     private List  <RegisteredEvent> registeredEvents;
 
-    public User(Name name, Authentication authentication, Address address, ContactInfo contactInfo) {
+    public User(Name name, Authentication authentication, Address address, ContactInfo contactInfo ) {
         super(name, authentication, address, contactInfo);
+        usertype = UserType.USER;
+
     }
+
 
 
     public UserType getUsertype() {

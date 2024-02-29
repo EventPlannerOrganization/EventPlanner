@@ -1,10 +1,7 @@
 
-ì
-java:S1130
-"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(û∫¡Æ8Ï›õ±ﬂ1
 ñ
-java:S1130
-"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(û∫¡Æ8Ì›õ±ﬂ1
-]	java:S125"<This block of commented-out lines of code should be removed.(“≠êˆ¸ˇˇˇˇ8Ó›õ±ﬂ1
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(û∫¡Æ8™è˘µﬂ1
+ñ
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.UserNotFoundException', as it cannot be thrown from method's body.(û∫¡Æ8è¨˘µﬂ1
 J
-java:S1128"-Remove this unused import 'views.SignUpView'.(≤˜™á8Ô›õ±ﬂ1
+java:S1128"-Remove this unused import 'views.SignUpView'.(≤˜™á8˜•¸µﬂ1

@@ -48,8 +48,8 @@ public class EventsView {
                 case "4" -> ServiceType.Cleaning;
                 default -> null;
             };
-            List <ServiceProvider> result = providers.stream().filter(provider -> provider.getServices().getFirst().getServiceType().equals(serviceType)).toList();
-            
+            //List <ServiceProvider> result = providers.stream().filter(provider -> provider.getServices().getFirst().getServiceType().equals(serviceType)).toList();
+
 
 
 

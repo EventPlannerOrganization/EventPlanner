@@ -8,18 +8,20 @@ import java.util.List;
 
 
 public class ServiceProvider extends Person{
-    private List <Service> services;
+    private List <Service> services=new ArrayList<>();
     private List<Date> bookedDates=null;
+    private boolean isPackageProvider=false;
 
-    public ServiceProvider(Name name,Authentication authentication,Address address,ContactInfo contactInfo,Service service) {
+    public ServiceProvider(Name name,Authentication authentication,Address address,ContactInfo contactInfo,List<Service> service) {
 
         super(new Name(name.getfName(), name.getmName(), name.getlName())
                 ,new Authentication(authentication.getUsername(),authentication.getPassword()),
                   new Address(address.getCountry(), address.getCity()),
                   new ContactInfo(contactInfo.getEmail(),contactInfo.getPhoneNumber()));
-        service=new Service(service.getServiceType(),service.getPrice(),service.getDescription());
-        services=new ArrayList<>();
-        services.add(service);
+
+
+        services.addAll(service);
+        if(services.size()>1) isPackageProvider=true;
     }
 
     public List<Service> getServices() {
@@ -35,6 +37,13 @@ public class ServiceProvider extends Person{
     }
 
     public void setBookedDates(List<Date> bookedDates) {
-        this.bookedDates = bookedDates;
+        this.bookedDates = bookedDates;}
+
+    public boolean isPackageProvider() {
+        return isPackageProvider;
+    }
+
+    public void setPackageProvider(boolean packageProvider) {
+        isPackageProvider = packageProvider;
     }
 }

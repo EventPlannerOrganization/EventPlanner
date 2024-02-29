@@ -4,10 +4,13 @@ import Exceptions.UserIsAlreadyExist;
 
 import controllers.SignUp;
 import enumerations.ServiceType;
+import helpers.ChoiceChecker;
 import helpers.PasswordChecker;
 import models.*;
 import printers.MenusPrinter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -18,8 +21,14 @@ public class SignUpView {
 
     }
     public static void signUpView() throws UserIsAlreadyExist {
+List<Service> list = new ArrayList<>();
         MenusPrinter.printSignUpAsMenu();
         String signUpAs=scanner.nextLine();
+        while (!ChoiceChecker.isOneOrTwo(signUpAs)) {
+            logger.info("Enter Valid Choice: ");
+            signUpAs=scanner.nextLine();
+
+        }
         logger.info("Enter Your first name: ");
         String fname=scanner.nextLine();
         logger.info("Enter Your middle name: ");
@@ -41,24 +50,36 @@ public class SignUpView {
         logger.info("Enter Your phone number: ");
         String phone=scanner.nextLine();
         if(signUpAs.equals("2")) {
-            MenusPrinter.printServicesMenu();
-            String servicenum=scanner.nextLine();
-            ServiceType serviceType = switch (servicenum) {
-                case "1" -> ServiceType.DJ;
-                case "2" -> ServiceType.Photography;
-                case "3" -> ServiceType.Security;
-                case "4" -> ServiceType.Cleaning;
-                default -> null;
-            };
-            logger.info("Enter its price: ");
-            String price=scanner.nextLine();
-            logger.info("description about the service: ");
-            String discription=scanner.nextLine();
+            logger.info("if you want to become Package Provider Enter 1 ,Else Enter 2 ");
+            String choiceBetweenPackageOrNormal = scanner.nextLine();
+            while (!ChoiceChecker.isOneOrTwo(choiceBetweenPackageOrNormal)) {
+                logger.info("Enter Valid Choice: ");
+                choiceBetweenPackageOrNormal =scanner.nextLine();
+
+            }
+            if(choiceBetweenPackageOrNormal.equals("2")) {
+
+                list = serviceList("1");
+
+
+            }
+            else if(choiceBetweenPackageOrNormal.equals("1")){
+                MenusPrinter.printServicesMenu();
+                logger.info("Enter Number of Services (Greater Than One): ");
+                String numberOfServices= scanner.nextLine();
+                while(!ChoiceChecker.isValidNumberOfServices(numberOfServices)){
+                    logger.info("Enter A Valid Number of Services Greater Than One: ");
+                    numberOfServices= scanner.nextLine();
+
+                }
+                list = serviceList(numberOfServices);
+            }
+
             SignUp.signUpServiceProvider(new Name(fname,mname,lname)
-            ,new Address(country,city)
-            ,new Authentication(email,password)
-            ,new ContactInfo(email,phone)
-            ,new Service(serviceType,Double.parseDouble(price),discription));
+                    ,new Address(country,city)
+                    ,new Authentication(email,password)
+                    ,new ContactInfo(email,phone)
+                    ,list);
 
 
         } else if (signUpAs.equals("1")) {
@@ -70,5 +91,32 @@ public class SignUpView {
 
         }
 
+    }
+    public static List<Service> serviceList(String numberOfService){
+        List <Service> list = new ArrayList<>();
+        for(int i =0;i<Integer.parseInt(numberOfService);i++){
+        MenusPrinter.printServicesMenu();
+            logger.info("Enter The Number Of The Service You Want To Provide : ");
+
+            String servicenum=scanner.nextLine();
+            while (!ChoiceChecker.isValidNumberOfServices(servicenum)){
+                 servicenum=scanner.nextLine();
+                logger.info("Enter Valid Number For The Service : ");
+
+            }
+        ServiceType serviceType = switch (servicenum) {
+            case "1" -> ServiceType.DJ;
+            case "2" -> ServiceType.Photography;
+            case "3" -> ServiceType.Security;
+            case "4" -> ServiceType.Cleaning;
+            default -> null;
+        };
+        logger.info("Enter its price: ");
+        String price=scanner.nextLine();
+        logger.info("description about the service: ");
+        String discription=scanner.nextLine();
+        list.add(new Service(serviceType,Double.parseDouble(price),discription));
+    }
+        return list;
     }
 }
