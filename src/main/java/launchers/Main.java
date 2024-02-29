@@ -1,7 +1,11 @@
 package launchers;
 
+import Exceptions.UserIsAlreadyExist;
+import Exceptions.WeakPasswordException;
+import views.SignUpView;
+
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+    public static void main(String[] args) throws UserIsAlreadyExist, WeakPasswordException {
+        SignUpView.signUpView();
     }
 }
