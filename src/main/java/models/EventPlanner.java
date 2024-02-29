@@ -12,7 +12,7 @@ public class EventPlanner {
     private EventPlanner() {
     }
 
-    private Person currentUser;
+    private static Person currentUser;
 
     public static void addUser(Person user) throws UserIsAlreadyExist {
         if (users.contains(user))
@@ -27,18 +27,19 @@ public class EventPlanner {
         }
     }
     public static Person getUserByUsername(String username) throws UserNotFoundException {
-        List<Person> result = users.stream().filter(user -> user.getAuthentication().getUsername().equals(username)).toList();
+        List<Person> result = users.stream().filter(user ->   user.getClass().getName().equals(ServiceProvider.class.getName())).toList();
+       // List<Person> result = users.stream().filter(user -> user.getAuthentication().getUsername().equals(username)).toList();
 
         if (result.isEmpty())
             throw new UserNotFoundException();
-        return result.getFirst();
+        return result.get(0);
     }
-    public Person getCurrentUser() {
+    public static Person getCurrentUser() {
         return currentUser;
 
     }
-    public void setCurrentUser(Person currentUser) {
-        this.currentUser = currentUser;
+    public static void setCurrentUser(Person currentUser) {
+        EventPlanner.currentUser = currentUser;
 
     }
 

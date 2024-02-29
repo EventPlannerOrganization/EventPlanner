@@ -6,6 +6,13 @@ private Authentication authentication;
 private Address address;
 private ContactInfo contactInfo;
 
+    public Person(Name name, Authentication authentication, Address address, ContactInfo contactInfo) {
+        this.name = name;
+        this.authentication = authentication;
+        this.address = address;
+        this.contactInfo = contactInfo;
+    }
+
     public Name getName() {
         return name;
     }
