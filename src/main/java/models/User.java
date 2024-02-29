@@ -7,7 +7,7 @@ import java.util.List;
 
 public class User extends Person{
     private UserType usertype;
-    private RegisteredEvent registeredEvent;
+    private List  <RegisteredEvent> registeredEvents;
 
     public User(Name name, Authentication authentication, Address address, ContactInfo contactInfo) {
         super(name, authentication, address, contactInfo);
@@ -22,11 +22,11 @@ public class User extends Person{
         this.usertype = usertype;
     }
 
-    public RegisteredEvent getRegisteredEvent() {
-        return registeredEvent;
+    public List<RegisteredEvent> getRegisteredEvent() {
+        return registeredEvents;
     }
 
-    public void setRegisteredEvent(RegisteredEvent registeredEvent) {
-        this.registeredEvent = registeredEvent;
+    public void setRegisteredEvent(List <RegisteredEvent> registeredEvent) {
+        this.registeredEvents = registeredEvent;
     }
 }

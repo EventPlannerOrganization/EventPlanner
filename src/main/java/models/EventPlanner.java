@@ -2,6 +2,7 @@ package models;
 
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
+import enumerations.ServiceType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,23 @@ public class EventPlanner {
 
     }
 
+    public  static  List<ServiceProvider> getServiceProviders(){
+        List<Person> result = users.stream().filter(user -> ServiceProvider.class.isAssignableFrom(user.getClass())).toList();
+        List <ServiceProvider> services =new ArrayList<>();
+        for(Person element :result){
+            services.add((ServiceProvider) element);
+        }
+        return services;
+    }
+
+    public  static  List<User> getUsers(){
+        List<Person> result = users.stream().filter(user -> User.class.isAssignableFrom(user.getClass())).toList();
+        List <User> users =new ArrayList<>();
+        for(Person element :result){
+            users.add((User) element);
+        }
+        return users;
+    }
 
 
 }

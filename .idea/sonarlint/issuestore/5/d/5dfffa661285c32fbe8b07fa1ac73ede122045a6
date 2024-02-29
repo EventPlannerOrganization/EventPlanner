@@ -1,7 +1,9 @@
 
 X
-java:S1854";Remove this useless assignment to local variable "result2".(‹¸×‹8—â‘±ß1
+java:S1854 ";Remove this useless assignment to local variable "result2".(‹¸×‹8˜Þ»¶ß1
 <
-java:S1872"Use "isAssignableFrom" instead.(ñÈÿæ8ÚÃ´°ß1
+java:S1872"Use "isAssignableFrom" instead.(ñÈÿæ8šÞ»¶ß1
 I
-java:S1481",Remove this unused "result2" local variable.(‹¸×‹8Ÿâ‘±ß1
+java:S1481 ",Remove this unused "result2" local variable.(‹¸×‹8Þ»¶ß1
+W
+java:S1128"5Remove this unused import 'enumerations.ServiceType'.(§ŒÏ‡ýÿÿÿÿ8ÝÇÀ¶ß1

@@ -22,5 +22,19 @@ public class ServiceProvider extends Person{
         services.add(service);
     }
 
+    public List<Service> getServices() {
+        return services;
+    }
 
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+
+    public List<Date> getBookedDates() {
+        return bookedDates;
+    }
+
+    public void setBookedDates(List<Date> bookedDates) {
+        this.bookedDates = bookedDates;
+    }
 }

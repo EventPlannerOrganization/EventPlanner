@@ -1,7 +1,7 @@
 package views;
 
 import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
+
 import controllers.SignUp;
 import enumerations.ServiceType;
 import helpers.PasswordChecker;
@@ -17,7 +17,7 @@ public class SignUpView {
     private SignUpView() {
 
     }
-    public static void signUpView() throws UserIsAlreadyExist, WeakPasswordException {
+    public static void signUpView() throws UserIsAlreadyExist {
         MenusPrinter.printSignUpAsMenu();
         String signUpAs=scanner.nextLine();
         logger.info("Enter Your first name: ");

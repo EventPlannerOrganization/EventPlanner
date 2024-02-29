@@ -61,3 +61,11 @@ V
 .src/main/java/printers/CollectionsPrinter.java,2\4\242052583b197684432a2679c5c1f15700fd242e
 Y
 )src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+\
+,src/main/java/views/RegisteredEventView.java,4\c\4c48809206a1d77b2142824cf97f8c5ad933afb2
+^
+.src/main/java/controllers/RegisteredEvent.java,2\5\25f8b20891d0c4fdd9a71c502fe2ed6191f16cbf
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02

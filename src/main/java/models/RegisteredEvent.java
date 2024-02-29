@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class RegisteredEvent {
+    private String eventName;
     private List<ServiceProvider> serviceProviders;
     private Date date;
 
@@ -27,5 +28,18 @@ public class RegisteredEvent {
         this.serviceProviders = serviceProviders;
         this.date = date;
     }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public RegisteredEvent() {
+    }
+
+
 
 }
