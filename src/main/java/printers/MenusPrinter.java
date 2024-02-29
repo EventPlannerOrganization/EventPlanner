@@ -43,4 +43,24 @@ public class MenusPrinter {
 
         printMenu(menu);
     }
+    public static void printUserMenu() {
+        List<String> menu = new ArrayList<>();
+        menu.add("Add Event");
+        menu.add("Show My Events");
+        menu.add("later..");
+        menu.add("Sign out !");
+
+
+        printMenu(menu);
+    }
+    public static void printServiceProviderMenu() {
+        List<String> menu = new ArrayList<>();
+        menu.add("Show My Events");
+        menu.add("Switch to PackageProvider");
+        menu.add("later..");
+        menu.add("Sign out !");
+
+
+        printMenu(menu);
+    }
 }
