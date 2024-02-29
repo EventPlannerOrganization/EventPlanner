@@ -3,7 +3,7 @@ package models;
 import enumerations.UserType;
 
 public class User extends Person{
-private UserType usertype;
+    private UserType usertype;
 
     public UserType getUsertype() {
         return usertype;

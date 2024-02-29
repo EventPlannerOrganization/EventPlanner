@@ -1,8 +1,6 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-U
-%src/main/java/event/planner/Main.java,6\0\602daa53bf8ee548556c1bb1109404aac3348d39
 F
 src/test/java/baha.txt,c\1\c171ab9e4c6e11c89a28d6c85a4bc189e86b6644
 9
@@ -35,8 +33,6 @@ c
 0src/main/java/Exceptions/UserIsAlreadyExist.java,2\b\2b93830be2159dcf5f402e5d7312bef91469f44c
 [
 +src/main/java/enumerations/ServiceType.java,2\6\26412306aedc2ff4f69dd6c18b01d8b135fe26a1
-]
--src/main/java/controllers/UserController.java,3\a\3abf0e5c491599a520b3810b371a7e928bfc95ec
 ^
 .src/main/java/controllers/LoginController.java,e\7\e7c3324293af4a0146a78e5c2cbb4cec9472ab7f
 Q

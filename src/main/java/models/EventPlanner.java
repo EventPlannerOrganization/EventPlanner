@@ -31,6 +31,7 @@ public class EventPlanner {
 
         if (result.isEmpty())
             throw new UserNotFoundException();
+
         return result.getFirst();
     }
     public Person getCurrentUser() {
