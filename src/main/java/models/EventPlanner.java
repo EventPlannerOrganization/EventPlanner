@@ -28,7 +28,7 @@ public class EventPlanner {
     }
     public static Person getUserByUsername(String username) throws UserNotFoundException {
         List<Person> result = users.stream().filter(user ->   user.getClass().getName().equals(ServiceProvider.class.getName())).toList();
-       // List<Person> result = users.stream().filter(user -> user.getAuthentication().getUsername().equals(username)).toList();
+       List<Person> result2 = users.stream().filter(user -> user.getAuthentication().getUsername().equals(username)).toList();
 
         if (result.isEmpty())
             throw new UserNotFoundException();
