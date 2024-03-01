@@ -37,4 +37,11 @@ public class Service {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+    @Override
+    public String toString() {
+
+        return       "\tPrice: " + price + "$\n\tDescription: " + description ;
+    }
 }

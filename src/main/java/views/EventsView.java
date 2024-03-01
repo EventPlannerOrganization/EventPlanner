@@ -5,7 +5,6 @@ package views;
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import models.EventPlanner;
-import models.Person;
 import models.ServiceProvider;
 import printers.MenusPrinter;
 
@@ -36,8 +35,17 @@ public class EventsView {
         providers = EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(date)).toList();
 
         logger.info("Add Services:\n");
-        boolean again=false;
-        do {
+        List <ServiceProvider> addedProviders= addingProcess(providers);
+
+        EventsControl.addEvent(date,name,addedProviders);
+    }
+
+
+
+    private List<ServiceProvider> addingProcess(List<ServiceProvider> providers){
+        boolean again=true;
+        List <ServiceProvider> addedProviders=new ArrayList<>();
+        while(again) {
             logger.info("Select one:\n");
             MenusPrinter.printServicesMenu();
             String serviceNum = scanner.nextLine();
@@ -48,13 +56,35 @@ public class EventsView {
                 case "4" -> ServiceType.Cleaning;
                 default -> null;
             };
-            //List <ServiceProvider> result = providers.stream().filter(provider -> provider.getServices().getFirst().getServiceType().equals(serviceType)).toList();
 
+            List<ServiceProvider> filteredProvidersList = providers.stream().filter(provider -> provider.getServices().get(0).getServiceType().equals(serviceType)).toList();
+            if (filteredProvidersList.isEmpty())
+                logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
+            else {
+                MenusPrinter.printServicesList(filteredProvidersList);
+                int addedNumber = scanner.nextInt();
+                addedProviders.add(filteredProvidersList.get(addedNumber - 1));
+            }
 
+            //this called Text block which begin with """
+            logger.info("""
+                    Do you want to add another service?
+                    - Enter 'y' to add another service.
+                    - Enter 'n' to finish and proceed.
+                    """);
+            String choice = scanner.nextLine();
+            boolean wrongChoice = true;
+            while (wrongChoice) {
+                if (choice.equals("y")) {
+                    wrongChoice = false;
+                } else if (choice.equals(("n"))) {
+                    again = false;
+                    wrongChoice = false;
+                } else logger.info("Invalid choice. Please enter either 'y' or 'n'.\n");
+            }
+        }
+    return addedProviders;
 
-
-        }while (again);
-        EventsControl.addEvent(date,name);
 
     }
 

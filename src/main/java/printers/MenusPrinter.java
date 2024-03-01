@@ -48,7 +48,13 @@ public class MenusPrinter {
 
 
     public static void printServicesList(List<ServiceProvider> services) {
-        List<String> menu = new ArrayList<>();}
+        List<String> menu = new ArrayList<>();
+        for(ServiceProvider element:services){
+            menu.add(element.toString());
+        }
+
+        printMenu(menu);
+    }
     public static void printUserMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("Add Event");

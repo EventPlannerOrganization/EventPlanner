@@ -74,7 +74,7 @@ public class EventPlanner {
 
     }
 
-    public  static  List<ServiceProvider> getServiceProviders(){
+    public  static  List<ServiceProvider> getServiceProviders()  {
         List<Person> result = users.stream().filter(user -> ServiceProvider.class.isAssignableFrom(user.getClass())).toList();
         List <ServiceProvider> services =new ArrayList<>();
         for(Person element :result){
