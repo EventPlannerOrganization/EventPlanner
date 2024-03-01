@@ -7,7 +7,7 @@ import java.util.List;
 public class EventsControl {
     private EventsControl() {
     }
-    public static void addEvent(Date date, String name,List<ServiceProvider> serviceProviders){
+    public static void addEvent(Date date, String name,List<ServiceProvider> serviceProviders,double cost){
         RegisteredEvent registeredEvent =new RegisteredEvent();
         registeredEvent.setEventName(name);
         registeredEvent.setDate(date);

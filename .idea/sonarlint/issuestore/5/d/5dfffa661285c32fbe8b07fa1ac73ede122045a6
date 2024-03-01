@@ -25,3 +25,13 @@ d
 java:S1192g"GDefine a constant instead of duplicating this literal "tesing" 3 times.(¦ÿÎä8¿¡‘Äß1
 d
 java:S1192q"GDefine a constant instead of duplicating this literal "khalid" 3 times.(Ãã‡8°••Äß1
+W
+java:S1854‡"9Remove this useless assignment to local variable "user3".(Üı·’8ø¼Óßß1
+V
+java:S1854"9Remove this useless assignment to local variable "user2".(±•üÌ8ú¼Óßß1
+G
+java:S1481"*Remove this unused "user2" local variable.(±•üÌ8ÿ¼Óßß1
+^	java:S125…"<This block of commented-out lines of code should be removed.(­™Üúÿÿÿÿ8ÿ¼Óßß1
+H
+java:S1481‡"*Remove this unused "user3" local variable.(Üı·’8€½Óßß1
+^	java:S125"<This block of commented-out lines of code should be removed.(óğ™Öüÿÿÿÿ8€½Óßß1

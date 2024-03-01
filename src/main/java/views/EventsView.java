@@ -5,6 +5,7 @@ package views;
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import models.EventPlanner;
+import models.Service;
 import models.ServiceProvider;
 import printers.MenusPrinter;
 
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 public class EventsView {
     private static final Logger logger=Logger.getLogger(EventsView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
+    private static double cost;
     private EventsView() {
 
     }
@@ -39,12 +41,13 @@ public class EventsView {
         logger.info("Add Services:\n");
         List <ServiceProvider> addedProviders= addingProcess(providers,date);
 
-        EventsControl.addEvent(date,name,addedProviders);
+        EventsControl.addEvent(date,name,addedProviders,cost);
     }
 
 
 
     private static List<ServiceProvider> addingProcess(List<ServiceProvider> providers,Date date){
+        cost=0;
         boolean again=true;
         List <ServiceProvider> addedProviders=new ArrayList<>();
         scanner.nextLine();
@@ -70,6 +73,9 @@ public class EventsView {
                 int addedNumber = Integer.parseInt( scanner.nextLine());
                 if(addedNumber<=filteredProvidersList.size()){
                 filteredProvidersList.get(addedNumber-1).getBookedDates().add(date);
+                for(Service e:filteredProvidersList.get(addedNumber-1).getServices()){
+                    cost+=e.getPrice();
+                }
                 addedProviders.add(filteredProvidersList.get(addedNumber - 1));}
 
             }
@@ -80,21 +86,28 @@ public class EventsView {
                     - Enter 'n' to finish and proceed.
                     """);
 
-            String choice = scanner.nextLine();
-            boolean wrongChoice = true;
-            while (wrongChoice) {
-                if (choice.equals("y")) {
-                    wrongChoice = false;
-                } else if (choice.equals(("n"))) {
-                    again = false;
-                    wrongChoice = false;
-                } else logger.info("Invalid choice. Please enter either 'y' or 'n'.\n");
-            }
+            again=againChecker();
+
         }
     return addedProviders;
-
-
     }
 
 
+    private static boolean againChecker(){
+        boolean again=true;
+        String choice = scanner.nextLine();
+        boolean wrongChoice = true;
+        while (wrongChoice) {
+            if (choice.equals("y")) {
+                wrongChoice = false;
+            } else if (choice.equals(("n"))) {
+                again = false;
+                wrongChoice = false;
+            } else{
+                logger.info("Invalid choice. Please enter either 'y' or 'n'.\n");
+                 choice = scanner.nextLine();
+            }
+        }
+        return again;
+    }
 }
