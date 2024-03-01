@@ -50,7 +50,7 @@ public class MenusPrinter {
         for(ServiceProvider element:services){
             menu.add(element.toString());
         }
-
+        menu.add("None (I don't need any of these services)");
 
         printMenu(menu);
     }

@@ -13,7 +13,7 @@ public class EventsControl {
         registeredEvent.setDate(date);
         registeredEvent.setServiceProviders(serviceProviders);
         User currentUser=(User) (EventPlanner.getCurrentUser());
-        currentUser.getRegisteredEvent().add(registeredEvent);
+        currentUser.getRegisteredEvents().add(registeredEvent);
 
     }
 

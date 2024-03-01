@@ -37,14 +37,14 @@ public class EventsView {
         providers = EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(date)).toList();
 
         logger.info("Add Services:\n");
-        List <ServiceProvider> addedProviders= addingProcess(providers);
+        List <ServiceProvider> addedProviders= addingProcess(providers,date);
 
         EventsControl.addEvent(date,name,addedProviders);
     }
 
 
 
-    private static List<ServiceProvider> addingProcess(List<ServiceProvider> providers){
+    private static List<ServiceProvider> addingProcess(List<ServiceProvider> providers,Date date){
         boolean again=true;
         List <ServiceProvider> addedProviders=new ArrayList<>();
         scanner.nextLine();
@@ -68,9 +68,11 @@ public class EventsView {
             else {
                 MenusPrinter.printServicesList(filteredProvidersList);
                 int addedNumber = Integer.parseInt( scanner.nextLine());
-                addedProviders.add(filteredProvidersList.get(addedNumber - 1));
-            }
+                if(addedNumber<=filteredProvidersList.size()){
+                filteredProvidersList.get(addedNumber-1).getBookedDates().add(date);
+                addedProviders.add(filteredProvidersList.get(addedNumber - 1));}
 
+            }
             //this called Text block which begin with """
             logger.info("""
                     Do you want to add another service?
