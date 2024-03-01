@@ -55,7 +55,16 @@ public class ServiceProvider extends Person {
         }
         //this else statement not correct, this must print list of services...
         else{
-            result =  "\tService Provider "+super.getName().toString()+"\n"+ services.get(0) + "\tbookedDates:  " + bookedDates  ;
+            StringBuilder pack=new StringBuilder("Offer Package items:\n");
+            int counter=1;
+            for(Service element:services){
+                pack.append(counter);
+                pack.append("- ");
+                pack.append(element.toString());
+                pack.append("\n");
+                counter++;
+            }
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack + "\tbookedDates:  " + bookedDates  ;
         }
         return result;
     }

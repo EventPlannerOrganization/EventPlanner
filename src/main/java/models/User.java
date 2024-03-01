@@ -26,9 +26,7 @@ public class User extends Person {
         this.usertype = usertype;
     }
 
-    public List<RegisteredEvent> getRegisteredEvent() {
-        return registeredEvents;
-    }
+
 
     public void setRegisteredEvent(List<RegisteredEvent> registeredEvent) {
 

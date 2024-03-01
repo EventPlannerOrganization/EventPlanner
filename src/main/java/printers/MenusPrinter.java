@@ -30,18 +30,15 @@ public class MenusPrinter {
         List<String> mainMenu = new ArrayList<>();
         mainMenu.add("User");
         mainMenu.add("Service provider");
-
-
         printMenu(mainMenu);
     }
+
     public static void printServicesMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("DJ");
         menu.add("Photography");
         menu.add("Security");
         menu.add("Cleaning");
-
-
         printMenu(menu);
     }
 
