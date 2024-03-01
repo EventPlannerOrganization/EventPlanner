@@ -12,8 +12,10 @@ public class EventsControl {
         registeredEvent.setEventName(name);
         registeredEvent.setDate(date);
         registeredEvent.setServiceProviders(serviceProviders);
+        registeredEvent.setCost(cost);
         User currentUser=(User) (EventPlanner.getCurrentUser());
         currentUser.getRegisteredEvents().add(registeredEvent);
+        currentUser.addToTotalCost(cost);
 
     }
 

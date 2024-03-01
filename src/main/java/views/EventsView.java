@@ -73,13 +73,13 @@ public class EventsView {
                 int addedNumber = Integer.parseInt( scanner.nextLine());
                 if(addedNumber<=filteredProvidersList.size()){
                 filteredProvidersList.get(addedNumber-1).getBookedDates().add(date);
-                for(Service e:filteredProvidersList.get(addedNumber-1).getServices()){
+                for(Service e:filteredProvidersList.get(addedNumber-1).getServices()){//this loop will calculate the packeges by summing its services prices,and this must replace with another functionality ...
                     cost+=e.getPrice();
                 }
                 addedProviders.add(filteredProvidersList.get(addedNumber - 1));}
 
             }
-            //this called Text block which begin with """
+            //this called Text block which begin with """, sonarLint need to useing it insted string
             logger.info("""
                     Do you want to add another service?
                     - Enter 'y' to add another service.

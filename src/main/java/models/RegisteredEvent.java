@@ -53,9 +53,6 @@ public class RegisteredEvent {
     public void setCost(double cost) {
         this.cost = cost;
     }
-    public void addToCost(double added) {
-        cost += added;
-    }
 
     public List<String> getGuestsEmails() {
         return guestsEmails;
