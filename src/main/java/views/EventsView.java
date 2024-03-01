@@ -16,8 +16,10 @@ import java.util.logging.Logger;
 public class EventsView {
     private static final Logger logger=Logger.getLogger(EventsView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
+    private EventsView() {
 
-    public void registerEventView(){
+    }
+    public static void registerEventView(){
         List<ServiceProvider> providers;
     logger.info("To get started, please provide the following information: \n* Enter Event Name");
     String name=scanner.nextLine();
@@ -29,7 +31,7 @@ public class EventsView {
     int year=scanner.nextInt();
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month+1);
+        calendar.set(Calendar.MONTH, month-1);
         calendar.set(Calendar.DAY_OF_MONTH, day);
         Date date =calendar.getTime();
         providers = EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(date)).toList();
@@ -42,12 +44,14 @@ public class EventsView {
 
 
 
-    private List<ServiceProvider> addingProcess(List<ServiceProvider> providers){
+    private static List<ServiceProvider> addingProcess(List<ServiceProvider> providers){
         boolean again=true;
         List <ServiceProvider> addedProviders=new ArrayList<>();
+        scanner.nextLine();
         while(again) {
             logger.info("Select one:\n");
             MenusPrinter.printServicesMenu();
+
             String serviceNum = scanner.nextLine();
             ServiceType serviceType = switch (serviceNum) {
                 case "1" -> ServiceType.DJ;
@@ -57,12 +61,13 @@ public class EventsView {
                 default -> null;
             };
 
+
             List<ServiceProvider> filteredProvidersList = providers.stream().filter(provider -> provider.getServices().get(0).getServiceType().equals(serviceType)).toList();
             if (filteredProvidersList.isEmpty())
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
             else {
                 MenusPrinter.printServicesList(filteredProvidersList);
-                int addedNumber = scanner.nextInt();
+                int addedNumber = Integer.parseInt( scanner.nextLine());
                 addedProviders.add(filteredProvidersList.get(addedNumber - 1));
             }
 
@@ -72,6 +77,7 @@ public class EventsView {
                     - Enter 'y' to add another service.
                     - Enter 'n' to finish and proceed.
                     """);
+
             String choice = scanner.nextLine();
             boolean wrongChoice = true;
             while (wrongChoice) {

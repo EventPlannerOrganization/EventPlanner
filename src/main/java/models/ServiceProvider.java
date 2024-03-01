@@ -3,6 +3,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -21,6 +22,7 @@ public class ServiceProvider extends Person {
 
         services.addAll(service);
         if (services.size() > 1) isPackageProvider = true;
+        bookedDates=new ArrayList<>();
     }
 
     public List<Service> getServices() {
@@ -52,7 +54,7 @@ public class ServiceProvider extends Person {
         String result;
 
         if (!isPackageProvider) {
-            result =  "\tService Provider "+super.getName().toString()+"\n"+ services.get(0) + "\tbookedDates: " + bookedDates  ;
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ services.get(0) + "\tbookedDates: " + bookedDates  ;
         }
         //this else statement not correct, this must print list of services...
         else{

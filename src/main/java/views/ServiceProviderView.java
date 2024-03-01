@@ -1,7 +1,6 @@
 package views;
 
 import controllers.ServiceProviderControl;
-import controllers.UserControl;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
 

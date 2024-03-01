@@ -26,9 +26,10 @@ public class UserView {
             choice = scanner.nextLine();
             logger.info("Enter Valid Choice !");
         }
+
         switch (choice) {
             case "1":
-
+                EventsView.registerEventView();
                 break;
             case "2":
 

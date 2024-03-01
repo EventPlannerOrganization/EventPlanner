@@ -49,9 +49,11 @@ public class MenusPrinter {
 
     public static void printServicesList(List<ServiceProvider> services) {
         List<String> menu = new ArrayList<>();
+
         for(ServiceProvider element:services){
             menu.add(element.toString());
         }
+
 
         printMenu(menu);
     }
