@@ -3,7 +3,6 @@ package views;
 import controllers.ServiceProviderControl;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
-
 import java.util.Scanner;
 import java.util.logging.Logger;
 

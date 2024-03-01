@@ -41,3 +41,15 @@ X
 (src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
 \
 ,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
+U
+%src/main/java/controllers/SignUp.java,6\9\69abe9c9b4bb9983c22f528ce7bcbed4714e5f0b
+P
+ src/main/java/models/Person.java,4\7\479de81afd9a8cc58e5275bb43b6459a4e7d8f3b
+X
+(src/main/java/models/Authentication.java,9\d\9db73785113a9f6b39cbd1d776e2e13addb3c7dc
+Q
+!src/main/java/models/Address.java,d\b\db8485a31c7736ee966cfe0ba1df59bc7f686b34
+U
+%src/main/java/models/ContactInfo.java,2\c\2c3e737113a0e97af88d0dcc48aabeadb64d2e4c
+X
+(src/main/java/enumerations/UserType.java,9\c\9c97abdd9e6afffba5f0b41414ef4113ace94130
