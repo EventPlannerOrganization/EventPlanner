@@ -33,10 +33,6 @@ c
 0src/main/java/Exceptions/UserIsAlreadyExist.java,2\b\2b93830be2159dcf5f402e5d7312bef91469f44c
 [
 +src/main/java/enumerations/ServiceType.java,2\6\26412306aedc2ff4f69dd6c18b01d8b135fe26a1
-]
--src/main/java/controllers/UserController.java,3\a\3abf0e5c491599a520b3810b371a7e928bfc95ec
-^
-.src/main/java/controllers/LoginController.java,e\7\e7c3324293af4a0146a78e5c2cbb4cec9472ab7f
 Q
 !src/main/java/models/Service.java,2\3\237237ce853bd2836f8c3c871955cebcb245b46d
 R
@@ -53,8 +49,6 @@ c
 3src/main/java/Exceptions/WeakPasswordException.java,7\3\739a5b12945ffa2acb36a1e819f47b32ad0e7e90
 S
 #src/main/java/views/SignUpView.java,3\8\383d99cc642f9d14319c6ab3cae5f2b2ecb2bf88
-Y
-)src/main/java/printers/MenusPrinters.java,9\3\93d9eaec52499364dec9ca9c958da7200a13183a
 X
 (src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
 V
