@@ -1,11 +1,14 @@
 package launchers;
 
 import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
-import views.SignUpView;
+import models.EventPlanner;
+import views.LoginView;
+
 
 public class Main {
-    public static void main(String[] args) throws UserIsAlreadyExist, WeakPasswordException {
-        SignUpView.signUpView();
+    public static void main(String[] args) throws UserIsAlreadyExist {
+        EventPlanner.initializeRepositoryWithData();
+        LoginView.canLoginView();
+
     }
 }

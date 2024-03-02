@@ -1,6 +1,7 @@
 package printers;
 
 import enumerations.Colors;
+import models.ServiceProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,39 @@ public class MenusPrinter {
         menu.add("Photography");
         menu.add("Security");
         menu.add("Cleaning");
+
+
+        printMenu(menu);
+    }
+
+
+
+    public static void printServicesList(List<ServiceProvider> services) {
+        List<String> menu = new ArrayList<>();
+
+        for(ServiceProvider element:services){
+            menu.add(element.toString());
+        }
+
+
+        printMenu(menu);
+    }
+    public static void printUserMenu() {
+        List<String> menu = new ArrayList<>();
+        menu.add("Add Event");
+        menu.add("Show My Events");
+        menu.add("later..");
+        menu.add("Sign out !");
+
+
+        printMenu(menu);
+    }
+    public static void printServiceProviderMenu() {
+        List<String> menu = new ArrayList<>();
+        menu.add("Show My Events");
+        menu.add("Switch to PackageProvider");
+        menu.add("later..");
+        menu.add("Sign out !");
 
 
         printMenu(menu);

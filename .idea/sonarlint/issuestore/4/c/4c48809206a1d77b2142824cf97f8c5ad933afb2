@@ -1,0 +1,11 @@
+
+S
+java:S3416"6Update this logger to use "RegisteredEventView.class".(ù×¸»8¸‡¢³ß1
+^
+java:S1854 "<Remove this useless assignment to local variable "password".(ù­üÿÿÿÿ8Ç‡¢³ß1
+Z
+java:S1854"8Remove this useless assignment to local variable "date".(É§ˆÂüÿÿÿÿ8¸¿Ð³ß1
+K
+java:S1481")Remove this unused "date" local variable.(É§ˆÂüÿÿÿÿ8º¿Ð³ß1
+O
+java:S1481 "-Remove this unused "password" local variable.(ù­üÿÿÿÿ8Ë‡¢³ß1

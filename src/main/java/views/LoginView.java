@@ -20,6 +20,7 @@ public class LoginView {
      try {
          if(Login.canLogin(username,password)) {
              logger.info("Login Successfully..");
+             Login.whosLogin();
          }
          else {
              logger.info("invalid password..!");
