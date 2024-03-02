@@ -22,14 +22,14 @@ public class EventsView {
 
     }
     public static void registerEventView(){
-        List<ServiceProvider> providers;
+    List<ServiceProvider> providers;
     logger.info("To get started, please provide the following information: \n* Enter Event Name");
     String name=scanner.nextLine();
     logger.info("* Enter Date of your event \n - Day (1-31): ");
     int day=scanner.nextInt();
     logger.info(" - Month (1-12): ");
     int month=scanner.nextInt();
-    logger.info("- Year (e.g., 2003): ");
+    logger.info("- Year : ");
     int year=scanner.nextInt();
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
@@ -40,8 +40,9 @@ public class EventsView {
 
         logger.info("Add Services:\n");
         List <ServiceProvider> addedProviders= addingProcess(providers,date);
-
-        EventsControl.addEvent(date,name,addedProviders,cost);
+        logger.info("Add guests :\n");
+        List<String> guestsEmails =readeGuestsEmails();
+        EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
     }
 
 
@@ -63,8 +64,6 @@ public class EventsView {
                 case "4" -> ServiceType.Cleaning;
                 default -> null;
             };
-
-
             List<ServiceProvider> filteredProvidersList = providers.stream().filter(provider -> provider.getServices().get(0).getServiceType().equals(serviceType)).toList();
             if (filteredProvidersList.isEmpty())
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
@@ -77,7 +76,6 @@ public class EventsView {
                     cost+=e.getPrice();
                 }
                 addedProviders.add(filteredProvidersList.get(addedNumber - 1));}
-
             }
             //this called Text block which begin with """, sonarLint need to useing it insted string
             logger.info("""
@@ -85,9 +83,7 @@ public class EventsView {
                     - Enter 'y' to add another service.
                     - Enter 'n' to finish and proceed.
                     """);
-
             again=againChecker();
-
         }
     return addedProviders;
     }
@@ -109,5 +105,22 @@ public class EventsView {
             }
         }
         return again;
+    }
+
+
+    private static List<String> readeGuestsEmails(){
+        List<String> guestsEmails=new ArrayList<>();
+        logger.info("Enter the number of guests. You can adjust this number and modify the list as needed:\n");
+        int serviceNum = Integer.parseInt(scanner.nextLine());
+        logger.info("For each guest, please enter their email address:\n");
+        for(int i=0;i<serviceNum;i++){
+            String s="\n"+(i+1)+"- ";
+            logger.info(s);
+            String email = scanner.nextLine();
+            guestsEmails.add(email);
+        }
+
+        return  guestsEmails;
+
     }
 }

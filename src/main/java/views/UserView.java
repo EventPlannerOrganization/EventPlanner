@@ -1,11 +1,7 @@
 package views;
-
 import controllers.UserControl;
-import enumerations.ServiceType;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
-
-import java.awt.*;
 import java.util.Scanner;
 import java.util.logging.Logger;
 

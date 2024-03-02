@@ -28,9 +28,12 @@ public class RegisteredEvent {
         this.date = date;
     }
 
-    public RegisteredEvent(List<ServiceProvider> serviceProviders, Date date) {
+    public RegisteredEvent(String eventName, List<ServiceProvider> serviceProviders, Date date, double cost, List<String> guestsEmails) {
+        this.eventName = eventName;
         this.serviceProviders = serviceProviders;
         this.date = date;
+        this.cost = cost;
+        this.guestsEmails = guestsEmails;
     }
 
     public String getEventName() {
