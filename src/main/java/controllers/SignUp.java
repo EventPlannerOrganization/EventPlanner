@@ -2,6 +2,8 @@ package controllers;
 
 import Exceptions.UserIsAlreadyExist;
 
+import Exceptions.WeakPasswordException;
+import helpers.PasswordChecker;
 import models.*;
 
 import java.util.List;

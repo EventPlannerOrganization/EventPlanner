@@ -5,6 +5,7 @@ import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,5 +139,10 @@ public class EventPlanner {
 
        // EventPlanner.addUser(user3);
     }
-
+     public static List<ServiceProvider> getServiceProvidersNotBookedinThisDate(LocalDate date) {
+         return EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(date)).toList();
+     }
+    public static List<ServiceProvider> getServiceProviderByServiceType(ServiceType serviceType, LocalDate date) {
+        return getServiceProvidersNotBookedinThisDate(date).stream().filter(provider -> provider.getServices().get(0).getServiceType().equals(serviceType)).toList();
+    }
 }

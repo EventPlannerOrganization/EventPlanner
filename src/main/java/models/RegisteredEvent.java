@@ -1,8 +1,12 @@
 package models;
 
+import enumerations.ServiceType;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+
+import static views.EventsView.addingProcess;
 
 public class RegisteredEvent {
     private String eventName;
@@ -111,4 +115,8 @@ public class RegisteredEvent {
         }
         return services.toString();
     }
+    public void addServices() {
+        getServiceProviders().addAll(addingProcess(this.getDate()));
+    }
+
 }

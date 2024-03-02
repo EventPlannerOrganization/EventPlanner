@@ -3,15 +3,10 @@ package testControllers.authentication;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import controllers.Login;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
 import models.EventPlanner;
-import org.junit.runner.RunWith;
-
 import static org.junit.Assert.*;
 
 
