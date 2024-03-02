@@ -12,4 +12,5 @@ public class CollectionsPrinter {
         stringBuilder.append("\n");
         stringBuilder.append("-".repeat(count));
     }
+
 }

@@ -3,7 +3,6 @@ package views;
 import controllers.ServiceProviderControl;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
-
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -26,7 +25,7 @@ public class ServiceProviderView {
         }
         switch (choice) {
             case "1":
-
+           ServiceProviderView.showServices();
                 break;
             case "2":
 
@@ -40,5 +39,10 @@ public class ServiceProviderView {
             default:
                 // code block
         }
+    }
+
+    private static void showServices() {
+        logger.info("Here is Your Service/s:");
+        ServiceProviderControl.showServiceProviderServices();
     }
 }

@@ -1,5 +1,4 @@
 package views;
-
 import controllers.UserControl;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
@@ -28,11 +27,14 @@ public class UserView {
         switch (choice) {
             case "1":
                 EventsView.registerEventView();
+                UserView.userMenu();
                 break;
             case "2":
-
+                EventsView.showMyevents();
+                UserView.userMenu();
                 break;
             case "3":
+                EventsView.editUpCommingEvents();
                 break;
             case "4":
                 UserControl.signout();

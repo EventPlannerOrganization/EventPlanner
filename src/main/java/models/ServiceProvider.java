@@ -1,15 +1,11 @@
 package models;
-
-
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-
 
 public class ServiceProvider extends Person {
     private List<Service> services = new ArrayList<>();
-    private List<Date> bookedDates = null;
+    private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
 
     public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service) {
@@ -33,11 +29,11 @@ public class ServiceProvider extends Person {
         this.services = services;
     }
 
-    public List<Date> getBookedDates() {
+    public List<LocalDate> getBookedDates() {
         return bookedDates;
     }
 
-    public void setBookedDates(List<Date> bookedDates) {
+    public void setBookedDates(List<LocalDate> bookedDates) {
         this.bookedDates = bookedDates;
     }
 
@@ -54,11 +50,20 @@ public class ServiceProvider extends Person {
         String result;
 
         if (!isPackageProvider) {
-            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ services.get(0) + "\tbookedDates: " + bookedDates  ;
+            result =  "\n\tService Provider Name: "+super.getName().toString()+"\n"+ services.get(0) + "\n\tbookedDates: " + bookedDates  ;
         }
         //this else statement not correct, this must print list of services...
         else{
-            result =  "\tService Provider "+super.getName().toString()+"\n"+ services.get(0) + "\tbookedDates:  " + bookedDates  ;
+            StringBuilder pack=new StringBuilder("Offer Package items:\n");
+            int counter=1;
+            for(Service element:services){
+                pack.append(counter);
+                pack.append("- ");
+                pack.append(element.toString());
+                pack.append("\n");
+                counter++;
+            }
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack + "\tbookedDates:  " + bookedDates  ;
         }
         return result;
     }

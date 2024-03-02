@@ -42,6 +42,6 @@ public class Service {
     @Override
     public String toString() {
 
-        return       "\tPrice: " + price + "$\n\tDescription: " + description ;
+        return    "\t Type:" +serviceType+  "\tPrice: " + price + "$\n\tDescription: " + description ;
     }
 }

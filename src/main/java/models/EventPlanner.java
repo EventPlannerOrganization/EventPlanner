@@ -5,6 +5,7 @@ import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,9 +54,7 @@ public class EventPlanner {
     }
 
     public static Person getServiceProviderByUsername(String username) throws UserNotFoundException {
-        List<Person> result = users.stream()
-                .filter(user -> ServiceProvider.class.isAssignableFrom(user.getClass()))
-                .toList();
+        List<Person> result = users.stream().filter(user -> ServiceProvider.class.isAssignableFrom(user.getClass())).toList();
         result = result.stream().filter(user -> user.getAuthentication().getUsername().equals(username)).toList();
 
         if (result.isEmpty())
@@ -93,7 +92,7 @@ public class EventPlanner {
     }
     public static void initializeRepositoryWithData() throws UserIsAlreadyExist {
         User user = new User(new Name("Naser", "Mohammad", "Abu-Safieh"),
-                new Authentication("Naser", "123"),
+                new Authentication("Naser", "m123"),
                 new Address("Palestine", "Nablus"),
         new ContactInfo("s12199887@stu.najah.edu","0599715584")
               );
@@ -118,8 +117,9 @@ public class EventPlanner {
 
         List<Service>services3=new ArrayList<>();
         services3.add(  new Service(ServiceType.Photography,3200,"tesing"));
+        services3.add(new Service(ServiceType.Security,3200,"tesing"));
         ServiceProvider serviceProvider3 = new ServiceProvider(new Name("jamil","munir","shadid"),
-                new Authentication("jamil","12345"),new Address("palestine","tulkarm"),
+                new Authentication("baha alawneh","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
                 services3);
         EventPlanner.addUser(serviceProvider3);
@@ -130,7 +130,7 @@ public class EventPlanner {
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
 
-        EventPlanner.addUser(user2);
+        //EventPlanner.addUser(user2);
 
         User user3 = new User(new Name("sam", "Mohammad", "Abu-Safieh"),
                 new Authentication("Naser", "123"),
@@ -138,7 +138,16 @@ public class EventPlanner {
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
 
-        EventPlanner.addUser(user3);
+       // EventPlanner.addUser(user3);
     }
 
+     public static List<ServiceProvider> getServiceProvidersNotBookedinThisDate(LocalDate date) {
+         return EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(date)).toList();
+     }
+
+
+
+    public static List<ServiceProvider> getServiceProviderByServiceType(ServiceType serviceType, LocalDate date) {
+        return getServiceProvidersNotBookedinThisDate(date).stream().filter(provider -> provider.getServices().get(0).getServiceType().equals(serviceType)).toList();
+    }
 }

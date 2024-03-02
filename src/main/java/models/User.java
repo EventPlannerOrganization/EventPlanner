@@ -4,17 +4,19 @@ import enumerations.UserType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class User extends Person{
+public class User extends Person {
     private UserType usertype;
-    private List  <RegisteredEvent> registeredEvents;
+    private List<RegisteredEvent> registeredEvents;
+    private double totalCost;
 
-    public User(Name name, Authentication authentication, Address address, ContactInfo contactInfo ) {
+    public User(Name name, Authentication authentication, Address address, ContactInfo contactInfo) {
         super(name, authentication, address, contactInfo);
         usertype = UserType.USER;
-        registeredEvents=new ArrayList<>();
+        registeredEvents = new ArrayList<>();
+        totalCost=0;
     }
-
 
 
     public UserType getUsertype() {
@@ -25,11 +27,42 @@ public class User extends Person{
         this.usertype = usertype;
     }
 
-    public List<RegisteredEvent> getRegisteredEvent() {
+
+
+    public void setRegisteredEvent(List<RegisteredEvent> registeredEvent) {
+
+        this.registeredEvents = registeredEvent;
+    }
+
+    public List<RegisteredEvent> getRegisteredEvents() {
         return registeredEvents;
     }
 
-    public void setRegisteredEvent(List <RegisteredEvent> registeredEvent) {
-        this.registeredEvents = registeredEvent;
+    public void setRegisteredEvents(List<RegisteredEvent> registeredEvents) {
+        this.registeredEvents = registeredEvents;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+    public void addToTotalCost(double newCost) {
+        this.totalCost += newCost;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(usertype, registeredEvents, totalCost);
     }
 }
+

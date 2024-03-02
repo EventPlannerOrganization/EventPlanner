@@ -2,6 +2,7 @@ package views;
 
 import Exceptions.UserIsAlreadyExist;
 
+import Exceptions.WeakPasswordException;
 import controllers.SignUp;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
@@ -20,7 +21,8 @@ public class SignUpView {
     private SignUpView() {
 
     }
-    public static void signUpView() throws UserIsAlreadyExist {
+    public static void signUpView() throws UserIsAlreadyExist, WeakPasswordException {
+
 List<Service> list = new ArrayList<>();
         MenusPrinter.printSignUpAsMenu();
         String signUpAs=scanner.nextLine();
