@@ -3,6 +3,7 @@ package views;
 
 
 import controllers.EventsControl;
+import controllers.UserControl;
 import enumerations.ServiceType;
 import models.*;
 import printers.MenusPrinter;
@@ -21,6 +22,7 @@ public class EventsView {
 
     }
     public static void registerEventView(){
+    cost=0;
     List<ServiceProvider> providers;
     logger.info("To get started, please provide the following information: \n* Enter Event Name");
     String name=scanner.nextLine();
@@ -39,13 +41,12 @@ public class EventsView {
         logger.info("Add guests :\n");
         List<String> guestsEmails =readeGuestsEmails();
         EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
-        UserView.userMenu();
     }
 
 
 
     private static List<ServiceProvider> addingProcess(List<ServiceProvider> providers,LocalDate date){
-        cost=0;
+
         boolean again=true;
         List <ServiceProvider> addedProviders=new ArrayList<>();
         scanner.nextLine();
@@ -121,18 +122,74 @@ public class EventsView {
 
     }
 
+    public static void editUpCommingEvents(){
+        logger.info("Select Event to Editing it: ");
+        User currentUser=(User) EventPlanner.getCurrentUser();
+        List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents().stream().filter(event ->!event.getDate().isBefore(LocalDate.now()) ).toList();
+        MenusPrinter.printEventsList(myEvents);
+        int addedNumber = Integer.parseInt( scanner.nextLine());
+        if(addedNumber<=myEvents.size()){
+        editingEventView(myEvents.get(addedNumber-1));
+        }
+        //else if(addedNumber==myEvents.size()+1) ;
+
+
+    }
     public static void showMyevents(){
         User currentUser=(User) EventPlanner.getCurrentUser();
+        List <RegisteredEvent> myEvents=currentUser.getRegisteredEvents();
+        MenusPrinter.printEventsList(myEvents);
+    }
+
+
+    //this method can be deleted
+    private static void printEventsList(List<RegisteredEvent> eventList){
         int counter=1;
         String s;
-        for(RegisteredEvent element :currentUser.getRegisteredEvents()){
+        for(RegisteredEvent element :eventList){
             s="\n"+counter+"- "+element.toString();
             logger.info(s);
             counter++;
         }
     }
 
+    private static void editingEventView(RegisteredEvent event)
+    {
+    MenusPrinter.printEditingChoices();
+    String choice = scanner.nextLine();
+        switch (choice) {
+            case "1":
+                editEventName(event);
+                break;
+            case "2":
+                addServices(event);
+                break;
+            case "3":
+                break;
+            case "4":
+                UserControl.signout();
+                LoginView.canLoginView();
+                break;
+            case "5":
+                UserControl.signout();
+                LoginView.canLoginView();
+                break;
+            case "6":
+                break;
+            default:
+                // code block
+        }
+    }
 
 
+    private static void editEventName(RegisteredEvent event){
+        logger.info("Please, Enter new name for the event: ");
+        String newName = scanner.nextLine();
+        event.setEventName(newName);
+    }
+    private static void addServices(RegisteredEvent event){
+        List <ServiceProvider>providers =EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(event.getDate())).toList();
+        event.getServiceProviders().addAll(addingProcess(providers,event.getDate()));
 
+    }
 }

@@ -1,6 +1,7 @@
 package printers;
 
 import enumerations.Colors;
+import models.RegisteredEvent;
 import models.ServiceProvider;
 
 import java.util.ArrayList;
@@ -54,11 +55,22 @@ public class MenusPrinter {
 
         printMenu(menu);
     }
+
+    public static void printEventsList(List<RegisteredEvent> events) {
+        List<String> menu = new ArrayList<>();
+
+        for(RegisteredEvent element:events){
+            menu.add(element.toString());
+        }
+        menu.add("Back to menue");
+        printMenu(menu);
+    }
+
     public static void printUserMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("Add Event");
         menu.add("Show My Events");
-        menu.add("later..");
+        menu.add("Edit My Upcoming Events");
         menu.add("Sign out !");
 
 
@@ -72,6 +84,18 @@ public class MenusPrinter {
         menu.add("Sign out !");
 
 
+        printMenu(menu);
+    }
+
+
+    public static void printEditingChoices() {
+        List<String> menu = new ArrayList<>();
+        menu.add("Edit Event Name");
+        menu.add("Add Services");
+        menu.add("Delete Service");
+        menu.add("Add new Guest");
+        menu.add("Delete Guest");
+        menu.add("Cancel");
         printMenu(menu);
     }
 }
