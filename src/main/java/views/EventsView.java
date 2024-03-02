@@ -167,12 +167,10 @@ public class EventsView {
             case "3":
                 break;
             case "4":
-                UserControl.signout();
-                LoginView.canLoginView();
+
                 break;
             case "5":
-                UserControl.signout();
-                LoginView.canLoginView();
+
                 break;
             case "6":
                 break;
