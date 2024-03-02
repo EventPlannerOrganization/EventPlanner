@@ -1,9 +1,7 @@
 package controllers;
 
 import models.*;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class EventsControl {
@@ -20,7 +18,6 @@ public class EventsControl {
     public static void editEventName(RegisteredEvent event,String newName){
         event.setEventName(newName);
     }
-
 
 
 }

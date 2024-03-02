@@ -73,7 +73,6 @@ public class MenusPrinter {
         menu.add("Edit My Upcoming Events");
         menu.add("Sign out !");
 
-
         printMenu(menu);
     }
     public static void printServiceProviderMenu() {
@@ -82,7 +81,6 @@ public class MenusPrinter {
         menu.add("Switch to PackageProvider");
         menu.add("later..");
         menu.add("Sign out !");
-
 
         printMenu(menu);
     }

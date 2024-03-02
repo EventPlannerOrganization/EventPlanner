@@ -60,9 +60,15 @@ public class EventsView {
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
             else {
                 ServiceProvider newServiceProvider=selectedServiceFromServicesList(filteredProvidersList);
+
                 if(newServiceProvider!=null) {
                     newServiceProvider.getBookedDates().add(date);
                     addedProviders.add(newServiceProvider);}
+
+                if(newServiceProvider!=null){
+                newServiceProvider.getBookedDates().add(date);
+                addedProviders.add(newServiceProvider);}
+
             }
             //this called Text block which begin with """, sonarLint need to useing it insted string
             logger.info("""
@@ -85,9 +91,13 @@ public class EventsView {
                 cost+=e.getPrice();
             }
             return filteredProvidersList.get(addedNumber-1);
+
         }
         return null;
     }
+
+
+
     private static boolean againChecker(){
         boolean again=true;
         String choice = scanner.nextLine();
@@ -142,7 +152,6 @@ public class EventsView {
         MenusPrinter.printEventsList(myEvents);
     }
 
-
     //this method can be deleted
     private static void printEventsList(List<RegisteredEvent> eventList){
         int counter=1;
@@ -179,7 +188,6 @@ public class EventsView {
                 // code block
         }
     }
-
 
     private static void editEventName(RegisteredEvent event){
         logger.info("Please, Enter new name for the event: ");

@@ -1,6 +1,10 @@
 package models;
 
+
 import enumerations.ServiceType;
+import controllers.EventsControl;
+import views.EventsView;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -116,6 +120,7 @@ public class RegisteredEvent {
         return services.toString();
     }
     public void addServices() {
+
         getServiceProviders().addAll(addingProcess(this.getDate()));
     }
 
