@@ -28,7 +28,7 @@ public class UserView {
                 EventsView.registerEventView();
                 break;
             case "2":
-
+                EventsView.showMyevents();
                 break;
             case "3":
                 break;

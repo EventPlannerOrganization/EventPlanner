@@ -4,9 +4,7 @@ package views;
 
 import controllers.EventsControl;
 import enumerations.ServiceType;
-import models.EventPlanner;
-import models.Service;
-import models.ServiceProvider;
+import models.*;
 import printers.MenusPrinter;
 
 import java.util.*;
@@ -43,6 +41,7 @@ public class EventsView {
         logger.info("Add guests :\n");
         List<String> guestsEmails =readeGuestsEmails();
         EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
+        UserView.userMenu();
     }
 
 
@@ -123,4 +122,19 @@ public class EventsView {
         return  guestsEmails;
 
     }
+
+    public static void showMyevents(){
+        User currentUser=(User) EventPlanner.getCurrentUser();
+        int counter=1;
+        String s;
+        for(RegisteredEvent element :currentUser.getRegisteredEvents()){
+            s="\n"+counter+"- "+element.toString();
+            logger.info(s);
+            counter++;
+        }
+    }
+
+
+
+
 }

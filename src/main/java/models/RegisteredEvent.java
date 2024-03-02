@@ -85,4 +85,30 @@ public class RegisteredEvent {
     public int hashCode() {
         return Objects.hash(eventName, location, serviceProviders, date, cost, guestsEmails);
     }
+
+    @Override
+    public String toString() {
+
+        return
+                "Event Name: " + eventName  +
+                "\nServices: \n" + getServicesDetails() +
+                "\nDate: " + date +
+                "\nTotal Cost: " + cost +
+                "\nGuests List: \n" + guestsEmails +
+                '}';
+    }
+
+
+    private String getServicesDetails(){
+        StringBuilder services=new StringBuilder();
+        int count=1;
+        for(ServiceProvider element: serviceProviders) {
+            services.append(count);
+            services.append("- ");
+            services.append(element.toString());
+            services.append("\n");
+            count++;
+        }
+        return services.toString();
+    }
 }
