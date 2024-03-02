@@ -128,7 +128,7 @@ public class EventPlanner {
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
 
-        EventPlanner.addUser(user2);
+        //EventPlanner.addUser(user2);
 
         User user3 = new User(new Name("sam", "Mohammad", "Abu-Safieh"),
                 new Authentication("Naser", "123"),
@@ -136,7 +136,7 @@ public class EventPlanner {
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
 
-        EventPlanner.addUser(user3);
+       // EventPlanner.addUser(user3);
     }
 
 }

@@ -1,11 +1,7 @@
 package views;
-
 import controllers.UserControl;
-import enumerations.ServiceType;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
-
-import java.awt.*;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -30,11 +26,14 @@ public class UserView {
         switch (choice) {
             case "1":
                 EventsView.registerEventView();
+                UserView.userMenu();
                 break;
             case "2":
-
+                EventsView.showMyevents();
+                UserView.userMenu();
                 break;
             case "3":
+                EventsView.editUpCommingEvents();
                 break;
             case "4":
                 UserControl.signout();
