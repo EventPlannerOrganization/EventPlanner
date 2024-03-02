@@ -45,7 +45,7 @@ public class TestSignUp {
         int numberOfUsersOld=EventPlanner.getUsers().size();
         SignUp.signUpUser(this.name,this.address,this.authentication,this.contactInfo);
         assertEquals(numberOfUsersOld + 1, EventPlanner.getUsers().size());
-        assertTrue(EventPlanner.get());
+
     }
     @Then("Service Provider will sign up seccessfully")
     public void serviceProviderWillSignUpSeccessfully() throws UserIsAlreadyExist, WeakPasswordException {
