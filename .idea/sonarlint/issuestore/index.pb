@@ -31,3 +31,13 @@ X
 (src/main/java/enumerations/UserType.java,9\c\9c97abdd9e6afffba5f0b41414ef4113ace94130
 Q
 !src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
+X
+(src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
+Z
+*src/main/java/helpers/PasswordChecker.java,7\e\7e831ad7c59983fd34146cfc1079070079d33602
+X
+(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
+^
+.src/main/java/printers/CollectionsPrinter.java,2\4\242052583b197684432a2679c5c1f15700fd242e

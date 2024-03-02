@@ -15,6 +15,8 @@ public class EventsControl {
         currentUser.addToTotalCost(cost);
 
     }
-
+    public static void editEventName(RegisteredEvent event,String newName){
+        event.setEventName(newName);
+    }
 
 }

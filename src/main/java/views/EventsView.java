@@ -1,13 +1,10 @@
 package views;
 
 
-
 import controllers.EventsControl;
-import controllers.UserControl;
 import enumerations.ServiceType;
 import models.*;
 import printers.MenusPrinter;
-
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
@@ -34,10 +31,8 @@ public class EventsView {
     int year=scanner.nextInt();
 
         LocalDate date=LocalDate.of(year,month,day);
-        providers = EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(date)).toList();
-
         logger.info("Add Services:\n");
-        List <ServiceProvider> addedProviders= addingProcess(providers,date);
+        List <ServiceProvider> addedProviders= addingProcess(date);
         logger.info("Add guests :\n");
         List<String> guestsEmails =readeGuestsEmails();
         EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
@@ -45,15 +40,13 @@ public class EventsView {
 
 
 
-    private static List<ServiceProvider> addingProcess(List<ServiceProvider> providers,LocalDate date){
-
+    public static List<ServiceProvider> addingProcess(LocalDate date){
         boolean again=true;
         List <ServiceProvider> addedProviders=new ArrayList<>();
         scanner.nextLine();
         while(again) {
             logger.info("Select one:\n");
             MenusPrinter.printServicesMenu();
-
             String serviceNum = scanner.nextLine();
             ServiceType serviceType = switch (serviceNum) {
                 case "1" -> ServiceType.DJ;
@@ -62,18 +55,14 @@ public class EventsView {
                 case "4" -> ServiceType.Cleaning;
                 default -> null;
             };
-            List<ServiceProvider> filteredProvidersList = providers.stream().filter(provider -> provider.getServices().get(0).getServiceType().equals(serviceType)).toList();
+            List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType,date);
             if (filteredProvidersList.isEmpty())
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
             else {
-                MenusPrinter.printServicesList(filteredProvidersList);
-                int addedNumber = Integer.parseInt( scanner.nextLine());
-                if(addedNumber<=filteredProvidersList.size()){
-                filteredProvidersList.get(addedNumber-1).getBookedDates().add(date);
-                for(Service e:filteredProvidersList.get(addedNumber-1).getServices()){//this loop will calculate the packeges by summing its services prices,and this must replace with another functionality ...
-                    cost+=e.getPrice();
-                }
-                addedProviders.add(filteredProvidersList.get(addedNumber - 1));}
+                ServiceProvider newServiceProvider=selectedServiceFromServicesList(filteredProvidersList);
+                if(newServiceProvider!=null){
+                newServiceProvider.getBookedDates().add(date);
+                addedProviders.add(newServiceProvider);}
             }
             //this called Text block which begin with """, sonarLint need to useing it insted string
             logger.info("""
@@ -87,6 +76,18 @@ public class EventsView {
     }
 
 
+    public static ServiceProvider selectedServiceFromServicesList(List<ServiceProvider>filteredProvidersList){
+
+        MenusPrinter.printServicesList(filteredProvidersList);
+        int addedNumber = Integer.parseInt( scanner.nextLine());
+        if(addedNumber<=filteredProvidersList.size()){
+            for(Service e:filteredProvidersList.get(addedNumber-1).getServices()){//this loop will calculate the packeges by summing its services prices,and this must replace with another functionality ...
+                cost+=e.getPrice();
+            }
+            return filteredProvidersList.get(addedNumber-1);
+    }
+        return null;
+    }
     private static boolean againChecker(){
         boolean again=true;
         String choice = scanner.nextLine();
@@ -141,7 +142,6 @@ public class EventsView {
         MenusPrinter.printEventsList(myEvents);
     }
 
-
     //this method can be deleted
     private static void printEventsList(List<RegisteredEvent> eventList){
         int counter=1;
@@ -162,7 +162,7 @@ public class EventsView {
                 editEventName(event);
                 break;
             case "2":
-                addServices(event);
+                event.addServices();
                 break;
             case "3":
                 break;
@@ -179,15 +179,10 @@ public class EventsView {
         }
     }
 
-
     private static void editEventName(RegisteredEvent event){
         logger.info("Please, Enter new name for the event: ");
         String newName = scanner.nextLine();
-        event.setEventName(newName);
+        EventsControl.editEventName(event,newName);
     }
-    private static void addServices(RegisteredEvent event){
-        List <ServiceProvider>providers =EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(event.getDate())).toList();
-        event.getServiceProviders().addAll(addingProcess(providers,event.getDate()));
 
-    }
 }

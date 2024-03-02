@@ -1,5 +1,8 @@
 package models;
 
+import controllers.EventsControl;
+import views.EventsView;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -110,5 +113,8 @@ public class RegisteredEvent {
             count++;
         }
         return services.toString();
+    }
+    public void addServices() {
+        getServiceProviders().addAll(EventsView.addingProcess(this.getDate()));
     }
 }
