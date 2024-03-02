@@ -1,7 +1,6 @@
 package views;
 
 import controllers.ServiceProviderControl;
-import controllers.UserControl;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
 
@@ -21,7 +20,7 @@ public class ServiceProviderView {
         MenusPrinter.printServiceProviderMenu();
         logger.info("What do you want to do ?");
         String choice = scanner.nextLine();
-        while (!ChoiceChecker.UserMenuChecker(choice)) {
+        while (!ChoiceChecker.userMenuChecker(choice)) {
             choice = scanner.nextLine();
             logger.info("Enter Valid Choice !");
         }

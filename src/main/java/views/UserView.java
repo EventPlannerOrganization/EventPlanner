@@ -1,11 +1,9 @@
 package views;
 
 import controllers.UserControl;
-import enumerations.ServiceType;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
 
-import java.awt.*;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -22,13 +20,14 @@ public class UserView {
         MenusPrinter.printUserMenu();
         logger.info("What do you want to do ?");
         String choice = scanner.nextLine();
-        while (!ChoiceChecker.UserMenuChecker(choice)) {
+        while (!ChoiceChecker.userMenuChecker(choice)) {
             choice = scanner.nextLine();
             logger.info("Enter Valid Choice !");
         }
+
         switch (choice) {
             case "1":
-
+                EventsView.registerEventView();
                 break;
             case "2":
 

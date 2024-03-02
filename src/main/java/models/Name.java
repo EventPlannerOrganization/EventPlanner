@@ -49,4 +49,9 @@ public class Name {
     public int hashCode() {
         return Objects.hash(fName, mName, lName);
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + fName + " " +mName + " " + lName ;
+    }
 }

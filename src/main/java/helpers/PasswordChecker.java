@@ -18,9 +18,9 @@ public class PasswordChecker {
     }
 
     private static boolean containsSmallLetters(String password) {
-        for(char ch : password.toCharArray()) {
-            if(ch >= 'a' &&  ch <= 'z')
-                return true;
+                for(char ch : password.toCharArray()) {
+                    if(ch >= 'a' &&  ch <= 'z')
+                        return true;
         }
         return false;
     }

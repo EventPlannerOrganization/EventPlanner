@@ -2,7 +2,7 @@ package models;
 
 import enumerations.UserType;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User extends Person{
@@ -12,7 +12,7 @@ public class User extends Person{
     public User(Name name, Authentication authentication, Address address, ContactInfo contactInfo ) {
         super(name, authentication, address, contactInfo);
         usertype = UserType.USER;
-
+        registeredEvents=new ArrayList<>();
     }
 
 
