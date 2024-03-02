@@ -1,9 +1,7 @@
 package models;
 
 
-import enumerations.ServiceType;
-import controllers.EventsControl;
-import views.EventsView;
+
 
 
 import java.time.LocalDate;
@@ -105,7 +103,12 @@ public class RegisteredEvent {
                 "\nGuests List: \n" + guestsEmails +
                 '}';
     }
-
+public String toString2(){
+        return
+                "\nEvent Name : "+ eventName+
+                 "\n Date : " +date +
+                  "\n Guests List :\n"+guestsEmails;
+}
 
     private String getServicesDetails(){
         StringBuilder services=new StringBuilder();

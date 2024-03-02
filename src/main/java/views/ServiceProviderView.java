@@ -2,7 +2,13 @@ package views;
 
 import controllers.ServiceProviderControl;
 import helpers.ChoiceChecker;
+import models.EventPlanner;
+import models.User;
 import printers.MenusPrinter;
+
+import java.awt.*;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -28,7 +34,7 @@ public class ServiceProviderView {
            ServiceProviderView.showServices();
                 break;
             case "2":
-
+            ServiceProviderView.showEvents();
                 break;
             case "3":
                 break;
@@ -41,8 +47,16 @@ public class ServiceProviderView {
         }
     }
 
+    private static void showEvents() {
+        logger.info("Here is Your Event/s:");
+        ServiceProviderControl.showServiceProviderEvents();
+
+    }
+
     private static void showServices() {
         logger.info("Here is Your Service/s:");
         ServiceProviderControl.showServiceProviderServices();
+
     }
+
 }

@@ -45,3 +45,7 @@ Z
 *src/main/java/helpers/PasswordChecker.java,7\e\7e831ad7c59983fd34146cfc1079070079d33602
 Q
 !src/main/java/models/Service.java,2\3\237237ce853bd2836f8c3c871955cebcb245b46d
+Y
+)src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+N
+src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
