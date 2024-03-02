@@ -1,6 +1,6 @@
 package models;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ public class RegisteredEvent {
     private String eventName;
     private String location;
     private List<ServiceProvider> serviceProviders;
-    private Date date;
+    private LocalDate date;
     private double cost;
     private List<String> guestsEmails;
 
@@ -20,15 +20,15 @@ public class RegisteredEvent {
         this.serviceProviders = serviceProviders;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public RegisteredEvent(String eventName, List<ServiceProvider> serviceProviders, Date date, double cost, List<String> guestsEmails) {
+    public RegisteredEvent(String eventName, List<ServiceProvider> serviceProviders, LocalDate date, double cost, List<String> guestsEmails) {
         this.eventName = eventName;
         this.serviceProviders = serviceProviders;
         this.date = date;

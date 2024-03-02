@@ -7,6 +7,7 @@ import enumerations.ServiceType;
 import models.*;
 import printers.MenusPrinter;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -29,11 +30,8 @@ public class EventsView {
     int month=scanner.nextInt();
     logger.info("- Year : ");
     int year=scanner.nextInt();
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month-1);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-        Date date =calendar.getTime();
+
+        LocalDate date=LocalDate.of(year,month,day);
         providers = EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(date)).toList();
 
         logger.info("Add Services:\n");
@@ -46,7 +44,7 @@ public class EventsView {
 
 
 
-    private static List<ServiceProvider> addingProcess(List<ServiceProvider> providers,Date date){
+    private static List<ServiceProvider> addingProcess(List<ServiceProvider> providers,LocalDate date){
         cost=0;
         boolean again=true;
         List <ServiceProvider> addedProviders=new ArrayList<>();
