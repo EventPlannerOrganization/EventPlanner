@@ -61,10 +61,6 @@ public class EventsView {
             else {
                 ServiceProvider newServiceProvider=selectedServiceFromServicesList(filteredProvidersList);
 
-                if(newServiceProvider!=null) {
-                    newServiceProvider.getBookedDates().add(date);
-                    addedProviders.add(newServiceProvider);}
-
                 if(newServiceProvider!=null){
                 newServiceProvider.getBookedDates().add(date);
                 addedProviders.add(newServiceProvider);}
@@ -83,7 +79,6 @@ public class EventsView {
 
 
     public static ServiceProvider selectedServiceFromServicesList(List<ServiceProvider>filteredProvidersList){
-
         MenusPrinter.printServicesList(filteredProvidersList);
         int addedNumber = Integer.parseInt( scanner.nextLine());
         if(addedNumber<=filteredProvidersList.size()){
@@ -91,7 +86,6 @@ public class EventsView {
                 cost+=e.getPrice();
             }
             return filteredProvidersList.get(addedNumber-1);
-
         }
         return null;
     }
@@ -170,11 +164,15 @@ public class EventsView {
         switch (choice) {
             case "1":
                 editEventName(event);
+                editingEventView(event);
                 break;
             case "2":
                 event.addServices();
+                editingEventView(event);
                 break;
             case "3":
+                deleteService(event);
+                editingEventView(event);
                 break;
             case "4":
 
@@ -183,6 +181,7 @@ public class EventsView {
 
                 break;
             case "6":
+                UserView.userMenu();
                 break;
             default:
                 // code block
@@ -193,6 +192,12 @@ public class EventsView {
         logger.info("Please, Enter new name for the event: ");
         String newName = scanner.nextLine();
         EventsControl.editEventName(event,newName);
+    }
+    private static void deleteService(RegisteredEvent event){
+        logger.info("Select Event to Editing it: ");
+        ServiceProvider deletedService= EventsView.selectedServiceFromServicesList(event.getServiceProviders());
+        EventsControl.deleteService(deletedService,event);
+
     }
 
 }
