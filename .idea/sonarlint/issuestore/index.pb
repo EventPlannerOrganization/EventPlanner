@@ -39,3 +39,5 @@ _
 /src/test/features/authentication/SignUp.feature,8\4\8483701b33c80dd33e8930ee60fd00a46eea8e54
 k
 ;src/test/java/testControllers/authentication/TestLogin.java,8\d\8d427bf7e17cbd01fb9f07992f801e63a4b57371
+l
+<src/test/java/testControllers/authentication/TestSignUp.java,5\4\545f8f31d5025ad761ed09064c911fe3cc788c10
