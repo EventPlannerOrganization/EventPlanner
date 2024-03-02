@@ -123,8 +123,14 @@ public String toString2(){
         return services.toString();
     }
     public void addServices() {
-
-        getServiceProviders().addAll(addingProcess(this.getDate()));
+        List<ServiceProvider> addedServices =addingProcess(this.getDate());
+        getServiceProviders().addAll(addedServices);
+        for(ServiceProvider element:addedServices){
+            this.cost+=element.getServices().get(0).getPrice(); //note this does not include packeges providers
+        }
+    }
+    public void subFromCost(double deletedCost){
+        this.cost-=deletedCost;
     }
 
 }

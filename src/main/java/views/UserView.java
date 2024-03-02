@@ -8,7 +8,8 @@ import java.util.logging.Logger;
 
 public class UserView {
     private static final Logger logger = Logger.getLogger(UserView.class.getName());
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner=new Scanner(System.in);
+
 
     private UserView() {
 
