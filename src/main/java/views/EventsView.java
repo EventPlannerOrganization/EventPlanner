@@ -196,7 +196,7 @@ public class EventsView {
     private static void deleteService(RegisteredEvent event){
         logger.info("Select Event to Editing it: ");
         ServiceProvider deletedService= EventsView.selectedServiceFromServicesList(event.getServiceProviders());
-        EventsControl.deleteService(deletedService,event);
+        EventsControl.deleteService(event, deletedService);
 
     }
 
