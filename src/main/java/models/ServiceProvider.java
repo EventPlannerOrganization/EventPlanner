@@ -7,7 +7,7 @@ public class ServiceProvider extends Person {
     private List<Service> services = new ArrayList<>();
     private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
-    private double price;
+
 
     public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service) {
 
@@ -50,7 +50,7 @@ public class ServiceProvider extends Person {
         String result;
 
         if (!isPackageProvider) {
-            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ services.get(0)+"\n\tPrice: "+price+"$"   ;
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ services.get(0)   ;
         }
         //this else statement not correct, this must print list of services...
         else{
@@ -63,7 +63,7 @@ public class ServiceProvider extends Person {
                 pack.append("\n");
                 counter++;
             }
-            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack + "\n\tPrice: "+price+"$"  ;
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack   ;
         }
         return result;
     }
