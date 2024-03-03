@@ -3,6 +3,7 @@ package views;
 
 import controllers.EventsControl;
 import enumerations.ServiceType;
+import helpers.ChoiceChecker;
 import models.*;
 import printers.MenusPrinter;
 import java.time.LocalDate;
@@ -29,12 +30,13 @@ public class EventsView {
         int month=scanner.nextInt();
         logger.info("- Year : ");
         int year=scanner.nextInt();
-
         LocalDate date=LocalDate.of(year,month,day);
-        logger.info("Add Services:\n");
+
+        logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
         List <ServiceProvider> addedProviders= addingProcess(date);
-        logger.info("Add guests :\n");
+
+        logger.info("* Add guests :\n");
         List<String> guestsEmails =readeGuestsEmails();
         EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
     }
@@ -74,7 +76,7 @@ public class EventsView {
                     - Enter 'y' to add another service.
                     - Enter 'n' to finish and proceed.
                     """);
-            again=againChecker();
+            again= ChoiceChecker.againChecker();
         }
         return addedProviders;
     }
@@ -92,23 +94,7 @@ public class EventsView {
 
 
 
-    private static boolean againChecker(){
-        boolean again=true;
-        String choice = scanner.nextLine();
-        boolean wrongChoice = true;
-        while (wrongChoice) {
-            if (choice.equals("y")) {
-                wrongChoice = false;
-            } else if (choice.equals(("n"))) {
-                again = false;
-                wrongChoice = false;
-            } else{
-                logger.info("Invalid choice. Please enter either 'y' or 'n'.\n");
-                choice = scanner.nextLine();
-            }
-        }
-        return again;
-    }
+
 
 
     public static List<String> readeGuestsEmails(){
@@ -122,7 +108,6 @@ public class EventsView {
             String email = scanner.nextLine();
             guestsEmails.add(email);
         }
-
         return  guestsEmails;
 
     }
@@ -140,22 +125,7 @@ public class EventsView {
 
 
     }
-    public static void showMyevents(){
-        User currentUser=(User) EventPlanner.getCurrentUser();
-        List <RegisteredEvent> myEvents=currentUser.getRegisteredEvents();
-        MenusPrinter.printEventsList(myEvents);
-    }
 
-    //this method can be deleted
-    private static void printEventsList(List<RegisteredEvent> eventList){
-        int counter=1;
-        String s;
-        for(RegisteredEvent element :eventList){
-            s="\n"+counter+"- "+element.toString();
-            logger.info(s);
-            counter++;
-        }
-    }
 
     private static void editingEventView(RegisteredEvent event)
     {
@@ -179,7 +149,8 @@ public class EventsView {
                 editUpCommingEvents();
                 break;
             case "5":
-
+                deleteGuest(event);
+                editUpCommingEvents();
                 break;
             case "6":
                 UserView.userMenu();
@@ -210,5 +181,10 @@ public class EventsView {
 
     }
 
+    public static void showMyevents(){
+        User currentUser=(User) EventPlanner.getCurrentUser();
+        List <RegisteredEvent> myEvents=currentUser.getRegisteredEvents();
+        MenusPrinter.printEventsList(myEvents);
+    }
 
     }
