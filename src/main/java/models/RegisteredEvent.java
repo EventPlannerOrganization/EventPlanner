@@ -1,15 +1,12 @@
 package models;
 
 
-import enumerations.ServiceType;
-import controllers.EventsControl;
-import views.EventsView;
+
 
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-
 import static views.EventsView.addingProcess;
 
 public class RegisteredEvent {
@@ -102,15 +99,20 @@ public class RegisteredEvent {
                 "\nServices: \n" + getServicesDetails() +
                 "\nDate: " + date +
                 "\nTotal Cost: " + cost +
-                "\nGuests List: \n" + guestsEmails +
-                '}';
+                "\nGuests List: \n" + guestsEmails +"\n\n";
     }
-
+public String toString2(){
+        return
+                "\nEvent Name : "+ eventName+
+                 "\n Date : " +date +
+                  "\n Guests List :\n"+guestsEmails;
+}
 
     private String getServicesDetails(){
         StringBuilder services=new StringBuilder();
         int count=1;
         for(ServiceProvider element: serviceProviders) {
+            services.append("\t");
             services.append(count);
             services.append("- ");
             services.append(element.toString());
@@ -120,8 +122,16 @@ public class RegisteredEvent {
         return services.toString();
     }
     public void addServices() {
+        List<ServiceProvider> addedServices =addingProcess(this.getDate());
+        getServiceProviders().addAll(addedServices);
+        for(ServiceProvider element:addedServices){
+            this.cost+=element.getServices().get(0).getPrice(); //note this does not include packeges providers
+            element.getBookedDates().add(this.getDate());
+        }
 
-        getServiceProviders().addAll(addingProcess(this.getDate()));
+    }
+    public void subFromCost(double deletedCost){
+        this.cost-=deletedCost;
     }
 
 }

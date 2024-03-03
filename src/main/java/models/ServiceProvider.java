@@ -8,13 +8,13 @@ public class ServiceProvider extends Person {
     private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
 
+
     public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service) {
 
         super(new Name(name.getfName(), name.getmName(), name.getlName())
                 , new Authentication(authentication.getUsername(), authentication.getPassword()),
                 new Address(address.getCountry(), address.getCity()),
                 new ContactInfo(contactInfo.getEmail(), contactInfo.getPhoneNumber()));
-
 
         services.addAll(service);
         if (services.size() > 1) isPackageProvider = true;
@@ -50,7 +50,7 @@ public class ServiceProvider extends Person {
         String result;
 
         if (!isPackageProvider) {
-            result =  "\n\tService Provider Name: "+super.getName().toString()+"\n"+ services.get(0) + "\n\tbookedDates: " + bookedDates  ;
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ services.get(0)   ;
         }
         //this else statement not correct, this must print list of services...
         else{
@@ -63,8 +63,9 @@ public class ServiceProvider extends Person {
                 pack.append("\n");
                 counter++;
             }
-            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack + "\tbookedDates:  " + bookedDates  ;
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack   ;
         }
         return result;
     }
+
 }

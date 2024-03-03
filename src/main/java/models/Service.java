@@ -5,13 +5,14 @@ import enumerations.ServiceType;
 public class Service {
     private ServiceType serviceType;
     private double price;
+
     private String description;
 
 
-    public Service(ServiceType serviceType, double price, String description) {
+    public Service(ServiceType serviceType,double price, String description) {
         this.serviceType = serviceType;
-        this.price = price;
         this.description = description;
+        this.price=price;
     }
 
     public ServiceType getServiceType() {
@@ -22,13 +23,10 @@ public class Service {
         this.serviceType = serviceType;
     }
 
-    public double getPrice() {
-        return price;
-    }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+
+
+
 
     public String getDescription() {
         return description;
@@ -42,6 +40,14 @@ public class Service {
     @Override
     public String toString() {
 
-        return       "\tPrice: " + price + "$\n\tDescription: " + description ;
+        return    "\tType: " +serviceType +" \n \tPrice: "+price  + "$\n\tDescription: " + description ;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

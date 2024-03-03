@@ -22,6 +22,7 @@ public class SignUpView {
 
     }
     public static void signUpView() throws UserIsAlreadyExist, WeakPasswordException {
+
 List<Service> list = new ArrayList<>();
         MenusPrinter.printSignUpAsMenu();
         String signUpAs=scanner.nextLine();
@@ -112,11 +113,11 @@ List<Service> list = new ArrayList<>();
             case "4" -> ServiceType.Cleaning;
             default -> null;
         };
-        logger.info("Enter its price: ");
-        String price=scanner.nextLine();
+        logger.info("Enter price for this service: ");
+        double price=Double.parseDouble(scanner.nextLine());
         logger.info("description about the service: ");
         String discription=scanner.nextLine();
-        list.add(new Service(serviceType,Double.parseDouble(price),discription));
+        list.add(new Service(serviceType,price,discription));
     }
         return list;
     }

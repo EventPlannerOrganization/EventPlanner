@@ -49,9 +49,11 @@ public class User extends Person {
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
     }
+
     public void addToTotalCost(double newCost) {
         this.totalCost += newCost;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -2,7 +2,13 @@ package views;
 
 import controllers.ServiceProviderControl;
 import helpers.ChoiceChecker;
+import models.EventPlanner;
+import models.User;
 import printers.MenusPrinter;
+
+import java.awt.*;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -19,16 +25,16 @@ public class ServiceProviderView {
         MenusPrinter.printServiceProviderMenu();
         logger.info("What do you want to do ?");
         String choice = scanner.nextLine();
-        while (!ChoiceChecker.UserMenuChecker(choice)) {
+        while (!ChoiceChecker.userMenuChecker(choice)) {
             choice = scanner.nextLine();
             logger.info("Enter Valid Choice !");
         }
         switch (choice) {
             case "1":
-
+           ServiceProviderView.showServices();
                 break;
             case "2":
-
+            ServiceProviderView.showEvents();
                 break;
             case "3":
                 break;
@@ -40,4 +46,28 @@ public class ServiceProviderView {
                 // code block
         }
     }
+
+    private static void showEvents() {
+
+        ServiceProviderControl.showServiceProviderEvents();
+        BacktoServiceProviderMenu();
+
+    }
+
+    private static void showServices() {
+
+        ServiceProviderControl.showServiceProviderServices();
+       BacktoServiceProviderMenu();
+
+    }
+    private static void BacktoServiceProviderMenu(){
+        logger.info("To Return Back Enter B");
+        String choice = scanner.nextLine();
+        while (!(choice.equals("B") || choice.equals("b"))) {
+            logger.info("To Return Back Enter B");
+            choice = scanner.nextLine();
+        }
+        ServiceProviderView.providerMenu();
+    }
+
 }

@@ -77,9 +77,9 @@ public class MenusPrinter {
     }
     public static void printServiceProviderMenu() {
         List<String> menu = new ArrayList<>();
-        menu.add("Show My Events");
-        menu.add("Switch to PackageProvider");
-        menu.add("later..");
+        menu.add("Show your Service/s");
+        menu.add("Show your Events");
+        menu.add("Edit your Events");
         menu.add("Sign out !");
 
         printMenu(menu);
@@ -91,9 +91,26 @@ public class MenusPrinter {
         menu.add("Edit Event Name");
         menu.add("Add Services");
         menu.add("Delete Service");
-        menu.add("Add new Guest");
+        menu.add("Add new Guests");
         menu.add("Delete Guest");
         menu.add("Cancel");
         printMenu(menu);
     }
+    public static void printGuestsList(List<String> menu) {
+        menu.add("Back to menue");
+        printMenu(menu);
+    }
+    public static void printListofStringWithNumbers(List<String> list,String type){
+        StringBuilder string = new StringBuilder();
+        string.append(type);
+        for (int i = 1; i<=list.size();i++){
+            String temp = "\n "+i + " - ";
+            string.append(temp);
+            string.append(list.get(i-1));
+        }
+        String s = string.toString();
+        logger.info(s);
+
+    }
+
 }
