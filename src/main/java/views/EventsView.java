@@ -139,23 +139,18 @@ public class EventsView {
         switch (choice) {
             case "1":
                 editEventName(event);
-                editingEventView(event);
                 break;
             case "2":
                 event.addServices();
-                editingEventView(event);
                 break;
             case "3":
                 deleteService(event);
-                editingEventView(event);
                 break;
             case "4":
                 EventsControl.addNewGuests(event);
-                editingEventView(event);
                 break;
             case "5":
                 deleteGuest(event);
-                editingEventView(event);
                 break;
             case "6":
                 flage=false;

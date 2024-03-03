@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class ChoiceChecker {
     private static final Logger logger=Logger.getLogger(EventsView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
-    private ChoiceChecker(){
+    private ChoiceChecker() {
 
     }
     public static boolean isOneOrTwo(String value){
