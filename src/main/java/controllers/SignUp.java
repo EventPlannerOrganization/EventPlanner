@@ -27,6 +27,5 @@ public class SignUp {
             throw new WeakPasswordException();
         User user=new User(name,authentication,address,contactInfo);
         EventPlanner.addUser(user);
-
     }
 }

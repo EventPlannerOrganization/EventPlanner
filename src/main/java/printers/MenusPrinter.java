@@ -100,4 +100,17 @@ public class MenusPrinter {
         menu.add("Back to menue");
         printMenu(menu);
     }
+    public static void printListofStringWithNumbers(List<String> list,String type){
+        StringBuilder string = new StringBuilder();
+        string.append(type);
+        for (int i = 1; i<=list.size();i++){
+            String temp = "\n "+i + " - ";
+            string.append(temp);
+            string.append(list.get(i-1));
+        }
+        String s = string.toString();
+        logger.info(s);
+
+    }
+
 }

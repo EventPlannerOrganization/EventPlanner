@@ -4,9 +4,11 @@ import models.EventPlanner;
 import models.RegisteredEvent;
 import models.ServiceProvider;
 import models.User;
+import printers.MenusPrinter;
 import views.ServiceProviderView;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -21,18 +23,15 @@ public class ServiceProviderControl {
 
     public static void showServiceProviderServices() {
         ServiceProvider currentprovider = (ServiceProvider) EventPlanner.getCurrentUser();
-
+List<String> serviceProvdierServices = new ArrayList<>();
         for (int i = 0; i < currentprovider.getServices().size(); i++) {
-            String st = currentprovider.getServices().get(i).toString();
-            logger.info(st);
+            String st1 = "Service info : \n";
+            String st = st1 + currentprovider.getServices().get(i).toString() +"\n -------------------------------------------";
+            serviceProvdierServices.add(st);
+
         }
-        logger.info("To Return Back Enter B");
-        String choice = scanner.nextLine();
-        while (!(choice.equals("B") || choice.equals("b"))) {
-            logger.info("To Return Back Enter B");
-            choice = scanner.nextLine();
-        }
-        ServiceProviderView.providerMenu();
+        MenusPrinter.printListofStringWithNumbers(serviceProvdierServices,"\"Here is Your Service/s:\"");
+
     }
 
     public static void signout() {
@@ -43,15 +42,22 @@ public class ServiceProviderControl {
     public static void showServiceProviderEvents() {
         ServiceProvider serviceProvider = (ServiceProvider) EventPlanner.getCurrentUser();
         List<User> filteredUsers = getUsersRelatedWithServiceProvider(serviceProvider);
+        List<String> serviceProvdierEvents = new ArrayList<>();
+
+        if(filteredUsers.isEmpty()){
+            logger.info("You Don't  Have Any Events ");
+            return;
+        }
         for (int i = 0; i < filteredUsers.size(); i++) {
             User user = filteredUsers.get(i);
             List<RegisteredEvent> filterd = getFilterdEvents(user.getRegisteredEvents());
             for (int j = 0; j < filterd.size(); j++) {
-                String events = filterd.get(j).toString2();
-                logger.info(events);
-                logger.info("-----------------------------------/n");
+                String st1 = "Service info : \n";
+                String events = st1 +filterd.get(j).toString2() +"\n -------------------------------------------";
+                serviceProvdierEvents.add(events);
             }
         }
+        MenusPrinter.printListofStringWithNumbers(serviceProvdierEvents,"Here is Your Event/s:");
 
     }
 
