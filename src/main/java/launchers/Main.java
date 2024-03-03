@@ -3,8 +3,6 @@ package launchers;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.WeakPasswordException;
 import models.EventPlanner;
-import views.LoginView;
-import views.SignUpView;
 import views.StartingView;
 
 
@@ -13,7 +11,6 @@ public class Main {
         EventPlanner.initializeRepositoryWithData();
 
         //LoginView.canLoginView();
-
 
 
         StartingView.staringView();
