@@ -1,6 +1,7 @@
 package controllers;
 
 import models.*;
+import views.EventsView;
 
 
 import java.time.LocalDate;
@@ -27,5 +28,11 @@ public class EventsControl {
         event.subFromCost(service.getServices().get(0).getPrice());// note this does not include package provider
 
     }
+    public static void addNewGuests(RegisteredEvent event){
+        List <String> newGuests= EventsView.readeGuestsEmails();
+        event.getGuestsEmails().addAll(newGuests);
+    }
+    public static void deleteGuest(String guest,RegisteredEvent event){
+    event.getGuestsEmails().remove(guest);
 
-}
+    }}

@@ -25,3 +25,5 @@ l
 <src/test/java/testControllers/authentication/TestSignUp.java,5\4\545f8f31d5025ad761ed09064c911fe3cc788c10
 Y
 )src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+X
+(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30

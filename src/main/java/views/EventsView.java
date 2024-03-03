@@ -111,7 +111,7 @@ public class EventsView {
     }
 
 
-    private static List<String> readeGuestsEmails(){
+    public static List<String> readeGuestsEmails(){
         List<String> guestsEmails=new ArrayList<>();
         logger.info("Enter the number of guests. You can adjust this number and modify the list as needed:\n");
         int serviceNum = Integer.parseInt(scanner.nextLine());
@@ -175,7 +175,8 @@ public class EventsView {
                 editingEventView(event);
                 break;
             case "4":
-
+                EventsControl.addNewGuests(event);
+                editUpCommingEvents();
                 break;
             case "5":
 
@@ -197,7 +198,17 @@ public class EventsView {
         logger.info("Select Event to Editing it: ");
         ServiceProvider deletedService= EventsView.selectedServiceFromServicesList(event.getServiceProviders());
         EventsControl.deleteService(event, deletedService);
+    }
+
+    private static void deleteGuest(RegisteredEvent event){
+        logger.info("");
+        MenusPrinter.printGuestsList(event.getGuestsEmails());
+        int addedNumber = Integer.parseInt( scanner.nextLine());
+        if(addedNumber<=event.getGuestsEmails().size()){
+        EventsControl.deleteGuest(event.getGuestsEmails().get(addedNumber-1),event );
+        }
 
     }
 
-}
+
+    }

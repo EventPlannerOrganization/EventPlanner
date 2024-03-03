@@ -91,10 +91,13 @@ public class MenusPrinter {
         menu.add("Edit Event Name");
         menu.add("Add Services");
         menu.add("Delete Service");
-        menu.add("Add new Guest");
+        menu.add("Add new Guests");
         menu.add("Delete Guest");
         menu.add("Cancel");
         printMenu(menu);
     }
-
+    public static void printGuestsList(List<String> menu) {
+        menu.add("Back to menue");
+        printMenu(menu);
+    }
 }
