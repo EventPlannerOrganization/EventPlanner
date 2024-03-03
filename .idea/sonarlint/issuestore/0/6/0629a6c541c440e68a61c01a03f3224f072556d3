@@ -1,12 +1,5 @@
 
-<<<<<<< HEAD
 I
-java:S1128",Remove this unused import 'views.LoginView'.(¡ò­Å8¡è§ªà1
+java:S1128",Remove this unused import 'views.LoginView'.(¡ò­Å8’ð¾¯à1
 J
 java:S1128"-Remove this unused import 'views.SignUpView'.(²÷ª‡8¦è§ªà1
-=======
-–
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(úÑáò8é§‹ªà1
-J
-java:S1128"-Remove this unused import 'views.SignUpView'.(²÷ª‡8é§‹ªà1
->>>>>>> ff0a51c74d8ce1e529e2516556a74c0ee75773e5

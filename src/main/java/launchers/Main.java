@@ -11,6 +11,8 @@ import views.StartingView;
 public class Main {
     public static void main(String[] args) throws UserIsAlreadyExist, WeakPasswordException {
         EventPlanner.initializeRepositoryWithData();
+
         StartingView.staringView();
+
     }
 }

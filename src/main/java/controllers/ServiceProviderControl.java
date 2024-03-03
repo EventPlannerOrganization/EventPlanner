@@ -72,7 +72,6 @@ public class ServiceProviderControl {
             List<RegisteredEvent> filterd = getFilterdEvents(user.getRegisteredEvents());
             for (int j = 0; j < filterd.size(); j++) {
                 serviceProvdierEvents.add(filterd.get(j));
-
             }
         }
             return serviceProvdierEvents;
