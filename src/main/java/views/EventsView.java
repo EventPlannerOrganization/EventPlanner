@@ -5,6 +5,7 @@ import Exceptions.UserIsAlreadyExist;
 import Exceptions.WeakPasswordException;
 import controllers.EventsControl;
 import enumerations.ServiceType;
+import helpers.ChoiceChecker;
 import models.*;
 import printers.MenusPrinter;
 import java.time.LocalDate;
@@ -22,7 +23,6 @@ public class EventsView {
     }
     public static void registerEventView(){
         cost=0;
-        List<ServiceProvider> providers;
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
         String name=scanner.nextLine();
         logger.info("* Enter Date of your event \n - Day (1-31): ");
@@ -31,12 +31,13 @@ public class EventsView {
         int month=scanner.nextInt();
         logger.info("- Year : ");
         int year=scanner.nextInt();
-
         LocalDate date=LocalDate.of(year,month,day);
-        logger.info("Add Services:\n");
+
+        logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
         List <ServiceProvider> addedProviders= addingProcess(date);
-        logger.info("Add guests :\n");
+
+        logger.info("* Add guests :\n");
         List<String> guestsEmails =readeGuestsEmails();
         EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
     }
@@ -49,17 +50,23 @@ public class EventsView {
 
         while(again) {
             logger.info("Select one:\n");
-            MenusPrinter.printServicesMenu();
+            MenusPrinter.printServicesMenuWithPcks();
             String serviceNum = scanner.nextLine();
-            ServiceType serviceType = switch (serviceNum) {
+            List<ServiceProvider> filteredProvidersList;
+            if(serviceNum.equals("5")){
+                filteredProvidersList = EventPlanner.getPakageProviders();
+            }
+
+            else {ServiceType serviceType = switch (serviceNum) {
                 case "1" -> ServiceType.DJ;
                 case "2" -> ServiceType.Photography;
                 case "3" -> ServiceType.Security;
                 case "4" -> ServiceType.Cleaning;
                 default -> null;
             };
+                filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType,date);
+                }
 
-            List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType,date);
             if (filteredProvidersList.isEmpty())
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
             else {
@@ -76,7 +83,7 @@ public class EventsView {
                     - Enter 'y' to add another service.
                     - Enter 'n' to finish and proceed.
                     """);
-            again=againChecker();
+            again= ChoiceChecker.againChecker();
         }
         return addedProviders;
     }
@@ -93,27 +100,7 @@ public class EventsView {
     }
 
 
-
-    private static boolean againChecker(){
-        boolean again=true;
-        String choice = scanner.nextLine();
-        boolean wrongChoice = true;
-        while (wrongChoice) {
-            if (choice.equals("y")) {
-                wrongChoice = false;
-            } else if (choice.equals(("n"))) {
-                again = false;
-                wrongChoice = false;
-            } else{
-                logger.info("Invalid choice. Please enter either 'y' or 'n'.\n");
-                choice = scanner.nextLine();
-            }
-        }
-        return again;
-    }
-
-
-    private static List<String> readeGuestsEmails(){
+    public static List<String> readeGuestsEmails(){
         List<String> guestsEmails=new ArrayList<>();
         logger.info("Enter the number of guests. You can adjust this number and modify the list as needed:\n");
         int serviceNum = Integer.parseInt(scanner.nextLine());
@@ -124,7 +111,6 @@ public class EventsView {
             String email = scanner.nextLine();
             guestsEmails.add(email);
         }
-
         return  guestsEmails;
 
     }
@@ -132,34 +118,25 @@ public class EventsView {
     public static void editUpCommingEvents() throws UserIsAlreadyExist, WeakPasswordException {
         logger.info("Select Event to Editing it: ");
         User currentUser=(User) EventPlanner.getCurrentUser();
-        List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents().stream().filter(event ->!event.getDate().isBefore(LocalDate.now()) ).toList();
-        MenusPrinter.printEventsList(myEvents);
+        List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event ->!event.getDate().isBefore(LocalDate.now()) ).toList();
+        MenusPrinter.printEventsList(myUpComingEvents);
         int addedNumber = Integer.parseInt( scanner.nextLine());
-        if(addedNumber<=myEvents.size()){
-            editingEventView(myEvents.get(addedNumber-1));
+        if(addedNumber<=myUpComingEvents.size()){
+            editingEventView(myUpComingEvents.get(addedNumber-1));
         }
-        //else if(addedNumber==myEvents.size()+1) ;
+
 
 
     }
-    public static void showMyevents(){
-        User currentUser=(User) EventPlanner.getCurrentUser();
-        List <RegisteredEvent> myEvents=currentUser.getRegisteredEvents();
-        MenusPrinter.printEventsList(myEvents);
-    }
 
-    //this method can be deleted
-    private static void printEventsList(List<RegisteredEvent> eventList){
-        int counter=1;
-        String s;
-        for(RegisteredEvent element :eventList){
-            s="\n"+counter+"- "+element.toString();
-            logger.info(s);
-            counter++;
-        }
-    }
+
 
     private static void editingEventView(RegisteredEvent event) throws UserIsAlreadyExist, WeakPasswordException {
+
+    private static void editingEventView(RegisteredEvent event)
+    {
+        boolean flage=true;
+        while(flage){
         MenusPrinter.printEditingChoices();
         String choice = scanner.nextLine();
         switch (choice) {
@@ -176,18 +153,20 @@ public class EventsView {
                 editingEventView(event);
                 break;
             case "4":
-
+                EventsControl.addNewGuests(event);
+                editingEventView(event);
                 break;
             case "5":
-
+                deleteGuest(event);
+                editingEventView(event);
                 break;
             case "6":
-                UserView.userMenu();
+                flage=false;
                 break;
             default:
                 // code block
         }
-    }
+    }}
 
     private static void editEventName(RegisteredEvent event){
         logger.info("Please, Enter new name for the event: ");
@@ -198,7 +177,22 @@ public class EventsView {
         logger.info("Select Event to Editing it: ");
         ServiceProvider deletedService= EventsView.selectedServiceFromServicesList(event.getServiceProviders());
         EventsControl.deleteService(event, deletedService);
+    }
+
+    private static void deleteGuest(RegisteredEvent event){
+        logger.info("");
+        MenusPrinter.printGuestsList(event.getGuestsEmails());
+        int addedNumber = Integer.parseInt( scanner.nextLine());
+        if(addedNumber<=event.getGuestsEmails().size()){
+        EventsControl.deleteGuest(event.getGuestsEmails().get(addedNumber-1),event );
+        }
 
     }
 
-}
+    public static void showMyevents(){
+        User currentUser=(User) EventPlanner.getCurrentUser();
+        List <RegisteredEvent> myEvents=currentUser.getRegisteredEvents();
+        MenusPrinter.printEventsList(myEvents);
+    }
+
+    }

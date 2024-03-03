@@ -1,10 +1,25 @@
 package models;
 
+import java.util.Objects;
+
 public class Person {
 private Name name;
 private Authentication authentication;
 private Address address;
 private ContactInfo contactInfo;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) && Objects.equals(authentication, person.authentication) && Objects.equals(address, person.address) && Objects.equals(contactInfo, person.contactInfo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, authentication, address, contactInfo);
+    }
 
     public Person(Name name, Authentication authentication, Address address, ContactInfo contactInfo) {
         this.name = name;
