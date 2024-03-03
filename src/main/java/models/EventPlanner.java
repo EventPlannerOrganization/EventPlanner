@@ -117,6 +117,7 @@ public class EventPlanner {
 
         List<Service>services3=new ArrayList<>();
         services3.add(  new Service(ServiceType.Photography,3200,"tesing"));
+        services3.add(new Service(ServiceType.Security,3200,"tesing"));
         ServiceProvider serviceProvider3 = new ServiceProvider(new Name("jamil","munir","shadid"),
                 new Authentication("baha alawneh","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),

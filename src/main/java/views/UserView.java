@@ -2,12 +2,14 @@ package views;
 import controllers.UserControl;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
+
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class UserView {
     private static final Logger logger = Logger.getLogger(UserView.class.getName());
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner=new Scanner(System.in);
+
 
     private UserView() {
 
@@ -18,7 +20,7 @@ public class UserView {
         MenusPrinter.printUserMenu();
         logger.info("What do you want to do ?");
         String choice = scanner.nextLine();
-        while (!ChoiceChecker.UserMenuChecker(choice)) {
+        while (!ChoiceChecker.userMenuChecker(choice)) {
             choice = scanner.nextLine();
             logger.info("Enter Valid Choice !");
         }

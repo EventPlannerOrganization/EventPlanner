@@ -77,9 +77,9 @@ public class MenusPrinter {
     }
     public static void printServiceProviderMenu() {
         List<String> menu = new ArrayList<>();
-        menu.add("Show My Events");
-        menu.add("Switch to PackageProvider");
-        menu.add("later..");
+        menu.add("Show your Service/s");
+        menu.add("Show your Events");
+        menu.add("Edit your Events");
         menu.add("Sign out !");
 
         printMenu(menu);

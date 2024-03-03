@@ -22,6 +22,7 @@ public class SignUpView {
 
     }
     public static void signUpView() throws UserIsAlreadyExist, WeakPasswordException {
+
 List<Service> list = new ArrayList<>();
         MenusPrinter.printSignUpAsMenu();
         String signUpAs=scanner.nextLine();
