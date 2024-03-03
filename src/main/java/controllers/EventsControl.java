@@ -1,5 +1,6 @@
 package controllers;
 
+import Exceptions.EventAlreadyExist;
 import models.*;
 import views.EventsView;
 
@@ -10,12 +11,14 @@ import java.util.List;
 public class EventsControl {
     private EventsControl() {
     }
-    public static void addEvent(LocalDate date, String name, List<ServiceProvider> serviceProviders, double cost, List<String> guestsEmails){
+    public static void addEvent(LocalDate date, String name, List<ServiceProvider> serviceProviders, double cost, List<String> guestsEmails)throws EventAlreadyExist {
         RegisteredEvent registeredEvent =new RegisteredEvent(name,serviceProviders,date,cost,guestsEmails);
 
-        User currentUser=(User) (EventPlanner.getCurrentUser());
-        currentUser.getRegisteredEvents().add(registeredEvent);
-        currentUser.addToTotalCost(cost);
+           User currentUser = (User) (EventPlanner.getCurrentUser());
+           if(currentUser.checkEventExisting(registeredEvent)) throw new EventAlreadyExist();
+           currentUser.getRegisteredEvents().add(registeredEvent);
+           currentUser.addToTotalCost(cost);
+
 
     }
     public static void editEventName(RegisteredEvent event,String newName){

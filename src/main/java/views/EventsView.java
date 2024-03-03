@@ -1,6 +1,7 @@
 package views;
 
 
+import Exceptions.EventAlreadyExist;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.WeakPasswordException;
 import controllers.EventsControl;
@@ -39,7 +40,12 @@ public class EventsView {
 
         logger.info("* Add guests :\n");
         List<String> guestsEmails =readeGuestsEmails();
-        EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
+       try{
+           EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
+        }
+        catch (EventAlreadyExist e ){
+            logger.warning("This event is already exist.");
+            }
     }
 
 
@@ -115,7 +121,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents() throws UserIsAlreadyExist, WeakPasswordException {
+    public static void editUpCommingEvents()  {
         logger.info("Select Event to Editing it: ");
         User currentUser=(User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event ->!event.getDate().isBefore(LocalDate.now()) ).toList();

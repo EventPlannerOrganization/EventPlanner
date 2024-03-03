@@ -1,5 +1,6 @@
 package models;
 
+import Exceptions.EventAlreadyExist;
 import enumerations.UserType;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class User extends Person {
         super(name, authentication, address, contactInfo);
         usertype = UserType.USER;
         registeredEvents = new ArrayList<>();
-        totalCost=0;
+        totalCost = 0;
     }
 
 
@@ -26,7 +27,6 @@ public class User extends Person {
     public void setUsertype(UserType usertype) {
         this.usertype = usertype;
     }
-
 
 
     public void setRegisteredEvent(List<RegisteredEvent> registeredEvent) {
@@ -59,7 +59,7 @@ public class User extends Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents)&&Objects.equals(getAuthentication().getUsername(),user.getAuthentication().getUsername())&&Objects.equals(getName(),user.getName());
+        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents) && Objects.equals(getAuthentication().getUsername(), user.getAuthentication().getUsername()) && Objects.equals(getName(), user.getName());
 
     }
 
@@ -67,5 +67,10 @@ public class User extends Person {
     public int hashCode() {
         return Objects.hash(usertype, registeredEvents, totalCost);
     }
-}
 
+    public boolean checkEventExisting(RegisteredEvent event) {
+        List<RegisteredEvent> similars = this.registeredEvents.stream().filter(e -> e.getEventName().equals(event.getEventName())).toList();
+return (!similars.isEmpty() ) ;
+    }
+
+}
