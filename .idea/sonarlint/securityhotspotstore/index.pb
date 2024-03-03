@@ -9,3 +9,11 @@ Q
 !src/main/java/models/Service.java,2\3\237237ce853bd2836f8c3c871955cebcb245b46d
 Q
 !src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+X
+(src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
+k
+;src/test/java/testControllers/authentication/TestLogin.java,8\d\8d427bf7e17cbd01fb9f07992f801e63a4b57371
+„
+Tsrc/test/java/testControllers/authentication/TestRunnerForUserGeneralOperations.java,0\4\0478368887e4af72d3f174a3ebaee057bbbab4f5
+^
+.src/test/features/authentication/Login.feature,e\4\e4deda65f3a91c4a3d4401f87335c6b181cb84a6

@@ -86,6 +86,8 @@ public class EventPlanner {
         return users;
     }
     public static void initializeRepositoryWithData() throws UserIsAlreadyExist {
+        users.clear();
+        System.out.println("bahaaaaa");
         User user = new User(new Name("Naser", "Mohammad", "Abu-Safieh"),
                 new Authentication("Naser", "m123"),
                 new Address("Palestine", "Nablus"),
@@ -144,5 +146,8 @@ public class EventPlanner {
 
     public static List<ServiceProvider> getServiceProviderByServiceType(ServiceType serviceType, LocalDate date) {
         return getServiceProvidersNotBookedinThisDate(date).stream().filter(provider -> provider.getServices().get(0).getServiceType().equals(serviceType)&&!provider.isPackageProvider()).toList();
+    }
+    public static void cleanRepositry() {
+        users.clear();
     }
 }
