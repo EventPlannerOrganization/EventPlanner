@@ -129,7 +129,7 @@ public class EventsView {
 
     }
 
-    
+
     private static void editingEventView(RegisteredEvent event)
     {
         boolean flage=true;
