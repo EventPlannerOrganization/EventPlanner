@@ -109,4 +109,13 @@ public class MenusPrinter {
 
     }
 
+    public static void printStartingMenu() {
+        List<String> menu = new ArrayList<>();
+        menu.add("Sign in");
+        menu.add("Sign Up");
+        menu.add("Reset Your Password");
+        menu.add("Exit");
+
+        printMenu(menu);
+    }
 }

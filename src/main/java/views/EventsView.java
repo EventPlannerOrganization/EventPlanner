@@ -1,6 +1,8 @@
 package views;
 
 
+import Exceptions.UserIsAlreadyExist;
+import Exceptions.WeakPasswordException;
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import models.*;
@@ -127,7 +129,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents(){
+    public static void editUpCommingEvents() throws UserIsAlreadyExist, WeakPasswordException {
         logger.info("Select Event to Editing it: ");
         User currentUser=(User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents().stream().filter(event ->!event.getDate().isBefore(LocalDate.now()) ).toList();
@@ -157,8 +159,7 @@ public class EventsView {
         }
     }
 
-    private static void editingEventView(RegisteredEvent event)
-    {
+    private static void editingEventView(RegisteredEvent event) throws UserIsAlreadyExist, WeakPasswordException {
         MenusPrinter.printEditingChoices();
         String choice = scanner.nextLine();
         switch (choice) {
