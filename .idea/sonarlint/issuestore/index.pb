@@ -11,3 +11,7 @@ Y
 )src/main/java/models/ServiceProvider.java,6\2\62304a9808b0d416d81e7448da3ca44398f9aa07
 e
 5src/main/java/controllers/ServiceProviderControl.java,c\e\ce7bb1b1c1c3f60d56ef31fdacbc69cabbc6fe2c
+k
+;src/test/java/testControllers/authentication/TestLogin.java,8\d\8d427bf7e17cbd01fb9f07992f801e63a4b57371
+„
+Tsrc/test/java/testControllers/authentication/TestRunnerForUserGeneralOperations.java,0\4\0478368887e4af72d3f174a3ebaee057bbbab4f5
