@@ -57,7 +57,8 @@ public class User extends Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents);
+        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents)&&Objects.equals(getAuthentication().getUsername(),user.getAuthentication().getUsername())&&Objects.equals(getName(),user.getName());
+
     }
 
     @Override

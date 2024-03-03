@@ -1,7 +1,6 @@
 Feature: Login
-
+Given Data Base is already filled
   Background: testing now
-    Given Data Base is already filled
 
 
   Scenario Outline: Login successfully
@@ -9,10 +8,10 @@ Feature: Login
     And password is <password>
     Then login successfully
     Examples:
-      | username       | password |
-      | 'Naser'        | 'm123'   |
-      | 'baha'         | '0000'   |
-      | 'baha alawneh' | 'bbaa12' |
+      | username    | password |
+      | 'Naser'     | 'm123'   |
+      | 'khalid'    | '123'    |
+      | 'Nasernnnn' | '123'    |
 
   Scenario Outline: Login fails because the user is not exist
     When username is <username>

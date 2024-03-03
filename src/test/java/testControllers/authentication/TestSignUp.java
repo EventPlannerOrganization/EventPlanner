@@ -7,6 +7,7 @@ import enumerations.ServiceType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,18 +43,19 @@ public class TestSignUp {
     }
     @Then("User will sign up seccessfully")
     public void userWillSignUpSeccessfully() throws UserIsAlreadyExist, WeakPasswordException {
-        int numberOfUsersOld=EventPlanner.getUsers().size();
-        SignUp.signUpUser(this.name,this.address,this.authentication,this.contactInfo);
-        assertEquals(numberOfUsersOld + 1, EventPlanner.getUsers().size());
-
+        assertDoesNotThrow(() -> {
+            SignUp.signUpUser(this.name,this.address,this.authentication,this.contactInfo);
+            EventPlanner.getUserByUsername(this.authentication.getUsername());
+        });
     }
     @Then("Service Provider will sign up seccessfully")
     public void serviceProviderWillSignUpSeccessfully() throws UserIsAlreadyExist, WeakPasswordException {
-        int numberOfUsersOld=EventPlanner.getServiceProviders().size();
         List<Service> services=new ArrayList<>();
         services.add(this.service);
-        SignUp.signUpServiceProvider(this.name,this.address,this.authentication,this.contactInfo, services);
-        assertEquals(numberOfUsersOld + 1, EventPlanner.getServiceProviders().size());
+        assertDoesNotThrow(() -> {
+            SignUp.signUpServiceProvider(this.name,this.address,this.authentication,this.contactInfo,services);
+            EventPlanner.getServiceProviderByUsername(this.authentication.getUsername());
+        });
     }
     @Then("Service Provider sign up fails because of weak password")
     public void serviceProviderSignUpFailsBecauseOfWeakPassword() {
