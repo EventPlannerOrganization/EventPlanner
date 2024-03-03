@@ -1,5 +1,9 @@
 
-c
-java:S1854."ARemove this useless assignment to local variable "filterdEvents".(ñºÅÞþÿÿÿÿ8‰¿­¯à1
+D
+java:S2189J""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿ8ŒÜª²à1
+N
+java:S6126O"2Replace this String concatenation with Text block.(×œ¶Z8•Üª²à1
+P
+java:S1128"3Remove this unused import 'io.cucumber.java.eo.Se'.(ÔÒÐ¹8™Üª²à1
 T
-java:S1481."2Remove this unused "filterdEvents" local variable.(ñºÅÞþÿÿÿÿ8Œ¿­¯à1
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓþÿÿÿÿ8™Üª²à1
