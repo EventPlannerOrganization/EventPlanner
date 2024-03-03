@@ -43,7 +43,15 @@ public class MenusPrinter {
         printMenu(menu);
     }
 
-
+    public static void printServicesMenuWithPcks() {
+        List<String> menu = new ArrayList<>();
+        menu.add("DJ");
+        menu.add("Photography");
+        menu.add("Security");
+        menu.add("Cleaning");
+        menu.add("packages Offers");
+        printMenu(menu);
+    }
 
     public static void printServicesList(List<ServiceProvider> services) {
         List<String> menu = new ArrayList<>();

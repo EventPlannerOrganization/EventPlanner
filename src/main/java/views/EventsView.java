@@ -21,7 +21,6 @@ public class EventsView {
     }
     public static void registerEventView(){
         cost=0;
-        List<ServiceProvider> providers;
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
         String name=scanner.nextLine();
         logger.info("* Enter Date of your event \n - Day (1-31): ");
@@ -49,17 +48,23 @@ public class EventsView {
 
         while(again) {
             logger.info("Select one:\n");
-            MenusPrinter.printServicesMenu();
+            MenusPrinter.printServicesMenuWithPcks();
             String serviceNum = scanner.nextLine();
-            ServiceType serviceType = switch (serviceNum) {
+            List<ServiceProvider> filteredProvidersList;
+            if(serviceNum.equals("5")){
+                filteredProvidersList = EventPlanner.getPakageProviders();
+            }
+
+            else {ServiceType serviceType = switch (serviceNum) {
                 case "1" -> ServiceType.DJ;
                 case "2" -> ServiceType.Photography;
                 case "3" -> ServiceType.Security;
                 case "4" -> ServiceType.Cleaning;
                 default -> null;
             };
+                filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType,date);
+                }
 
-            List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType,date);
             if (filteredProvidersList.isEmpty())
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
             else {
@@ -93,10 +98,6 @@ public class EventsView {
     }
 
 
-
-
-
-
     public static List<String> readeGuestsEmails(){
         List<String> guestsEmails=new ArrayList<>();
         logger.info("Enter the number of guests. You can adjust this number and modify the list as needed:\n");
@@ -115,13 +116,13 @@ public class EventsView {
     public static void editUpCommingEvents(){
         logger.info("Select Event to Editing it: ");
         User currentUser=(User) EventPlanner.getCurrentUser();
-        List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents().stream().filter(event ->!event.getDate().isBefore(LocalDate.now()) ).toList();
-        MenusPrinter.printEventsList(myEvents);
+        List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event ->!event.getDate().isBefore(LocalDate.now()) ).toList();
+        MenusPrinter.printEventsList(myUpComingEvents);
         int addedNumber = Integer.parseInt( scanner.nextLine());
-        if(addedNumber<=myEvents.size()){
-            editingEventView(myEvents.get(addedNumber-1));
+        if(addedNumber<=myUpComingEvents.size()){
+            editingEventView(myUpComingEvents.get(addedNumber-1));
         }
-        //else if(addedNumber==myEvents.size()+1) ;
+
 
 
     }
@@ -129,6 +130,8 @@ public class EventsView {
 
     private static void editingEventView(RegisteredEvent event)
     {
+        boolean flage=true;
+        while(flage){
         MenusPrinter.printEditingChoices();
         String choice = scanner.nextLine();
         switch (choice) {
@@ -146,19 +149,19 @@ public class EventsView {
                 break;
             case "4":
                 EventsControl.addNewGuests(event);
-                editUpCommingEvents();
+                editingEventView(event);
                 break;
             case "5":
                 deleteGuest(event);
-                editUpCommingEvents();
+                editingEventView(event);
                 break;
             case "6":
-                UserView.userMenu();
+                flage=false;
                 break;
             default:
                 // code block
         }
-    }
+    }}
 
     private static void editEventName(RegisteredEvent event){
         logger.info("Please, Enter new name for the event: ");

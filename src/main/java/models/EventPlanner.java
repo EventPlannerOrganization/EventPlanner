@@ -76,6 +76,9 @@ public class EventPlanner {
         }
         return services;
     }
+    public static List<ServiceProvider>getPakageProviders(){
+        return getServiceProviders().stream().filter(ServiceProvider::isPackageProvider).toList();
+    }
 
     public  static  List<User> getUsers(){
         List<Person> result = users.stream().filter(user -> User.class.isAssignableFrom(user.getClass())).toList();

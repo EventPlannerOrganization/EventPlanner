@@ -36,6 +36,7 @@ public class UserView {
                 break;
             case "3":
                 EventsView.editUpCommingEvents();
+                UserView.userMenu();
                 break;
             case "4":
                 UserControl.signout();
