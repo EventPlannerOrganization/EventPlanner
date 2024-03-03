@@ -126,7 +126,7 @@ public String toString2(){
         List<ServiceProvider> addedServices =addingProcess(this.getDate());
         getServiceProviders().addAll(addedServices);
         for(ServiceProvider element:addedServices){
-            this.cost+=element.getPrice(); //note this does not include packeges providers
+            this.cost+=element.getServices().get(0).getPrice(); //note this does not include packeges providers
             element.getBookedDates().add(this.getDate());
         }
 

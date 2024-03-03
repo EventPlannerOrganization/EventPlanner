@@ -76,13 +76,12 @@ List<Service> list = new ArrayList<>();
                 }
                 list = serviceList(numberOfServices);
             }
-            logger.info("Enter total price for your providservice: ");
-            double price=Double.parseDouble(scanner.nextLine());
+
             SignUp.signUpServiceProvider(new Name(fname,mname,lname)
                     ,new Address(country,city)
                     ,new Authentication(email,password)
                     ,new ContactInfo(email,phone)
-                    ,list,price);
+                    ,list);
 
 
         } else if (signUpAs.equals("1")) {
@@ -114,10 +113,11 @@ List<Service> list = new ArrayList<>();
             case "4" -> ServiceType.Cleaning;
             default -> null;
         };
-
+        logger.info("Enter price for this service: ");
+        double price=Double.parseDouble(scanner.nextLine());
         logger.info("description about the service: ");
         String discription=scanner.nextLine();
-        list.add(new Service(serviceType,discription));
+        list.add(new Service(serviceType,price,discription));
     }
         return list;
     }

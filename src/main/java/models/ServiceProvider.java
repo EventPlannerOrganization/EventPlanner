@@ -9,14 +9,13 @@ public class ServiceProvider extends Person {
     private boolean isPackageProvider = false;
     private double price;
 
-    public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service,double price) {
+    public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service) {
 
         super(new Name(name.getfName(), name.getmName(), name.getlName())
                 , new Authentication(authentication.getUsername(), authentication.getPassword()),
                 new Address(address.getCountry(), address.getCity()),
                 new ContactInfo(contactInfo.getEmail(), contactInfo.getPhoneNumber()));
 
-        this.price=price;
         services.addAll(service);
         if (services.size() > 1) isPackageProvider = true;
         bookedDates=new ArrayList<>();
@@ -69,11 +68,4 @@ public class ServiceProvider extends Person {
         return result;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

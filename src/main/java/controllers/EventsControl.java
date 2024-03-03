@@ -24,7 +24,7 @@ public class EventsControl {
     public static void deleteService(RegisteredEvent event, ServiceProvider service){
         event.getServiceProviders().remove(service);
         service.getBookedDates().remove(event.getDate());
-        event.subFromCost(service.getPrice());// note this does not include package provider
+        event.subFromCost(service.getServices().get(0).getPrice());// note this does not include package provider
 
     }
 

@@ -99,29 +99,29 @@ public class EventPlanner {
 
       EventPlanner.addUser(user);
       List<Service>services=new ArrayList<>();
-      services.add(  new Service(ServiceType.DJ,"tesing"));
+      services.add(  new Service(ServiceType.DJ,3200,"tesing"));
       ServiceProvider serviceProvider = new ServiceProvider(new Name("mo","munir","shadid"),
               new Authentication("mo","12345"),new Address("palestine","tulkarm"),
               new ContactInfo("mo@gmail.com","9412412"),
-            services,3200);
+            services);
       EventPlanner.addUser(serviceProvider);
 
 
         List<Service>services2=new ArrayList<>();
-        services2.add(  new Service(ServiceType.Security,"tesing"));
+        services2.add(  new Service(ServiceType.Security,3200,"tesing"));
         ServiceProvider serviceProvider2 = new ServiceProvider(new Name("baha","khalid","alawneh"),
                 new Authentication("baha","0000"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
-                services2,3200);
+                services2);
         EventPlanner.addUser(serviceProvider2);
 
         List<Service>services3=new ArrayList<>();
-        services3.add(  new Service(ServiceType.Photography,"tesing"));
-        services3.add(new Service(ServiceType.Security,"tesing"));
+        services3.add(  new Service(ServiceType.Photography,3200,"tesing"));
+        services3.add(new Service(ServiceType.Security,3200,"tesing"));
         ServiceProvider serviceProvider3 = new ServiceProvider(new Name("jamil","munir","shadid"),
                 new Authentication("baha alawneh","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
-                services3,3200);
+                services3);
         EventPlanner.addUser(serviceProvider3);
 
         User user2 = new User(new Name("khalid", "Mohammad", "Abu-Safieh"),
