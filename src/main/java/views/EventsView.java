@@ -129,10 +129,7 @@ public class EventsView {
 
     }
 
-
-
-    private static void editingEventView(RegisteredEvent event) throws UserIsAlreadyExist, WeakPasswordException {
-
+    
     private static void editingEventView(RegisteredEvent event)
     {
         boolean flage=true;
