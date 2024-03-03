@@ -100,8 +100,7 @@ public class RegisteredEvent {
                 "\nServices: \n" + getServicesDetails() +
                 "\nDate: " + date +
                 "\nTotal Cost: " + cost +
-                "\nGuests List: \n" + guestsEmails +
-                '}';
+                "\nGuests List: \n" + guestsEmails +"\n\n";
     }
 public String toString2(){
         return
@@ -114,6 +113,7 @@ public String toString2(){
         StringBuilder services=new StringBuilder();
         int count=1;
         for(ServiceProvider element: serviceProviders) {
+            services.append("\t");
             services.append(count);
             services.append("- ");
             services.append(element.toString());
@@ -126,8 +126,10 @@ public String toString2(){
         List<ServiceProvider> addedServices =addingProcess(this.getDate());
         getServiceProviders().addAll(addedServices);
         for(ServiceProvider element:addedServices){
-            this.cost+=element.getServices().get(0).getPrice(); //note this does not include packeges providers
+            this.cost+=element.getPrice(); //note this does not include packeges providers
+            element.getBookedDates().add(this.getDate());
         }
+
     }
     public void subFromCost(double deletedCost){
         this.cost-=deletedCost;

@@ -7,15 +7,16 @@ public class ServiceProvider extends Person {
     private List<Service> services = new ArrayList<>();
     private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
+    private double price;
 
-    public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service) {
+    public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service,double price) {
 
         super(new Name(name.getfName(), name.getmName(), name.getlName())
                 , new Authentication(authentication.getUsername(), authentication.getPassword()),
                 new Address(address.getCountry(), address.getCity()),
                 new ContactInfo(contactInfo.getEmail(), contactInfo.getPhoneNumber()));
 
-
+        this.price=price;
         services.addAll(service);
         if (services.size() > 1) isPackageProvider = true;
         bookedDates=new ArrayList<>();
@@ -50,7 +51,7 @@ public class ServiceProvider extends Person {
         String result;
 
         if (!isPackageProvider) {
-            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ services.get(0)   ;
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ services.get(0)+"\n\tPrice: "+price+"$"   ;
         }
         //this else statement not correct, this must print list of services...
         else{
@@ -63,8 +64,16 @@ public class ServiceProvider extends Person {
                 pack.append("\n");
                 counter++;
             }
-            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack + "\tbookedDates:  " + bookedDates  ;
+            result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack + "\n\tPrice: "+price+"$"  ;
         }
         return result;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

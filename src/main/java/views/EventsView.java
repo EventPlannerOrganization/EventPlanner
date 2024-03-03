@@ -32,6 +32,7 @@ public class EventsView {
 
         LocalDate date=LocalDate.of(year,month,day);
         logger.info("Add Services:\n");
+        scanner.nextLine();// this to fixing some input problem
         List <ServiceProvider> addedProviders= addingProcess(date);
         logger.info("Add guests :\n");
         List<String> guestsEmails =readeGuestsEmails();
@@ -43,7 +44,7 @@ public class EventsView {
     public static List<ServiceProvider> addingProcess(LocalDate date){
         boolean again=true;
         List <ServiceProvider> addedProviders=new ArrayList<>();
-        scanner.nextLine();
+
         while(again) {
             logger.info("Select one:\n");
             MenusPrinter.printServicesMenu();
@@ -55,6 +56,7 @@ public class EventsView {
                 case "4" -> ServiceType.Cleaning;
                 default -> null;
             };
+
             List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType,date);
             if (filteredProvidersList.isEmpty())
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
@@ -82,9 +84,7 @@ public class EventsView {
         MenusPrinter.printServicesList(filteredProvidersList);
         int addedNumber = Integer.parseInt( scanner.nextLine());
         if(addedNumber<=filteredProvidersList.size()){
-            for(Service e:filteredProvidersList.get(addedNumber-1).getServices()){//this loop will calculate the packeges by summing its services prices,and this must replace with another functionality ...
-                cost+=e.getPrice();
-            }
+            cost+=filteredProvidersList.get(addedNumber-1).getPrice();
             return filteredProvidersList.get(addedNumber-1);
         }
         return null;
