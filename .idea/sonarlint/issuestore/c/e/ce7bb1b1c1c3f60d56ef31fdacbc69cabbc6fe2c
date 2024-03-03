@@ -1,3 +1,5 @@
 
-M
-java:S1068"+Remove this unused "scanner" private field.(‚ïèıÿÿÿÿ8ıŒ‹«à1
+c
+java:S1854."ARemove this useless assignment to local variable "filterdEvents".(ñºÅŞşÿÿÿÿ8‰¿­¯à1
+T
+java:S1481."2Remove this unused "filterdEvents" local variable.(ñºÅŞşÿÿÿÿ8Œ¿­¯à1
