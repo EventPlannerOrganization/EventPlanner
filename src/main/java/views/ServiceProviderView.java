@@ -1,14 +1,11 @@
 package views;
 
+import Exceptions.UserIsAlreadyExist;
+import Exceptions.WeakPasswordException;
 import controllers.ServiceProviderControl;
 import helpers.ChoiceChecker;
-import models.EventPlanner;
-import models.User;
 import printers.MenusPrinter;
 
-import java.awt.*;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -21,7 +18,7 @@ public class ServiceProviderView {
     }
 
 
-    public static void providerMenu() {
+    public static void providerMenu() throws UserIsAlreadyExist, WeakPasswordException {
         MenusPrinter.printServiceProviderMenu();
         logger.info("What do you want to do ?");
         String choice = scanner.nextLine();
@@ -40,27 +37,27 @@ public class ServiceProviderView {
                 break;
             case "4":
                 ServiceProviderControl.signout();
-                LoginView.canLoginView();
+                StartingView.staringView();
                 break;
             default:
                 // code block
         }
     }
 
-    private static void showEvents() {
+    private static void showEvents() throws UserIsAlreadyExist, WeakPasswordException {
 
         ServiceProviderControl.showServiceProviderEvents();
-        BacktoServiceProviderMenu();
+        backtoServiceProviderMenu();
 
     }
 
-    private static void showServices() {
+    private static void showServices() throws UserIsAlreadyExist, WeakPasswordException {
 
         ServiceProviderControl.showServiceProviderServices();
-       BacktoServiceProviderMenu();
+       backtoServiceProviderMenu();
 
     }
-    private static void BacktoServiceProviderMenu(){
+    private static void backtoServiceProviderMenu() throws UserIsAlreadyExist, WeakPasswordException {
         logger.info("To Return Back Enter B");
         String choice = scanner.nextLine();
         while (!(choice.equals("B") || choice.equals("b"))) {
