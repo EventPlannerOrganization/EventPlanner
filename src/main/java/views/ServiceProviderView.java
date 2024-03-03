@@ -48,14 +48,14 @@ public class ServiceProviderView {
     }
 
     private static void showEvents() {
-        logger.info("Here is Your Event/s:");
+
         ServiceProviderControl.showServiceProviderEvents();
         BacktoServiceProviderMenu();
 
     }
 
     private static void showServices() {
-        logger.info("Here is Your Service/s:");
+
         ServiceProviderControl.showServiceProviderServices();
        BacktoServiceProviderMenu();
 

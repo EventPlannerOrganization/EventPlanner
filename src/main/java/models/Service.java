@@ -40,7 +40,7 @@ public class Service {
     @Override
     public String toString() {
 
-        return    "\tType: " +serviceType +"/n\tPrice: "+price  + "$\n\tDescription: " + description ;
+        return    "\tType: " +serviceType +" \n \tPrice: "+price  + "$\n\tDescription: " + description ;
     }
 
     public double getPrice() {
