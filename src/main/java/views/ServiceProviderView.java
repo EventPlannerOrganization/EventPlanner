@@ -50,13 +50,24 @@ public class ServiceProviderView {
     private static void showEvents() {
         logger.info("Here is Your Event/s:");
         ServiceProviderControl.showServiceProviderEvents();
+        BacktoServiceProviderMenu();
 
     }
 
     private static void showServices() {
         logger.info("Here is Your Service/s:");
         ServiceProviderControl.showServiceProviderServices();
+       BacktoServiceProviderMenu();
 
+    }
+    private static void BacktoServiceProviderMenu(){
+        logger.info("To Return Back Enter B");
+        String choice = scanner.nextLine();
+        while (!(choice.equals("B") || choice.equals("b"))) {
+            logger.info("To Return Back Enter B");
+            choice = scanner.nextLine();
+        }
+        ServiceProviderView.providerMenu();
     }
 
 }

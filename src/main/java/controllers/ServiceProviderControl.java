@@ -23,16 +23,12 @@ public class ServiceProviderControl {
         ServiceProvider currentprovider = (ServiceProvider) EventPlanner.getCurrentUser();
 
         for (int i = 0; i < currentprovider.getServices().size(); i++) {
+            logger.info("Service info :");
             String st = currentprovider.getServices().get(i).toString();
-            logger.info(st);
+            logger.info(st+"\n ----------------------------");
+
         }
-        logger.info("To Return Back Enter B");
-        String choice = scanner.nextLine();
-        while (!(choice.equals("B") || choice.equals("b"))) {
-            logger.info("To Return Back Enter B");
-            choice = scanner.nextLine();
-        }
-        ServiceProviderView.providerMenu();
+
     }
 
     public static void signout() {
@@ -43,6 +39,10 @@ public class ServiceProviderControl {
     public static void showServiceProviderEvents() {
         ServiceProvider serviceProvider = (ServiceProvider) EventPlanner.getCurrentUser();
         List<User> filteredUsers = getUsersRelatedWithServiceProvider(serviceProvider);
+        if(filteredUsers.isEmpty()){
+            logger.info("You Don't  Have Any Events ");
+            return;
+        }
         for (int i = 0; i < filteredUsers.size(); i++) {
             User user = filteredUsers.get(i);
             List<RegisteredEvent> filterd = getFilterdEvents(user.getRegisteredEvents());
