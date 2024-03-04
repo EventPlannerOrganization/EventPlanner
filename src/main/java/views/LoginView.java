@@ -1,10 +1,8 @@
 package views;
 
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
-import controllers.Login;
 
+import Exceptions.UserNotFoundException;
+import controllers.Login;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
