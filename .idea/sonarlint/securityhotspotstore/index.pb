@@ -7,3 +7,17 @@ T
 $src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
 Q
 !src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+S
+#src/main/java/views/SignUpView.java,3\8\383d99cc642f9d14319c6ab3cae5f2b2ecb2bf88
+R
+"src/main/java/views/LoginView.java,d\9\d9c007c1a60eb7b3d452841e748d5c691ad9ade9
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
+Q
+!src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+X
+(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
+U
+%src/main/java/views/StartingView.java,f\3\f37cc30da36ad676b46320eb4b5c775d45809871
+k
+;src/test/java/testControllers/authentication/TestLogin.java,8\d\8d427bf7e17cbd01fb9f07992f801e63a4b57371

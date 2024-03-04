@@ -89,8 +89,7 @@ public class EventPlanner {
         return users;
     }
     public static void initializeRepositoryWithData() throws UserIsAlreadyExist {
-        users.clear();
-        System.out.println("bahaaaaa");
+       cleanRepositry();
         User user = new User(new Name("Naser", "Mohammad", "Abu-Safieh"),
                 new Authentication("Naser", "m123"),
                 new Address("Palestine", "Nablus"),

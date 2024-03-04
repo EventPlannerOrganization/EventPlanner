@@ -2,7 +2,6 @@ package views;
 
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.WeakPasswordException;
-import controllers.UserControl;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
 

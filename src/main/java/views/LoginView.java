@@ -29,9 +29,10 @@ public class LoginView {
 
      } catch (UserNotFoundException exception) {
          logger.info("invalid username..!");
-     } catch (Exception e) {
-         throw new RuntimeException(e);
-
+     } catch (UserIsAlreadyExist e) {
+        logger.info("this account is already signed up");
+     } catch (WeakPasswordException e) {
+         logger.info("weak password");
      }
  }
 }

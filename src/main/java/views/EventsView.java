@@ -1,8 +1,5 @@
 package views;
 
-
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
@@ -11,6 +8,7 @@ import printers.MenusPrinter;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
+
 
 
 
@@ -115,7 +113,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents() throws UserIsAlreadyExist, WeakPasswordException {
+    public static void editUpCommingEvents()  {
         logger.info("Select Event to Editing it: ");
         User currentUser=(User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event ->!event.getDate().isBefore(LocalDate.now()) ).toList();
@@ -131,7 +129,7 @@ public class EventsView {
 
 
 
-    private static void editingEventView(RegisteredEvent event) throws UserIsAlreadyExist, WeakPasswordException {
+
 
     private static void editingEventView(RegisteredEvent event)
     {
@@ -139,33 +137,32 @@ public class EventsView {
         while(flage){
         MenusPrinter.printEditingChoices();
         String choice = scanner.nextLine();
-        switch (choice) {
-            case "1":
-                editEventName(event);
-                editingEventView(event);
-                break;
-            case "2":
-                event.addServices();
-                editingEventView(event);
-                break;
-            case "3":
-                deleteService(event);
-                editingEventView(event);
-                break;
-            case "4":
-                EventsControl.addNewGuests(event);
-                editingEventView(event);
-                break;
-            case "5":
-                deleteGuest(event);
-                editingEventView(event);
-                break;
-            case "6":
-                flage=false;
-                break;
-            default:
+            switch (choice) {
+                case "1" -> {
+                    editEventName(event);
+                    editingEventView(event);
+                }
+                case "2" -> {
+                    event.addServices();
+                    editingEventView(event);
+                }
+                case "3" -> {
+                    deleteService(event);
+                    editingEventView(event);
+                }
+                case "4" -> {
+                    EventsControl.addNewGuests(event);
+                    editingEventView(event);
+                }
+                case "5" -> {
+                    deleteGuest(event);
+                    editingEventView(event);
+                }
+                case "6" -> flage = false;
+                default -> {
+                }
                 // code block
-        }
+            }
     }}
 
     private static void editEventName(RegisteredEvent event){
