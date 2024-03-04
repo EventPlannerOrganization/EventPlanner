@@ -2,9 +2,6 @@ package views;
 
 
 import Exceptions.EventAlreadyExist;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
-
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
