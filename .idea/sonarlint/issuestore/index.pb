@@ -1,11 +1,19 @@
 
-e
-5src/main/java/controllers/ServiceProviderControl.java,c\e\ce7bb1b1c1c3f60d56ef31fdacbc69cabbc6fe2c
-S
-#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
-Q
-!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
 R
 "src/main/java/views/LoginView.java,d\9\d9c007c1a60eb7b3d452841e748d5c691ad9ade9
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
+U
+%src/main/java/views/StartingView.java,f\3\f37cc30da36ad676b46320eb4b5c775d45809871
+V
+&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
+„
+Tsrc/test/java/testControllers/authentication/TestRunnerForUserGeneralOperations.java,0\4\0478368887e4af72d3f174a3ebaee057bbbab4f5
+X
+(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+Q
+!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3

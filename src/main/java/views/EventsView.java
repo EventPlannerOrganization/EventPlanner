@@ -4,6 +4,7 @@ package views;
 import Exceptions.EventAlreadyExist;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.WeakPasswordException;
+
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
@@ -12,6 +13,7 @@ import printers.MenusPrinter;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
+
 
 
 
@@ -41,13 +43,12 @@ public class EventsView {
         List<ServiceProvider> addedProviders = addingProcess(date);
 
         logger.info("* Add guests :\n");
-        List<String> guestsEmails =readeGuestsEmails();
-       try{
-           EventsControl.addEvent(date,name,addedProviders,cost,guestsEmails);
-        }
-        catch (EventAlreadyExist e ){
+        List<String> guestsEmails = readeGuestsEmails();
+        try {
+            EventsControl.addEvent(date, name, addedProviders, cost, guestsEmails);
+        } catch (EventAlreadyExist e) {
             logger.warning("This event is already exist.");
-            }
+        }
 
     }
 
@@ -123,7 +124,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents()  {
+    public static void editUpCommingEvents() {
         logger.info("Select Event to Editing it: ");
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
@@ -141,58 +142,61 @@ public class EventsView {
     {
         boolean flage=true;
         while(flage){
-        MenusPrinter.printEditingChoices();
-        String choice = scanner.nextLine();
-        switch (choice) {
-            case "1":
-                editEventName(event);
-                break;
-            case "2":
-                event.addServices();
-                break;
-            case "3":
-                deleteService(event);
-                break;
-            case "4":
-                EventsControl.addNewGuests(event);
-                break;
-            case "5":
-                deleteGuest(event);
-                break;
-            case "6":
-                flage=false;
-                break;
-            default:
-                // code block
-        }
-    }}
-
-        private static void editEventName (RegisteredEvent event){
-            logger.info("Please, Enter new name for the event: ");
-            String newName = scanner.nextLine();
-            EventsControl.editEventName(event, newName);
-        }
-        private static void deleteService (RegisteredEvent event){
-            logger.info("Select Event to Editing it: ");
-            ServiceProvider deletedService = EventsView.selectedServiceFromServicesList(event.getServiceProviders());
-            EventsControl.deleteService(event, deletedService);
-        }
-
-        private static void deleteGuest (RegisteredEvent event){
-            logger.info("");
-            MenusPrinter.printGuestsList(event.getGuestsEmails());
-            int addedNumber = Integer.parseInt(scanner.nextLine());
-            if (addedNumber <= event.getGuestsEmails().size()) {
-                EventsControl.deleteGuest(event.getGuestsEmails().get(addedNumber - 1), event);
+            MenusPrinter.printEditingChoices();
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    editEventName(event);
+                    break;
+                case "2":
+                    event.addServices();
+                    break;
+                case "3":
+                    deleteService(event);
+                    break;
+                case "4":
+                    EventsControl.addNewGuests(event);
+                    break;
+                case "5":
+                    deleteGuest(event);
+                    break;
+                case "6":
+                    flage=false;
+                    break;
+                default:
+                    // code block
             }
+        }
+    }
 
+
+    private static void editEventName(RegisteredEvent event) {
+        logger.info("Please, Enter new name for the event: ");
+        String newName = scanner.nextLine();
+        EventsControl.editEventName(event, newName);
+    }
+
+    private static void deleteService(RegisteredEvent event) {
+        logger.info("Select Event to Editing it: ");
+        ServiceProvider deletedService = EventsView.selectedServiceFromServicesList(event.getServiceProviders());
+        EventsControl.deleteService(event, deletedService);
+    }
+
+    private static void deleteGuest(RegisteredEvent event) {
+        logger.info("");
+        MenusPrinter.printGuestsList(event.getGuestsEmails());
+        int addedNumber = Integer.parseInt(scanner.nextLine());
+        if (addedNumber <= event.getGuestsEmails().size()) {
+            EventsControl.deleteGuest(event.getGuestsEmails().get(addedNumber - 1), event);
         }
 
-        public static void showMyevents () {
-            User currentUser = (User) EventPlanner.getCurrentUser();
-            List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents();
-            MenusPrinter.printEventsList(myEvents);
-        }
+    }
 
-
+    public static void showMyevents() {
+        User currentUser = (User) EventPlanner.getCurrentUser();
+        List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents();
+        MenusPrinter.printEventsList(myEvents);
+    }
 }
+
+
