@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class StartingView {
-    private static final Logger logger=Logger.getLogger(ServiceProviderView.class.getName());
+    private static final Logger logger=Logger.getLogger(StartingView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
     private StartingView(){}
     public static void staringView() throws UserIsAlreadyExist, WeakPasswordException {

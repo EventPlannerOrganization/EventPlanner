@@ -1,5 +1,6 @@
 
 j
+<<<<<<< HEAD
 java:S1192g"HDefine a constant instead of duplicating this literal "tulkarm" 3 times.(¿ãÄØúÿÿÿÿ8¸Š’¬à1
 z
 java:S1192`"XDefine a constant instead of duplicating this literal "s12199887@stu.najah.edu" 3 times.(Çü¶•ÿÿÿÿÿ8¹Š’¬à1
@@ -23,3 +24,29 @@ d
 java:S1192e"GDefine a constant instead of duplicating this literal "tesing" 4 times.(¦ÿÎä8ºŠ’¬à1
 d
 java:S1192o"GDefine a constant instead of duplicating this literal "khalid" 3 times.(Ãã‡8ºŠ’¬à1
+=======
+java:S1192h"HDefine a constant instead of duplicating this literal "tulkarm" 3 times.(¿ãÄØúÿÿÿÿ8Ÿº¦±à1
+z
+java:S1192a"XDefine a constant instead of duplicating this literal "s12199887@stu.najah.edu" 3 times.(Çü¶•ÿÿÿÿÿ8 º¦±à1
+i
+java:S1192`"GDefine a constant instead of duplicating this literal "Nablus" 3 times.(÷ ¶Åÿÿÿÿÿ8 º¦±à1
+m
+java:S1192a"KDefine a constant instead of duplicating this literal "0599715584" 3 times.(Çü¶•ÿÿÿÿÿ8 º¦±à1
+h
+java:S1192^"KDefine a constant instead of duplicating this literal "Abu-Safieh" 3 times.(‘ºŸµ8 º¦±à1
+f
+java:S1192^"IDefine a constant instead of duplicating this literal "Mohammad" 3 times.(‘ºŸµ8 º¦±à1
+l
+java:S1192`"JDefine a constant instead of duplicating this literal "Palestine" 3 times.(÷ ¶Åÿÿÿÿÿ8 º¦±à1
+j
+java:S1192i"HDefine a constant instead of duplicating this literal "9412412" 3 times.(çÑ¼Ïýÿÿÿÿ8 º¦±à1
+o
+java:S1192i"MDefine a constant instead of duplicating this literal "mo@gmail.com" 3 times.(çÑ¼Ïýÿÿÿÿ8¡º¦±à1
+l
+java:S1192h"JDefine a constant instead of duplicating this literal "palestine" 3 times.(¿ãÄØúÿÿÿÿ8¡º¦±à1
+d
+java:S1192f"GDefine a constant instead of duplicating this literal "tesing" 4 times.(¦ÿÎä8¡º¦±à1
+d
+java:S1192p"GDefine a constant instead of duplicating this literal "khalid" 3 times.(Ãã‡8¡º¦±à1
+L	java:S106]"+Replace this use of System.out by a logger.(·øöÍþÿÿÿÿ8åº¦±à1
+>>>>>>> fd4c6a520d3ff82da48833ebbd3c9cde889b0bf8

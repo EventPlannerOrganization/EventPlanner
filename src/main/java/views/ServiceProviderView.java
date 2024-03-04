@@ -34,6 +34,7 @@ public class ServiceProviderView {
             ServiceProviderView.showEvents();
                 break;
             case "3":
+                ServiceProviderView.showUpComingEvents();
                 break;
             case "4":
                 ServiceProviderControl.signout();
@@ -55,6 +56,11 @@ public class ServiceProviderView {
 
         ServiceProviderControl.showServiceProviderServices();
        backtoServiceProviderMenu();
+
+    }
+    private static void showUpComingEvents() throws UserIsAlreadyExist, WeakPasswordException {
+        ServiceProviderControl.showServiceProviderUpcomingEvents();
+        backtoServiceProviderMenu();
 
     }
     private static void backtoServiceProviderMenu() throws UserIsAlreadyExist, WeakPasswordException {
