@@ -23,3 +23,13 @@ X
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+Y
+)src/test/features/Events/AddEvent.feature,2\4\24cd488b1fa150c8e66ff66403c74389590d6866
+^
+.src/test/features/authentication/Login.feature,e\4\e4deda65f3a91c4a3d4401f87335c6b181cb84a6
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+l
+<src/test/java/testControllers/authentication/TestSignUp.java,5\4\545f8f31d5025ad761ed09064c911fe3cc788c10
+_
+/src/test/features/authentication/SignUp.feature,8\4\8483701b33c80dd33e8930ee60fd00a46eea8e54
