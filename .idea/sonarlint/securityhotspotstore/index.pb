@@ -33,3 +33,25 @@ l
 <src/test/java/testControllers/authentication/TestSignUp.java,5\4\545f8f31d5025ad761ed09064c911fe3cc788c10
 _
 /src/test/features/authentication/SignUp.feature,8\4\8483701b33c80dd33e8930ee60fd00a46eea8e54
+V
+&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
+Y
+)src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+U
+%src/main/java/controllers/SignUp.java,6\9\69abe9c9b4bb9983c22f528ce7bcbed4714e5f0b
+N
+src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
+P
+ src/main/java/models/Person.java,4\7\479de81afd9a8cc58e5275bb43b6459a4e7d8f3b
+|
+Lsrc/test/java/testControllers/Event/TestRunnerForEventGeneralOperations.java,1\d\1dcf7aac28c44c61f62b421ce98634623fe93c12
+„
+Tsrc/test/java/testControllers/authentication/TestRunnerForUserGeneralOperations.java,0\4\0478368887e4af72d3f174a3ebaee057bbbab4f5
+e
+5src/test/java/testControllers/Event/TestAddEvent.java,1\f\1f77dd77f6061c280e8c050ac1ec84feb37b5ba1
+X
+(src/test/features/Event/AddEvent.feature,2\3\23ebbe75cfa349b5b2a4fa9cc5c3efeb6355e47b
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+Y
+)src/main/java/models/ServiceProvider.java,6\2\62304a9808b0d416d81e7448da3ca44398f9aa07
