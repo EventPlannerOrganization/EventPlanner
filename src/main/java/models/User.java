@@ -58,14 +58,14 @@ public class User extends Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         User user = (User) o;
-        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents) && Objects.equals(getAuthentication().getUsername(), user.getAuthentication().getUsername()) && Objects.equals(getName(), user.getName());
-
+        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usertype, registeredEvents, totalCost);
+        return Objects.hash(super.hashCode(), usertype, registeredEvents, totalCost);
     }
 
     public boolean checkEventExisting(RegisteredEvent event) {
