@@ -25,7 +25,7 @@ public class Login {
     }
 
 
-    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException {
+    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException {
        Person current= EventPlanner.getCurrentUser();
        if(current instanceof User){
            UserView.userMenu();

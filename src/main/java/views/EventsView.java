@@ -2,6 +2,7 @@ package views;
 
 
 import Exceptions.EventAlreadyExist;
+import Exceptions.UserNotFoundException;
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
@@ -121,7 +122,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents() {
+    public static void editUpCommingEvents() throws UserNotFoundException {
         logger.info("Select Event to Editing it: ");
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
@@ -135,8 +136,7 @@ public class EventsView {
     }
 
 
-    private static void editingEventView(RegisteredEvent event)
-    {
+    private static void editingEventView(RegisteredEvent event) throws UserNotFoundException {
         boolean flage=true;
         while(flage){
             MenusPrinter.printEditingChoices();
