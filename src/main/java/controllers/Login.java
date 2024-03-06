@@ -1,5 +1,6 @@
 package controllers;
 
+import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import Exceptions.WeakPasswordException;
@@ -25,7 +26,7 @@ public class Login {
     }
 
 
-    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException {
+    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound {
        Person current= EventPlanner.getCurrentUser();
        if(current instanceof User){
            UserView.userMenu();

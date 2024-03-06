@@ -2,6 +2,7 @@ package views;
 
 
 import Exceptions.EventAlreadyExist;
+import Exceptions.EventNotFound;
 import Exceptions.UserNotFoundException;
 import controllers.EventsControl;
 import enumerations.ServiceType;
@@ -24,10 +25,10 @@ public class EventsView {
 
     }
 
-    public static void registerEventView() {
+    public static void registerEventView()  {
         cost = 0;
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
-        String name = scanner.nextLine();
+        String name=ChoiceChecker.readingEventName();
         logger.info("* Enter Date of your event \n - Day (1-31): ");
         int day = scanner.nextInt();
         logger.info(" - Month (1-12): ");
@@ -42,11 +43,14 @@ public class EventsView {
 
         logger.info("* Add guests :\n");
         List<String> guestsEmails = readeGuestsEmails();
-        try {
-            EventsControl.addEvent(date, name, addedProviders, cost, guestsEmails);
-        } catch (EventAlreadyExist e) {
-            logger.warning("This event is already exist.");
-        }
+
+           try {
+               EventsControl.addEvent(date, name, addedProviders, cost, guestsEmails);
+           }
+           catch (EventAlreadyExist e){
+               logger.warning("This event is already exist.");
+           }
+
 
     }
 
@@ -122,7 +126,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents() throws UserNotFoundException {
+    public static void editUpCommingEvents() throws UserNotFoundException, EventNotFound {
         logger.info("Select Event to Editing it: ");
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
@@ -136,14 +140,14 @@ public class EventsView {
     }
 
 
-    private static void editingEventView(RegisteredEvent event) throws UserNotFoundException {
+    private static void editingEventView(RegisteredEvent event) throws UserNotFoundException, EventNotFound {
         boolean flage=true;
         while(flage){
             MenusPrinter.printEditingChoices();
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    editEventName(event);
+                   editEventName(event);
                     break;
                 case "2":
                     event.addServices();
@@ -152,7 +156,8 @@ public class EventsView {
                     deleteService(event);
                     break;
                 case "4":
-                    EventsControl.addNewGuests(event);
+                    List <String> newGuests= EventsView.readeGuestsEmails();
+                    EventsControl.addNewGuests(event,newGuests);
                     break;
                 case "5":
                     deleteGuest(event);
@@ -167,7 +172,7 @@ public class EventsView {
     }
 
 
-    private static void editEventName(RegisteredEvent event) {
+    private static void editEventName(RegisteredEvent event) throws EventNotFound {
         logger.info("Please, Enter new name for the event: ");
         String newName = scanner.nextLine();
         EventsControl.editEventName(event, newName);

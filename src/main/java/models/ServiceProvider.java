@@ -68,4 +68,12 @@ public class ServiceProvider extends Person {
         return result;
     }
 
+    public  double calculateServiceProviderPrice( ){
+        double price=0;
+        for (Service element:services){
+            price+=element.getPrice();
+        }
+        return price;
+    }
+
 }

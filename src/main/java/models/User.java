@@ -1,11 +1,12 @@
 package models;
 
 import Exceptions.EventAlreadyExist;
+import Exceptions.EventNotFound;
 import enumerations.UserType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 public class User extends Person {
     private UserType usertype;
@@ -54,23 +55,31 @@ public class User extends Person {
         this.totalCost += newCost;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents) && Objects.equals(getAuthentication().getUsername(), user.getAuthentication().getUsername()) && Objects.equals(getName(), user.getName());
+
+
+
+
+    public void checkEventExisting(String eventName) throws EventAlreadyExist {
+        List<RegisteredEvent> similars = this.registeredEvents.stream().filter(e -> e.getEventName().equals(eventName)).toList();
+        if (!similars.isEmpty() ) {
+            throw new EventAlreadyExist();
+        }
 
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(usertype, registeredEvents, totalCost);
+public  boolean isThisEventExist(String eventName) {
+    try {
+        checkEventExisting(eventName);
+        return false;
     }
-
-    public boolean checkEventExisting(RegisteredEvent event) {
-        List<RegisteredEvent> similars = this.registeredEvents.stream().filter(e -> e.getEventName().equals(event.getEventName())).toList();
-return (!similars.isEmpty() ) ;
+    catch (EventAlreadyExist e){
+        return true;
     }
-
+}
+public RegisteredEvent getEventByName(String eventName) throws EventNotFound {
+    List<RegisteredEvent> similars = this.registeredEvents.stream().filter(e -> e.getEventName().equals(eventName)).toList();
+    if(similars.isEmpty()) {
+        throw new EventNotFound();
+    }
+    return similars.get(0);
+}
 }

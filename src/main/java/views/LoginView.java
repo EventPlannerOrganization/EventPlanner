@@ -1,10 +1,11 @@
 package views;
 
+
+import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import Exceptions.WeakPasswordException;
 import controllers.Login;
-
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -36,6 +37,8 @@ public class LoginView {
             logger.info("this account is already signed up");
         } catch (WeakPasswordException e) {
             logger.info("weak password");
+        } catch (EventNotFound e) {
+            throw new RuntimeException(e);
         }
     }
 }
