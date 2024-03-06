@@ -4,6 +4,7 @@ import Exceptions.EmptyList;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.WeakPasswordException;
 
+import enumerations.ServiceType;
 import models.*;
 import printers.MenusPrinter;
 import views.ServiceProviderView;
@@ -11,12 +12,14 @@ import views.ServiceProviderView;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class ServiceProviderControl {
+    public static HashMap<String,ServiceType> map = new HashMap<>();
     private static final Logger logger = Logger.getLogger(ServiceProviderControl.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
 
@@ -142,7 +145,40 @@ public class ServiceProviderControl {
         MenusPrinter.printListofStringWithNumbers(serviceProvdierEvents, "Here is Your Event/s:");
     }
 
-    public static void editServiceProviderEvents() {
+    public static boolean checkIfitsCurrentService(Service service,String chooice) {
+        map.put("1", ServiceType.DJ);
+        map.put("2",ServiceType.Photography);
+        map.put("3",ServiceType.Security);
+        map.put("4",ServiceType.Cleaning);
+        try {
+            return map.get(chooice).equals(service.getServiceType());
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
 
+    public static void editServiceType(Service service, ServiceType serviceType) {
+        service.setServiceType(serviceType);
+    }
+    public static void editServiceDescription(Service service,String descritpion){
+        service.setDescription(descritpion);
+
+    }
+
+    public static void editServicePrice(Service service, String price) {
+        service.setPrice(Double.parseDouble(price));
+    }
+
+
+    public static String getServiceDescription(Service service) {
+        return service.getDescription();
+    }
+    public static Service getServiceFromServiceProvider(ServiceProvider serviceProvider){
+        return serviceProvider.getServices().get(0);
+    }
+
+    public static String getServicePrice(Service service) {
+        return String.valueOf(service.getPrice());
     }
 }

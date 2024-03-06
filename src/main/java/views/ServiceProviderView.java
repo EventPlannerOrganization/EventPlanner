@@ -6,6 +6,7 @@ import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
 import models.EventPlanner;
+import models.Service;
 import models.ServiceProvider;
 import printers.MenusPrinter;
 
@@ -22,65 +23,67 @@ public class ServiceProviderView {
 
 
     public static void providerMenu() throws UserIsAlreadyExist, WeakPasswordException {
-        MenusPrinter.printServiceProviderMenu();
-        logger.info("What do you want to do ?");
-        String choice = scanner.nextLine();
-        while (!ChoiceChecker.ServiceProviderMenuChecker(choice)) {
-            choice = scanner.nextLine();
-            logger.info("Enter Valid Choice !");
-        }
-        switch (choice) {
-            case "1":
-           ServiceProviderView.showServices();
-                break;
-            case "2":
-                ServiceProviderView.editServices((ServiceProvider)EventPlanner.getCurrentUser() );
-                break;
-            case "3":
-                ServiceProviderView.showEvents();
-                break;
-            case "4":
-                ServiceProviderView.showUpComingEvents();
-
-                break;
-            case"5":
-                ServiceProviderControl.signout();
-                StartingView.staringView();
-                break;
-            default:
-                // code block
+        boolean flag = true;
+        while (flag) {
+            MenusPrinter.printServiceProviderMenu();
+            logger.info("What do you want to do ?");
+            String choice = scanner.nextLine();
+            while (!ChoiceChecker.ServiceProviderMenuChecker(choice)) {
+                choice = scanner.nextLine();
+                logger.info("Enter Valid Choice !");
+            }
+            switch (choice) {
+                case "1":
+                    ServiceProviderView.showServices((ServiceProvider) EventPlanner.getCurrentUser());
+                    break;
+                case "2":
+                    ServiceProviderView.updateServices((ServiceProvider) EventPlanner.getCurrentUser());
+                    break;
+                case "3":
+                    ServiceProviderView.showEvents();
+                    break;
+                case "4":
+                    ServiceProviderView.showUpComingEvents();
+                    break;
+                case "5":
+                    ServiceProviderControl.signout();
+                    flag = false;
+                    break;
+                default:
+                    // code block
+            }
         }
     }
 
-    private static void editServices(ServiceProvider serviceProvider) throws UserIsAlreadyExist, WeakPasswordException {
+    private static void updateServices(ServiceProvider serviceProvider)  {
+
         if(serviceProvider.isPackageProvider()){
          //   MenusPrinter.printPackageProviderEditMenu();
-
-
 
         }
         else {
             MenusPrinter.printServiceProviderEditMenu();
             logger.info(" Please Choose Number from Menu or Press B To Back To Main Menu");
             String choice = scanner.nextLine();
-            if(ChoiceChecker.checkIfB(choice)){
-                ServiceProviderView.providerMenu();
-            }
+
             while(!(ChoiceChecker.editServiceMenuCheck(choice))){
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
               choice= scanner.nextLine();
-                if (ChoiceChecker.checkIfB(choice)) ServiceProviderView.providerMenu();
+
 
             }
             switch (choice) {
                 case "1":
-             ServiceProviderView.editServicesType(serviceProvider);
-
+             ServiceProviderView.changeServiceProviderServiceView(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
                     break;
                 case "2":
+                    ServiceProviderView.changeServiceDescription(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
                     break;
                 case "3":
+                    ServiceProviderView.changeServicePrice(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
                     break;
+
+
                 default:
             }
             }
@@ -88,63 +91,114 @@ public class ServiceProviderView {
 
         }
 
-    private static void editServicesType(ServiceProvider serviceProvider) throws UserIsAlreadyExist, WeakPasswordException {
-        MenusPrinter.printServicesMenuWithPcks();
-        StringBuilder stringBuilder = new StringBuilder("What is The Service You Want To Provid ? \n");
-        stringBuilder.append("If You Want To Go Back Press B");
-        logger.info(stringBuilder.toString());
-        String choice = scanner.nextLine();
-        if (ChoiceChecker.checkIfB(choice)) {
-            backtoServiceProviderMenu();
+    private static void changeServicePrice(Service service) {
+        String oldPrice = "Your Old Price is " + ServiceProviderControl.getServicePrice(service);
+        logger.info(oldPrice);
+        String newPrice= scanner.nextLine();
+        if(newPrice.equals(ServiceProviderControl.getServicePrice(service))){
+            logger.info("Its The Same Price !");
+            return;
         }
-        while (ChoiceChecker.editServiceMenuCheck(choice)) {
-            logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
-            choice = scanner.nextLine();
-            if (ChoiceChecker.checkIfB(choice)) ServiceProviderView.providerMenu();
+        service.setPrice(Double.parseDouble(newPrice));
+    }
+
+    private static void changeServiceDescription(Service service) {
+        String oldDescription = "Your Old Description is " + ServiceProviderControl.getServiceDescription(service);
+        logger.info(oldDescription);
+        logger.info("\n Enter The New Description : ");
+        String newDescription = scanner.nextLine();
+        if(newDescription.equals(ServiceProviderControl.getServiceDescription(service))){
+            logger.info("Its The Same Descritpion");
+            return;
+        }
+
+        ServiceProviderControl.editServiceDescription(service,newDescription);
+    }
+
+    private static void changeServiceProviderServiceView(Service service)  {
+
+        MenusPrinter.printServicesMenuWithPcks();
+        String string = "What is The Service You Want To Provide ? \n" + "If You Want To Go Back Press B";
+        logger.info(string);
+        String choice = scanner.nextLine();
+
+
+        while ((!ChoiceChecker.editServiceMenuCheck(choice))||ServiceProviderControl.checkIfitsCurrentService(service,choice)) {
+
+            if(!ChoiceChecker.editServiceMenuCheck(choice)) {
+                logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
+                choice = scanner.nextLine();
+            }
+            else if(ServiceProviderControl.checkIfitsCurrentService(service,choice)){
+                logger.info("this is your current Service ! , Choose Another Service or Back !");
+choice=scanner.nextLine();
+            }
 
         }
+
         switch (choice) {
             case "1":
-                if (serviceProvider.getServices().get(0).equals(ServiceType.DJ)){
-                    logger.info("This is your current service !");
-                    editServicesType(serviceProvider);
+               changeService(service,ServiceType.DJ);
+
+              break;
+            case "2":
+               changeService(service,ServiceType.Photography);
+               break;
+            case "3":
+                changeService(service,ServiceType.Security);
+                break;
+            case "4":
+              changeService(service,ServiceType.Cleaning);
+                break;
+            default:
                 }
-                //add service type and description and price
-                // and ithink its a bad practice but i dont have another solution
 
 
-        }
-    }
+                }
 
 
-    private static void showEvents() throws UserIsAlreadyExist, WeakPasswordException {
+
+
+
+
+
+
+    private static void showEvents()  {
 
         ServiceProviderControl.showServiceProviderEvents();
-        backtoServiceProviderMenu();
-
+        backToServiceProviderMenu();
     }
 
-    private static void showServices() throws UserIsAlreadyExist, WeakPasswordException {
+    private static void showServices(ServiceProvider serviceProvider) {
 
-        ServiceProviderControl.showServiceProviderServices((ServiceProvider) EventPlanner.getCurrentUser());
-       backtoServiceProviderMenu();
+        ServiceProviderControl.showServiceProviderServices(serviceProvider);
+        backToServiceProviderMenu();
+
 
     }
-    private static void showUpComingEvents() throws UserIsAlreadyExist, WeakPasswordException {
+    private static void showUpComingEvents() {
         ServiceProviderControl.showServiceProviderUpcomingEvents();
-        backtoServiceProviderMenu();
+        backToServiceProviderMenu();
+
 
     }
-    private static void backtoServiceProviderMenu() throws UserIsAlreadyExist, WeakPasswordException {
+    private static void backToServiceProviderMenu()  {
         logger.info("To Return Back Enter B");
         String choice = scanner.nextLine();
         while (!(choice.equals("B") || choice.equals("b"))) {
             logger.info("To Return Back Enter B");
             choice = scanner.nextLine();
         }
-        ServiceProviderView.providerMenu();
     }
 
-
+    public static void changeService(Service service, ServiceType serviceType) {
+        ServiceProviderControl.editServiceType(service,serviceType);
+        logger.info("Enter Your Service Description :");
+        String description = scanner.nextLine();
+        ServiceProviderControl.editServiceDescription(service,description);
+        logger.info("Enter Your Service Price :");
+        String price = scanner.nextLine();
+        ServiceProviderControl.editServicePrice(service,price);
+    }
 
 }

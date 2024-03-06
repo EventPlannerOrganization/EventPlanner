@@ -1,9 +1,6 @@
 
-h
-java:S1301j"KReplace this "switch" statement by "if" statements to increase readability.(¨ÕÉ8ıÆ»Îà1
-F
-java:S2629_"$Invoke method(s) only conditionally.(ÖÙä¸ûÿÿÿÿ8ÿÆ»Îà1
-X	java:S1259"<This block of commented-out lines of code should be removed.(‰²‹´8›Ç»Îà1
->	java:S131j""Add a default case to this switch.(¨ÕÉ8Ç»Îà1
-x
-java:S2159l"VRemove this call to "equals"; comparisons between unrelated types always return false.(…âúÆúÿÿÿÿ8Ç»Îà1
+˜
+java:S1130"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(ğŞ”¢ıÿÿÿÿ8™ì¶§á1
+›
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(ğŞ”¢ıÿÿÿÿ8™ì¶§á1
+X	java:S125="<This block of commented-out lines of code should be removed.(‰²‹´8›ì¶§á1
