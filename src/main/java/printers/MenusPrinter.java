@@ -1,6 +1,7 @@
 package printers;
 
 import enumerations.Colors;
+import enumerations.ServiceType;
 import models.RegisteredEvent;
 import models.ServiceProvider;
 
@@ -53,7 +54,8 @@ public class MenusPrinter {
         printMenu(menu);
     }
 
-    public static void printServicesList(List<ServiceProvider> services) {
+
+        public static void printServicesList(List<ServiceProvider> services) {
         List<String> menu = new ArrayList<>();
 
         for(ServiceProvider element:services){
@@ -86,10 +88,10 @@ public class MenusPrinter {
     public static void printServiceProviderMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("Show your Service/s");
-        menu.add("Show your Events");
-        menu.add("Edit your Events");
+        menu.add("Edit your Service/s");
+        menu.add("Show your Event/s");
+        menu.add("Edit your Event/s");
         menu.add("Sign out !");
-
         printMenu(menu);
     }
 
@@ -128,6 +130,14 @@ public class MenusPrinter {
         menu.add("Reset Your Password");
         menu.add("Exit");
 
+        printMenu(menu);
+    }
+
+    public static void printServiceProviderEditMenu() {
+        List<String> menu = new ArrayList<>();
+        menu.add("Edit Service type");
+        menu.add("Edit Service description");
+        menu.add("Edit Service Price");
         printMenu(menu);
     }
 }
