@@ -74,7 +74,7 @@ public class ServiceProviderView {
             }
             switch (choice) {
                 case "1":
-             ServiceProviderView.changeServiceProviderServiceView(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
+             ServiceProviderView.changeServiceProviderServiceView(serviceProvider);
                     break;
                 case "2":
                     ServiceProviderView.changeServiceDescription(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
@@ -115,7 +115,7 @@ public class ServiceProviderView {
         ServiceProviderControl.editServiceDescription(service,newDescription);
     }
 
-    private static void changeServiceProviderServiceView(Service service)  {
+    private static void changeServiceProviderServiceView(ServiceProvider serviceProvider)  {
 
         MenusPrinter.printServicesMenuWithPcks();
         String string = "What is The Service You Want To Provide ? \n" + "If You Want To Go Back Press B";
@@ -123,13 +123,13 @@ public class ServiceProviderView {
         String choice = scanner.nextLine();
 
 
-        while ((!ChoiceChecker.editServiceMenuCheck(choice))||ServiceProviderControl.checkIfitsCurrentService(service,choice)) {
+        while ((!ChoiceChecker.editServiceMenuCheck(choice))||ServiceProviderControl.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),choice)) {
 
             if(!ChoiceChecker.editServiceMenuCheck(choice)) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
             }
-            else if(ServiceProviderControl.checkIfitsCurrentService(service,choice)){
+            else if(ServiceProviderControl.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),choice)){
                 logger.info("this is your current Service ! , Choose Another Service or Back !");
 choice=scanner.nextLine();
             }
@@ -138,18 +138,22 @@ choice=scanner.nextLine();
 
         switch (choice) {
             case "1":
-               changeService(service,ServiceType.DJ);
+               changeService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),ServiceType.DJ);
 
               break;
             case "2":
-               changeService(service,ServiceType.Photography);
+               changeService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),ServiceType.Photography);
                break;
             case "3":
-                changeService(service,ServiceType.Security);
+                changeService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),ServiceType.Security);
                 break;
             case "4":
-              changeService(service,ServiceType.Cleaning);
+              changeService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),ServiceType.Cleaning);
                 break;
+            case "5":
+                serviceProvider.setPackageProvider(true);
+
+                 break;
             default:
                 }
 
