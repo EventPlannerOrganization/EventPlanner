@@ -103,7 +103,6 @@ public class EventPlanner {
                 new Address("Palestine", "Nablus"),
         new ContactInfo("s12199887@stu.najah.edu","0599715584")
               );
-
       EventPlanner.addUser(user);
       List<Service>services=new ArrayList<>();
       services.add(  new Service(ServiceType.DJ,3200,"tesing"));
@@ -140,12 +139,25 @@ public class EventPlanner {
         EventPlanner.addUser(user2);
 
         User user3 = new User(new Name("sam", "Mohammad", "Abu-Safieh"),
-                new Authentication("Nasernnnn", "123"),
+                new Authentication("Karim", "123"),
                 new Address("Palestine", "Nablus"),
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
 
         EventPlanner.addUser(user3);
+
+        List<ServiceProvider> serviceProviders=new ArrayList<>();
+        serviceProviders.add(serviceProvider);
+        serviceProviders.add(serviceProvider2);
+        LocalDate localDate=LocalDate.of(2024,9,10);
+        List<String> emails=new ArrayList<>();
+        emails.add("s12113028@stu.najah.edu");
+        emails.add("3sfr3sfr@gmail.com");
+
+        user.getRegisteredEvents().add(new RegisteredEvent("Wedding Celebration",
+                serviceProviders,localDate,
+                calculateTotalPriceForMultiProviders(serviceProviders),
+                emails));
     }
 
      public static List<ServiceProvider> getServiceProvidersNotBookedinThisDate(LocalDate date) {

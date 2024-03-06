@@ -7,17 +7,21 @@ import views.EventsView;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class EventsControl {
+    private static final Logger logger = Logger.getLogger(EventsControl.class.getName());
+
     private EventsControl() {
     }
-    public static void addEvent(LocalDate date, String name, List<ServiceProvider> serviceProviders, double cost, List<String> guestsEmails)throws EventAlreadyExist {
+    public static void addEvent(LocalDate date, String name, List<ServiceProvider> serviceProviders, double cost, List<String> guestsEmails) throws EventAlreadyExist {
         RegisteredEvent registeredEvent =new RegisteredEvent(name,serviceProviders,date,cost,guestsEmails);
-
            User currentUser = (User) (EventPlanner.getCurrentUser());
-           if(currentUser.checkEventExisting(registeredEvent)) throw new EventAlreadyExist();
-           currentUser.getRegisteredEvents().add(registeredEvent);
-           currentUser.addToTotalCost(cost);
+
+              currentUser.checkEventExisting(name);
+              currentUser.getRegisteredEvents().add(registeredEvent);
+              currentUser.addToTotalCost(cost);
+
 
 
     }

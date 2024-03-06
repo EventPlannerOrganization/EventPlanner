@@ -1,12 +1,15 @@
 package helpers;
 
+import Exceptions.EventAlreadyExist;
+import models.EventPlanner;
+import models.User;
 import views.EventsView;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class ChoiceChecker {
-    private static final Logger logger=Logger.getLogger(EventsView.class.getName());
+    private static final Logger logger=Logger.getLogger(ChoiceChecker.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
     private ChoiceChecker() {
 
@@ -41,5 +44,19 @@ public class ChoiceChecker {
             }
         }
         return again;
+    }
+
+    public static String readingEventName(){
+        String eventName = scanner.nextLine();
+        while (true){
+            try {
+                ((User) EventPlanner.getCurrentUser()).checkEventExisting(eventName);
+                break;
+            } catch (EventAlreadyExist e) {
+                logger.warning("This event name is already exist\nplease Enter another name: ");
+                eventName = scanner.nextLine();
+            }
+        }
+        return eventName;
     }
 }

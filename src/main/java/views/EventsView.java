@@ -23,10 +23,10 @@ public class EventsView {
 
     }
 
-    public static void registerEventView() {
+    public static void registerEventView()  {
         cost = 0;
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
-        String name = scanner.nextLine();
+        String name=ChoiceChecker.readingEventName();
         logger.info("* Enter Date of your event \n - Day (1-31): ");
         int day = scanner.nextInt();
         logger.info(" - Month (1-12): ");
@@ -41,11 +41,14 @@ public class EventsView {
 
         logger.info("* Add guests :\n");
         List<String> guestsEmails = readeGuestsEmails();
-        try {
-            EventsControl.addEvent(date, name, addedProviders, cost, guestsEmails);
-        } catch (EventAlreadyExist e) {
-            logger.warning("This event is already exist.");
-        }
+
+           try {
+               EventsControl.addEvent(date, name, addedProviders, cost, guestsEmails);
+           }
+           catch (EventAlreadyExist e){
+               logger.warning("This event is already exist.");
+           }
+
 
     }
 

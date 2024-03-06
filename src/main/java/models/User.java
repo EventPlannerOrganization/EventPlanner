@@ -5,7 +5,7 @@ import enumerations.UserType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 public class User extends Person {
     private UserType usertype;
@@ -56,14 +56,22 @@ public class User extends Person {
 
 
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), usertype, registeredEvents, totalCost);
-    }
 
-    public boolean checkEventExisting(RegisteredEvent event) {
-        List<RegisteredEvent> similars = this.registeredEvents.stream().filter(e -> e.getEventName().equals(event.getEventName())).toList();
-return (!similars.isEmpty() ) ;
-    }
 
+    public void checkEventExisting(String eventName) throws EventAlreadyExist {
+        List<RegisteredEvent> similars = this.registeredEvents.stream().filter(e -> e.getEventName().equals(eventName)).toList();
+        if (!similars.isEmpty() ) {
+            throw new EventAlreadyExist();
+        }
+
+    }
+public  boolean isThisEventExist(String eventName) {
+    try {
+        checkEventExisting(eventName);
+        return false;
+    }
+    catch (EventAlreadyExist e){
+        return true;
+    }
+}
 }
