@@ -10,6 +10,9 @@ import models.Service;
 import models.ServiceProvider;
 import printers.MenusPrinter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -57,11 +60,8 @@ public class ServiceProviderView {
 
     private static void updateServices(ServiceProvider serviceProvider)  {
 
-        if(serviceProvider.isPackageProvider()){
-         //   MenusPrinter.printPackageProviderEditMenu();
 
-        }
-        else {
+
             MenusPrinter.printServiceProviderEditMenu();
             logger.info(" Please Choose Number from Menu or Press B To Back To Main Menu");
             String choice = scanner.nextLine();
@@ -89,7 +89,7 @@ public class ServiceProviderView {
             }
 
 
-        }
+
 
     private static void changeServicePrice(Service service) {
         String oldPrice = "Your Old Price is " + ServiceProviderControl.getServicePrice(service);
@@ -138,6 +138,7 @@ choice=scanner.nextLine();
 
         switch (choice) {
             case "1":
+
                changeService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),ServiceType.DJ);
 
               break;
@@ -152,6 +153,13 @@ choice=scanner.nextLine();
                 break;
             case "5":
                 serviceProvider.setPackageProvider(true);
+               List<Service> services =ServiceProviderView.addingProcessForPackageProvider();
+               serviceProvider.setServices(services);
+
+
+
+
+
 
                  break;
             default:
@@ -160,11 +168,58 @@ choice=scanner.nextLine();
 
                 }
 
+    private static List<Service> addingProcessForPackageProvider() {
+        HashMap<String,ServiceType> map = new HashMap<>();
+        map.put("1", ServiceType.DJ);
+        map.put("2",ServiceType.Photography);
+        map.put("3",ServiceType.Security);
+        map.put("4",ServiceType.Cleaning);
+        boolean again = true;
+        List<Service> serviceList = new ArrayList<>();
+
+        while (again){
+            MenusPrinter.printServicesMenu();
+            logger.info("Select Service :\n");
+            String choice = scanner.nextLine();
+            while (!ChoiceChecker.isVaildServiceIndex(choice) || (ServiceProviderControl.checkIfTheServiceAlreadyAdded(serviceList,choice))) {
+                if (!ChoiceChecker.isVaildServiceIndex(choice)) {
+                    logger.info("Invalid Input , Choose Correct Service Number :\n");
+                    choice = scanner.nextLine();
+                }
+
+                else if (ServiceProviderControl.checkIfTheServiceAlreadyAdded(serviceList, choice)) {
+                    if (serviceList.size() > 2) {
+                        logger.info("You Already Provide This Service ! , choose Another one or Enter B to Stop Adding :\n");
+                        choice = scanner.nextLine();
+                        if (choice.equalsIgnoreCase("b")) {
+                            return serviceList;
+                        }
+                    } else {
+                        logger.info("You Already Provide This Service !,Choose Another One Because The Package Cannot Contain One Service  :\n");
+                        choice = scanner.nextLine();
+                    }
+
+                }
+            }
+           ServiceType serviceType = map.get(choice);
+            logger.info("Please Enter Service Description");
+            String description = scanner.nextLine();
+            logger.info("Please Enter Service Price");
+            double price = Double.parseDouble(scanner.nextLine());
+            serviceList.add(new Service(serviceType,price,description));
+            if (serviceList.size()>=2){
+                logger.info("Do you Want To Add More Services ? Enter Y for Yes , N for No");
+              again=ChoiceChecker.againChecker();
+            }
+            if(serviceList.size()==4){
+            logger.info("Your Package Contains All The Services you Cant Add Any Thing More");
+            again=false;
+            }
+        }
+return serviceList;
 
 
-
-
-
+}
 
 
     private static void showEvents()  {

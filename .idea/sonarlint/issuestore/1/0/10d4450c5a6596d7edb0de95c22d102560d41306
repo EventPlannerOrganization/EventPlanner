@@ -1,4 +1,10 @@
 
+<<<<<<< HEAD
 o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šðÌ¸ýÿÿÿÿ8Î¢’¨á1
 O
 java:S1128"-Remove this unused import 'views.EventsView'.(§”‘Œúÿÿÿÿ8ó¢’¨á1
+=======
+o	java:S100!"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šðÌ¸ýÿÿÿÿ8ÁÖË¡á1
+O
+java:S1128"-Remove this unused import 'views.EventsView'.(§”‘Œúÿÿÿÿ8„ÞÇ¨á1
+>>>>>>> 9889a91b27d37c45f34869a0029e37369e0d773d

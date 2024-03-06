@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 X
 (src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
 X
@@ -49,3 +50,19 @@ e
 .src/test/features/authentication/Login.feature,e\4\e4deda65f3a91c4a3d4401f87335c6b181cb84a6
 _
 /src/test/features/authentication/SignUp.feature,8\4\8483701b33c80dd33e8930ee60fd00a46eea8e54
+=======
+\
+,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
+Q
+!src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
+X
+(src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
+e
+5src/main/java/controllers/ServiceProviderControl.java,c\e\ce7bb1b1c1c3f60d56ef31fdacbc69cabbc6fe2c
+Y
+)src/main/java/models/ServiceProvider.java,6\2\62304a9808b0d416d81e7448da3ca44398f9aa07
+[
++src/main/java/enumerations/ServiceType.java,2\6\26412306aedc2ff4f69dd6c18b01d8b135fe26a1
+>>>>>>> 9889a91b27d37c45f34869a0029e37369e0d773d

@@ -23,6 +23,9 @@ public class ChoiceChecker {
     public static boolean isValidNumberOfServices(String value) {
         return value.equals("2")||value.equals("3")||value.equals("4");
     }
+    public static boolean isVaildServiceIndex(String value) {
+        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4");
+    }
 
     public static boolean userMenuChecker(String value) {
         return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4");

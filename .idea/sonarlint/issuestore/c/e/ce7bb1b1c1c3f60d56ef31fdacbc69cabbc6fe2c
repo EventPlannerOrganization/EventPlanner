@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ‚
 java:S1319"`The type of "map" should be an interface such as "Map" rather than the implementation "HashMap".(Šë©’ùÿÿÿÿ8ª×Ûªá1
@@ -7,3 +8,5 @@ K
 java:S1444")Make this "public static map" field final(Šë©’ùÿÿÿÿ8«×Ûªá1
 ?
 java:S2386"Make this member "protected".(Šë©’ùÿÿÿÿ8˜ÙÛªá1
+=======
+>>>>>>> 9889a91b27d37c45f34869a0029e37369e0d773d
