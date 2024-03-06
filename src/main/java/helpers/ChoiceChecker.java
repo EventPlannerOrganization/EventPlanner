@@ -27,7 +27,10 @@ public class ChoiceChecker {
     public static boolean userMenuChecker(String value) {
         return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4");
     }
+    public static boolean ServiceProviderMenuChecker(String value) {
+        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5");
 
+    }
     public static boolean againChecker(){
         boolean again=true;
         String choice = scanner.nextLine();
@@ -46,6 +49,17 @@ public class ChoiceChecker {
         return again;
     }
 
+
+    public static boolean editServiceMenuCheck(String value) {
+        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equalsIgnoreCase("b");
+
+    }
+    public static boolean checkIfB(String value) {
+        return value.equals("b") ||value.equals("B");
+    }
+
+
+
     public static String readingEventName(){
         String eventName = scanner.nextLine();
         while (true){
@@ -60,3 +74,4 @@ public class ChoiceChecker {
         return eventName;
     }
 }
+

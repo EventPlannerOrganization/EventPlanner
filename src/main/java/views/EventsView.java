@@ -3,6 +3,7 @@ package views;
 
 import Exceptions.EventAlreadyExist;
 import Exceptions.EventNotFound;
+import Exceptions.ServiceNotFoundException;
 import Exceptions.UserNotFoundException;
 import controllers.EventsControl;
 import enumerations.ServiceType;
@@ -126,7 +127,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents() throws UserNotFoundException, EventNotFound {
+    public static void editUpCommingEvents()throws EventNotFound {
         logger.info("Select Event to Editing it: ");
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
@@ -140,7 +141,7 @@ public class EventsView {
     }
 
 
-    private static void editingEventView(RegisteredEvent event) throws UserNotFoundException, EventNotFound {
+    private static void editingEventView(RegisteredEvent event) throws  EventNotFound {
         boolean flage=true;
         while(flage){
             MenusPrinter.printEditingChoices();
@@ -172,7 +173,7 @@ public class EventsView {
     }
 
 
-    private static void editEventName(RegisteredEvent event) throws EventNotFound {
+    private static void editEventName(RegisteredEvent event)  {
         logger.info("Please, Enter new name for the event: ");
         String newName = scanner.nextLine();
         EventsControl.editEventName(event, newName);
@@ -181,7 +182,8 @@ public class EventsView {
     private static void deleteService(RegisteredEvent event) {
         logger.info("Select Event to Editing it: ");
         ServiceProvider deletedService = EventsView.selectedServiceFromServicesList(event.getServiceProviders());
-        EventsControl.deleteService(event, deletedService);
+        try{EventsControl.deleteService(event, deletedService);}
+        catch (ServiceNotFoundException ignored){}
     }
 
     private static void deleteGuest(RegisteredEvent event) {

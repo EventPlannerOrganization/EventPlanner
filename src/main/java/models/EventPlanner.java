@@ -172,10 +172,14 @@ public class EventPlanner {
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails));
+        localDate=LocalDate.of(2024,4,10);
+
         user2.getRegisteredEvents().add(new RegisteredEvent("wedding party",
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails));
+        localDate=LocalDate.of(2024,8,1);
+
         RegisteredEvent registeredEvent=new RegisteredEvent("wedding party",
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),

@@ -1,42 +1,50 @@
 package controllers;
 
 import Exceptions.EmptyList;
+import Exceptions.ServiceNotFoundException;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.WeakPasswordException;
-import io.cucumber.java.eo.Se;
-import models.EventPlanner;
-import models.RegisteredEvent;
-import models.ServiceProvider;
-import models.User;
+
+import enumerations.ServiceType;
+import models.*;
 import printers.MenusPrinter;
 import views.ServiceProviderView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
+
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class ServiceProviderControl {
+    public static HashMap<String,ServiceType> map = new HashMap<>();
     private static final Logger logger = Logger.getLogger(ServiceProviderControl.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
 
     private ServiceProviderControl() {
 
     }
+    public static List<Service> getServiceProviderServices(ServiceProvider serviceProvider){
+        List<Service> serviceProvdierServices = new ArrayList<>();
+        for (int i = 0; i < serviceProvider.getServices().size(); i++) {
+            serviceProvdierServices.add(serviceProvider.getServices().get(i));
+        }
+        return serviceProvdierServices;
 
-    public static void showServiceProviderServices() {
-        ServiceProvider currentprovider = (ServiceProvider) EventPlanner.getCurrentUser();
-        List<String> serviceProvdierServices = new ArrayList<>();
-        for (int i = 0; i < currentprovider.getServices().size(); i++) {
+    }
+    public static void showServiceProviderServices(ServiceProvider serviceProvider) {
+        List<Service> serviceProvdierServices = getServiceProviderServices(serviceProvider);
+        List<String> serviceProviderServiceString=new ArrayList<>() ;
+        for (int i = 0; i < serviceProvider.getServices().size(); i++) {
             String st1 = "Service info : \n";
-            String st = st1 + currentprovider.getServices().get(i).toString() + "\n -------------------------------------------";
-            serviceProvdierServices.add(st);
+            String st = st1 + serviceProvdierServices.get(i).toString() + "\n -------------------------------------------";
+            serviceProviderServiceString.add(st);
 
         }
-        MenusPrinter.printListofStringWithNumbers(serviceProvdierServices, "\"Here is Your Service/s:\"");
+        MenusPrinter.printListofStringWithNumbers(serviceProviderServiceString, "\"Here is Your Service/s:\"");
 
     }
 
@@ -52,7 +60,7 @@ public class ServiceProviderControl {
         if (filteredUsers.isEmpty()) {
             throw new EmptyList();
         }
-          return getEventsRelatedWithServiceProvider(filteredUsers);
+          return getEventsRelatedWithServiceProvider((ServiceProvider) EventPlanner.getCurrentUser());
     }
     public static void showServiceProviderEvents(){
         try {
@@ -71,12 +79,13 @@ public class ServiceProviderControl {
     }
     public static void showServiceProviderUpcomingEvents() {
         try {
-            while (true){
+            String string = new StringBuilder().append("Invalid Input").append("\n If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ").toString();
+            while (1<2){
                 printList(getServiceProviderUpComingEvents());
                 logger.info("If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ");
                 String choice = scanner.nextLine();
                 while (!(choice.equals("B")||choice.equals("b")||Integer.parseInt(choice) <= getServiceProviderUpComingEvents().size())) {
-                    logger.info("Invalid Input"+"\n If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B " );
+                    logger.info(string);
                     choice = scanner.nextLine();
 
                 }
@@ -89,7 +98,7 @@ public class ServiceProviderControl {
 
             }
 
-        } catch(EmptyList | UserIsAlreadyExist | WeakPasswordException emptyList) {
+        } catch(EmptyList | UserIsAlreadyExist | ServiceNotFoundException|WeakPasswordException emptyList ) {
             logger.info("You Don't  Have Any Events ");
 
         }
@@ -110,7 +119,8 @@ public class ServiceProviderControl {
                 .toList();
     }
 
-    public static List<RegisteredEvent> getEventsRelatedWithServiceProvider(List<User> filteredUsers) {
+    public static List<RegisteredEvent> getEventsRelatedWithServiceProvider(ServiceProvider serviceProvider) {
+        List<User> filteredUsers =getUsersRelatedWithServiceProvider(serviceProvider);
         List<RegisteredEvent> serviceProvdierEvents = new ArrayList<>();
         for (int i = 0; i < filteredUsers.size(); i++) {
             User user = filteredUsers.get(i);
@@ -136,4 +146,40 @@ public class ServiceProviderControl {
         MenusPrinter.printListofStringWithNumbers(serviceProvdierEvents, "Here is Your Event/s:");
     }
 
+    public static boolean checkIfitsCurrentService(Service service,String chooice) {
+        map.put("1", ServiceType.DJ);
+        map.put("2",ServiceType.Photography);
+        map.put("3",ServiceType.Security);
+        map.put("4",ServiceType.Cleaning);
+        try {
+            return map.get(chooice).equals(service.getServiceType());
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    public static void editServiceType(Service service, ServiceType serviceType) {
+        service.setServiceType(serviceType);
+    }
+    public static void editServiceDescription(Service service,String descritpion){
+        service.setDescription(descritpion);
+
+    }
+
+    public static void editServicePrice(Service service, String price) {
+        service.setPrice(Double.parseDouble(price));
+    }
+
+
+    public static String getServiceDescription(Service service) {
+        return service.getDescription();
+    }
+    public static Service getServiceFromServiceProvider(ServiceProvider serviceProvider){
+        return serviceProvider.getServices().get(0);
+    }
+
+    public static String getServicePrice(Service service) {
+        return String.valueOf(service.getPrice());
+    }
 }
