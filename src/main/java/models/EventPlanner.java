@@ -1,5 +1,6 @@
 package models;
 
+import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
@@ -15,7 +16,7 @@ public class EventPlanner {
     private EventPlanner() {
     }
 
-    private static Person currentUser;
+    private static Person currentUser=null;
 
     public static void addUser(Person user) throws UserIsAlreadyExist {
         if (users.contains(user))
@@ -98,11 +99,13 @@ public class EventPlanner {
     }
     public static void initializeRepositoryWithData() throws UserIsAlreadyExist {
        cleanRepositry();
+
         User user = new User(new Name("Naser", "Mohammad", "Abu-Safieh"),
                 new Authentication("Naser", "m123"),
                 new Address("Palestine", "Nablus"),
         new ContactInfo("s12199887@stu.najah.edu","0599715584")
               );
+
       EventPlanner.addUser(user);
       List<Service>services=new ArrayList<>();
       services.add(  new Service(ServiceType.DJ,3200,"tesing"));
@@ -145,7 +148,12 @@ public class EventPlanner {
         );
 
         EventPlanner.addUser(user3);
-
+        User user4 = new User(new Name("khalid", "Mohammad", "Abu-Safieh"),
+                new Authentication("Nassar", "123"),
+                new Address("Palestine", "Nablus"),
+                new ContactInfo("s12199887@stu.najah.edu","0599715584")
+        );
+        EventPlanner.addUser(user4);
         List<ServiceProvider> serviceProviders=new ArrayList<>();
         serviceProviders.add(serviceProvider);
         serviceProviders.add(serviceProvider2);
@@ -158,6 +166,25 @@ public class EventPlanner {
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails));
+         localDate=LocalDate.of(2024,8,10);
+
+        user.getRegisteredEvents().add(new RegisteredEvent("open day1",
+                serviceProviders,localDate,
+                calculateTotalPriceForMultiProviders(serviceProviders),
+                emails));
+        user2.getRegisteredEvents().add(new RegisteredEvent("wedding party",
+                serviceProviders,localDate,
+                calculateTotalPriceForMultiProviders(serviceProviders),
+                emails));
+        RegisteredEvent registeredEvent=new RegisteredEvent("wedding party",
+                serviceProviders,localDate,
+                calculateTotalPriceForMultiProviders(serviceProviders),
+                emails);
+        registeredEvent.setLocation("jerusalem");
+        user4.getRegisteredEvents().add(registeredEvent);
+
+
+
     }
 
      public static List<ServiceProvider> getServiceProvidersNotBookedinThisDate(LocalDate date) {

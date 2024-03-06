@@ -1,6 +1,7 @@
 package models;
 
 import Exceptions.EventAlreadyExist;
+import Exceptions.EventNotFound;
 import enumerations.UserType;
 
 import java.util.ArrayList;
@@ -73,5 +74,12 @@ public  boolean isThisEventExist(String eventName) {
     catch (EventAlreadyExist e){
         return true;
     }
+}
+public RegisteredEvent getEventByName(String eventName) throws EventNotFound {
+    List<RegisteredEvent> similars = this.registeredEvents.stream().filter(e -> e.getEventName().equals(eventName)).toList();
+    if(similars.isEmpty()) {
+        throw new EventNotFound();
+    }
+    return similars.get(0);
 }
 }

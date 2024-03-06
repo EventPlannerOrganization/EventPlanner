@@ -2,6 +2,8 @@ package views;
 
 
 import Exceptions.EventAlreadyExist;
+import Exceptions.EventNotFound;
+import Exceptions.UserNotFoundException;
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
@@ -124,7 +126,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents() {
+    public static void editUpCommingEvents() throws UserNotFoundException, EventNotFound {
         logger.info("Select Event to Editing it: ");
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
@@ -138,15 +140,14 @@ public class EventsView {
     }
 
 
-    private static void editingEventView(RegisteredEvent event)
-    {
+    private static void editingEventView(RegisteredEvent event) throws UserNotFoundException, EventNotFound {
         boolean flage=true;
         while(flage){
             MenusPrinter.printEditingChoices();
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    editEventName(event);
+                   editEventName(event);
                     break;
                 case "2":
                     event.addServices();
@@ -155,7 +156,8 @@ public class EventsView {
                     deleteService(event);
                     break;
                 case "4":
-                    EventsControl.addNewGuests(event);
+                    List <String> newGuests= EventsView.readeGuestsEmails();
+                    EventsControl.addNewGuests(event,newGuests);
                     break;
                 case "5":
                     deleteGuest(event);
@@ -170,7 +172,7 @@ public class EventsView {
     }
 
 
-    private static void editEventName(RegisteredEvent event) {
+    private static void editEventName(RegisteredEvent event) throws EventNotFound {
         logger.info("Please, Enter new name for the event: ");
         String newName = scanner.nextLine();
         EventsControl.editEventName(event, newName);

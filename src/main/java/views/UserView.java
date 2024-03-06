@@ -1,5 +1,7 @@
 package views;
+import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
+import Exceptions.UserNotFoundException;
 import Exceptions.WeakPasswordException;
 import controllers.UserControl;
 import helpers.ChoiceChecker;
@@ -18,7 +20,7 @@ public class UserView {
 
     }
 
-    public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException {
+    public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound {
 
 
         MenusPrinter.printUserMenu();
