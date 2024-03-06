@@ -1,6 +1,7 @@
 
 
-java:S1130"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(πή”Άύÿÿÿÿ8ϊΙÿ§α1
+java:S1130"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(πή”Άύÿÿÿÿ8¤φί«α1
 ›
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(πή”Άύÿÿÿÿ8ϊΙÿ§α1
-X	java:S125="<This block of commented-out lines of code should be removed.(‰²‹΄8ϋΙÿ§α1
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(πή”Άύÿÿÿÿ8¦φί«α1
+p
+java:S3776«"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(΄—Ά8°φί«α1
