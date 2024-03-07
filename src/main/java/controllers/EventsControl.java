@@ -2,6 +2,8 @@ package controllers;
 
 import Exceptions.EventAlreadyExist;
 import Exceptions.EventNotFound;
+import Exceptions.ServiceNotFoundException;
+import Exceptions.UserNotFoundException;
 import models.*;
 import views.EventsView;
 
@@ -38,7 +40,7 @@ public class EventsControl {
 
 
     }
-    public static void editEventName(RegisteredEvent event,String newName) throws EventNotFound {
+    public static void editEventName(RegisteredEvent event,String newName) {
         event.setEventName(newName);
     }
     public static void editEventLocation(RegisteredEvent event,String newLocation) {
@@ -49,7 +51,8 @@ public class EventsControl {
         event.setDate(LocalDate.parse(newDate));
     }
 
-    public static void deleteService(RegisteredEvent event, ServiceProvider service){
+    public static void deleteService(RegisteredEvent event, ServiceProvider service) throws  ServiceNotFoundException {
+        event.checkServiceProviderExisting(service);
         event.getServiceProviders().remove(service);
         service.getBookedDates().remove(event.getDate());
         event.subFromCost(service.getServices().get(0).getPrice());// note this does not include package provider

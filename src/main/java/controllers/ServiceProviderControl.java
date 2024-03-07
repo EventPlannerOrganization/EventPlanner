@@ -2,6 +2,9 @@ package controllers;
 
 import Exceptions.EmptyList;
 
+import Exceptions.ServiceNotFoundException;
+import Exceptions.UserIsAlreadyExist;
+import Exceptions.WeakPasswordException;
 
 import enumerations.ServiceType;
 import models.*;
@@ -91,7 +94,8 @@ public class ServiceProviderControl {
 
             }
 
-        } catch(EmptyList emptyList) {
+
+        } catch(EmptyList  | ServiceNotFoundException emptyList ) {
             logger.info("You Don't  Have Any Events ");
 
         }

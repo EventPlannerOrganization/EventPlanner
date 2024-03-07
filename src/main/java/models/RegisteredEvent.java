@@ -1,8 +1,8 @@
 package models;
 
-
-
-
+import Exceptions.EventAlreadyExist;
+import Exceptions.ServiceNotFoundException;
+import Exceptions.UserNotFoundException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -133,5 +133,12 @@ public String toString2(){
     public void subFromCost(double deletedCost){
         this.cost-=deletedCost;
     }
+    public void checkServiceProviderExisting(ServiceProvider deletedProvider) throws ServiceNotFoundException {
+        if(!serviceProviders.contains(deletedProvider))
+         {
+            throw new ServiceNotFoundException();
+        }
 
+
+    }
 }
