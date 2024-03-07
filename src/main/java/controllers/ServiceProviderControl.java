@@ -1,8 +1,7 @@
 package controllers;
 
 import Exceptions.EmptyList;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
+
 
 import enumerations.ServiceType;
 import models.*;
@@ -10,12 +9,8 @@ import printers.MenusPrinter;
 import views.ServiceProviderView;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
 
-import java.util.HashMap;
-import java.util.List;
-
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class ServiceProviderControl {
@@ -96,7 +91,7 @@ public class ServiceProviderControl {
 
             }
 
-        } catch(EmptyList | UserIsAlreadyExist | WeakPasswordException emptyList) {
+        } catch(EmptyList emptyList) {
             logger.info("You Don't  Have Any Events ");
 
         }
@@ -145,11 +140,7 @@ public class ServiceProviderControl {
     }
 
     public static boolean checkIfitsCurrentService(Service service,String choice) {
-        HashMap<String,ServiceType> map = new HashMap<>();
-        map.put("1", ServiceType.DJ);
-        map.put("2",ServiceType.Photography);
-        map.put("3",ServiceType.Security);
-        map.put("4",ServiceType.Cleaning);
+       Map<String,ServiceType> map= ServiceProviderView.hashmap();
         try {
             return map.get(choice).equals(service.getServiceType());
         }
@@ -188,12 +179,8 @@ public class ServiceProviderControl {
     }
 
     public static boolean checkIfTheServiceAlreadyAdded(List<Service> serviceList,String choice) {
-        HashMap<String,ServiceType> map = new HashMap<>();
-        map.put("1", ServiceType.DJ);
-        map.put("2",ServiceType.Photography);
-        map.put("3",ServiceType.Security);
-        map.put("4",ServiceType.Cleaning);
-serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
+        Map <String,ServiceType> map =ServiceProviderView.hashmap();
+        serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
 return !serviceList.isEmpty();
     }
 }

@@ -2,7 +2,6 @@ package launchers;
 
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.WeakPasswordException;
-import enumerations.ServiceType;
 import models.EventPlanner;
 import views.StartingView;
 

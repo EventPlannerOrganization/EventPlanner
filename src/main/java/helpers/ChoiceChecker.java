@@ -1,10 +1,14 @@
 package helpers;
 
 import Exceptions.EventAlreadyExist;
+import Exceptions.GoToMainMenuException;
+import controllers.ServiceProviderControl;
 import models.EventPlanner;
+import models.Service;
+import models.ServiceProvider;
 import models.User;
-import views.EventsView;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -30,7 +34,7 @@ public class ChoiceChecker {
     public static boolean userMenuChecker(String value) {
         return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4");
     }
-    public static boolean ServiceProviderMenuChecker(String value) {
+    public static boolean serviceProviderMenuChecker(String value) {
         return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5");
 
     }
@@ -75,6 +79,56 @@ public class ChoiceChecker {
             }
         }
         return eventName;
+    }
+
+    public static String checkPackageProviderAddingProccess(List<Service> serviceList, String choice) {
+        while (!ChoiceChecker.isVaildServiceIndex(choice) || (ServiceProviderControl.checkIfTheServiceAlreadyAdded(serviceList,choice))) {
+            if (!ChoiceChecker.isVaildServiceIndex(choice)) {
+                logger.info("Invalid Input , Choose Correct Service Number :\n");
+                choice = scanner.nextLine();
+            }
+
+            else if (ServiceProviderControl.checkIfTheServiceAlreadyAdded(serviceList, choice)) {
+                if (serviceList.size() > 2) {
+                    logger.info("You Already Provide This Service ! , choose Another one or Enter B to Stop Adding :\n");
+                    choice = scanner.nextLine();
+                    if (choice.equalsIgnoreCase("b")) {
+                        return "b";
+                    }
+                } else {
+                    logger.info("You Already Provide This Service !,Choose Another One Because The Package Cannot Contain One Service  :\n");
+                    choice = scanner.nextLine();
+                }
+
+            }
+        }
+        return choice;
+    }
+
+    public static String checkPackageProviderServiceChooice(ServiceProvider serviceProvider, String choice) throws GoToMainMenuException {
+        boolean again = true;
+        int ch;
+
+        while (again) {
+            try {
+                ch = Integer.parseInt(choice);
+                if (ch <= serviceProvider.getServices().size()) {
+                    again=false;
+                } else {
+                    logger.info("Invalid Choice,Choose Again Or Enter B to Go Back");
+                    choice = scanner.nextLine();
+                }
+            } catch (Exception e) {
+                logger.info("Invalid Choice,Choose Again Or Enter B to Go Back");
+                choice = scanner.nextLine();
+                if(choice.equalsIgnoreCase("b")){
+                    throw new GoToMainMenuException();
+                }
+
+            }
+        }
+return choice;
+
     }
 }
 
