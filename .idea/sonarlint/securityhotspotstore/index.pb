@@ -1,3 +1,25 @@
 
 e
 5src/main/java/controllers/ServiceProviderControl.java,c\e\ce7bb1b1c1c3f60d56ef31fdacbc69cabbc6fe2c
+f
+6src/test/features/Event/DeleteServiceFromEvent.feature,6\5\65831498bcc00f4d0cc24c5565f7d0b30f9d7481
+s
+Csrc/test/java/testControllers/Event/TestDeleteServiceFromEvent.java,1\8\18951de8a52314a2f329fe61eeafc1da9e1a4c88
+g
+7src/test/java/testControllers/Event/TestUpdateInfo.java,c\1\c107a3876515079950eaf57b04e9605413dd9246
+V
+&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
+X
+(src/test/features/Event/AddEvent.feature,2\3\23ebbe75cfa349b5b2a4fa9cc5c3efeb6355e47b
+^
+.src/test/features/authentication/Login.feature,e\4\e4deda65f3a91c4a3d4401f87335c6b181cb84a6
+_
+/src/test/features/authentication/SignUp.feature,8\4\8483701b33c80dd33e8930ee60fd00a46eea8e54
+e
+5src/test/java/testControllers/Event/TestAddEvent.java,1\f\1f77dd77f6061c280e8c050ac1ec84feb37b5ba1
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+_
+/src/test/features/Event/UpdateEventInfo.feature,f\3\f3d2bf9a7e474f1cb4364c1014fc9358b1cc1415
+Z
+*src/test/features/Event/AddServiceForEvent,2\a\2ad4fbef0b8118b75fbbcac6934379652a02ec14
