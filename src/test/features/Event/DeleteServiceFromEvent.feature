@@ -22,5 +22,5 @@ Feature:Delete Service From Event
 
     Examples:
       | username | eventName             | providerName |
-      | 'khalid' | 'wedding party'       | 'Ibrahim160' |
-      | 'Naser'  | 'Wedding Celebration' | 'Ibrahim160' |
+      | 'khalid' | 'wedding party'       | 'hamid02' |
+      | 'Naser'  | 'Wedding Celebration' | 'hamid02' |

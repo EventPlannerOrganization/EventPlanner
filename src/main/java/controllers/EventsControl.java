@@ -1,9 +1,6 @@
 package controllers;
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFound;
-import Exceptions.ServiceNotFoundException;
-import Exceptions.UserNotFoundException;
+import Exceptions.*;
 import models.*;
 import views.EventsView;
 
@@ -37,8 +34,6 @@ public class EventsControl {
               currentUser.getRegisteredEvents().add(registeredEvent);
               currentUser.addToTotalCost(cost);
 
-
-
     }
     public static void editEventName(RegisteredEvent event,String newName) {
         event.setEventName(newName);
@@ -56,7 +51,11 @@ public class EventsControl {
         event.getServiceProviders().remove(service);
         service.getBookedDates().remove(event.getDate());
         event.subFromCost(service.getServices().get(0).getPrice());// note this does not include package provider
-
+    }
+    public static void addServices(RegisteredEvent event,List<ServiceProvider> addedServices) throws AlreadyBookedDateException {
+            List<ServiceProvider>list= addedServices.stream().filter(provider ->  provider.getBookedDates().contains((event.getDate()))).toList();
+            if(!list.isEmpty()) throw new AlreadyBookedDateException();
+            event.addServices(addedServices);
     }
     public static void addNewGuests(RegisteredEvent event,List<String> newGuests){
         event.getGuestsEmails().addAll(newGuests);

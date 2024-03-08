@@ -1,10 +1,7 @@
 package views;
 
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFound;
-import Exceptions.ServiceNotFoundException;
-import Exceptions.UserNotFoundException;
+import Exceptions.*;
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
@@ -141,7 +138,7 @@ public class EventsView {
     }
 
 
-    private static void editingEventView(RegisteredEvent event) throws  EventNotFound {
+    private static void editingEventView(RegisteredEvent event)  {
         boolean flage=true;
         while(flage){
             MenusPrinter.printEditingChoices();
@@ -151,7 +148,7 @@ public class EventsView {
                    editEventName(event);
                     break;
                 case "2":
-                    event.addServices();
+                    addServices(event);
                     break;
                 case "3":
                     deleteService(event);
@@ -200,6 +197,15 @@ public class EventsView {
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents();
         MenusPrinter.printEventsList(myEvents);
+    }
+
+    private static void addServices(RegisteredEvent event) {
+        List<ServiceProvider> addedServices =addingProcess(event.getDate());
+        try{EventsControl.addServices(event,addedServices);}
+        catch (AlreadyBookedDateException e){
+            logger.info("Can not be added, \n there is a service already Scheduled in this event date");
+        }
+
     }
 }
 

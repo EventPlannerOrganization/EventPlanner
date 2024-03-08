@@ -13,7 +13,7 @@ Feature: Login
       | username    | password |
       | 'Naser'     | 'm123'   |
       | 'khalid'    | '123'    |
-      | 'Nasernnnn' | '123'    |
+      | 'hamid02' | 'bbaa12'    |
 
   Scenario Outline: Login fails because the user is not exist
     When username is <username>
@@ -30,7 +30,7 @@ Feature: Login
     Then Login fails because of the wrong password
     Examples:
       | username       | password   |
-      | 'baha alawneh' | 'bgg10012' |
+      | 'hamid02' | 'bgg10012' |
 
 
 
