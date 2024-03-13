@@ -19,8 +19,6 @@ Y
 +src/main/java/Exceptions/EventNotFound.java,c\9\c9fac0d8aaf6549daa88938622574fbe46a0243a
 _
 /src/main/java/Exceptions/EventAlreadyExist.java,c\1\c1b1e22243143947effafba51808ecfcca616351
-P
- src/main/java/models/String.java,c\0\c02a23079bab6a41d022d381fd94be896953be23
 Q
 !src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
 X
