@@ -21,10 +21,6 @@ e
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 _
 /src/test/features/Event/UpdateEventInfo.feature,f\3\f3d2bf9a7e474f1cb4364c1014fc9358b1cc1415
-Z
-*src/test/features/Event/AddServiceForEvent,2\a\2ad4fbef0b8118b75fbbcac6934379652a02ec14
-b
-2src/test/features/Event/AddServiceForEvent.feature,9\c\9cecfc77858c4fdd8227a27f71992818142f6fa5
 S
 #src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
 Y
@@ -45,3 +41,15 @@ c
 3src/test/features/Event/AddServicesForEvent.feature,0\f\0f647a4963cbcef551cf94279983471ec1aceab5
 N
 src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+X
+(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
+Q
+!src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+Y
+)src/main/java/models/ServiceProvider.java,6\2\62304a9808b0d416d81e7448da3ca44398f9aa07
+Q
+!src/main/java/models/Service.java,2\3\237237ce853bd2836f8c3c871955cebcb245b46d
+[
++src/main/java/enumerations/ServiceType.java,2\6\26412306aedc2ff4f69dd6c18b01d8b135fe26a1

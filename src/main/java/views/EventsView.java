@@ -37,7 +37,11 @@ public class EventsView {
 
         logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
-        List<ServiceProvider> addedProviders = addingProcess(date);
+        List<ServiceProvider> addedProviders = new ArrayList<>();
+        for (ServiceProvider element:addingProcess(date)){
+            ServiceProvider serviceProvider=new ServiceProvider(element);
+            addedProviders.add(serviceProvider);
+        }
 
         logger.info("* Add guests :\n");
         List<String> guestsEmails = readeGuestsEmails();
