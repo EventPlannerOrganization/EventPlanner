@@ -85,6 +85,50 @@ public class MenusPrinter {
 
         printMenu(menu);
     }
+    public static void printAdminMenu()
+    {
+        List<String> menu = new ArrayList<>();
+        menu.add("User Management");
+        menu.add("Service Provider Management");
+        menu.add("Event Management");
+        menu.add("");
+        menu.add("Sign out !");
+
+        printMenu(menu);
+    }
+
+    public static void manageUserMenu()
+    {
+        List<String> menu = new ArrayList<>();
+        menu.add("Create new user");
+        menu.add("Delete user");
+        menu.add("Reset passwords for user");
+        menu.add("Show his registered events");
+
+        printMenu(menu);
+    }
+    public static void manageServiceProviderMenu()
+    {
+        List<String> menu = new ArrayList<>();
+        menu.add("Create new service provider");
+        menu.add("Delete service provider");
+        menu.add("Reset passwords for sevice provider");
+        menu.add("Show his service/s");
+
+        printMenu(menu);
+    }
+
+    public static void manageEventsMenu()
+    {
+        List<String> menu = new ArrayList<>();
+        menu.add("View a list of all events");
+        menu.add("Modifying events for a specific user");
+        menu.add("");
+        menu.add("Show his service/s");
+
+        printMenu(menu);
+    }
+
     public static void printServiceProviderMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("Show your Service/s");

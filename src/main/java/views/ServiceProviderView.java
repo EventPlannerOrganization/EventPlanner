@@ -170,16 +170,13 @@ catch (GoToMainMenuException e){
             }
             else if(ServiceProviderControl.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),choice)){
                 logger.info("this is your current Service ! , Choose Another Service or Back !");
-choice=scanner.nextLine();
+                choice=scanner.nextLine();
             }
 
         }
-
         switch (choice) {
             case "1":
-
                changeService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),ServiceType.DJ);
-
               break;
             case "2":
                changeService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),ServiceType.Photography);
@@ -194,17 +191,9 @@ choice=scanner.nextLine();
                 serviceProvider.setPackageProvider(true);
                List<Service> services =ServiceProviderView.addingProcessForPackageProvider();
                serviceProvider.setServices(services);
-
-
-
-
-
-
                  break;
             default:
                 }
-
-
                 }
 
     private static List<Service> addingProcessForPackageProvider() {

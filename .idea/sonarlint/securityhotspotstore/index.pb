@@ -53,3 +53,11 @@ Q
 !src/main/java/models/Service.java,2\3\237237ce853bd2836f8c3c871955cebcb245b46d
 [
 +src/main/java/enumerations/ServiceType.java,2\6\26412306aedc2ff4f69dd6c18b01d8b135fe26a1
+Q
+!src/main/java/models/Address.java,d\b\db8485a31c7736ee966cfe0ba1df59bc7f686b34
+\
+,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
+T
+$src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
+R
+"src/main/java/views/AdminView.java,1\6\16ef284199890c28cc9f7bf4070df72414a26421
