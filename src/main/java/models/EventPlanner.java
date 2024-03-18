@@ -129,10 +129,26 @@ public class EventPlanner {
         services3.add(  new Service(ServiceType.Photography,3200,"tesing"));
         services3.add(new Service(ServiceType.Security,3200,"tesing"));
         ServiceProvider serviceProvider3 = new ServiceProvider(new Name("jamil","munir","shadid"),
-                new Authentication("baha alawneh","bbaa12"),new Address("palestine","tulkarm"),
+                new Authentication("Ibrahim160","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
                 services3);
         EventPlanner.addUser(serviceProvider3);
+
+        List<Service>services4=new ArrayList<>();
+        services3.add(  new Service(ServiceType.Cleaning,3200,"tesing"));
+        ServiceProvider serviceProvider4 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
+                new Authentication("saleem04","bbaa12"),new Address("palestine","tulkarm"),
+                new ContactInfo("mo@gmail.com","9412412"),
+                services3);
+        EventPlanner.addUser(serviceProvider4);
+
+        List<Service>services5=new ArrayList<>();
+        services5.add(  new Service(ServiceType.Cleaning,3200,"tesing"));
+        ServiceProvider serviceProvider5 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
+                new Authentication("hamid02","bbaa12"),new Address("palestine","tulkarm"),
+                new ContactInfo("mo@gmail.com","9412412"),
+                services3);
+        EventPlanner.addUser(serviceProvider5);
 
         User user2 = new User(new Name("khalid", "Mohammad", "Abu-Safieh"),
                 new Authentication("khalid", "123"),
@@ -149,7 +165,7 @@ public class EventPlanner {
         );
 
         EventPlanner.addUser(user3);
-        User user4 = new User(new Name("khalid", "Mohammad", "Abu-Safieh"),
+        User user4 = new User(new Name("Nassar", "Mohammad", "Abu-Safieh"),
                 new Authentication("Nassar", "123"),
                 new Address("Palestine", "Nablus"),
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
@@ -179,7 +195,18 @@ public class EventPlanner {
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails));
-        localDate=LocalDate.of(2024,8,1);
+
+        List<ServiceProvider> serviceProviders22=new ArrayList<>();
+        serviceProviders.add(serviceProvider3);
+        user3.getRegisteredEvents().add(new RegisteredEvent("Birthday Bash",
+                serviceProviders,localDate,
+                calculateTotalPriceForMultiProviders(serviceProviders22),
+                emails));
+        user3.getRegisteredEvents().add(new RegisteredEvent("Food Festival",
+                serviceProviders,localDate,
+                calculateTotalPriceForMultiProviders(serviceProviders22),
+                emails));
+        localDate=LocalDate.of(2024,8,10);
 
         RegisteredEvent registeredEvent=new RegisteredEvent("wedding party",
                 serviceProviders,localDate,
@@ -188,15 +215,11 @@ public class EventPlanner {
         registeredEvent.setLocation("jerusalem");
         user4.getRegisteredEvents().add(registeredEvent);
 
-
-
     }
 
      public static List<ServiceProvider> getServiceProvidersNotBookedinThisDate(LocalDate date) {
          return EventPlanner.getServiceProviders().stream().filter(provider -> ! provider.getBookedDates().contains(date)).toList();
      }
-
-
 
     public static List<ServiceProvider> getServiceProviderByServiceType(ServiceType serviceType, LocalDate date) {
         return getServiceProvidersNotBookedinThisDate(date).stream().filter(provider -> provider.getServices().get(0).getServiceType().equals(serviceType)&&!provider.isPackageProvider()).toList();

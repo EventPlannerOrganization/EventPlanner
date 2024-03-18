@@ -8,7 +8,17 @@ public class ServiceProvider extends Person {
     private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
 
+    public ServiceProvider(ServiceProvider cpy){
+        super(new Name(cpy.getName().getfName(), cpy.getName().getmName(), cpy.getName().getlName())
+                , new Authentication(cpy.getAuthentication().getUsername(), cpy.getAuthentication().getPassword()),
+                new Address(cpy.getAddress().getCountry(), cpy.getAddress().getCity()),
+                new ContactInfo(cpy.getContactInfo().getEmail(),cpy.getContactInfo().getPhoneNumber()));
 
+        for(Service cpyService  : cpy.getServices()){
+            Service service=new Service(cpyService.getServiceType(),cpyService.getPrice(),cpyService.getDescription());
+            this.getServices().add(service);
+        }
+    }
     public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service) {
 
         super(new Name(name.getfName(), name.getmName(), name.getlName())

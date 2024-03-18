@@ -1,9 +1,6 @@
 package testControllers.Event;
 
-import Exceptions.EventNotFound;
-import Exceptions.ServiceNotFoundException;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import Exceptions.*;
 import controllers.EventsControl;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,6 +9,8 @@ import models.EventPlanner;
 import models.RegisteredEvent;
 import models.ServiceProvider;
 import models.User;
+
+import static org.junit.Assert.assertThrows;
 
 public class TestDeleteServiceFromEvent {
 
@@ -48,4 +47,19 @@ public class TestDeleteServiceFromEvent {
         assert (sizeBeforeDelete==sizeAfterDelete+1&&!registeredEvent.getServiceProviders().contains(serviceProvider));
 
     }
+
+    @Then("service will not be deleted")
+    public void service_will_not_be_deleted() throws EventNotFound, UserNotFoundException, ServiceNotFoundException {
+        // Write code here that turns the phrase above into concrete actions
+        User currentuser=((User)EventPlanner.getCurrentUser());
+        //int sizeBeforeDelete=currentuser.getEventByName(eventName).getServiceProviders().size();
+        ServiceProvider serviceProvider=(ServiceProvider) EventPlanner.getServiceProviderByUsername(serviceProviderName);
+        RegisteredEvent registeredEvent =currentuser.getEventByName(eventName);
+        //int sizeAfterDelete=currentuser.getEventByName(eventName).getServiceProviders().size();
+        //assert (sizeBeforeDelete==sizeAfterDelete+1&&!registeredEvent.getServiceProviders().contains(serviceProvider));
+        assertThrows(ServiceNotFoundException.class,()->EventsControl.deleteService(registeredEvent,serviceProvider));
+    }
+
+
+
 }

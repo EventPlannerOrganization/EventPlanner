@@ -1,7 +1,5 @@
 
-Z
-java:S1128"=Remove this unused import 'Exceptions.UserNotFoundException'.(Ë¹Ì¾8¦Ÿ‹ûá1
 O
-java:S1128"-Remove this unused import 'views.EventsView'.(§”‘Œúÿÿÿÿ8ªŸ‹ûá1
+java:S1128"-Remove this unused import 'views.EventsView'.(§”‘Œúÿÿÿÿ8ş€–å1
 G
-java:S1068"*Remove this unused "logger" private field.(¬ûİˆ8¸êÑªá1
+java:S1068"*Remove this unused "logger" private field.(¬ûİˆ8ş€–å1

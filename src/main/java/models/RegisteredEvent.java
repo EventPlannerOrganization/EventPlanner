@@ -121,15 +121,13 @@ public String toString2(){
         }
         return services.toString();
     }
-    public void addServices() {
-        List<ServiceProvider> addedServices =addingProcess(this.getDate());
+    public void addServices(List<ServiceProvider> addedServices) {
         getServiceProviders().addAll(addedServices);
         for(ServiceProvider element:addedServices){
             this.cost+=element.getServices().get(0).getPrice(); //note this does not include packeges providers
             element.getBookedDates().add(this.getDate());
-        }
 
-    }
+    }}
     public void subFromCost(double deletedCost){
         this.cost-=deletedCost;
     }

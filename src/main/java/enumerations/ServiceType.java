@@ -5,6 +5,7 @@ public enum ServiceType {
     Photography,
     Security,
     Cleaning,
+
     Decor_and_Design,
     Venue,
     Catering,
