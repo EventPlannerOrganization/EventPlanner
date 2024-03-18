@@ -6,5 +6,9 @@ public enum ServiceType {
     Security,
     Cleaning,
 
+    Decor_and_Design,
+    Venue,
+    Catering,
+
     Null // JUST FOR THING IN MY HEAD
 }

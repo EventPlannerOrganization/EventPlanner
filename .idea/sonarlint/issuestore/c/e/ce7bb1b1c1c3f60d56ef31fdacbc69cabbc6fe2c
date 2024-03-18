@@ -1,5 +1,10 @@
 
+<<<<<<< HEAD
 \
 java:S1128":Remove this unused import 'Exceptions.UserIsAlreadyExist'.(ÜŸçŸûÿÿÿÿ8ý¹Ùöä1
 _
 java:S1128"=Remove this unused import 'Exceptions.WeakPasswordException'.(ÙÀÒîüÿÿÿÿ8þ¹Ùöä1
+=======
+¤
+java:S1186½"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Šõ¤¥ÿÿÿÿÿ8¶á™å1
+>>>>>>> 5da087d90703027cc038422e5b3e82306fb7c36b

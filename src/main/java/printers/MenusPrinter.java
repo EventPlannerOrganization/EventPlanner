@@ -41,6 +41,9 @@ public class MenusPrinter {
         menu.add("Photography");
         menu.add("Security");
         menu.add("Cleaning");
+        menu.add("Decor And Design");
+        menu.add("Catering");
+        menu.add("Venue");
         printMenu(menu);
     }
 
@@ -50,6 +53,9 @@ public class MenusPrinter {
         menu.add("Photography");
         menu.add("Security");
         menu.add("Cleaning");
+        menu.add("Decor And Design");
+        menu.add("Catering");
+        menu.add("Venue");
         menu.add("packages Offers");
         printMenu(menu);
     }

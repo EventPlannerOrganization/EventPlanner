@@ -28,7 +28,7 @@ public class ChoiceChecker {
         return value.equals("2")||value.equals("3")||value.equals("4");
     }
     public static boolean isVaildServiceIndex(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4");
+        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equals("6")||value.equals("7");
     }
 
     public static boolean userMenuChecker(String value) {
@@ -58,7 +58,7 @@ public class ChoiceChecker {
 
 
     public static boolean editServiceMenuCheck(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equalsIgnoreCase("b");
+        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equals("6")||value.equals("7")||value.equals("8")||value.equalsIgnoreCase("b");
 
     }
     public static boolean checkIfB(String value) {
