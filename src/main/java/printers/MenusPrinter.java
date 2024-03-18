@@ -130,7 +130,7 @@ public class MenusPrinter {
         menu.add("View a list of all events");
         menu.add("Modifying events for a specific user");
         menu.add("");
-        menu.add("Show his service/s");
+        menu.add("");
 
         printMenu(menu);
     }

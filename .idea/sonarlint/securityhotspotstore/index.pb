@@ -5,3 +5,5 @@ X
 ,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
 R
 "src/main/java/views/AdminView.java,1\6\16ef284199890c28cc9f7bf4070df72414a26421
+Y
+)src/main/java/models/ServiceProvider.java,6\2\62304a9808b0d416d81e7448da3ca44398f9aa07
