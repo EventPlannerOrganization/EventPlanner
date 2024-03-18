@@ -94,14 +94,17 @@ List<Service> list = new ArrayList<>();
         }
 
     }
-    public static List<Service> serviceList(String numberOfService){
+    public static List<Service> serviceList(String numberOfService)
+    {
         List <Service> list = new ArrayList<>();
-        for(int i =0;i<Integer.parseInt(numberOfService);i++){
+        for(int i =0;i<Integer.parseInt(numberOfService);i++)
+        {
+
         MenusPrinter.printServicesMenu();
             logger.info("Enter The Number Of The Service You Want To Provide : ");
 
             String servicenum=scanner.nextLine();
-            while (!ChoiceChecker.isValidNumberOfServices(servicenum)){
+            while (!ChoiceChecker.isVaildServiceIndex(servicenum)){
                  servicenum=scanner.nextLine();
                 logger.info("Enter Valid Number For The Service : ");
 
@@ -111,6 +114,9 @@ List<Service> list = new ArrayList<>();
             case "2" -> ServiceType.Photography;
             case "3" -> ServiceType.Security;
             case "4" -> ServiceType.Cleaning;
+            case "5" -> ServiceType.Decor_and_Design;
+            case "6" -> ServiceType.Catering;
+            case "7" -> ServiceType.Venue;
             default -> null;
         };
         logger.info("Enter price for this service: ");

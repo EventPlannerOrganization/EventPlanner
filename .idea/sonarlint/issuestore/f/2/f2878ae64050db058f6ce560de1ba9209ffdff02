@@ -1,9 +1,6 @@
 
-<<<<<<< HEAD
 ”
-java:S1130"qRemove the declaration of thrown exception 'Exceptions.EventNotFound', as it cannot be thrown from method's body.(¸·ƒ•ıÿÿÿÿ8õ˜ìªá1
-K	java:S108º")Either remove or fill this block of code.(ßå¤µúÿÿÿÿ8§Çäªá1
-=======
-—
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.UserNotFoundException', as it cannot be thrown from method's body.(íŠè±8µ¸ª¨á1
->>>>>>> 9889a91b27d37c45f34869a0029e37369e0d773d
+java:S1130"qRemove the declaration of thrown exception 'Exceptions.EventNotFound', as it cannot be thrown from method's body.(¸·ƒ•ıÿÿÿÿ8ı±˜ûá1
+K	java:S108º")Either remove or fill this block of code.(ßå¤µúÿÿÿÿ8‡²˜ûá1
+Z
+java:S1128"=Remove this unused import 'Exceptions.UserNotFoundException'.(Ë¹Ì¾8‹²˜ûá1

@@ -3,8 +3,6 @@ package controllers;
 import Exceptions.EmptyList;
 
 import Exceptions.ServiceNotFoundException;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
 
 import enumerations.ServiceType;
 import models.*;
@@ -186,5 +184,9 @@ public class ServiceProviderControl {
         Map <String,ServiceType> map =ServiceProviderView.hashmap();
         serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
 return !serviceList.isEmpty();
+    }
+
+    public static void changeServicePackageProvider(ServiceProvider serviceProvider, ServiceType serviceType) {
+
     }
 }

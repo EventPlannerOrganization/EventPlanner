@@ -84,9 +84,10 @@ public class EventPlanner {
     public static double calculateTotalPriceForMultiProviders(List<ServiceProvider> serviceProviders)
     {
         double totalPrice=0;
-        for(ServiceProvider element:serviceProviders){
+        for(ServiceProvider element:serviceProviders)
+            {
             totalPrice+=element.calculateServiceProviderPrice();
-        }
+            }
         return totalPrice;
     }
     public  static  List<User> getUsers(){
