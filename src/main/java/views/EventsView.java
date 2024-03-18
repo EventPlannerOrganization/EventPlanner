@@ -1,9 +1,7 @@
 package views;
 
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFound;
-import Exceptions.UserNotFoundException;
+import Exceptions.*;
 import controllers.EventsControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
@@ -83,6 +81,7 @@ public class EventsView {
                 ServiceProvider newServiceProvider = selectedServiceFromServicesList(filteredProvidersList);
 
                 if (newServiceProvider != null) {
+                    //here add the accept & reject
                     newServiceProvider.getBookedDates().add(date);
                     addedProviders.add(newServiceProvider);
                 }
@@ -90,7 +89,7 @@ public class EventsView {
             }
             //this called Text block which begin with """, sonarLint need to useing it insted string
             logger.info("""
-                    Do you want to add another service?
+                    Do you want to add another service ?
                     - Enter 'y' to add another service.
                     - Enter 'n' to finish and proceed.
                     """);
@@ -126,7 +125,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents() throws UserNotFoundException, EventNotFound {
+    public static void editUpCommingEvents()throws EventNotFound {
         logger.info("Select Event to Editing it: ");
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
@@ -140,7 +139,7 @@ public class EventsView {
     }
 
 
-    private static void editingEventView(RegisteredEvent event) throws UserNotFoundException, EventNotFound {
+    private static void editingEventView(RegisteredEvent event)  {
         boolean flage=true;
         while(flage){
             MenusPrinter.printEditingChoices();
@@ -150,7 +149,7 @@ public class EventsView {
                    editEventName(event);
                     break;
                 case "2":
-                    event.addServices();
+                    addServices(event);
                     break;
                 case "3":
                     deleteService(event);
@@ -172,7 +171,7 @@ public class EventsView {
     }
 
 
-    private static void editEventName(RegisteredEvent event) throws EventNotFound {
+    private static void editEventName(RegisteredEvent event)  {
         logger.info("Please, Enter new name for the event: ");
         String newName = scanner.nextLine();
         EventsControl.editEventName(event, newName);
@@ -181,7 +180,8 @@ public class EventsView {
     private static void deleteService(RegisteredEvent event) {
         logger.info("Select Event to Editing it: ");
         ServiceProvider deletedService = EventsView.selectedServiceFromServicesList(event.getServiceProviders());
-        EventsControl.deleteService(event, deletedService);
+        try{EventsControl.deleteService(event, deletedService);}
+        catch (ServiceNotFoundException ignored){}
     }
 
     private static void deleteGuest(RegisteredEvent event) {
@@ -198,6 +198,15 @@ public class EventsView {
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents();
         MenusPrinter.printEventsList(myEvents);
+    }
+
+    private static void addServices(RegisteredEvent event) {
+        List<ServiceProvider> addedServices =addingProcess(event.getDate());
+        try{EventsControl.addServices(event,addedServices);}
+        catch (AlreadyBookedDateException e){
+            logger.info("Can not be added, \n there is a service already Scheduled in this event date");
+        }
+
     }
 }
 

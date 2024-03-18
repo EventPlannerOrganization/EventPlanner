@@ -1,3 +1,4 @@
 
-—
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.UserNotFoundException', as it cannot be thrown from method's body.(νθ±8ΙΜϋ¥α1
+”
+java:S1130€"qRemove the declaration of thrown exception 'Exceptions.EventNotFound', as it cannot be thrown from method's body.(¤Πµρϋÿÿÿÿ8Ώβ–κα1
+K	java:S108Έ")Either remove or fill this block of code.(ίε¤µϊÿÿÿÿ8Ββ–κα1

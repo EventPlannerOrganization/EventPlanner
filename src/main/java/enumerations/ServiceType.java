@@ -4,5 +4,6 @@ public enum ServiceType {
     DJ,
     Photography,
     Security,
-    Cleaning
+    Cleaning,
+    Null // JUST FOR THING IN MY HEAD
 }

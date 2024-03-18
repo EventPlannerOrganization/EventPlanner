@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceProvider extends Person {
+
+    public List<String> getRequest() {
+        return request;
+    }
+
+    public void setRequest(List<String> request) {
+        this.request = request;
+    }
+
+    private List <String> request;
     private List<Service> services = new ArrayList<>();
     private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
