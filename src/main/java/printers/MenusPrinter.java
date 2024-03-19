@@ -28,6 +28,9 @@ public class MenusPrinter {
         String result = String.valueOf(outputString);
         logger.info(result);
     }
+
+
+
     public static void printSignUpAsMenu() {
         List<String> mainMenu = new ArrayList<>();
         mainMenu.add("User");
@@ -103,17 +106,19 @@ public class MenusPrinter {
         printMenu(menu);
     }
 
-    public static void manageUserMenu()
+    public static void printUserManageMenu()
     {
         List<String> menu = new ArrayList<>();
+        menu.add("Show all users");
+        menu.add("Search users by username");
         menu.add("Create new user");
         menu.add("Delete user");
-        menu.add("Reset passwords for user");
-        menu.add("Show his registered events");
+        menu.add("Reset password for user");
+        menu.add("view registered events for user");
 
         printMenu(menu);
     }
-    public static void manageServiceProviderMenu()
+    public static void printManageServiceProviderMenu()
     {
         List<String> menu = new ArrayList<>();
         menu.add("Create new service provider");
@@ -189,5 +194,9 @@ public class MenusPrinter {
         menu.add("Edit Service description");
         menu.add("Edit Service Price");
         printMenu(menu);
+    }
+
+    public static void printListOfAllUsers(List<String> list){
+        printMenu(list);
     }
 }

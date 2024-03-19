@@ -4,6 +4,7 @@ import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
+import enumerations.UserType;
 
 
 import java.time.LocalDate;
@@ -155,8 +156,8 @@ public class EventPlanner {
                 new Address("Palestine", "Nablus"),
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
-
-        EventPlanner.addUser(user2);
+            user2.setUsertype(UserType.ADMIN);
+            EventPlanner.addUser(user2);
 
         User user3 = new User(new Name("sam", "Mohammad", "Abu-Safieh"),
                 new Authentication("Karim", "123"),

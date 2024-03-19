@@ -22,7 +22,6 @@ public class UserView {
 
     public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound {
 
-
         MenusPrinter.printUserMenu();
         logger.info("What do you want to do ?");
         String choice = scanner.nextLine();
