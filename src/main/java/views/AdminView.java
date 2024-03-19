@@ -72,6 +72,7 @@ public class AdminView {
                     AdminView.serchUserView();
                     break;
                 case "3":
+                    AdminView.createNewUser();
                     break;
                 case "4":
                     break;
@@ -82,6 +83,10 @@ public class AdminView {
                     // code block
             }
         }
+    }
+
+    private static void createNewUser() {
+    SignUpView.signUpAsUserView();
     }
 
     private static void serchUserView() {
