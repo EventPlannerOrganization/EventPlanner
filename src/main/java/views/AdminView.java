@@ -3,6 +3,7 @@ package views;
 import controllers.AdminControl;
 import controllers.UserControl;
 import helpers.ChoiceChecker;
+import models.User;
 import printers.MenusPrinter;
 
 import java.util.List;
@@ -68,6 +69,7 @@ public class AdminView {
                     AdminView.showUsersView();
                     break;
                 case "2":
+                    AdminView.serchUserView();
                     break;
                 case "3":
                     break;
@@ -82,17 +84,25 @@ public class AdminView {
         }
     }
 
+    private static void serchUserView() {
+        logger.info("Please enter username to search");
+        String username = scanner.nextLine();
+       List<String> searchResult =AdminControl.getUserNameOfUsers(AdminControl.searchUsers(username));
+       MenusPrinter.printListOfUsers(searchResult);
+        backTouserManagementMenu();
+    }
+
     private static void showUsersView()
     {
         List<String> listOfUsers=AdminControl.getAllUsers();
-        MenusPrinter.printListOfAllUsers(listOfUsers);
-        backToManageUserMenu();
+        MenusPrinter.printListOfUsers(listOfUsers);
+        backTouserManagementMenu();
     }
 
 
 
 
-    private static void backToManageUserMenu()  {
+    private static void backTouserManagementMenu()  {
         logger.info("To Return Back Enter B");
         String choice = scanner.nextLine();
         while (!(choice.equals("B") || choice.equals("b"))) {

@@ -196,7 +196,7 @@ public class MenusPrinter {
         printMenu(menu);
     }
 
-    public static void printListOfAllUsers(List<String> list){
+    public static void printListOfUsers(List<String> list){
         printMenu(list);
     }
 }

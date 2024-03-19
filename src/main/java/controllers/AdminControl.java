@@ -15,11 +15,30 @@ public class AdminControl {
     }
 
     public static List<String> getAllUsers(){
-        List<String>userNames=new ArrayList<>();
-    for (User element:EventPlanner.getUsers()){
-        userNames.add(element.getAuthentication().getUsername());
-    }
-    return userNames;
+    return getUserNameOfUsers(EventPlanner.getUsers());
+
     }
 
+
+    public static List<User> searchUsers(String searchTerm) {
+        List<User> searchResults = new ArrayList<>();
+        String searchTermLowerCase = searchTerm.toLowerCase(); // Convert search term to lowercase
+
+        for (User user : EventPlanner.getUsers()) {
+            String userNameLowerCase = user.getAuthentication().getUsername().toLowerCase(); // Convert user name to lowercase
+            if (userNameLowerCase.contains(searchTermLowerCase)) { // Partial match check
+                searchResults.add(user);
+            }
+        }
+
+        return searchResults;
+    }
+
+    public static List<String> getUserNameOfUsers(List<User> users){
+        List<String>userNames=new ArrayList<>();
+        for (User element:users){
+            userNames.add(element.getAuthentication().getUsername());
+        }
+        return userNames;
+    }
 }
