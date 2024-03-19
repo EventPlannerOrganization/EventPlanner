@@ -13,6 +13,9 @@ import java.util.List;
 
 public class EventPlanner {
     private static final List<Person> users = new ArrayList<>();
+    public static List<Person> getUsersList(){
+        return users;
+    }
 
     private EventPlanner() {
     }

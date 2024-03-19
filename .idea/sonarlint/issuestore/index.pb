@@ -37,3 +37,5 @@ U
 %src/main/java/views/StartingView.java,f\3\f37cc30da36ad676b46320eb4b5c775d45809871
 P
  src/main/java/models/Person.java,4\7\479de81afd9a8cc58e5275bb43b6459a4e7d8f3b
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066

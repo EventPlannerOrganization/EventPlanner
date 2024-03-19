@@ -30,7 +30,7 @@ public class AdminControl {
                 searchResults.add(user);
             }
         }
-
+        if(searchResults.isEmpty())searchResults=null;
         return searchResults;
     }
 

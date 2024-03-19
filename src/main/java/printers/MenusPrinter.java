@@ -195,6 +195,12 @@ public class MenusPrinter {
         menu.add("Edit Service Price");
         printMenu(menu);
     }
+    public static void printfindUserMethodsMenu(){
+        List<String> menu = new ArrayList<>();
+        menu.add("Search for a specific user");
+        menu.add("Show all users and select from the list");
+        printMenu(menu);
+    }
 
     public static void printListOfUsers(List<String> list){
         printMenu(list);

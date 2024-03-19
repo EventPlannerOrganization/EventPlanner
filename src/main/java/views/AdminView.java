@@ -1,14 +1,17 @@
 package views;
 
 import controllers.AdminControl;
-import controllers.UserControl;
+import controllers.EventsControl;
 import helpers.ChoiceChecker;
+import models.EventPlanner;
 import models.User;
 import printers.MenusPrinter;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
+
+import static views.SignUpView.signUpAsServiceProviderView;
 
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
@@ -75,6 +78,7 @@ public class AdminView {
                     AdminView.createNewUser();
                     break;
                 case "4":
+                    AdminView.deleteUser();
                     break;
                 case "5":
                     flage=false;
@@ -85,6 +89,29 @@ public class AdminView {
         }
     }
 
+    private static void deleteUser() {
+        boolean reTry=true;
+        User deletedUser=findModifiedUser();
+        while (reTry){
+        if(deletedUser==null){
+            logger.info("Sorry, no users were found matching your search criteria.\n" +
+                    "do need to retry process? Enter 'Y' if yes, enter any button to return to menu");
+            String choice = scanner.nextLine();
+            if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+
+        }
+        else {
+            reTry=false;
+            //you can here send email to notify him that the admin delete him
+            EventPlanner.getUsersList().remove(deletedUser);
+        }
+
+        }
+
+    }
+
+
+
     private static void createNewUser() {
     SignUpView.signUpAsUserView();
     }
@@ -93,9 +120,14 @@ public class AdminView {
         logger.info("Please enter username to search");
         String username = scanner.nextLine();
        List<String> searchResult =AdminControl.getUserNameOfUsers(AdminControl.searchUsers(username));
+        if(searchResult.isEmpty()){
+            logger.info("Sorry, no users were found matching your search criteria.");
+            return;
+        }
        MenusPrinter.printListOfUsers(searchResult);
         backTouserManagementMenu();
     }
+
 
     private static void showUsersView()
     {
@@ -104,8 +136,37 @@ public class AdminView {
         backTouserManagementMenu();
     }
 
+    private static User findModifiedUser() {
+    User modifiedUser=null;
 
+    logger.info("Please select a method to generate the process:");
+    MenusPrinter.printfindUserMethodsMenu();
+        String choice=scanner.nextLine();
+        while (!ChoiceChecker.isOneOrTwo(choice)) {
+            logger.info("Enter Valid Choice: ");
+            choice=scanner.nextLine();
+        }
 
+        if(choice.equals("1"))
+        {
+            logger.info("Please enter username to search ");
+            String username = scanner.nextLine();
+            List<User> users=AdminControl.searchUsers(username);
+            if(users==null) return null;
+            MenusPrinter.printListOfUsers(AdminControl.getUserNameOfUsers(users));
+            int selectedUser = Integer.parseInt(scanner.nextLine());
+            while(selectedUser > users.size()||selectedUser<=0){
+                logger.info("Enter Valid number: ");
+                selectedUser = Integer.parseInt(scanner.nextLine());
+            }
+                modifiedUser= users.get(selectedUser-1);
+            }
+
+        else if (choice.equals("2"));
+
+        return modifiedUser;
+
+    }
 
     private static void backTouserManagementMenu()  {
         logger.info("To Return Back Enter B");
@@ -115,6 +176,7 @@ public class AdminView {
             choice = scanner.nextLine();
         }
     }
+
 
 }
 
