@@ -99,8 +99,7 @@ public class AdminView {
                     "do need to retry process? Enter 'Y' if yes, enter any button to return to menu");
             String choice = scanner.nextLine();
             if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
-
-        }
+            }
         else {
             reTry=false;
             //you can here send email to notify him that the admin delete him
@@ -138,8 +137,7 @@ public class AdminView {
     }
 
     private static User findModifiedUser() {
-    User modifiedUser=null;
-
+    User modifiedUser;
     logger.info("Please select a method to generate the process:");
     MenusPrinter.printfindUserMethodsMenu();
         String choice=scanner.nextLine();
@@ -147,23 +145,25 @@ public class AdminView {
             logger.info("Enter Valid Choice: ");
             choice=scanner.nextLine();
         }
-
-        if(choice.equals("1"))
-        {
+        List<User> users;
+        if(choice.equals("1")) {
             logger.info("Please enter username to search ");
             String username = scanner.nextLine();
-            List<User> users=AdminControl.searchUsers(username);
-            if(users==null) return null;
-            MenusPrinter.printListOfUsers(AdminControl.getUserNameOfUsers(users));
-            int selectedUser = Integer.parseInt(scanner.nextLine());
-            while(selectedUser > users.size()||selectedUser<=0){
-                logger.info("Enter Valid number: ");
-                selectedUser = Integer.parseInt(scanner.nextLine());
+            users = AdminControl.searchUsers(username);
+        }
+        else if (choice.equals("2"))
+            users=EventPlanner.getUsers();
+        else
+            users=null;
+        if (users == null)
+            return null;
+        MenusPrinter.printListOfUsers(AdminControl.getUserNameOfUsers(users));
+        int selectedUser = Integer.parseInt(scanner.nextLine());
+        while(selectedUser > users.size()||selectedUser<=0){
+            logger.info("Enter Valid number: ");
+            selectedUser = Integer.parseInt(scanner.nextLine());
             }
-                modifiedUser= users.get(selectedUser-1);
-            }
-
-        else if (choice.equals("2"));
+            modifiedUser= users.get(selectedUser-1);
 
         return modifiedUser;
 
