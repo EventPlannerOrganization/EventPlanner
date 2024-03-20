@@ -39,3 +39,5 @@ P
  src/main/java/models/Person.java,4\7\479de81afd9a8cc58e5275bb43b6459a4e7d8f3b
 \
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+Z
+*src/main/java/helpers/PasswordChecker.java,7\e\7e831ad7c59983fd34146cfc1079070079d33602

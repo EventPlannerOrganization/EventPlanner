@@ -55,4 +55,8 @@ public class AdminControl {
         EventPlanner.getUsersList().remove(deletedUser);
 
     }
+
+    public static void resetPassword(User user, String newPassword) {
+        user.getAuthentication().setPassword(newPassword);
+    }
 }

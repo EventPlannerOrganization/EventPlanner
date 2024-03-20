@@ -2,6 +2,7 @@ package views;
 
 import controllers.AdminControl;
 import helpers.ChoiceChecker;
+import helpers.PasswordChecker;
 import models.EventPlanner;
 import models.User;
 import printers.MenusPrinter;
@@ -13,6 +14,8 @@ import java.util.logging.Logger;
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
+    static String message="Sorry, no users were found matching your search criteria.\n" +
+            "do need to retry process? Enter 'Y' if yes, enter any button to return to menu";
 
     private AdminView() {
     }
@@ -78,7 +81,7 @@ public class AdminView {
                     AdminView.deleteUser();
                     break;
                 case "5":
-                    flage=false;
+                    AdminView.resetPassword();
                     break;
                 case "6":
                     AdminView.viewEvents();
@@ -92,13 +95,37 @@ public class AdminView {
         }
     }
 
+    private static void resetPassword() {
+        boolean reTry=true;
+        User user=findModifiedUser();
+        while (reTry){
+            if(user==null){
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else {
+                reTry=false;
+                //you can here send email to notify him that the admin delete him
+                logger.info("Enter New Password: ");
+                String newPassword = scanner.nextLine();
+                while( !PasswordChecker.isStrongPassword(newPassword)){
+                    logger.info("please re enter password because its weak  ");
+                     newPassword = scanner.nextLine();
+                }
+                AdminControl.resetPassword(user,newPassword);
+                }
+
+            }
+
+        }
+
     private static void deleteUser() {
         boolean reTry=true;
         User deletedUser=findModifiedUser();
         while (reTry){
         if(deletedUser==null){
-            logger.info("Sorry, no users were found matching your search criteria.\n" +
-                    "do need to retry process? Enter 'Y' if yes, enter any button to return to menu");
+            logger.info(message);
             String choice = scanner.nextLine();
             if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
             }
@@ -117,14 +144,12 @@ public class AdminView {
         User user=findModifiedUser();
         while (reTry){
             if(user==null){
-                logger.info("Sorry, no users were found matching your search criteria.\n" +
-                        "do need to retry process? Enter 'Y' if yes, enter any button to return to menu");
+                logger.info(message);
                 String choice = scanner.nextLine();
                 if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
             }
             else {
                 reTry=false;
-                //you can here send email to notify him that the admin delete him
                 if(AdminControl.getEventsForUser(user).isEmpty()) logger.info("This user does not have registered events yet!" );
                 else {
                     MenusPrinter.printListOfStrings(AdminControl.getEventsForUser(user));
