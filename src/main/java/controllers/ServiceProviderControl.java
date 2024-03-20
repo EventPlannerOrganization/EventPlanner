@@ -1,7 +1,13 @@
 package controllers;
 
+<<<<<<< HEAD
 import Email.EmailService;
 import Exceptions.*;
+=======
+import Exceptions.EmptyList;
+
+import Exceptions.ServiceNotFoundException;
+>>>>>>> 8ea5a63f21d538a7e87500d2c243cbc258e9f480
 
 import enumerations.ServiceType;
 import io.cucumber.java.an.E;
@@ -198,6 +204,7 @@ public class ServiceProviderControl {
         serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
 return !serviceList.isEmpty();
     }
+<<<<<<< HEAD
     public static void respondToRequests(boolean choice,RegisteredEvent event,ServiceProvider choosenServiceProvider) throws FileNotFoundException {
         if(choice) {
             choosenServiceProvider.getBookedDates().add(event.getDate());
@@ -211,6 +218,10 @@ return !serviceList.isEmpty();
         }
 
 
+=======
+
+    public static void changeServicePackageProvider(ServiceProvider serviceProvider, ServiceType serviceType) {
+>>>>>>> 8ea5a63f21d538a7e87500d2c243cbc258e9f480
 
     }
 }

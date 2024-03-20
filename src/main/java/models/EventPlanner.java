@@ -4,6 +4,7 @@ import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
+import enumerations.UserType;
 
 
 import java.time.LocalDate;
@@ -12,6 +13,9 @@ import java.util.List;
 
 public class EventPlanner {
     private static final List<Person> users = new ArrayList<>();
+    public static List<Person> getUsersList(){
+        return users;
+    }
 
     private EventPlanner() {
     }
@@ -84,9 +88,10 @@ public class EventPlanner {
     public static double calculateTotalPriceForMultiProviders(List<ServiceProvider> serviceProviders)
     {
         double totalPrice=0;
-        for(ServiceProvider element:serviceProviders){
+        for(ServiceProvider element:serviceProviders)
+            {
             totalPrice+=element.calculateServiceProviderPrice();
-        }
+            }
         return totalPrice;
     }
     public  static  List<User> getUsers(){
@@ -161,8 +166,8 @@ public class EventPlanner {
                 new Address("Palestine", "Nablus"),
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
-
-        EventPlanner.addUser(user2);
+            user2.setUsertype(UserType.ADMIN);
+            EventPlanner.addUser(user2);
 
         User user3 = new User(new Name("sam", "Mohammad", "Abu-Safieh"),
                 new Authentication("Karim", "123"),

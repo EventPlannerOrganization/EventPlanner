@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 ‰
 java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(Òü¥×8¢†úÁå1
 “
@@ -8,3 +9,7 @@ java:S1128"/Remove this unused import 'Email.EmailService'.(ÌËÄÉþÿÿÿÿ8û¹úÁå1
 \
 java:S1128
 ":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8ÄŠÁå1
+=======
+J
+java:S1128"(Remove this unused import 'models.User'.(ì¤·ÿÿÿÿÿ8Íñù‹å1
+>>>>>>> 8ea5a63f21d538a7e87500d2c243cbc258e9f480

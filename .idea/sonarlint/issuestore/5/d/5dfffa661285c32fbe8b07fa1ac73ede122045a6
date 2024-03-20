@@ -1,5 +1,6 @@
 
 j
+<<<<<<< HEAD
 java:S1192q"HDefine a constant instead of duplicating this literal "tulkarm" 6 times.(í©¸³ýÿÿÿÿ8Ò©‡›å1
 j
 java:S1192ƒ"GDefine a constant instead of duplicating this literal "bbaa12" 4 times.(Š‹æíúÿÿÿÿ8Ò©‡›å1
@@ -37,3 +38,40 @@ Q
 java:S1481ˆ".Remove this unused "services4" local variable.(×êéçúÿÿÿÿ8Ñª‡›å1
 W
 java:S1128"5Remove this unused import 'Exceptions.EventNotFound'.(ûô½ƒýÿÿÿÿ8ÚˆÑŸå1
+=======
+java:S1192v"HDefine a constant instead of duplicating this literal "tulkarm" 5 times.(í©¸³ýÿÿÿÿ8Œ¢‡Èå1
+j
+java:S1192ˆ"GDefine a constant instead of duplicating this literal "bbaa12" 3 times.(Š‹æíúÿÿÿÿ8¢‡Èå1
+h
+java:S1192l"KDefine a constant instead of duplicating this literal "Abu-Safieh" 4 times.(‘ºŸµ8¢‡Èå1
+j
+java:S1192w"HDefine a constant instead of duplicating this literal "9412412" 5 times.(çÑ¼Ïýÿÿÿÿ8¢‡Èå1
+o
+java:S1192w"MDefine a constant instead of duplicating this literal "mo@gmail.com" 5 times.(çÑ¼Ïýÿÿÿÿ8¢‡Èå1
+d
+java:S1192~"GDefine a constant instead of duplicating this literal "khalid" 3 times.(Ãã‡8¢‡Èå1
+z
+java:S1192o"XDefine a constant instead of duplicating this literal "s12199887@stu.najah.edu" 4 times.(Çü¶•ÿÿÿÿÿ8¢‡Èå1
+i
+java:S1192n"GDefine a constant instead of duplicating this literal "Nablus" 4 times.(÷ ¶Åÿÿÿÿÿ8¢‡Èå1
+m
+java:S1192o"KDefine a constant instead of duplicating this literal "0599715584" 4 times.(Çü¶•ÿÿÿÿÿ8¢‡Èå1
+f
+java:S1192l"IDefine a constant instead of duplicating this literal "Mohammad" 4 times.(‘ºŸµ8Ž¢‡Èå1
+l
+java:S1192n"JDefine a constant instead of duplicating this literal "Palestine" 4 times.(÷ ¶Åÿÿÿÿÿ8Ž¢‡Èå1
+l
+java:S1192v"JDefine a constant instead of duplicating this literal "palestine" 5 times.(í©¸³ýÿÿÿÿ8Ž¢‡Èå1
+i
+java:S1192u"GDefine a constant instead of duplicating this literal "shadid" 4 times.(¸ƒÏöúÿÿÿÿ8Ž¢‡Èå1
+d
+java:S1192t"GDefine a constant instead of duplicating this literal "tesing" 6 times.(¦ÿÎä8Ž¢‡Èå1
+d
+java:S1192‡"FDefine a constant instead of duplicating this literal "jamil" 3 times.(Ì¸Ïš8Ž¢‡Èå1
+`
+java:S1854"=Remove this useless assignment to local variable "services4".(×êéçúÿÿÿÿ8Ê¢‡Èå1
+Q
+java:S1481".Remove this unused "services4" local variable.(×êéçúÿÿÿÿ8Ì¢‡Èå1
+W
+java:S1128"5Remove this unused import 'Exceptions.EventNotFound'.(ûô½ƒýÿÿÿÿ8Ó¢‡Èå1
+>>>>>>> 8ea5a63f21d538a7e87500d2c243cbc258e9f480
