@@ -1,2 +1,11 @@
 
 g	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÓİÉ¥á1
+g	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8š å1
+g	java:S112-"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ˆš”Áå1
+g	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ˆš”Áå1
+a
+java:S2147*"DCombine this catch with the one at line 40, which has the same body.(¢¼íÏ8‹š å1
+a
+java:S2147,"DCombine this catch with the one at line 42, which has the same body.(°±âİ8š”Áå1
+a
+java:S2147."DCombine this catch with the one at line 44, which has the same body.(ï­£Ä8š”Áå1

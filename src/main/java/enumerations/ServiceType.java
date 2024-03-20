@@ -5,5 +5,6 @@ public enum ServiceType {
     Photography,
     Security,
     Cleaning,
+
     Null // JUST FOR THING IN MY HEAD
 }

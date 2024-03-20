@@ -1,5 +1,19 @@
 
-\
-java:S1128":Remove this unused import 'Exceptions.UserIsAlreadyExist'.(ÜŸçŸûÿÿÿÿ8±É‡ñä1
-_
-java:S1128"=Remove this unused import 'Exceptions.WeakPasswordException'.(ÙÀÒîüÿÿÿÿ8²É‡ñä1
+g	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8üÕõÉå1
+g	java:S112k"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ıÕõÉå1
+g	java:S112m"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ıÕõÉå1
+g	java:S112o"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ıÕõÉå1
+Z
+java:S2589Ñ"7Remove this expression which always evaluates to "true"(£ÁÒÀúÿÿÿÿ8ˆ×õÉå1
+b
+java:S2147j"ECombine this catch with the one at line 104, which has the same body.(ï­£Ä8‘×õÉå1
+g
+java:S2147l"ECombine this catch with the one at line 106, which has the same body.(íé©úÿÿÿÿ8‘×õÉå1
+b
+java:S2147n"ECombine this catch with the one at line 108, which has the same body.(Àˆ«ÿ8‘×õÉå1
+”
+java:S1130É"vRemove the declaration of thrown exception 'java.io.FileNotFoundException', as it cannot be thrown from method's body.(ñ¥·—8š×õÉå1
+Q
+java:S1128"/Remove this unused import 'Email.EmailService'.(ÌËÄÉşÿÿÿÿ8›×õÉå1
+N
+java:S1128"2Remove this unused import 'io.cucumber.java.an.E'.(¯ãù58›×õÉå1

@@ -5,10 +5,10 @@ j
 java:S1192ƒ"GDefine a constant instead of duplicating this literal "bbaa12" 4 times.(Š‹æíúÿÿÿÿ8Ò©‡›å1
 h
 java:S1192g"KDefine a constant instead of duplicating this literal "Abu-Safieh" 4 times.(‘ºŸµ8Ò©‡›å1
-j
-java:S1192r"HDefine a constant instead of duplicating this literal "9412412" 6 times.(çÑ¼Ïıÿÿÿÿ8Ó©‡›å1
 o
-java:S1192r"MDefine a constant instead of duplicating this literal "mo@gmail.com" 6 times.(çÑ¼Ïıÿÿÿÿ8Ó©‡›å1
+java:S1192{"MDefine a constant instead of duplicating this literal "mo@gmail.com" 5 times.(çÑ¼Ïıÿÿÿÿ8Ó©‡›å1
+j
+java:S1192r"HDefine a constant instead of duplicating this literal "9412412" 6 times.(ëèÍ¶ÿÿÿÿÿ8Ó©‡›å1
 d
 java:S1192y"GDefine a constant instead of duplicating this literal "khalid" 3 times.(Ãã‡8Ó©‡›å1
 z
@@ -36,4 +36,4 @@ java:S1854ˆ"=Remove this useless assignment to local variable "services4".(×êé
 Q
 java:S1481ˆ".Remove this unused "services4" local variable.(×êéçúÿÿÿÿ8Ñª‡›å1
 W
-java:S1128"5Remove this unused import 'Exceptions.EventNotFound'.(ûô½ƒıÿÿÿÿ8ƒ›å1
+java:S1128"5Remove this unused import 'Exceptions.EventNotFound'.(ûô½ƒıÿÿÿÿ8ÚˆÑŸå1

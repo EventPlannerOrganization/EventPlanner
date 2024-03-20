@@ -1,24 +1,36 @@
 package models;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceProvider extends Person {
 
-    public List<String> getRequest() {
-        return request;
+    public List<Request> getRequests() {
+        return requests;
     }
 
-    public void setRequest(List<String> request) {
-        this.request = request;
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 
-    private List <String> request;
+    private List <Request> requests=new ArrayList<>();
+
     private List<Service> services = new ArrayList<>();
     private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
 
+    public ServiceProvider(ServiceProvider cpy){
+        super(new Name(cpy.getName().getfName(), cpy.getName().getmName(), cpy.getName().getlName())
+                , new Authentication(cpy.getAuthentication().getUsername(), cpy.getAuthentication().getPassword()),
+                new Address(cpy.getAddress().getCountry(), cpy.getAddress().getCity()),
+                new ContactInfo(cpy.getContactInfo().getEmail(),cpy.getContactInfo().getPhoneNumber()));
 
+        for(Service cpyService  : cpy.getServices()){
+            Service service=new Service(cpyService.getServiceType(),cpyService.getPrice(),cpyService.getDescription());
+            this.getServices().add(service);
+        }
+    }
     public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service) {
 
         super(new Name(name.getfName(), name.getmName(), name.getlName())
@@ -58,7 +70,6 @@ public class ServiceProvider extends Person {
     @Override
     public String toString() {
         String result;
-
         if (!isPackageProvider) {
             result =  "\nService Provider "+super.getName().toString()+"\n"+ services.get(0);
         }
@@ -85,5 +96,20 @@ public class ServiceProvider extends Person {
         }
         return price;
     }
+
+    public void addRequest(Request request) {
+        requests.add(request);
+    }
+
+
+//    public void RespondToRequests() {
+//        int choice;
+//        MenusPrinter.printMenu(request);
+//        Scanner scanner=new Scanner(System.in);
+//        choice=Integer.valueOf(scanner.nextLine());
+//        if(choice==0||choice>request.size()){
+//
+//        }
+//    }
 
 }

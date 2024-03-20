@@ -35,7 +35,7 @@ public class ChoiceChecker {
         return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4");
     }
     public static boolean serviceProviderMenuChecker(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5");
+        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equals("6");
 
     }
     public static boolean againChecker(){

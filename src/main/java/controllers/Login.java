@@ -1,15 +1,15 @@
 package controllers;
 
-import Exceptions.EventNotFound;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
+import Exceptions.*;
 import models.EventPlanner;
 import models.Person;
 import models.ServiceProvider;
 import models.User;
 import views.ServiceProviderView;
 import views.UserView;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
 
 public class Login {
     private Login() {
@@ -26,7 +26,7 @@ public class Login {
     }
 
 
-    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound {
+    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, EventAlreadyExist, MessagingException, IOException {
        Person current= EventPlanner.getCurrentUser();
        if(current instanceof User){
            UserView.userMenu();

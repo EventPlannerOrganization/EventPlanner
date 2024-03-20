@@ -3,10 +3,14 @@ package views;
 
 import Exceptions.*;
 import controllers.EventsControl;
+import controllers.UserControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
 import models.*;
 import printers.MenusPrinter;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
@@ -23,7 +27,7 @@ public class EventsView {
 
     }
 
-    public static void registerEventView()  {
+    public static void registerEventView() throws EventAlreadyExist, EventNotFound, MessagingException, IOException {
         cost = 0;
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
         String name=ChoiceChecker.readingEventName();
@@ -34,20 +38,32 @@ public class EventsView {
         logger.info("- Year : ");
         int year = scanner.nextInt();
         LocalDate date = LocalDate.of(year, month, day);
+        logger.info("* Add guests :\n");
+//        List<String> guestsEmails = readeGuestsEmails();
+        List<String> guestsEmails=new ArrayList<>();
+        guestsEmails.add("baha,alawneh");
 
         logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
-        List<ServiceProvider> addedProviders = addingProcess(date);
+//        RegisteredEvent registeredEvent=new RegisteredEvent(name,date,cost,guestsEmails);
+//        EventsControl.addEvent(date, name,cost, guestsEmails);
+        User user=(User)EventPlanner.getCurrentUser();
+//        List<ServiceProvider> addedProviders = new ArrayList<>();
+        List<ServiceProvider> list=addingProcess(date);
+        List <ServiceProvider> serviceProviders=new ArrayList<>();
+//        serviceProviders.add(new ServiceProvider())
+        EventsControl.addEvent(date,name,cost, guestsEmails);
+       for (ServiceProvider element:list){
+//           ServiceProvider serviceProvider=new ServiceProvider(element);
+//           addedProviders.add(serviceProvider);
+           UserControl.sendRequestToServiceProvider(element,date,user.getEventByName(name));
+           logger.info("Request sent to Service Provider");
+       }
 
-        logger.info("* Add guests :\n");
-        List<String> guestsEmails = readeGuestsEmails();
 
-           try {
-               EventsControl.addEvent(date, name, addedProviders, cost, guestsEmails);
-           }
-           catch (EventAlreadyExist e){
-               logger.warning("This event is already exist.");
-           }
+
+
+
 
 
     }
@@ -80,10 +96,11 @@ public class EventsView {
             else {
                 ServiceProvider newServiceProvider = selectedServiceFromServicesList(filteredProvidersList);
 
-                if (newServiceProvider != null) {
-                    //here add the accept & reject
-                    newServiceProvider.getBookedDates().add(date);
-                    addedProviders.add(newServiceProvider);
+               if (newServiceProvider != null) {
+////                    UserControl.sendRequestToServiceProvider(newServiceProvider,date);
+////                    //here add the accept & reject
+////                    newServiceProvider.getBookedDates().add(date);
+                addedProviders.add(newServiceProvider);
                 }
 
             }
@@ -113,7 +130,7 @@ public class EventsView {
     public static List<String> readeGuestsEmails() {
         List<String> guestsEmails = new ArrayList<>();
         logger.info("Enter the number of guests. You can adjust this number and modify the list as needed:\n");
-        int serviceNum = Integer.parseInt(scanner.nextLine());
+        int serviceNum = 2;
         logger.info("For each guest, please enter their email address:\n");
         for (int i = 0; i < serviceNum; i++) {
             String s = "\n" + (i + 1) + "- ";

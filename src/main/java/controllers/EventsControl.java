@@ -27,8 +27,8 @@ public class EventsControl {
         }
     }
 
-    public static void addEvent(LocalDate date, String name, List<ServiceProvider> serviceProviders, double cost, List<String> guestsEmails) throws EventAlreadyExist {
-        RegisteredEvent registeredEvent = new RegisteredEvent(name, serviceProviders, date, cost, guestsEmails);
+    public static void addEvent(LocalDate date, String name, double cost, List<String> guestsEmails) throws EventAlreadyExist {
+        RegisteredEvent registeredEvent = new RegisteredEvent(name,  date ,cost, guestsEmails);
         User currentUser = (User) (EventPlanner.getCurrentUser());
 
         currentUser.checkEventExisting(name);

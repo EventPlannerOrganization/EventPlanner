@@ -5,7 +5,8 @@ Feature: AddEvent
   Scenario Outline: Add Success
     When current user who wants to add an event is <username>
     And added event information are <date> <eventName> <serviceProviders> <guestsEmails>
-    Then event will be added successfully
+    And service provider accept the request
+    Then event will be added successfully and requset will be send the service provider
 
     Examples:
       | username | date        | eventName          | serviceProviders      | guestsEmails                                   |

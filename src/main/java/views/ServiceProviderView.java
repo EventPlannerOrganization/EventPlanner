@@ -1,15 +1,21 @@
 package views;
 
 
+import Email.EmailService;
 import Exceptions.GoToMainMenuException;
+import Exceptions.UserIsAlreadyExist;
+import Exceptions.UserNotFoundException;
+import Exceptions.WeakPasswordException;
+import controllers.EventsControl;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
-import models.EventPlanner;
-import models.Service;
-import models.ServiceProvider;
+import models.*;
 import printers.MenusPrinter;
 
+import javax.mail.MessagingException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -20,9 +26,39 @@ public class ServiceProviderView {
 
 
     }
+    public static void showRequset(ServiceProvider serviceProvider) throws UserNotFoundException, IOException, MessagingException {
+        List<String> requests=new ArrayList<>();
+        if(serviceProvider.getRequests().isEmpty())
+            System.out.println("empty list");
+       else {
+            for (Request request : serviceProvider.getRequests()) {
+                requests.add(request.getMessage());
+            }
+        }
+        MenusPrinter.printMenu(requests);
+        logger.info("please select a requset:");
+        int selectedRequest=Integer.parseInt(scanner.nextLine());
+        Request request=serviceProvider.getRequests().get(selectedRequest-1);
+        List<String> list=new ArrayList<>();
+        list.add("accept");
+        list.add("reject");
+        MenusPrinter.printMenu(list);
+        int choice=Integer.parseInt(scanner.nextLine());
+
+        if(choice==1){
+            ServiceProviderControl.respondToRequests(true,request.getEvent(),serviceProvider);
+        } else if (choice == 2) {
+            ServiceProviderControl.respondToRequests(false,request.getEvent(),(ServiceProvider) EventPlanner.getCurrentUser());
+
+        }
+//        EmailService emailService=new EmailService();
+//        emailService.sendEmail(request.getUserEmail(),"respond-body");
 
 
-    public static void providerMenu()  {
+    }
+
+
+    public static void providerMenu() throws UserNotFoundException, MessagingException, IOException, UserIsAlreadyExist, WeakPasswordException {
         boolean flag = true;
         while (flag) {
             MenusPrinter.printServiceProviderMenu();
@@ -47,8 +83,14 @@ public class ServiceProviderView {
                     ServiceProviderView.showUpComingEvents();
                     break;
                 case "5":
+                    ServiceProvider serviceProvider= (ServiceProvider) EventPlanner.getServiceProviderByUsername(EventPlanner.getCurrentUser().getAuthentication().getUsername());
+                    showRequset(serviceProvider);
+                   break;
+
+                case "6":
                     ServiceProviderControl.signout();
                     flag = false;
+                    StartingView.staringView();
                     break;
                 default:
                     // code block
