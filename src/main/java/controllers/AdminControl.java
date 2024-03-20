@@ -2,6 +2,7 @@ package controllers;
 
 import models.EventPlanner;
 import models.Person;
+import models.RegisteredEvent;
 import models.User;
 
 import java.util.ArrayList;
@@ -20,6 +21,13 @@ public class AdminControl {
 
     }
 
+    public static List<String> getEventsForUser(User user){
+        List<String> events=new ArrayList<>();
+        for (RegisteredEvent event:user.getRegisteredEvents()){
+            events.add(event.getEventName());
+        }
+        return events;
+    }
 
     public static List<User> searchUsers(String searchTerm) {
         List<User> searchResults = new ArrayList<>();

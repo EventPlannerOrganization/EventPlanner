@@ -1,18 +1,14 @@
 package views;
 
 import controllers.AdminControl;
-import controllers.EventsControl;
 import helpers.ChoiceChecker;
 import models.EventPlanner;
-import models.Person;
 import models.User;
 import printers.MenusPrinter;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
-
-import static views.SignUpView.signUpAsServiceProviderView;
 
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
@@ -84,6 +80,12 @@ public class AdminView {
                 case "5":
                     flage=false;
                     break;
+                case "6":
+                    AdminView.viewEvents();
+                    break;
+                case "7":
+                    flage=false;
+                    break;
                 default:
                     // code block
             }
@@ -110,6 +112,29 @@ public class AdminView {
 
     }
 
+    private static void viewEvents() {
+        boolean reTry=true;
+        User user=findModifiedUser();
+        while (reTry){
+            if(user==null){
+                logger.info("Sorry, no users were found matching your search criteria.\n" +
+                        "do need to retry process? Enter 'Y' if yes, enter any button to return to menu");
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else {
+                reTry=false;
+                //you can here send email to notify him that the admin delete him
+                if(AdminControl.getEventsForUser(user).isEmpty()) logger.info("This user does not have registered events yet!" );
+                else {
+                    MenusPrinter.printListOfStrings(AdminControl.getEventsForUser(user));
+                }
+            }
+
+        }
+
+    }
+
 
 
     private static void createNewUser() {
@@ -124,7 +149,7 @@ public class AdminView {
             logger.info("Sorry, no users were found matching your search criteria.");
             return;
         }
-       MenusPrinter.printListOfUsers(searchResult);
+       MenusPrinter.printListOfStrings(searchResult);
         backTouserManagementMenu();
     }
 
@@ -132,7 +157,7 @@ public class AdminView {
     private static void showUsersView()
     {
         List<String> listOfUsers=AdminControl.getAllUsers();
-        MenusPrinter.printListOfUsers(listOfUsers);
+        MenusPrinter.printListOfStrings(listOfUsers);
         backTouserManagementMenu();
     }
 
@@ -157,7 +182,7 @@ public class AdminView {
             users=null;
         if (users == null)
             return null;
-        MenusPrinter.printListOfUsers(AdminControl.getUserNameOfUsers(users));
+        MenusPrinter.printListOfStrings(AdminControl.getUserNameOfUsers(users));
         int selectedUser = Integer.parseInt(scanner.nextLine());
         while(selectedUser > users.size()||selectedUser<=0){
             logger.info("Enter Valid number: ");
