@@ -1,6 +1,7 @@
 package controllers;
 
 import models.EventPlanner;
+import models.Person;
 import models.User;
 
 import java.util.ArrayList;
@@ -40,5 +41,10 @@ public class AdminControl {
             userNames.add(element.getAuthentication().getUsername());
         }
         return userNames;
+    }
+
+    public static void deleteUser(Person deletedUser) {
+        EventPlanner.getUsersList().remove(deletedUser);
+
     }
 }

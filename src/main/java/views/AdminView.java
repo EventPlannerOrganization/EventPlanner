@@ -4,6 +4,7 @@ import controllers.AdminControl;
 import controllers.EventsControl;
 import helpers.ChoiceChecker;
 import models.EventPlanner;
+import models.Person;
 import models.User;
 import printers.MenusPrinter;
 
@@ -103,7 +104,7 @@ public class AdminView {
         else {
             reTry=false;
             //you can here send email to notify him that the admin delete him
-            EventPlanner.getUsersList().remove(deletedUser);
+            AdminControl.deleteUser( deletedUser);
         }
 
         }
