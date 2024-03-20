@@ -5,6 +5,7 @@ import Exceptions.ServiceNotFoundException;
 import Exceptions.UserNotFoundException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import static views.EventsView.addingProcess;
@@ -39,6 +40,13 @@ public class RegisteredEvent {
         this.date = date;
         this.cost = cost;
         this.guestsEmails = guestsEmails;
+    }
+    public RegisteredEvent(String eventName, LocalDate date, double cost, List<String> guestsEmails) {
+        this.eventName = eventName;
+        this.date = date;
+        this.cost = cost;
+        this.guestsEmails = guestsEmails;
+        serviceProviders=new ArrayList<>();
     }
 
     public String getEventName() {
@@ -108,17 +116,21 @@ public String toString2(){
                   "\n Guests List :\n"+guestsEmails;
 }
 
-    private String getServicesDetails(){
-        StringBuilder services=new StringBuilder();
-        int count=1;
-        for(ServiceProvider element: serviceProviders) {
-            services.append("\t");
-            services.append(count);
-            services.append("- ");
-            services.append(element.toString());
-            services.append("\n");
-            count++;
-        }
+    private String getServicesDetails() {
+        StringBuilder services = new StringBuilder();
+        int count = 1;
+        if (serviceProviders != null) { // Check if serviceProviders is not null
+            for (ServiceProvider element : serviceProviders) {
+                if (element != null) { // Check if the element is not null
+                    services.append("\t");
+                    services.append(count);
+                    services.append("- ");
+                    services.append(element.toString());
+                    services.append("\n");
+                    count++;
+                }
+            }
+       }
         return services.toString();
     }
     public void addServices(List<ServiceProvider> addedServices) {

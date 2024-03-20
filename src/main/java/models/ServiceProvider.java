@@ -1,9 +1,21 @@
 package models;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceProvider extends Person {
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
+    private List <Request> requests=new ArrayList<>();
+
     private List<Service> services = new ArrayList<>();
     private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
@@ -58,7 +70,6 @@ public class ServiceProvider extends Person {
     @Override
     public String toString() {
         String result;
-
         if (!isPackageProvider) {
             result =  "\nService Provider "+super.getName().toString()+"\n"+ services.get(0);
         }
@@ -85,5 +96,20 @@ public class ServiceProvider extends Person {
         }
         return price;
     }
+
+    public void addRequest(Request request) {
+        requests.add(request);
+    }
+
+
+//    public void RespondToRequests() {
+//        int choice;
+//        MenusPrinter.printMenu(request);
+//        Scanner scanner=new Scanner(System.in);
+//        choice=Integer.valueOf(scanner.nextLine());
+//        if(choice==0||choice>request.size()){
+//
+//        }
+//    }
 
 }

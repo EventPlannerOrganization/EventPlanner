@@ -1,12 +1,11 @@
 package views;
-import Exceptions.EventNotFound;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
+import Exceptions.*;
 import controllers.UserControl;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -20,7 +19,7 @@ public class UserView {
 
     }
 
-    public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound {
+    public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, EventAlreadyExist, MessagingException, IOException {
 
         MenusPrinter.printUserMenu();
         logger.info("What do you want to do ?");

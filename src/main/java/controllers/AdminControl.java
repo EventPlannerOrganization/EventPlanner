@@ -18,7 +18,6 @@ public class AdminControl {
 
     public static List<String> getAllUsers(){
     return getUserNameOfUsers(EventPlanner.getUsers());
-
     }
 
     public static List<String> getEventsForUser(User user){

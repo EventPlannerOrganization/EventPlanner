@@ -1,14 +1,18 @@
 package controllers;
 
+import Email.EmailService;
+import Exceptions.*;
 import Exceptions.EmptyList;
-
 import Exceptions.ServiceNotFoundException;
-
 import enumerations.ServiceType;
+import io.cucumber.java.an.E;
 import models.*;
 import printers.MenusPrinter;
 import views.ServiceProviderView;
 
+import javax.mail.MessagingException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -96,6 +100,16 @@ public class ServiceProviderControl {
         } catch(EmptyList  | ServiceNotFoundException emptyList ) {
             logger.info("You Don't  Have Any Events ");
 
+        } catch (UserNotFoundException e) {
+            logger.info("user not found");
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (UserIsAlreadyExist e) {
+            throw new RuntimeException(e);
+        } catch (WeakPasswordException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -185,7 +199,19 @@ public class ServiceProviderControl {
         serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
 return !serviceList.isEmpty();
     }
+    public static void respondToRequests(boolean choice,RegisteredEvent event,ServiceProvider choosenServiceProvider) throws FileNotFoundException {
+        if (choice) {
+            choosenServiceProvider.getBookedDates().add(event.getDate());
+            List<ServiceProvider> serviceProviders = new ArrayList<>();
+            serviceProviders.add(choosenServiceProvider);
+            event.addServices(serviceProviders);
 
+        } else if (!choice) {
+            event.getServiceProviders().remove(choosenServiceProvider);
+        }
+
+
+    }
     public static void changeServicePackageProvider(ServiceProvider serviceProvider, ServiceType serviceType) {
 
     }

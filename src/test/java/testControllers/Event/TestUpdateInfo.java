@@ -3,16 +3,13 @@ package testControllers.Event;
 import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
 import controllers.EventsControl;
-import controllers.SignUp;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
 import models.RegisteredEvent;
 import models.User;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
@@ -23,8 +20,6 @@ public class TestUpdateInfo {
     @Given("Data Base already filled")
     public void dataBaseIsAlreadyFilled() throws UserIsAlreadyExist {
         EventPlanner.initializeRepositoryWithData();
-
-
     }
 
     @When("current user who wants to update the event info is {string}")

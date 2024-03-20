@@ -14,7 +14,7 @@ public class MenusPrinter {
     private MenusPrinter() {
 
     }
-    private static void printMenu(List<String> actions) {
+    public static void printMenu(List<String> actions) {
         StringBuilder outputString = new StringBuilder();
         outputString.append(Colors.YELLOW.getUniCodeValue());
         CollectionsPrinter.appendHorizontalLine(outputString, 39);
@@ -146,6 +146,7 @@ public class MenusPrinter {
         menu.add("Edit your Service/s");
         menu.add("Show your Event/s");
         menu.add("Edit your Event/s");
+        menu.add("Show requests");
         menu.add("Sign out !");
         printMenu(menu);
     }
