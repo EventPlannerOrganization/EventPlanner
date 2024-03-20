@@ -186,7 +186,4 @@ public class ServiceProviderControl {
 return !serviceList.isEmpty();
     }
 
-    public static void changeServicePackageProvider(ServiceProvider serviceProvider, ServiceType serviceType) {
-
-    }
 }
