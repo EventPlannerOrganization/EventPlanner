@@ -99,7 +99,7 @@ public class EventsView {
                if (newServiceProvider != null) {
 ////                    UserControl.sendRequestToServiceProvider(newServiceProvider,date);
 ////                    //here add the accept & reject
-////                    newServiceProvider.getBookedDates().add(date);
+                newServiceProvider.getBookedDates().add(date);
                 addedProviders.add(newServiceProvider);
                 }
 

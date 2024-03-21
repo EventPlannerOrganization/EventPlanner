@@ -21,6 +21,9 @@ public class User extends Person {
         totalCost = 0;
     }
 
+    public User() {
+        super();
+    }
 
     public UserType getUsertype() {
         return usertype;

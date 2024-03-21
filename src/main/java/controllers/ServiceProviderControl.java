@@ -1,11 +1,15 @@
 package controllers;
 
-import Email.EmailService;
+
 import Exceptions.*;
+
+
+
 import Exceptions.EmptyList;
 import Exceptions.ServiceNotFoundException;
+
+
 import enumerations.ServiceType;
-import io.cucumber.java.an.E;
 import models.*;
 import printers.MenusPrinter;
 import views.ServiceProviderView;
@@ -27,24 +31,11 @@ public class ServiceProviderControl {
     }
     public static List<Service> getServiceProviderServices(ServiceProvider serviceProvider){
         List<Service> serviceProvdierServices = new ArrayList<>();
-        for (int i = 0; i < serviceProvider.getServices().size(); i++) {
-            serviceProvdierServices.add(serviceProvider.getServices().get(i));
-        }
+        serviceProvdierServices.addAll(serviceProvider.getServices());
         return serviceProvdierServices;
 
     }
-    public static void showServiceProviderServices(ServiceProvider serviceProvider) {
-        List<Service> serviceProvdierServices = getServiceProviderServices(serviceProvider);
-        List<String> serviceProviderServiceString=new ArrayList<>() ;
-        for (int i = 0; i < serviceProvider.getServices().size(); i++) {
-            String st1 = "Service info : \n";
-            String st = st1 + serviceProvdierServices.get(i).toString() + "\n -------------------------------------------";
-            serviceProviderServiceString.add(st);
 
-        }
-        MenusPrinter.printListofStringWithNumbers(serviceProviderServiceString, "\"Here is Your Service/s:\"");
-
-    }
 
     public static void signout() {
         EventPlanner.setCurrentUser(null);
@@ -166,6 +157,9 @@ public class ServiceProviderControl {
     }
 
     public static void editServiceType(Service service, ServiceType serviceType) {
+        ServiceProvider serviceProvider= (ServiceProvider) EventPlanner.getCurrentUser();
+        if(!serviceProvider.getServices().get(0).equals(service))
+            return;
         service.setServiceType(serviceType);
     }
     public static void editServiceDescription(Service service,String descritpion){
@@ -199,6 +193,7 @@ public class ServiceProviderControl {
         serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
 return !serviceList.isEmpty();
     }
+
     public static void respondToRequests(boolean choice,RegisteredEvent event,ServiceProvider choosenServiceProvider) throws FileNotFoundException {
         if (choice) {
             choosenServiceProvider.getBookedDates().add(event.getDate());
