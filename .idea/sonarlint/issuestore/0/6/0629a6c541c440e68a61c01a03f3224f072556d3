@@ -1,2 +1,13 @@
 
+“
+java:S1130"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(Òü¥×8µÛ²™æ1
+–
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(Òü¥×8¶Û²™æ1
 ]	java:S125"<This block of commented-out lines of code should be removed.(‡ÙÆ•üÿÿÿÿ8šÖÂ—æ1
+M
+java:S1128"0Remove this unused import 'models.EventPlanner'.(Ðª™ë8¼Û²™æ1
+Q
+java:S1128"/Remove this unused import 'views.StartingView'.(žîí‰üÿÿÿÿ8¼Û²™æ1
+\
+java:S1128
+":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8ÓÝ´™æ1
