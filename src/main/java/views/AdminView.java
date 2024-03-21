@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
+    private static final User notUser=new User();
     static String message="Sorry, no users were found matching your search criteria.\n" +
             "do need to retry process? Enter 'Y' if yes, enter any button to return to menu";
 
@@ -104,6 +105,9 @@ public class AdminView {
                 String choice = scanner.nextLine();
                 if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
             }
+            else if(user==notUser){
+                reTry=false;
+            }
             else {
                 reTry=false;
                 //you can here send email to notify him that the admin delete him
@@ -129,6 +133,9 @@ public class AdminView {
             String choice = scanner.nextLine();
             if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
             }
+        else if(deletedUser==notUser){
+            reTry=false;
+        }
         else {
             reTry=false;
             //you can here send email to notify him that the admin delete him
@@ -148,6 +155,9 @@ public class AdminView {
                 String choice = scanner.nextLine();
                 if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
             }
+            else if(user==notUser){
+                reTry=false;
+            }
             else {
                 reTry=false;
                 if(AdminControl.getEventsForUser(user).isEmpty()) logger.info("This user does not have registered events yet!" );
@@ -157,6 +167,7 @@ public class AdminView {
             }
 
         }
+        backTouserManagementMenu();
 
     }
 
@@ -205,15 +216,19 @@ public class AdminView {
             users=EventPlanner.getUsers();
         else
             users=null;
-        if (users == null)
+        if (users == null){
             return null;
-        MenusPrinter.printListOfStrings(AdminControl.getUserNameOfUsers(users));
+        }
+        List<String>usersNames=AdminControl.getUserNameOfUsers(users);
+        usersNames.add("None (Do not delete any user)");
+        MenusPrinter.printListOfStrings(usersNames);
         int selectedUser = Integer.parseInt(scanner.nextLine());
-        while(selectedUser > users.size()||selectedUser<=0){
+        while(selectedUser > users.size()+1||selectedUser<=0){
             logger.info("Enter Valid number: ");
             selectedUser = Integer.parseInt(scanner.nextLine());
             }
-            modifiedUser= users.get(selectedUser-1);
+            if(selectedUser==usersNames.size())modifiedUser=notUser;
+            else modifiedUser= users.get(selectedUser-1);
 
         return modifiedUser;
 
