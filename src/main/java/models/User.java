@@ -4,6 +4,7 @@ import Exceptions.EventAlreadyExist;
 import Exceptions.EventNotFound;
 import enumerations.UserType;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,4 +83,5 @@ public RegisteredEvent getEventByName(String eventName) throws EventNotFound {
     }
     return similars.get(0);
 }
+
 }

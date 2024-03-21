@@ -1,11 +1,11 @@
 package views;
 
 
-import Exceptions.EventNotFound;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
+import Exceptions.*;
 import controllers.Login;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -38,6 +38,12 @@ public class LoginView {
         } catch (WeakPasswordException e) {
             logger.info("weak password");
         } catch (EventNotFound e) {
+            throw new RuntimeException(e);
+        } catch (EventAlreadyExist e) {
+            throw new RuntimeException(e);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

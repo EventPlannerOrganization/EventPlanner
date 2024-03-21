@@ -1,15 +1,21 @@
 package views;
 
 
+import Email.EmailService;
 import Exceptions.GoToMainMenuException;
+import Exceptions.UserIsAlreadyExist;
+import Exceptions.UserNotFoundException;
+import Exceptions.WeakPasswordException;
+import controllers.EventsControl;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
-import models.EventPlanner;
-import models.Service;
-import models.ServiceProvider;
+import models.*;
 import printers.MenusPrinter;
 
+import javax.mail.MessagingException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -20,9 +26,39 @@ public class ServiceProviderView {
 
 
     }
+    public static void showRequset(ServiceProvider serviceProvider) throws UserNotFoundException, IOException, MessagingException {
+        List<String> requests=new ArrayList<>();
+        if(serviceProvider.getRequests().isEmpty())
+            System.out.println("empty list");
+       else {
+            for (Request request : serviceProvider.getRequests()) {
+                requests.add(request.getMessage());
+            }
+        }
+        MenusPrinter.printMenu(requests);
+        logger.info("please select a requset:");
+        int selectedRequest=Integer.parseInt(scanner.nextLine());
+        Request request=serviceProvider.getRequests().get(selectedRequest-1);
+        List<String> list=new ArrayList<>();
+        list.add("accept");
+        list.add("reject");
+        MenusPrinter.printMenu(list);
+        int choice=Integer.parseInt(scanner.nextLine());
+
+        if(choice==1){
+            ServiceProviderControl.respondToRequests(true,request.getEvent(),serviceProvider);
+        } else if (choice == 2) {
+            ServiceProviderControl.respondToRequests(false,request.getEvent(),(ServiceProvider) EventPlanner.getCurrentUser());
+
+        }
+//        EmailService emailService=new EmailService();
+//        emailService.sendEmail(request.getUserEmail(),"respond-body");
 
 
-    public static void providerMenu()  {
+    }
+
+
+    public static void providerMenu() throws UserNotFoundException, MessagingException, IOException, UserIsAlreadyExist, WeakPasswordException {
         boolean flag = true;
         while (flag) {
             MenusPrinter.printServiceProviderMenu();
@@ -47,8 +83,14 @@ public class ServiceProviderView {
                     ServiceProviderView.showUpComingEvents();
                     break;
                 case "5":
+                    ServiceProvider serviceProvider= (ServiceProvider) EventPlanner.getServiceProviderByUsername(EventPlanner.getCurrentUser().getAuthentication().getUsername());
+                    showRequset(serviceProvider);
+                   break;
+
+                case "6":
                     ServiceProviderControl.signout();
                     flag = false;
+                    StartingView.staringView();
                     break;
                 default:
                     // code block
@@ -60,43 +102,43 @@ public class ServiceProviderView {
 
 
 
-            MenusPrinter.printServiceProviderEditMenu();
-            logger.info(" Please Choose Number from Menu or Press B To Back To Main Menu");
-            String choice = scanner.nextLine();
+        MenusPrinter.printServiceProviderEditMenu();
+        logger.info(" Please Choose Number from Menu or Press B To Back To Main Menu");
+        String choice = scanner.nextLine();
 
-            while(!(ChoiceChecker.editServiceMenuCheck(choice))){
-                logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
-              choice= scanner.nextLine();
+        while(!(ChoiceChecker.editServiceMenuCheck(choice))){
+            logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
+            choice= scanner.nextLine();
 
 
-            }
-            switch (choice) {
-                case "1":
-             ServiceProviderView.changeServiceProviderServiceView(serviceProvider);
-                    break;
-                case "2":
-                    if(serviceProvider.isPackageProvider())
-                        ServiceProviderView.changeServiceDescriptionForPackageProvider(serviceProvider);
+        }
+        switch (choice) {
+            case "1":
+                ServiceProviderView.changeServiceProviderServiceView(serviceProvider);
+                break;
+            case "2":
+                if(serviceProvider.isPackageProvider())
+                    ServiceProviderView.changeServiceDescriptionForPackageProvider(serviceProvider);
 
-                    else  {
-                        ServiceProviderView.changeServiceDescription(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
-                    }
-                    break;
-                case "3":
-                    if(serviceProvider.isPackageProvider()){
-                        ServiceProviderView.changeServicePriceForPackageProvider(serviceProvider);
-                    }
+                else  {
+                    ServiceProviderView.changeServiceDescription(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
+                }
+                break;
+            case "3":
+                if(serviceProvider.isPackageProvider()){
+                    ServiceProviderView.changeServicePriceForPackageProvider(serviceProvider);
+                }
 
-                    else{
+                else{
                     ServiceProviderView.changeServicePrice(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
 
                 }
-                    break;
+                break;
 
 
-                default:
-            }
-            }
+            default:
+        }
+    }
 
     private static void changeServicePriceForPackageProvider(ServiceProvider serviceProvider) {
 
@@ -115,18 +157,18 @@ public class ServiceProviderView {
 
     private static void changeServiceDescriptionForPackageProvider(ServiceProvider serviceProvider) {
 
-            int ch;
-            ServiceProviderView.showServices(serviceProvider);
-            String choice  = scanner.nextLine();
-            try {
-                choice = ChoiceChecker.checkPackageProviderServiceChooice(serviceProvider,choice);
-                ch=Integer.parseInt(choice);
-                changeServiceDescription(serviceProvider.getServices().get(ch-1));
-            }
-catch (GoToMainMenuException e){
-                logger.info("Main Menu");
-}
+        int ch;
+        ServiceProviderView.showServices(serviceProvider);
+        String choice  = scanner.nextLine();
+        try {
+            choice = ChoiceChecker.checkPackageProviderServiceChooice(serviceProvider,choice);
+            ch=Integer.parseInt(choice);
+            changeServiceDescription(serviceProvider.getServices().get(ch-1));
         }
+        catch (GoToMainMenuException e){
+            logger.info("Main Menu");
+        }
+    }
 
 
 
@@ -157,8 +199,8 @@ catch (GoToMainMenuException e){
 
 
     private static void changeServiceProviderServiceView(ServiceProvider serviceProvider)  {
- boolean flag=false;
- ServiceType serviceType= ServiceType.Null;
+        boolean flag=false;
+        ServiceType serviceType= ServiceType.Null;
         MenusPrinter.printServicesMenuWithPcks();
         String string = "What is The Service You Want To Provide ? \n" + "If You Want To Go Back Press B";
         logger.info(string);
@@ -227,7 +269,7 @@ catch (GoToMainMenuException e){
             serviceProvider.setPackageProvider(false);
         }
 
-                }
+    }
 
     private static List<Service> addingProcessForPackageProvider() {
         Map<String, ServiceType> map = hashmap();
@@ -238,11 +280,11 @@ catch (GoToMainMenuException e){
             MenusPrinter.printServicesMenu();
             logger.info("Select Service :\n");
             String choice = scanner.nextLine();
-           choice= ChoiceChecker.checkPackageProviderAddingProccess(serviceList,choice);
-          if(choice.equalsIgnoreCase("B")){
-              return serviceList;
-          }
-           ServiceType serviceType = map.get(choice);
+            choice= ChoiceChecker.checkPackageProviderAddingProccess(serviceList,choice);
+            if(choice.equalsIgnoreCase("B")){
+                return serviceList;
+            }
+            ServiceType serviceType = map.get(choice);
             logger.info("Please Enter Service Description");
             String description = scanner.nextLine();
             logger.info("Please Enter Service Price");
@@ -250,17 +292,17 @@ catch (GoToMainMenuException e){
             serviceList.add(new Service(serviceType,price,description));
             if (serviceList.size()>=2){
                 logger.info("Do you Want To Add More Services ? Enter Y for Yes , N for No");
-              again=ChoiceChecker.againChecker();
+                again=ChoiceChecker.againChecker();
             }
             if(serviceList.size()==4){
-            logger.info("Your Package Contains All The Services you Cant Add Any Thing More");
-            again=false;
+                logger.info("Your Package Contains All The Services you Cant Add Any Thing More");
+                again=false;
             }
         }
-return serviceList;
+        return serviceList;
 
 
-}
+    }
 
     public static Map<String, ServiceType> hashmap() {
         Map<String,ServiceType> map = new HashMap<>();

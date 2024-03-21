@@ -10,8 +10,6 @@ import models.EventPlanner;
 import static org.junit.Assert.*;
 
 
-
-
 public class TestLogin {
     private String username;
     private String password;

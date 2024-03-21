@@ -1,8 +1,5 @@
 package views;
 
-import Exceptions.UserIsAlreadyExist;
-
-import Exceptions.WeakPasswordException;
 import controllers.SignUp;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
@@ -21,78 +18,95 @@ public class SignUpView {
     private SignUpView() {
 
     }
-    public static void signUpView() throws UserIsAlreadyExist, WeakPasswordException {
-
-List<Service> list = new ArrayList<>();
+    public static void signUpView()  {
         MenusPrinter.printSignUpAsMenu();
         String signUpAs=scanner.nextLine();
         while (!ChoiceChecker.isOneOrTwo(signUpAs)) {
             logger.info("Enter Valid Choice: ");
             signUpAs=scanner.nextLine();
-
         }
-        logger.info("Enter Your first name: ");
+        if(signUpAs.equals("1"))signUpAsUserView();
+        else if (signUpAs.equals("2")) signUpAsServiceProviderView();
+    }
+
+    public static void signUpAsServiceProviderView() {
+        Person primaryInfo=readPrimaryInfo();
+
+        List<Service> list = new ArrayList<>();
+        logger.info("if you want to become Package Provider Enter 1 ,Else Enter 2 ");
+        String choiceBetweenPackageOrNormal = scanner.nextLine();
+        while (!ChoiceChecker.isOneOrTwo(choiceBetweenPackageOrNormal)) {
+            logger.info("Enter Valid Choice: ");
+            choiceBetweenPackageOrNormal =scanner.nextLine();
+        }
+        if(choiceBetweenPackageOrNormal.equals("2")) {
+            list = serviceList("1");
+        }
+        else if(choiceBetweenPackageOrNormal.equals("1")){
+            MenusPrinter.printServicesMenu();
+            logger.info("Enter Number of Services (Greater Than One): ");
+            String numberOfServices= scanner.nextLine();
+            while(!ChoiceChecker.isValidNumberOfServices(numberOfServices)){
+                logger.info("Enter A Valid Number of Services Greater Than One: ");
+                numberOfServices= scanner.nextLine();
+            }
+            list = serviceList(numberOfServices);
+        }
+        try {
+            SignUp.signUpServiceProvider(primaryInfo.getName()
+                    , primaryInfo.getAddress()
+                    , primaryInfo.getAuthentication()
+                    , primaryInfo.getContactInfo()
+                    , list);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void signUpAsUserView(){
+        Person primaryInfo=readPrimaryInfo();
+        try
+        {
+            SignUp.signUpUser(primaryInfo.getName()
+                    ,primaryInfo.getAddress()
+                    ,primaryInfo.getAuthentication()
+                    ,primaryInfo.getContactInfo()
+            );
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static Person readPrimaryInfo(){
+        logger.info("Enter first name: ");
         String fname=scanner.nextLine();
-        logger.info("Enter Your middle name: ");
+        logger.info("Enter middle name: ");
         String mname=scanner.nextLine();
-        logger.info("Enter Your last name: ");
+        logger.info("Enter last name: ");
         String lname=scanner.nextLine();
-        logger.info("Enter Your Country: ");
+        logger.info("Enter Country: ");
         String country=scanner.nextLine();
         logger.info("Enter city: ");
         String city=scanner.nextLine();
-        logger.info("Enter Your email: ");
+        logger.info("Enter email: ");
         String email=scanner.nextLine();
-        logger.info("Enter Your password: ");
+        logger.info("Enter password: ");
         String password=scanner.nextLine();
         while (!PasswordChecker.isStrongPassword(password)) {
-            logger.info("re enter Your password: ");
+            logger.info("re enter password: ");
             password=scanner.nextLine();
         }
-        logger.info("Enter Your phone number: ");
+        logger.info("Enter phone number: ");
         String phone=scanner.nextLine();
-        if(signUpAs.equals("2")) {
-            logger.info("if you want to become Package Provider Enter 1 ,Else Enter 2 ");
-            String choiceBetweenPackageOrNormal = scanner.nextLine();
-            while (!ChoiceChecker.isOneOrTwo(choiceBetweenPackageOrNormal)) {
-                logger.info("Enter Valid Choice: ");
-                choiceBetweenPackageOrNormal =scanner.nextLine();
 
-            }
-            if(choiceBetweenPackageOrNormal.equals("2")) {
-
-                list = serviceList("1");
-
-
-            }
-            else if(choiceBetweenPackageOrNormal.equals("1")){
-                MenusPrinter.printServicesMenu();
-                logger.info("Enter Number of Services (Greater Than One): ");
-                String numberOfServices= scanner.nextLine();
-                while(!ChoiceChecker.isValidNumberOfServices(numberOfServices)){
-                    logger.info("Enter A Valid Number of Services Greater Than One: ");
-                    numberOfServices= scanner.nextLine();
-
-                }
-                list = serviceList(numberOfServices);
-            }
-
-            SignUp.signUpServiceProvider(new Name(fname,mname,lname)
-                    ,new Address(country,city)
-                    ,new Authentication(email,password)
-                    ,new ContactInfo(email,phone)
-                    ,list);
-
-
-        } else if (signUpAs.equals("1")) {
-            SignUp.signUpUser(new Name(fname,mname,lname)
-                    ,new Address(country,city)
-                    ,new Authentication(email,password)
-                    ,new ContactInfo(email,phone)
-                    );
-
-        }
-
+        return new Person(new Name(fname,mname,lname)
+                ,new Authentication(email,password)
+                ,new Address(country,city)
+                ,new ContactInfo(email,phone)
+                );
     }
     public static List<Service> serviceList(String numberOfService)
     {

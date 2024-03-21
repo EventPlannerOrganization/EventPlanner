@@ -4,6 +4,7 @@ import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
+import enumerations.UserType;
 
 
 import java.time.LocalDate;
@@ -12,6 +13,9 @@ import java.util.List;
 
 public class EventPlanner {
     private static final List<Person> users = new ArrayList<>();
+    public static List<Person> getUsersList(){
+        return users;
+    }
 
     private EventPlanner() {
     }
@@ -93,8 +97,11 @@ public class EventPlanner {
     public  static  List<User> getUsers(){
         List<Person> result = users.stream().filter(user -> User.class.isAssignableFrom(user.getClass())).toList();
         List <User> users =new ArrayList<>();
+        User uElement;
         for(Person element :result){
-            users.add((User) element);
+            uElement=(User)element;
+            if(uElement.getUsertype().equals(UserType.USER))
+                users.add((User) element);
         }
         return users;
     }
@@ -112,7 +119,7 @@ public class EventPlanner {
       services.add(  new Service(ServiceType.DJ,3200,"tesing"));
       ServiceProvider serviceProvider = new ServiceProvider(new Name("mo","munir","shadid"),
               new Authentication("mohammad03","12345"),new Address("palestine","tulkarm"),
-              new ContactInfo("mo@gmail.com","9412412"),
+              new ContactInfo("3sfr3sfr@gmail.com","9412412"),
             services);
       EventPlanner.addUser(serviceProvider);
 
@@ -147,16 +154,23 @@ public class EventPlanner {
         ServiceProvider serviceProvider5 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
                 new Authentication("hamid02","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
-                services3);
+                services5);
         EventPlanner.addUser(serviceProvider5);
+        List<Service> service6=new ArrayList<>();
+        service6.add(new Service(ServiceType.Cleaning,2000,"helllo"));
+        ServiceProvider serviceProvider6 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
+                new Authentication("aliii","bbaa12"),new Address("palestine","tulkarm"),
+                new ContactInfo("mo@gmail.com","9412412"),
+                service6);
+        EventPlanner.addUser(serviceProvider6);
 
         User user2 = new User(new Name("khalid", "Mohammad", "Abu-Safieh"),
                 new Authentication("khalid", "123"),
                 new Address("Palestine", "Nablus"),
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
-
-        EventPlanner.addUser(user2);
+            user2.setUsertype(UserType.ADMIN);
+            EventPlanner.addUser(user2);
 
         User user3 = new User(new Name("sam", "Mohammad", "Abu-Safieh"),
                 new Authentication("Karim", "123"),

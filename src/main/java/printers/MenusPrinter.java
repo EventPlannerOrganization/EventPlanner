@@ -1,7 +1,6 @@
 package printers;
 
 import enumerations.Colors;
-import enumerations.ServiceType;
 import models.RegisteredEvent;
 import models.ServiceProvider;
 
@@ -15,7 +14,7 @@ public class MenusPrinter {
     private MenusPrinter() {
 
     }
-    private static void printMenu(List<String> actions) {
+    public static void printMenu(List<String> actions) {
         StringBuilder outputString = new StringBuilder();
         outputString.append(Colors.YELLOW.getUniCodeValue());
         CollectionsPrinter.appendHorizontalLine(outputString, 39);
@@ -28,6 +27,9 @@ public class MenusPrinter {
         String result = String.valueOf(outputString);
         logger.info(result);
     }
+
+
+
     public static void printSignUpAsMenu() {
         List<String> mainMenu = new ArrayList<>();
         mainMenu.add("User");
@@ -91,12 +93,60 @@ public class MenusPrinter {
 
         printMenu(menu);
     }
+    public static void printAdminMenu()
+    {
+        List<String> menu = new ArrayList<>();
+        menu.add("User Management");
+        menu.add("Service Provider Management");
+        menu.add("Event Management");
+        menu.add("");
+        menu.add("Sign out !");
+
+        printMenu(menu);
+    }
+
+    public static void printUserManageMenu()
+    {
+        List<String> menu = new ArrayList<>();
+        menu.add("Show all users");
+        menu.add("Search users by username");
+        menu.add("Create new user");
+        menu.add("Delete user");
+        menu.add("Reset password for user");
+        menu.add("view registered events for user");
+        menu.add("Cancel");
+
+        printMenu(menu);
+    }
+    public static void printManageServiceProviderMenu()
+    {
+        List<String> menu = new ArrayList<>();
+        menu.add("Create new service provider");
+        menu.add("Delete service provider");
+        menu.add("Reset passwords for sevice provider");
+        menu.add("Show his service/s");
+
+        printMenu(menu);
+    }
+
+    public static void manageEventsMenu()
+    {
+        List<String> menu = new ArrayList<>();
+        menu.add("View a list of all events");
+        menu.add("Modifying events for a specific user");
+        menu.add("");
+        menu.add("");
+
+        printMenu(menu);
+    }
+
     public static void printServiceProviderMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("Show your Service/s");
         menu.add("Edit your Service/s");
         menu.add("Show your Event/s");
         menu.add("Edit your Event/s");
+        menu.add("Show requests");
         menu.add("Sign out !");
         printMenu(menu);
     }
@@ -145,5 +195,15 @@ public class MenusPrinter {
         menu.add("Edit Service description");
         menu.add("Edit Service Price");
         printMenu(menu);
+    }
+    public static void printfindUserMethodsMenu(){
+        List<String> menu = new ArrayList<>();
+        menu.add("Search for a specific user");
+        menu.add("Show all users and select from the list");
+        printMenu(menu);
+    }
+
+    public static void printListOfStrings(List<String> list){
+        printMenu(list);
     }
 }
