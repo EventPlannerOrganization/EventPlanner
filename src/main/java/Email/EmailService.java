@@ -41,6 +41,7 @@ public class EmailService {
         body = body.replace("{{dynamic_text_placeholder}}", newPassword);
     }
 
+
     private Properties defineProperties() {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -71,6 +72,54 @@ public class EmailService {
 
         // set the body
         setBody(path);
+
+        // set the content (Multi part body consists of multi bodies)
+        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+        mimeBodyPart.setContent(body, "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(mimeBodyPart);
+        message.setContent(multipart);
+
+        Transport.send(message);
+    }
+
+    public void sendAdminDeleteUserEmail(String to,String userName,String path) throws MessagingException, IOException {
+        Message message = new MimeMessage(createSession());
+        // set the src and dest
+        message.setFrom(new InternetAddress(from));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        // set the subject
+        message.setSubject("Account Deletion Notification");
+
+        // set the body
+        body = Files.readString(Paths.get("src/main/resources/html/"+path+".html"));
+        body = body.replace("{{dynamic_text_placeholder}}","Dear "+ userName+",");
+
+        // set the content (Multi part body consists of multi bodies)
+        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+        mimeBodyPart.setContent(body, "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(mimeBodyPart);
+        message.setContent(multipart);
+
+        Transport.send(message);
+    }
+
+
+    public void sendAdminChangePasswordEmail(String to,String userName,String newChangePassword,String path) throws MessagingException, IOException {
+        Message message = new MimeMessage(createSession());
+        // set the src and dest
+        message.setFrom(new InternetAddress(from));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        // set the subject
+        message.setSubject("Password Change Notification");
+
+        // set the body
+        body = Files.readString(Paths.get("src/main/resources/html/"+path+".html"));
+        body = body.replace("{{dynamic_text_placeholder}}","Dear "+ userName);
+        body = body.replace("{{dynamic_text_placeholder2}}","New Password: "+ newChangePassword);
 
         // set the content (Multi part body consists of multi bodies)
         MimeBodyPart mimeBodyPart = new MimeBodyPart();

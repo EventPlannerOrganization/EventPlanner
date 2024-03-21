@@ -29,3 +29,7 @@ S
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 Y
 )src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+U
+%src/main/java/Email/EmailService.java,f\d\fdade210e9a93d0d928922298efc60f16036d043
+Q
+!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3

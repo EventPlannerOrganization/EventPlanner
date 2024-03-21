@@ -43,7 +43,7 @@ public class EventsView {
 
         logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
-        RegisteredEvent registeredEvent=new RegisteredEvent(name,date,cost,guestsEmails);
+        //RegisteredEvent registeredEvent=new RegisteredEvent(name,date,cost,guestsEmails);
         EventsControl.addEvent(date, name,cost, guestsEmails);
         User user=(User)EventPlanner.getCurrentUser();
         List<ServiceProvider> addedProviders = new ArrayList<>();
