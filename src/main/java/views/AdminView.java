@@ -74,7 +74,7 @@ public class AdminView {
                     AdminView.showUsersView();
                     break;
                 case "2":
-                    AdminView.serchUserView();
+                    AdminView.searchUserView();
                     break;
                 case "3":
                     AdminView.createNewUser();
@@ -178,7 +178,7 @@ public class AdminView {
     SignUpView.signUpAsUserView();
     }
 
-    private static void serchUserView() {
+    private static void searchUserView() {
         logger.info("Please enter username to search");
         String username = scanner.nextLine();
        List<String> searchResult =AdminControl.getUserNameOfUsers(AdminControl.searchUsers(username));
@@ -264,7 +264,7 @@ public class AdminView {
                     AdminView.showServiceProvidersView();
                     break;
                 case "2":
-
+                    AdminView.searchServiceProviderView();
                     break;
                 case "3":
 
@@ -288,6 +288,18 @@ public class AdminView {
                     // code block
             }
         }
+    }
+
+    private static void searchServiceProviderView() {
+        logger.info("Please enter username to search");
+        String username = scanner.nextLine();
+        List<String> searchResult =AdminControl.getUserNameOfServiceProviders(AdminControl.searchServiceProviders(username));
+        if(searchResult.isEmpty()){
+            logger.info("Sorry, no users were found matching your search criteria.");
+            return;
+        }
+        MenusPrinter.printListOfStrings(searchResult);
+        backTouserManagementMenu();
     }
 
     private static void showServiceProvidersView() {

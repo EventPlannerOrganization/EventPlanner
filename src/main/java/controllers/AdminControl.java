@@ -65,4 +65,18 @@ public class AdminControl {
     public static void resetPassword(User user, String newPassword) {
         user.getAuthentication().setPassword(newPassword);
     }
+
+    public static List<ServiceProvider> searchServiceProviders(String searchTerm) {
+        List<ServiceProvider> searchResults = new ArrayList<>();
+        String searchTermLowerCase = searchTerm.toLowerCase(); // Convert search term to lowercase
+
+        for (ServiceProvider user : EventPlanner.getServiceProviders()) {
+            String userNameLowerCase = user.getAuthentication().getUsername().toLowerCase(); // Convert username to lowercase
+            if (userNameLowerCase.contains(searchTermLowerCase)) { // Partial match check
+                searchResults.add(user);
+            }
+        }
+        if(searchResults.isEmpty())searchResults=null;
+        return searchResults;
+    }
 }
