@@ -286,10 +286,10 @@ public class AdminView {
                     AdminView.resetServiceProviderPassword();
                     break;
                 case "6":
-
+                    AdminView.viewServices();
                     break;
                 case "7":
-
+                    AdminView.viewBookedDates();
                     break;
                 case "8":
                     flage=false;
@@ -298,6 +298,56 @@ public class AdminView {
                     // code block
             }
         }
+    }
+
+    private static void viewBookedDates() {
+        boolean reTry=true;
+        ServiceProvider serviceProvider=findModifiedServiceProvider();
+        while (reTry){
+            if(serviceProvider==null){
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else if(serviceProvider==notServiceProvider){
+                reTry=false;
+            }
+            else {
+                reTry=false;
+                if(AdminControl.getBookedDatasForServiceProvider(serviceProvider).isEmpty()) logger.info("This service provider does not Booked yet!" );
+                else {
+                    MenusPrinter.printListOfStrings(AdminControl.getBookedDatasForServiceProvider(serviceProvider));
+                }
+            }
+
+        }
+        backTouserManagementMenu();
+
+    }
+
+    private static void viewServices() {
+        boolean reTry=true;
+        ServiceProvider serviceProvider=findModifiedServiceProvider();
+        while (reTry){
+            if(serviceProvider==null){
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else if(serviceProvider==notServiceProvider){
+                reTry=false;
+            }
+            else {
+                reTry=false;
+                if(AdminControl.getServicesForServiceProvider(serviceProvider).isEmpty()) logger.info("This service provider does not provider any service yet!" );
+                else {
+                    MenusPrinter.printListOfStrings(AdminControl.getServicesForServiceProvider(serviceProvider));
+                }
+            }
+
+        }
+        backTouserManagementMenu();
+
     }
 
     private static void resetServiceProviderPassword() {
@@ -317,7 +367,7 @@ public class AdminView {
             }
         }
     }
- 
+
     private static void deleteServiceProvider() {
         boolean reTry=true;
         ServiceProvider deletedUser=findModifiedServiceProvider();

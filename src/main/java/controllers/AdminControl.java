@@ -2,7 +2,9 @@ package controllers;
 
 import models.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AdminControl {
@@ -24,6 +26,20 @@ public class AdminControl {
         List<String> events=new ArrayList<>();
         for (RegisteredEvent event:user.getRegisteredEvents()){
             events.add(event.getEventName());
+        }
+        return events;
+    }
+    public static List<String> getServicesForServiceProvider(ServiceProvider serviceProvider){
+        List<String> events=new ArrayList<>();
+        for (Service service:serviceProvider.getServices()){
+            events.add(service.toString());
+        }
+        return events;
+    }
+    public static List<String> getBookedDatasForServiceProvider(ServiceProvider serviceProvider){
+        List<String> events=new ArrayList<>();
+        for (LocalDate date:serviceProvider.getBookedDates()){
+            events.add(date.toString());
         }
         return events;
     }

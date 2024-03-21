@@ -21,3 +21,9 @@ S
 #src/main/java/views/SignUpView.java,3\8\383d99cc642f9d14319c6ab3cae5f2b2ecb2bf88
 ^
 .src/main/java/printers/CollectionsPrinter.java,2\4\242052583b197684432a2679c5c1f15700fd242e
+Q
+!src/main/java/models/Service.java,2\3\237237ce853bd2836f8c3c871955cebcb245b46d
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
