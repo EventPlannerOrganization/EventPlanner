@@ -15,31 +15,28 @@ import java.util.logging.Logger;
 
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
-    private static final Scanner scanner=new Scanner(System.in);
-    private static final User notUser=new User();
-    private static final ServiceProvider notServiceProvider=new ServiceProvider();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final User notUser = new User();
+    private static final ServiceProvider notServiceProvider = new ServiceProvider();
 
-    static String message="Sorry, no users were found matching your search criteria.\n" +
+    static String message = "Sorry, no users were found matching your search criteria.\n" +
             "do need to retry process? Enter 'Y' if yes, enter any button to return to menu";
-    static String messageEnterValid="Enter Valid Choice !";
+    static String messageEnterValid = "Enter Valid Choice !";
+
     private AdminView() {
     }
 
-    public static void adminMenu()
-    {
-        boolean flage=true;
-        while(flage)
-        {
+    public static void adminMenu() {
+        boolean flage = true;
+        while (flage) {
             MenusPrinter.printAdminMenu();
             logger.info("What do you want to do ?");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.adminMenuChecker(choice))
-                {
+            while (!ChoiceChecker.adminMenuChecker(choice)) {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
-                }
-            switch (choice)
-            {
+            }
+            switch (choice) {
                 case "1":
                     AdminView.userManagement();
                     break;
@@ -51,7 +48,7 @@ public class AdminView {
                 case "4":
                     break;
                 case "5":
-                    flage=false;
+                    flage = false;
                     AdminControl.signout();
                     break;
                 default:
@@ -61,19 +58,16 @@ public class AdminView {
     }
 
     private static void userManagement() {
-        boolean flage=true;
-        while(flage)
-        {
+        boolean flage = true;
+        while (flage) {
             MenusPrinter.printUserManageMenu();
             logger.info("What do you want to do ? ");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.userManageMenuChecker(choice))
-            {
+            while (!ChoiceChecker.userManageMenuChecker(choice)) {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
             }
-            switch (choice)
-            {
+            switch (choice) {
                 case "1":
                     AdminView.showUsersView();
                     break;
@@ -93,7 +87,7 @@ public class AdminView {
                     AdminView.viewEvents();
                     break;
                 case "7":
-                    flage=false;
+                    flage = false;
                     break;
                 default:
                     // code block
@@ -102,34 +96,35 @@ public class AdminView {
     }
 
     private static void resetPassword() {
-        boolean reTry=true;
-        User user=findModifiedUser();
-        while (reTry){
-            if(user==null){
+        boolean reTry = true;
+        User user = findModifiedUser();
+        while (reTry) {
+            if (user == null) {
                 logger.info(message);
                 String choice = scanner.nextLine();
-                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
-            }
-            else if(user==notUser){
-                reTry=false;
-            }
-            else {
-                reTry=false;
+                if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
+            } else if (user == notUser) {
+                reTry = false;
+            } else {
+                reTry = false;
                 //you can here send email to notify him that the admin delete him
-                logger.info("Enter New Password: ");
-                String newPassword = scanner.nextLine();
-                while( !PasswordChecker.isStrongPassword(newPassword)){
-                    logger.info("please re enter password because its weak  ");
-                     newPassword = scanner.nextLine();
-                }
-                AdminControl.resetPassword(user,newPassword);
-                }
-
+                AdminControl.resetPassword(user, readNewPassword());
             }
-
         }
+    }
 
-    private static void deleteUser() {
+    private static String readNewPassword() {
+        logger.info("Enter New Password: ");
+        String newPassword = scanner.nextLine();
+        while (!PasswordChecker.isStrongPassword(newPassword)) {
+            logger.info("please re enter password because its weak  ");
+            newPassword = scanner.nextLine();
+        }
+        return newPassword;
+    }
+
+
+        private static void deleteUser() {
         boolean reTry=true;
         User deletedUser=findModifiedUser();
         while (reTry){
@@ -288,7 +283,7 @@ public class AdminView {
                     AdminView.deleteServiceProvider();
                     break;
                 case "5":
-
+                    AdminView.resetServiceProviderPassword();
                     break;
                 case "6":
 
@@ -301,6 +296,24 @@ public class AdminView {
                     break;
                 default:
                     // code block
+            }
+        }
+    }
+
+    private static void resetServiceProviderPassword() {
+        boolean reTry = true;
+        ServiceProvider serviceProvider = findModifiedServiceProvider();
+        while (reTry) {
+            if (serviceProvider == null) {
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
+            } else if (serviceProvider == notServiceProvider) {
+                reTry = false;
+            } else {
+                reTry = false;
+                //you can here send email to notify him that the admin delete him
+                AdminControl.resetPassword(serviceProvider, readNewPassword());
             }
         }
     }

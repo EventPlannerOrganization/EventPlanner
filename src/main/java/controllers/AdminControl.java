@@ -62,7 +62,7 @@ public class AdminControl {
 
     }
 
-    public static void resetPassword(User user, String newPassword) {
+    public static void resetPassword(Person user, String newPassword) {
         user.getAuthentication().setPassword(newPassword);
     }
 
