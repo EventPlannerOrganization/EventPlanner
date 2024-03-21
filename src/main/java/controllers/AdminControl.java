@@ -1,9 +1,6 @@
 package controllers;
 
-import models.EventPlanner;
-import models.Person;
-import models.RegisteredEvent;
-import models.User;
+import models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +15,9 @@ public class AdminControl {
 
     public static List<String> getAllUsers(){
     return getUserNameOfUsers(EventPlanner.getUsers());
+    }
+    public static List<String> getAllServiceProviders(){
+        return getUserNameOfServiceProviders(EventPlanner.getServiceProviders());
     }
 
     public static List<String> getEventsForUser(User user){
@@ -45,6 +45,13 @@ public class AdminControl {
     public static List<String> getUserNameOfUsers(List<User> users){
         List<String>userNames=new ArrayList<>();
         for (User element:users){
+            userNames.add(element.getAuthentication().getUsername());
+        }
+        return userNames;
+    }
+    public static List<String> getUserNameOfServiceProviders(List<ServiceProvider> serviceProviders){
+        List<String>userNames=new ArrayList<>();
+        for (ServiceProvider element:serviceProviders){
             userNames.add(element.getAuthentication().getUsername());
         }
         return userNames;

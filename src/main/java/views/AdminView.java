@@ -40,6 +40,7 @@ public class AdminView {
                     AdminView.userManagement();
                     break;
                 case "2":
+                    AdminView.serviceProviderManagement();
                     break;
                 case "3":
                     break;
@@ -241,6 +242,58 @@ public class AdminView {
             logger.info("To Return Back Enter B");
             choice = scanner.nextLine();
         }
+    }
+
+
+
+    private static void serviceProviderManagement() {
+        boolean flage=true;
+        while(flage)
+        {
+            MenusPrinter.printServiceProviderManageMenu();
+            logger.info("What do you want to do ? ");
+            String choice = scanner.nextLine();
+            while (!ChoiceChecker.serviceProviderManageMenuChecker(choice))
+            {
+                choice = scanner.nextLine();
+                logger.info("Enter Valid Choice !");
+            }
+            switch (choice)
+            {
+                case "1":
+                    AdminView.showServiceProvidersView();
+                    break;
+                case "2":
+
+                    break;
+                case "3":
+
+                    break;
+                case "4":
+
+                    break;
+                case "5":
+
+                    break;
+                case "6":
+
+                    break;
+                case "7":
+
+                    break;
+                case "8":
+                    flage=false;
+                    break;
+                default:
+                    // code block
+            }
+        }
+    }
+
+    private static void showServiceProvidersView() {
+        List<String> listOfUsers=AdminControl.getAllServiceProviders();
+        MenusPrinter.printListOfStrings(listOfUsers);
+        backTouserManagementMenu();
     }
 
 
