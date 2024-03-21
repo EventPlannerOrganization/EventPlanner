@@ -1,6 +1,7 @@
 package views;
 
 import controllers.AdminControl;
+import controllers.SignUp;
 import helpers.ChoiceChecker;
 import helpers.PasswordChecker;
 import models.EventPlanner;
@@ -267,7 +268,7 @@ public class AdminView {
                     AdminView.searchServiceProviderView();
                     break;
                 case "3":
-
+                    AdminView.createNewServiceProvider();
                     break;
                 case "4":
 
@@ -288,6 +289,10 @@ public class AdminView {
                     // code block
             }
         }
+    }
+
+    private static void createNewServiceProvider() {
+        SignUpView.signUpAsServiceProviderView();
     }
 
     private static void searchServiceProviderView() {
