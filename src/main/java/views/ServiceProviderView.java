@@ -222,31 +222,31 @@ public class ServiceProviderView {
 
         switch (choice){
             case "1":
-                serviceType = ServiceType.DJ;
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.DJ);
                 flag = true;
                 break;
             case "2":
-                serviceType = ServiceType.Photography;
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Photography);
                 flag = true;
                 break;
             case "3":
-                serviceType = ServiceType.Security;
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Security);
                 flag = true;
                 break;
             case "4":
-                serviceType=ServiceType.Cleaning;
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Cleaning);
                 flag = true;
                 break;
             case "5":
-                serviceType=ServiceType.Decor_and_Design;
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Decor_and_Design);
                 flag = true;
                 break;
             case "6":
-                serviceType=ServiceType.Catering;
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Catering);
                 flag = true;
                 break;
             case "7":
-                serviceType=ServiceType.Venue;
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Venue);
                 flag = true;
                 break;
             case "8":

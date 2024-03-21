@@ -1,13 +1,7 @@
 
 –
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.UserNotFoundException', as it cannot be thrown from method's body.(ëˆ¨Æ8ŒõÖÃå1
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.UserNotFoundException', as it cannot be thrown from method's body.(ëˆ¨Æ8‘ºÒðå1
 “
-java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ëˆ¨Æ8ÏÚêÃå1
-G	java:S106 "+Replace this use of System.out by a logger.(ý‘à½8üëõÁå1
-X	java:S1256"<This block of commented-out lines of code should be removed.(¦ûÉè8ÒÚêÃå1
-Q
-java:S1128"/Remove this unused import 'Email.EmailService'.(ÌËÄÉþÿÿÿÿ8ßÚêÃå1
-X
-java:S1128	"6Remove this unused import 'controllers.EventsControl'.(»‹ê°úÿÿÿÿ8 õÖÃå1
-\
-java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8 õÖÃå1
+java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ëˆ¨Æ8‘ºÒðå1
+G	java:S106 "+Replace this use of System.out by a logger.(ý‘à½8“ºÒðå1
+X	java:S1256"<This block of commented-out lines of code should be removed.(¦ûÉè8•ºÒðå1

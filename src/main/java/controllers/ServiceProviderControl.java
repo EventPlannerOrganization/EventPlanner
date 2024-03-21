@@ -1,13 +1,13 @@
 package controllers;
 
-<<<<<<< HEAD
+
 import Email.EmailService;
 import Exceptions.*;
-=======
+
 import Exceptions.EmptyList;
 
 import Exceptions.ServiceNotFoundException;
->>>>>>> 8ea5a63f21d538a7e87500d2c243cbc258e9f480
+
 
 import enumerations.ServiceType;
 import io.cucumber.java.an.E;
@@ -32,9 +32,7 @@ public class ServiceProviderControl {
     }
     public static List<Service> getServiceProviderServices(ServiceProvider serviceProvider){
         List<Service> serviceProvdierServices = new ArrayList<>();
-        for (int i = 0; i < serviceProvider.getServices().size(); i++) {
-            serviceProvdierServices.add(serviceProvider.getServices().get(i));
-        }
+        serviceProvdierServices.addAll(serviceProvider.getServices());
         return serviceProvdierServices;
 
     }
@@ -171,6 +169,9 @@ public class ServiceProviderControl {
     }
 
     public static void editServiceType(Service service, ServiceType serviceType) {
+        ServiceProvider serviceProvider= (ServiceProvider) EventPlanner.getCurrentUser();
+        if(!serviceProvider.getServices().get(0).equals(service))
+            return;
         service.setServiceType(serviceType);
     }
     public static void editServiceDescription(Service service,String descritpion){
@@ -204,24 +205,21 @@ public class ServiceProviderControl {
         serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
 return !serviceList.isEmpty();
     }
-<<<<<<< HEAD
+
     public static void respondToRequests(boolean choice,RegisteredEvent event,ServiceProvider choosenServiceProvider) throws FileNotFoundException {
-        if(choice) {
+        if (choice) {
             choosenServiceProvider.getBookedDates().add(event.getDate());
-            List<ServiceProvider> serviceProviders=new ArrayList<>();
+            List<ServiceProvider> serviceProviders = new ArrayList<>();
             serviceProviders.add(choosenServiceProvider);
             event.addServices(serviceProviders);
 
-        }
-        else if(!choice) {
+        } else if (!choice) {
             event.getServiceProviders().remove(choosenServiceProvider);
         }
 
 
-=======
-
+    }
     public static void changeServicePackageProvider(ServiceProvider serviceProvider, ServiceType serviceType) {
->>>>>>> 8ea5a63f21d538a7e87500d2c243cbc258e9f480
 
     }
 }
