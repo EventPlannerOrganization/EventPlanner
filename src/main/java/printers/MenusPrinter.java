@@ -114,8 +114,8 @@ public class MenusPrinter {
         menu.add("Delete user");
         menu.add("Reset password for user");
         menu.add("view registered events for user");
-        menu.add("Cancel");
 
+        menu.add("Cancel");
         printMenu(menu);
     }
     public static void printServiceProviderManageMenu()
@@ -131,7 +131,7 @@ public class MenusPrinter {
 
         menu.add("Cancel ");
         printMenu(menu);
-    } 
+    }
 
     public static void manageEventsMenu()
     {

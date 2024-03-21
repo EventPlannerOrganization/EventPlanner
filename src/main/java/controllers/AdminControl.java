@@ -1,7 +1,11 @@
 package controllers;
 
+import Email.EmailService;
 import models.*;
 
+import javax.mail.MessagingException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,13 +77,22 @@ public class AdminControl {
         return userNames;
     }
 
-    public static void deleteUser(Person deletedUser) {
-        EventPlanner.getUsersList().remove(deletedUser);
+    public static void deleteUser(Person deletedUser)  {
+        try{
+        EmailService emailForDeletedUserFromAdmin=new EmailService();
+        emailForDeletedUserFromAdmin.sendAdminDeleteUserEmail(deletedUser.getContactInfo().getEmail(),deletedUser.getAuthentication().getUsername(),"admin-delete-user");
+        EventPlanner.getUsersList().remove(deletedUser);}
+        catch (Exception e){}
 
     }
 
     public static void resetPassword(Person user, String newPassword) {
+        try{
+        EmailService emailForDeletedUserFromAdmin=new EmailService();
+        emailForDeletedUserFromAdmin.sendAdminChangePasswordEmail(user.getContactInfo().getEmail(),user.getAuthentication().getUsername(),newPassword,"admin-delete-user");
         user.getAuthentication().setPassword(newPassword);
+    }
+        catch (Exception e){}
     }
 
     public static List<ServiceProvider> searchServiceProviders(String searchTerm) {

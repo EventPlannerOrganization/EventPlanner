@@ -33,6 +33,7 @@ S
 #src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
 \
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+<<<<<<< HEAD
 ^
 .src/main/java/printers/CollectionsPrinter.java,2\4\242052583b197684432a2679c5c1f15700fd242e
 e
@@ -89,3 +90,11 @@ r
 Bsrc/test/features/ServiceProvider/UpdateServiceDescription.feature,b\9\b990af7bbf2375a0410452e2503fe9977dd07032
 
 Osrc/test/java/testControllers/ServiceProvider/TestUpdateServiceDescription.java,8\2\82f6b5a1f2d6a8741af5acb337a12d5a73f01a9f
+=======
+Y
+)src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+U
+%src/main/java/Email/EmailService.java,f\d\fdade210e9a93d0d928922298efc60f16036d043
+Q
+!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+>>>>>>> ab47aa6c25763ff4ae130d4f8596fa85bb268ceb

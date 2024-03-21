@@ -1,5 +1,6 @@
 
 a
+<<<<<<< HEAD
 java:S18545"DRemove this useless assignment to local variable "serviceProviders".(áˆ¼è8¬ò‡æ1
 ]	java:S125*"<This block of commented-out lines of code should be removed.(†÷®Öþÿÿÿÿ8¢«þ‡æ1
 ]	java:S1250"<This block of commented-out lines of code should be removed.(¿¨Ãýÿÿÿÿ8£«þ‡æ1
@@ -11,3 +12,18 @@ X	java:S125d"<This block of commented-out lines of code should be removed.(º™Â
 ”
 java:S1130‘"qRemove the declaration of thrown exception 'Exceptions.EventNotFound', as it cannot be thrown from method's body.(¤Ðµñûÿÿÿÿ8Áò‡æ1
 K	java:S108É")Either remove or fill this block of code.(ßå¤µúÿÿÿÿ8Èò‡æ1
+=======
+java:S18543"DRemove this useless assignment to local variable "serviceProviders".(áˆ¼è8ÑÝî”æ1
+_
+java:S18541"BRemove this useless assignment to local variable "addedProviders".(º¤Ýö8ÑÝî”æ1
+]	java:S125."<This block of commented-out lines of code should be removed.(¿¨Ãýÿÿÿÿ8ÖÝî”æ1
+P
+java:S14811"3Remove this unused "addedProviders" local variable.(º¤Ýö8ÙÝî”æ1
+R
+java:S14813"5Remove this unused "serviceProviders" local variable.(áˆ¼è8ÚÝî”æ1
+]	java:S1257"<This block of commented-out lines of code should be removed.(ÓŽªçÿÿÿÿÿ8ÚÝî”æ1
+X	java:S125]"<This block of commented-out lines of code should be removed.(º™Â8ÝÝî”æ1
+”
+java:S1130Š"qRemove the declaration of thrown exception 'Exceptions.EventNotFound', as it cannot be thrown from method's body.(¤Ðµñûÿÿÿÿ8äÝî”æ1
+K	java:S108Â")Either remove or fill this block of code.(ßå¤µúÿÿÿÿ8îÝî”æ1
+>>>>>>> ab47aa6c25763ff4ae130d4f8596fa85bb268ceb
