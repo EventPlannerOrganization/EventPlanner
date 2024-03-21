@@ -27,3 +27,5 @@ S
 #src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
 \
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+Y
+)src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
