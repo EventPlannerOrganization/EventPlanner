@@ -1,14 +1,11 @@
 package controllers;
 
-<<<<<<< HEAD
 import Exceptions.*;
-=======
 import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import Exceptions.WeakPasswordException;
 import enumerations.UserType;
->>>>>>> 8ea5a63f21d538a7e87500d2c243cbc258e9f480
 import models.EventPlanner;
 import models.Person;
 import models.ServiceProvider;
@@ -34,24 +31,12 @@ public class Login {
         return false;
     }
 
+        public static void whosLogin () throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, MessagingException, IOException, EventAlreadyExist {
+            Person current = EventPlanner.getCurrentUser();
+            if (current instanceof ServiceProvider) ServiceProviderView.providerMenu();
+            else if (((User) current).getUsertype() == UserType.USER) UserView.userMenu();
+            else AdminView.adminMenu();
 
-<<<<<<< HEAD
-    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, EventAlreadyExist, MessagingException, IOException {
-       Person current= EventPlanner.getCurrentUser();
-       if(current instanceof User){
-           UserView.userMenu();
-       }
-       else if (current instanceof ServiceProvider){
-           ServiceProviderView.providerMenu();
-       }
-=======
-    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound {
-        Person current= EventPlanner.getCurrentUser();
-        if (current instanceof ServiceProvider)  ServiceProviderView.providerMenu();
-        else if (((User) current).getUsertype() == UserType.USER) UserView.userMenu();
-        else AdminView.adminMenu();
+        }
 
->>>>>>> 8ea5a63f21d538a7e87500d2c243cbc258e9f480
-    }
 }
-

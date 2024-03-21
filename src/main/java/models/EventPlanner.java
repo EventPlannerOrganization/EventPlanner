@@ -97,8 +97,11 @@ public class EventPlanner {
     public  static  List<User> getUsers(){
         List<Person> result = users.stream().filter(user -> User.class.isAssignableFrom(user.getClass())).toList();
         List <User> users =new ArrayList<>();
+        User uElement;
         for(Person element :result){
-            users.add((User) element);
+            uElement=(User)element;
+            if(uElement.getUsertype().equals(UserType.USER))
+                users.add((User) element);
         }
         return users;
     }

@@ -10,10 +10,10 @@ Feature: Login
     And password is <password>
     Then login successfully
     Examples:
-      | username    | password |
-      | 'Naser'     | 'm123'   |
-      | 'khalid'    | '123'    |
-      | 'hamid02' | 'bbaa12'    |
+      | username  | password |
+      | 'Naser'   | 'm123'   |
+      | 'khalid'  | '123'    |
+      | 'hamid02' | 'bbaa12' |
 
   Scenario Outline: Login fails because the user is not exist
     When username is <username>

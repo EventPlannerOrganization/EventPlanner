@@ -1,7 +1,12 @@
 
+<<<<<<< HEAD
 –
 java:S1130"yRemove the declaration of thrown exception 'Exceptions.UserNotFoundException', as it cannot be thrown from method's body.(ëˆ¨Æ8‘ºÒğå1
 “
 java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ëˆ¨Æ8‘ºÒğå1
 G	java:S106 "+Replace this use of System.out by a logger.(ı‘à½8“ºÒğå1
 X	java:S1256"<This block of commented-out lines of code should be removed.(¦ûÉè8•ºÒğå1
+=======
+G	java:S106 "+Replace this use of System.out by a logger.(ı‘à½8ˆ¡áïå1
+X	java:S1256"<This block of commented-out lines of code should be removed.(¦ûÉè8“¡áïå1
+>>>>>>> e4b3e5f2064efa2c57236fe44325d831ca9e7545

@@ -1,7 +1,6 @@
 package printers;
 
 import enumerations.Colors;
-import enumerations.ServiceType;
 import models.RegisteredEvent;
 import models.ServiceProvider;
 
@@ -115,6 +114,7 @@ public class MenusPrinter {
         menu.add("Delete user");
         menu.add("Reset password for user");
         menu.add("view registered events for user");
+        menu.add("Cancel");
 
         printMenu(menu);
     }
@@ -203,7 +203,7 @@ public class MenusPrinter {
         printMenu(menu);
     }
 
-    public static void printListOfUsers(List<String> list){
+    public static void printListOfStrings(List<String> list){
         printMenu(list);
     }
 }

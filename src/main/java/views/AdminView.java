@@ -1,10 +1,9 @@
 package views;
 
 import controllers.AdminControl;
-import controllers.EventsControl;
 import helpers.ChoiceChecker;
+import helpers.PasswordChecker;
 import models.EventPlanner;
-import models.Person;
 import models.User;
 import printers.MenusPrinter;
 
@@ -12,11 +11,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static views.SignUpView.signUpAsServiceProviderView;
-
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
+    static String message="Sorry, no users were found matching your search criteria.\n" +
+            "do need to retry process? Enter 'Y' if yes, enter any button to return to menu";
 
     private AdminView() {
     }
@@ -82,6 +81,12 @@ public class AdminView {
                     AdminView.deleteUser();
                     break;
                 case "5":
+                    AdminView.resetPassword();
+                    break;
+                case "6":
+                    AdminView.viewEvents();
+                    break;
+                case "7":
                     flage=false;
                     break;
                 default:
@@ -90,13 +95,37 @@ public class AdminView {
         }
     }
 
+    private static void resetPassword() {
+        boolean reTry=true;
+        User user=findModifiedUser();
+        while (reTry){
+            if(user==null){
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else {
+                reTry=false;
+                //you can here send email to notify him that the admin delete him
+                logger.info("Enter New Password: ");
+                String newPassword = scanner.nextLine();
+                while( !PasswordChecker.isStrongPassword(newPassword)){
+                    logger.info("please re enter password because its weak  ");
+                     newPassword = scanner.nextLine();
+                }
+                AdminControl.resetPassword(user,newPassword);
+                }
+
+            }
+
+        }
+
     private static void deleteUser() {
         boolean reTry=true;
         User deletedUser=findModifiedUser();
         while (reTry){
         if(deletedUser==null){
-            logger.info("Sorry, no users were found matching your search criteria.\n" +
-                    "do need to retry process? Enter 'Y' if yes, enter any button to return to menu");
+            logger.info(message);
             String choice = scanner.nextLine();
             if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
             }
@@ -105,6 +134,27 @@ public class AdminView {
             //you can here send email to notify him that the admin delete him
             AdminControl.deleteUser( deletedUser);
         }
+
+        }
+
+    }
+
+    private static void viewEvents() {
+        boolean reTry=true;
+        User user=findModifiedUser();
+        while (reTry){
+            if(user==null){
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else {
+                reTry=false;
+                if(AdminControl.getEventsForUser(user).isEmpty()) logger.info("This user does not have registered events yet!" );
+                else {
+                    MenusPrinter.printListOfStrings(AdminControl.getEventsForUser(user));
+                }
+            }
 
         }
 
@@ -124,7 +174,7 @@ public class AdminView {
             logger.info("Sorry, no users were found matching your search criteria.");
             return;
         }
-       MenusPrinter.printListOfUsers(searchResult);
+       MenusPrinter.printListOfStrings(searchResult);
         backTouserManagementMenu();
     }
 
@@ -132,7 +182,7 @@ public class AdminView {
     private static void showUsersView()
     {
         List<String> listOfUsers=AdminControl.getAllUsers();
-        MenusPrinter.printListOfUsers(listOfUsers);
+        MenusPrinter.printListOfStrings(listOfUsers);
         backTouserManagementMenu();
     }
 
@@ -157,7 +207,7 @@ public class AdminView {
             users=null;
         if (users == null)
             return null;
-        MenusPrinter.printListOfUsers(AdminControl.getUserNameOfUsers(users));
+        MenusPrinter.printListOfStrings(AdminControl.getUserNameOfUsers(users));
         int selectedUser = Integer.parseInt(scanner.nextLine());
         while(selectedUser > users.size()||selectedUser<=0){
             logger.info("Enter Valid number: ");
