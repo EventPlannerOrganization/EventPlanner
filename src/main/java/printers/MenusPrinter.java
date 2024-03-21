@@ -131,7 +131,7 @@ public class MenusPrinter {
 
         menu.add("Cancel ");
         printMenu(menu);
-    }
+    } 
 
     public static void manageEventsMenu()
     {
