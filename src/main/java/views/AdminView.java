@@ -317,7 +317,7 @@ public class AdminView {
             }
         }
     }
-
+ 
     private static void deleteServiceProvider() {
         boolean reTry=true;
         ServiceProvider deletedUser=findModifiedServiceProvider();
