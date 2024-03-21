@@ -1,10 +1,11 @@
 package views;
 
 import controllers.AdminControl;
-import controllers.SignUp;
+
 import helpers.ChoiceChecker;
 import helpers.PasswordChecker;
 import models.EventPlanner;
+import models.ServiceProvider;
 import models.User;
 import printers.MenusPrinter;
 
@@ -16,9 +17,11 @@ public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
     private static final User notUser=new User();
+    private static final ServiceProvider notServiceProvider=new ServiceProvider();
+
     static String message="Sorry, no users were found matching your search criteria.\n" +
             "do need to retry process? Enter 'Y' if yes, enter any button to return to menu";
-
+    static String messageEnterValid="Enter Valid Choice !";
     private AdminView() {
     }
 
@@ -33,7 +36,7 @@ public class AdminView {
             while (!ChoiceChecker.adminMenuChecker(choice))
                 {
                 choice = scanner.nextLine();
-                logger.info("Enter Valid Choice !");
+                logger.info(messageEnterValid);
                 }
             switch (choice)
             {
@@ -67,7 +70,7 @@ public class AdminView {
             while (!ChoiceChecker.userManageMenuChecker(choice))
             {
                 choice = scanner.nextLine();
-                logger.info("Enter Valid Choice !");
+                logger.info(messageEnterValid);
             }
             switch (choice)
             {
@@ -199,41 +202,52 @@ public class AdminView {
         backTouserManagementMenu();
     }
 
-    private static User findModifiedUser() {
-    User modifiedUser;
-    logger.info("Please select a method to generate the process:");
-    MenusPrinter.printfindUserMethodsMenu();
+    private static String selectMethod() {
+        logger.info("Please select a method to generate the process:");
+        MenusPrinter.printfindUserMethodsMenu();
         String choice=scanner.nextLine();
         while (!ChoiceChecker.isOneOrTwo(choice)) {
             logger.info("Enter Valid Choice: ");
             choice=scanner.nextLine();
         }
-        List<User> users;
-        if(choice.equals("1")) {
-            logger.info("Please enter username to search ");
-            String username = scanner.nextLine();
-            users = AdminControl.searchUsers(username);
-        }
-        else if (choice.equals("2"))
-            users=EventPlanner.getUsers();
-        else
-            users=null;
-        if (users == null){
-            return null;
-        }
-        List<String>usersNames=AdminControl.getUserNameOfUsers(users);
-        usersNames.add("None (Do not delete any user)");
+        return choice;
+    }
+
+    private static User findModifiedUser()
+    {
+    User modifiedUser;
+    String choice=selectMethod();
+    List<User> users;
+    if(choice.equals("1")) {
+        logger.info("Please enter username to search ");
+        String username = scanner.nextLine();
+        users = AdminControl.searchUsers(username);
+    }
+    else if (choice.equals("2"))
+        users=EventPlanner.getUsers();
+    else
+        users=null;
+    if (users == null){
+        return null;
+    }
+    List<String>usersNames=AdminControl.getUserNameOfUsers(users);
+    int selectedUser=selectFromList(usersNames);
+    if(selectedUser==usersNames.size())modifiedUser=notUser;
+    else modifiedUser= users.get(selectedUser-1);
+
+    return modifiedUser;
+
+    }
+
+    private static int selectFromList(List<String> usersNames) {
+        usersNames.add("None (Do not delete any one)");
         MenusPrinter.printListOfStrings(usersNames);
         int selectedUser = Integer.parseInt(scanner.nextLine());
-        while(selectedUser > users.size()+1||selectedUser<=0){
+        while(selectedUser > usersNames.size()||selectedUser<=0){
             logger.info("Enter Valid number: ");
             selectedUser = Integer.parseInt(scanner.nextLine());
-            }
-            if(selectedUser==usersNames.size())modifiedUser=notUser;
-            else modifiedUser= users.get(selectedUser-1);
-
-        return modifiedUser;
-
+        }
+        return selectedUser;
     }
 
     private static void backTouserManagementMenu()  {
@@ -257,7 +271,7 @@ public class AdminView {
             while (!ChoiceChecker.serviceProviderManageMenuChecker(choice))
             {
                 choice = scanner.nextLine();
-                logger.info("Enter Valid Choice !");
+                logger.info(messageEnterValid);
             }
             switch (choice)
             {
@@ -271,7 +285,7 @@ public class AdminView {
                     AdminView.createNewServiceProvider();
                     break;
                 case "4":
-
+                    AdminView.deleteServiceProvider();
                     break;
                 case "5":
 
@@ -289,6 +303,51 @@ public class AdminView {
                     // code block
             }
         }
+    }
+
+    private static void deleteServiceProvider() {
+        boolean reTry=true;
+        ServiceProvider deletedUser=findModifiedServiceProvider();
+        while (reTry){
+            if(deletedUser==null){
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else if(deletedUser==notServiceProvider){
+                reTry=false;
+            }
+            else {
+                reTry=false;
+                //you can here send email to notify him that the admin delete him
+                AdminControl.deleteUser( deletedUser);
+            }
+
+        }
+    }
+
+    private static ServiceProvider findModifiedServiceProvider() {
+        ServiceProvider modifiedServiceProvider;
+        String choice=selectMethod();
+        List<ServiceProvider> serviceProviders;
+        if(choice.equals("1")) {
+            logger.info("Please enter username to search ");
+            String username = scanner.nextLine();
+            serviceProviders = AdminControl.searchServiceProviders(username);
+        }
+        else if (choice.equals("2"))
+            serviceProviders=EventPlanner.getServiceProviders();
+        else
+            serviceProviders=null;
+        if (serviceProviders == null){
+            return null;
+        }
+        List<String>usersNames=AdminControl.getUserNameOfServiceProviders(serviceProviders);
+        int selectedUser=selectFromList(usersNames);
+        if(selectedUser==usersNames.size())modifiedServiceProvider=notServiceProvider;
+        else modifiedServiceProvider= serviceProviders.get(selectedUser-1);
+
+        return modifiedServiceProvider;
     }
 
     private static void createNewServiceProvider() {

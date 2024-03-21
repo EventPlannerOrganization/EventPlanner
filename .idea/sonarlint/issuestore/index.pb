@@ -19,3 +19,5 @@ V
 &src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
 S
 #src/main/java/views/SignUpView.java,3\8\383d99cc642f9d14319c6ab3cae5f2b2ecb2bf88
+^
+.src/main/java/printers/CollectionsPrinter.java,2\4\242052583b197684432a2679c5c1f15700fd242e
