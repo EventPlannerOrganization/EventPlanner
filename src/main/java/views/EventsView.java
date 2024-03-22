@@ -115,8 +115,8 @@ public class EventsView {
     public static List<String> readeGuestsEmails() {
         List<String> guestsEmails = new ArrayList<>();
         logger.info("Enter the number of guests. You can adjust this number and modify the list as needed:\n");
-        int serviceNum = 2;
-        logger.info("For each guest, please enter their email address:\n");
+        int serviceNum = scanner.nextInt();
+        logger.info("For each guest, please enter their email address:");
         for (int i = 0; i < serviceNum; i++) {
             String s = "\n" + (i + 1) + "- ";
             logger.info(s);

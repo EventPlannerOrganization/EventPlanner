@@ -60,9 +60,9 @@ public class TestAddEvent {
         emails.add(string6);
 
         newEvent =new RegisteredEvent(string2,
-                                    convertStringToDate(string),
-                                    EventPlanner.calculateTotalPriceForMultiProviders(serviceProviders)
-                                    ,emails);
+                convertStringToDate(string),
+                EventPlanner.calculateTotalPriceForMultiProviders(serviceProviders)
+                ,emails);
     }
     @Then("event will be added successfully and requset will be send the service provider")
     public void event_will_be_added_successfully() throws EventAlreadyExist, MessagingException, IOException {
@@ -70,8 +70,8 @@ public class TestAddEvent {
         int sizeBeforeAdding=currentUser.getRegisteredEvents().size();
         boolean existingBeforeAdding =currentUser.isThisEventExist(newEvent.getEventName());
         EventsControl.addEvent(newEvent.getDate(),newEvent.getEventName()
-                            ,newEvent.getCost()
-                            ,newEvent.getGuestsEmails());
+                ,newEvent.getCost()
+                ,newEvent.getGuestsEmails());
         UserControl.sendRequestToServiceProvider(list.get(0),newEvent.getDate(),newEvent);
         UserControl.sendRequestToServiceProvider(list.get(1),newEvent.getDate(),newEvent);
 //        newEvent.getServiceProviders().add(list.get(0));
@@ -88,13 +88,13 @@ public class TestAddEvent {
     @Then("event will not be added successfully")
     public void event_will_not_be_added_successfully() throws EventAlreadyExist {
         // Write code here that turns the phrase above into concrete actions
-         //currentUser=(User)(EventPlanner.getCurrentUser());
+        //currentUser=(User)(EventPlanner.getCurrentUser());
         int sizeBeforeAdding=currentUser.getRegisteredEvents().size();
         boolean existingBeforeAdding =currentUser.isThisEventExist(newEvent.getEventName());
 
         int sizeAfterAdding=currentUser.getRegisteredEvents().size();
         assertThrows(EventAlreadyExist.class,()->EventsControl.addEvent(newEvent.getDate(),newEvent.getEventName()
-               ,newEvent.getCost()
+                ,newEvent.getCost()
                 ,newEvent.getGuestsEmails()));
         //assert(sizeAfterAdding==sizeBeforeAdding);
 
