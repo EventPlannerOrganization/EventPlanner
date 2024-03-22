@@ -67,3 +67,13 @@ $src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 Y
 )src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+Y
+)src/main/java/models/ServiceProvider.java,6\2\62304a9808b0d416d81e7448da3ca44398f9aa07
+v
+Fsrc/test/features/ServiceProvider/ShowEventsForServiceProvider.feature,8\e\8efd1cc195ef19e1924a51e7497ca7d1678b60f4
+N
+src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
+ƒ
+Ssrc/test/java/testControllers/ServiceProvider/TestShowEventsForServiceProvider.java,f\e\fe2cb99d9ff726e8ba2a54c255c920ec8931f7ab
+`
+0src/main/java/Exceptions/UserIsAlreadyExist.java,2\b\2b93830be2159dcf5f402e5d7312bef91469f44c

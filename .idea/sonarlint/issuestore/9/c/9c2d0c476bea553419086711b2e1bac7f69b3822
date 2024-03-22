@@ -1,8 +1,2 @@
 
-G	java:S106"+Replace this use of System.out by a logger.(ý‘à½8À¸¦³æ1
-X	java:S1253"<This block of commented-out lines of code should be removed.(¦ûÉè8Ã¸¦³æ1
-?	java:S131Ü""Add a default case to this switch.(¨ÕÉ8Ì¸¦³æ1
-Q
-java:S1128"/Remove this unused import 'Email.EmailService'.(ÌËÄÉþÿÿÿÿ8Ö¸¦³æ1
-\
-java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8Ö¸¦³æ1
+X	java:S1253"<This block of commented-out lines of code should be removed.(¦ûÉè8´Ö‘¿æ1
