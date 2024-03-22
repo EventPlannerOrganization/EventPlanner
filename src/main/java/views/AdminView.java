@@ -1,17 +1,24 @@
 package views;
 
+import Exceptions.EmptyList;
+import Exceptions.ServiceNotFoundException;
 import controllers.AdminControl;
 
 import helpers.ChoiceChecker;
 import helpers.PasswordChecker;
 import models.EventPlanner;
+import models.RegisteredEvent;
 import models.ServiceProvider;
 import models.User;
 import printers.MenusPrinter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
+
+import static controllers.AdminControl.getEventsForUser;
+import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
 
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
@@ -44,6 +51,7 @@ public class AdminView {
                     AdminView.serviceProviderManagement();
                     break;
                 case "3":
+                    AdminView.eventManagement();
                     break;
                 case "4":
                     break;
@@ -56,6 +64,8 @@ public class AdminView {
             }
         }
     }
+
+
 
     private static void userManagement() {
         boolean flage = true;
@@ -143,7 +153,6 @@ public class AdminView {
         }
 
         }
-
     }
 
     private static void viewEvents() {
@@ -160,15 +169,13 @@ public class AdminView {
             }
             else {
                 reTry=false;
-                if(AdminControl.getEventsForUser(user).isEmpty()) logger.info("This user does not have registered events yet!" );
+                if(getEventsForUser(user).isEmpty()) logger.info("This user does not have registered events yet!" );
                 else {
-                    MenusPrinter.printListOfStrings(AdminControl.getEventsForUser(user));
+                    MenusPrinter.printListOfStrings(getEventsForUser(user));
                 }
             }
-
         }
         backTouserManagementMenu();
-
     }
 
 
@@ -383,7 +390,10 @@ public class AdminView {
             else {
                 reTry=false;
                 //you can here send email to notify him that the admin delete him
-                AdminControl.deleteUser( deletedUser);
+                try {
+                    AdminControl.deleteServiceProvider( deletedUser);
+                }
+                catch (EmptyList | ServiceNotFoundException e){e.printStackTrace();}
             }
 
         }
@@ -435,6 +445,53 @@ public class AdminView {
         backTouserManagementMenu();
     }
 
+
+    private static void eventManagement() {
+        boolean flage=true;
+        while(flage)
+        {
+            MenusPrinter.printEventManageMenu();
+            logger.info("What do you want to do ? ");
+            String choice = scanner.nextLine();
+            while (!ChoiceChecker.serviceProviderMenuChecker(choice))
+            {
+                choice = scanner.nextLine();
+                logger.info(messageEnterValid);
+            }
+            switch (choice)
+            {
+                case "1":
+                    AdminView.viewAllEvents();
+                    break;
+                case "2":
+
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    break;
+                case "6":
+                    break;
+                case "7":
+                    break;
+                case "8":
+                    flage=false;
+                    break;
+                default:
+                    // code block
+            }
+        }
+    }
+
+    private static void viewAllEvents() {
+        List<String> events=new ArrayList<>();
+        for(User user:EventPlanner.getUsers()){
+        events.addAll(getEventsForUser(user));
+        }
+        MenusPrinter.printListOfStrings(events);
+    }
 
 }
 
