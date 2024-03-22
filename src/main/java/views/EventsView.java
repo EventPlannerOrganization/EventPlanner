@@ -38,22 +38,14 @@ public class EventsView {
         logger.info("- Year : ");
         int year = scanner.nextInt();
         LocalDate date = LocalDate.of(year, month, day);
-        logger.info("* Add guests :\n");
-        List<String> guestsEmails = readeGuestsEmails();
-
         logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
-        //RegisteredEvent registeredEvent=new RegisteredEvent(name,date,cost,guestsEmails);
-        EventsControl.addEvent(date, name,cost, guestsEmails);
         User user=(User)EventPlanner.getCurrentUser();
-        List<ServiceProvider> addedProviders = new ArrayList<>();
         List<ServiceProvider> list=addingProcess(date);
-        List <ServiceProvider> serviceProviders=new ArrayList<>();
-//        serviceProviders.add(new ServiceProvider())
-        EventsControl.addEvent(date,name,cost, guestsEmails);
+        logger.info("* Add guests :\n");
+        List<String> guestsEmails = readeGuestsEmails();
+        EventsControl.addEvent(date, name,cost, guestsEmails);
        for (ServiceProvider element:list){
-//           ServiceProvider serviceProvider=new ServiceProvider(element);
-//           addedProviders.add(serviceProvider);
            UserControl.sendRequestToServiceProvider(element,date,user.getEventByName(name));
            logger.info("Request sent to Service Provider");
        }

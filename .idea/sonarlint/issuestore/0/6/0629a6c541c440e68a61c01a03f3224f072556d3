@@ -1,10 +1,4 @@
 
-
-java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(๗จะ&8พออๆ1
-’
-java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(๗จะ&8ฟออๆ1
-•
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.UserNotFoundException', as it cannot be thrown from method's body.(๗จะ&8ซๆ1
 Q
 java:S1128"/Remove this unused import 'Email.EmailService'.(ฬหฤษþÿÿÿÿ8ฟออๆ1
 \
