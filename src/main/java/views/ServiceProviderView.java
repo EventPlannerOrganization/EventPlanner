@@ -352,7 +352,7 @@ public class ServiceProviderView {
     public static void showServiceProviderUpcomingEvents(ServiceProvider serviceProvider) {
         try {
             String string = new StringBuilder().append("Invalid Input").append("\n If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ").toString();
-            while (1<2){
+            while (true){
                 MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
                 logger.info("If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ");
                 String choice = scanner.nextLine();

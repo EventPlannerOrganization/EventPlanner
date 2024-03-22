@@ -212,8 +212,9 @@ public class EventPlanner {
                 emails));
          localDate=LocalDate.of(2024,8,10);
 
+         List<ServiceProvider> prov=new ArrayList<>(serviceProviders);
         user.getRegisteredEvents().add(new RegisteredEvent("open day1",
-                serviceProviders,localDate,
+                prov,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails));
         localDate=LocalDate.of(2024,4,10);

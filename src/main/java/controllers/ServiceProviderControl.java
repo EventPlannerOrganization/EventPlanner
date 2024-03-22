@@ -123,7 +123,6 @@ return !serviceList.isEmpty();
             serviceProviders.add(choosenServiceProvider);
             event.addServices(serviceProviders);
 
-
         } else  {
             event.getServiceProviders().remove(choosenServiceProvider);
         }
