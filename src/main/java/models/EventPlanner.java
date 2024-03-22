@@ -226,6 +226,9 @@ public class EventPlanner {
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
+        for(ServiceProvider element:serviceProviders){
+            element.getBookedDates().add(localDate);
+        }
         registeredEvent.setLocation("jerusalem");
         user4.getRegisteredEvents().add(registeredEvent);
 

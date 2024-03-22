@@ -114,18 +114,22 @@ public class MenusPrinter {
         menu.add("Delete user");
         menu.add("Reset password for user");
         menu.add("view registered events for user");
-        menu.add("Cancel");
 
+        menu.add("Cancel");
         printMenu(menu);
     }
-    public static void printManageServiceProviderMenu()
+    public static void printServiceProviderManageMenu()
     {
         List<String> menu = new ArrayList<>();
-        menu.add("Create new service provider");
-        menu.add("Delete service provider");
-        menu.add("Reset passwords for sevice provider");
-        menu.add("Show his service/s");
+        menu.add("Show all Service Providers");
+        menu.add("Search service Providers by username");
+        menu.add("Create new Service Provider");
+        menu.add("Delete Service Provider");
+        menu.add("Reset password for Service Provider");
+        menu.add("Show service/s for Service Provider");
+        menu.add("Show Booked Dates for Service Provider");
 
+        menu.add("Cancel ");
         printMenu(menu);
     }
 

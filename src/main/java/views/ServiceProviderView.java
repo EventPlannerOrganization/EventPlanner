@@ -220,42 +220,42 @@ public class ServiceProviderView {
 
         }
 
-        switch (choice){
-            case "1":
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.DJ);
+        switch (choice) {
+            case "1" -> {
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.DJ);
                 flag = true;
-                break;
-            case "2":
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Photography);
+            }
+            case "2" -> {
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Photography);
                 flag = true;
-                break;
-            case "3":
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Security);
+            }
+            case "3" -> {
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Security);
                 flag = true;
-                break;
-            case "4":
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Cleaning);
+            }
+            case "4" -> {
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Cleaning);
                 flag = true;
-                break;
-            case "5":
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Decor_and_Design);
+            }
+            case "5" -> {
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Decor_and_Design);
                 flag = true;
-                break;
-            case "6":
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Catering);
+            }
+            case "6" -> {
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Catering);
                 flag = true;
-                break;
-            case "7":
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0),ServiceType.Venue);
+            }
+            case "7" -> {
+                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Venue);
                 flag = true;
-                break;
-            case "8":
+            }
+            case "8" -> {
                 serviceProvider.setPackageProvider(true);
-                List<Service> services =ServiceProviderView.addingProcessForPackageProvider();
+                List<Service> services = ServiceProviderView.addingProcessForPackageProvider();
                 serviceProvider.setServices(services);
-                break;
-            default:
-
+            }
+            default -> {
+            }
         }
         if(flag){
             logger.info("Enter Service Description:\n");
@@ -324,7 +324,15 @@ public class ServiceProviderView {
     }
 
     private static void showServices(ServiceProvider serviceProvider) {
-        ServiceProviderControl.showServiceProviderServices(serviceProvider);
+        List<Service> serviceProvdierServices = ServiceProviderControl.getServiceProviderServices(serviceProvider);
+        List<String> serviceProviderServiceString=new ArrayList<>() ;
+        for (int i = 0; i < serviceProvider.getServices().size(); i++) {
+            String st1 = "Service info : \n";
+            String st = st1 + serviceProvdierServices.get(i).toString() + "\n -------------------------------------------";
+            serviceProviderServiceString.add(st);
+
+        }
+        MenusPrinter.printListofStringWithNumbers(serviceProviderServiceString, "\"Here is Your Service/s:\"");
 
     }
     private static void showUpComingEvents() {

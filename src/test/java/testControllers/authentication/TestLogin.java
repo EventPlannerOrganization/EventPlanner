@@ -31,6 +31,7 @@ public class TestLogin {
     public void loginSuccessfully() throws UserNotFoundException {
 
         assertTrue(Login.canLogin(username, password));
+
         assertNotNull(EventPlanner.getCurrentUser());
     }
     @Then("Login fails and User Not Found Exception will be thrown")

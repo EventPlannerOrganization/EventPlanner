@@ -6,6 +6,10 @@ import java.util.List;
 
 public class ServiceProvider extends Person {
 
+    public ServiceProvider() {
+
+    }
+
     public List<Request> getRequests() {
         return requests;
     }

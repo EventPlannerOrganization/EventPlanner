@@ -1,79 +1,39 @@
 
 j
-<<<<<<< HEAD
-java:S1192v"HDefine a constant instead of duplicating this literal "tulkarm" 6 times.(ν©Έ³ύÿÿÿÿ8Δρε1
+java:S1192y"HDefine a constant instead of duplicating this literal "tulkarm" 6 times.(ν©Έ³ύÿÿÿÿ8·αλ”ζ1
 j
-java:S1192"GDefine a constant instead of duplicating this literal "bbaa12" 4 times.(‹ζνϊÿÿÿÿ8Δρε1
+java:S1192‹"GDefine a constant instead of duplicating this literal "bbaa12" 4 times.(‹ζνϊÿÿÿÿ8Έαλ”ζ1
 h
-java:S1192l"KDefine a constant instead of duplicating this literal "Abu-Safieh" 4 times.(‘Ίµ8Δρε1
+java:S1192o"KDefine a constant instead of duplicating this literal "Abu-Safieh" 4 times.(‘Ίµ8Ίαλ”ζ1
 p
-java:S1192€"MDefine a constant instead of duplicating this literal "mo@gmail.com" 5 times.(ηΡΌΟύÿÿÿÿ8Δρε1
+java:S1192ƒ"MDefine a constant instead of duplicating this literal "mo@gmail.com" 5 times.(ηΡΌΟύÿÿÿÿ8»αλ”ζ1
 j
-java:S1192w"HDefine a constant instead of duplicating this literal "9412412" 6 times.(λθΝ¶ÿÿÿÿÿ8Δρε1
-d
-java:S1192~"GDefine a constant instead of duplicating this literal "khalid" 3 times.(Γγ‡8Δρε1
-z
-java:S1192o"XDefine a constant instead of duplicating this literal "s12199887@stu.najah.edu" 4 times.(Ηό¶•ÿÿÿÿÿ8Δρε1
-i
-java:S1192n"GDefine a constant instead of duplicating this literal "Nablus" 4 times.(χ ¶Εÿÿÿÿÿ8Δρε1
-m
-java:S1192o"KDefine a constant instead of duplicating this literal "0599715584" 4 times.(Ηό¶•ÿÿÿÿÿ8Δρε1
-l
-java:S1192"IDefine a constant instead of duplicating this literal "mohammad" 3 times.(ΨΆΎΣψÿÿÿÿ8Δρε1
-f
-java:S1192l"IDefine a constant instead of duplicating this literal "Mohammad" 4 times.(‘Ίµ8Δρε1
-l
-java:S1192n"JDefine a constant instead of duplicating this literal "Palestine" 4 times.(χ ¶Εÿÿÿÿÿ8Δρε1
-l
-java:S1192v"JDefine a constant instead of duplicating this literal "palestine" 6 times.(ν©Έ³ύÿÿÿÿ8Δρε1
-i
-java:S1192u"GDefine a constant instead of duplicating this literal "shadid" 5 times.(ΈƒΟφϊÿÿÿÿ8Δρε1
-d
-java:S1192t"GDefine a constant instead of duplicating this literal "tesing" 6 times.(¦ÿΞδ8Δρε1
-d
-java:S1192‡"FDefine a constant instead of duplicating this literal "jamil" 4 times.(ΜΈΟ8Δρε1
-`
-java:S1854"=Remove this useless assignment to local variable "services4".(Χκιηϊÿÿÿÿ8θΔρε1
-Q
-java:S1481".Remove this unused "services4" local variable.(Χκιηϊÿÿÿÿ8μΔρε1
-W
-java:S1128"5Remove this unused import 'Exceptions.EventNotFound'.(ϋτ½ƒύÿÿÿÿ8ωΔρε1
-=======
-java:S1192y"HDefine a constant instead of duplicating this literal "tulkarm" 6 times.(ν©Έ³ύÿÿÿÿ8φ°σοε1
-j
-java:S1192‹"GDefine a constant instead of duplicating this literal "bbaa12" 4 times.(‹ζνϊÿÿÿÿ8ψ°σοε1
-h
-java:S1192o"KDefine a constant instead of duplicating this literal "Abu-Safieh" 4 times.(‘Ίµ8ω°σοε1
-p
-java:S1192ƒ"MDefine a constant instead of duplicating this literal "mo@gmail.com" 5 times.(ηΡΌΟύÿÿÿÿ8ϊ°σοε1
-j
-java:S1192z"HDefine a constant instead of duplicating this literal "9412412" 6 times.(λθΝ¶ÿÿÿÿÿ8ϊ°σοε1
+java:S1192z"HDefine a constant instead of duplicating this literal "9412412" 6 times.(λθΝ¶ÿÿÿÿÿ8»αλ”ζ1
 e
-java:S1192"GDefine a constant instead of duplicating this literal "khalid" 3 times.(Γγ‡8ϊ°σοε1
+java:S1192"GDefine a constant instead of duplicating this literal "khalid" 3 times.(Γγ‡8»αλ”ζ1
 z
-java:S1192r"XDefine a constant instead of duplicating this literal "s12199887@stu.najah.edu" 4 times.(Ηό¶•ÿÿÿÿÿ8ϊ°σοε1
+java:S1192r"XDefine a constant instead of duplicating this literal "s12199887@stu.najah.edu" 4 times.(Ηό¶•ÿÿÿÿÿ8»αλ”ζ1
 i
-java:S1192q"GDefine a constant instead of duplicating this literal "Nablus" 4 times.(χ ¶Εÿÿÿÿÿ8ϊ°σοε1
+java:S1192q"GDefine a constant instead of duplicating this literal "Nablus" 4 times.(χ ¶Εÿÿÿÿÿ8»αλ”ζ1
 m
-java:S1192r"KDefine a constant instead of duplicating this literal "0599715584" 4 times.(Ηό¶•ÿÿÿÿÿ8ϊ°σοε1
+java:S1192r"KDefine a constant instead of duplicating this literal "0599715584" 4 times.(Ηό¶•ÿÿÿÿÿ8»αλ”ζ1
 l
-java:S1192’"IDefine a constant instead of duplicating this literal "mohammad" 3 times.(ΨΆΎΣψÿÿÿÿ8ϊ°σοε1
+java:S1192’"IDefine a constant instead of duplicating this literal "mohammad" 3 times.(ΨΆΎΣψÿÿÿÿ8»αλ”ζ1
 f
-java:S1192o"IDefine a constant instead of duplicating this literal "Mohammad" 4 times.(‘Ίµ8ϋ°σοε1
+java:S1192o"IDefine a constant instead of duplicating this literal "Mohammad" 4 times.(‘Ίµ8»αλ”ζ1
 l
-java:S1192q"JDefine a constant instead of duplicating this literal "Palestine" 4 times.(χ ¶Εÿÿÿÿÿ8ϋ°σοε1
+java:S1192q"JDefine a constant instead of duplicating this literal "Palestine" 4 times.(χ ¶Εÿÿÿÿÿ8»αλ”ζ1
 l
-java:S1192y"JDefine a constant instead of duplicating this literal "palestine" 6 times.(ν©Έ³ύÿÿÿÿ8ό°σοε1
+java:S1192y"JDefine a constant instead of duplicating this literal "palestine" 6 times.(ν©Έ³ύÿÿÿÿ8½αλ”ζ1
 i
-java:S1192x"GDefine a constant instead of duplicating this literal "shadid" 5 times.(ΈƒΟφϊÿÿÿÿ8ό°σοε1
+java:S1192x"GDefine a constant instead of duplicating this literal "shadid" 5 times.(ΈƒΟφϊÿÿÿÿ8½αλ”ζ1
 d
-java:S1192w"GDefine a constant instead of duplicating this literal "tesing" 6 times.(¦ÿΞδ8ό°σοε1
+java:S1192w"GDefine a constant instead of duplicating this literal "tesing" 6 times.(¦ÿΞδ8½αλ”ζ1
 d
-java:S1192"FDefine a constant instead of duplicating this literal "jamil" 4 times.(ΜΈΟ8ύ°σοε1
+java:S1192"FDefine a constant instead of duplicating this literal "jamil" 4 times.(ΜΈΟ8½αλ”ζ1
 `
-java:S1854"=Remove this useless assignment to local variable "services4".(Χκιηϊÿÿÿÿ8Ψ²σοε1
+java:S1854"=Remove this useless assignment to local variable "services4".(Χκιηϊÿÿÿÿ8έβλ”ζ1
 Q
-java:S1481".Remove this unused "services4" local variable.(Χκιηϊÿÿÿÿ8ή²σοε1
+java:S1481".Remove this unused "services4" local variable.(Χκιηϊÿÿÿÿ8εβλ”ζ1
 W
-java:S1128"5Remove this unused import 'Exceptions.EventNotFound'.(ϋτ½ƒύÿÿÿÿ8ύφοε1
->>>>>>> e4b3e5f2064efa2c57236fe44325d831ca9e7545
+java:S1128"5Remove this unused import 'Exceptions.EventNotFound'.(ϋτ½ƒύÿÿÿÿ8γλ”ζ1

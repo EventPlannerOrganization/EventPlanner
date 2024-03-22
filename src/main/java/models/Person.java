@@ -30,6 +30,10 @@ private ContactInfo contactInfo;
         this.contactInfo = contactInfo;
     }
 
+    public Person() {
+
+    }
+
     public Name getName() {
         return name;
     }

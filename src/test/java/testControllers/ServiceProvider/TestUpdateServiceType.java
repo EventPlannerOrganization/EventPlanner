@@ -42,4 +42,5 @@ public class TestUpdateServiceType {
         assert (!serviceProvider.getServices().get(0).getServiceType().equals(this.serviceType));
     }
 
+
 }

@@ -1,23 +1,15 @@
 package controllers;
 
-<<<<<<< HEAD
 
-import Email.EmailService;
 import Exceptions.*;
 
-=======
-import Email.EmailService;
-import Exceptions.*;
->>>>>>> e4b3e5f2064efa2c57236fe44325d831ca9e7545
+
+
 import Exceptions.EmptyList;
 import Exceptions.ServiceNotFoundException;
-<<<<<<< HEAD
 
 
-=======
->>>>>>> e4b3e5f2064efa2c57236fe44325d831ca9e7545
 import enumerations.ServiceType;
-import io.cucumber.java.an.E;
 import models.*;
 import printers.MenusPrinter;
 import views.ServiceProviderView;
@@ -43,18 +35,7 @@ public class ServiceProviderControl {
         return serviceProvdierServices;
 
     }
-    public static void showServiceProviderServices(ServiceProvider serviceProvider) {
-        List<Service> serviceProvdierServices = getServiceProviderServices(serviceProvider);
-        List<String> serviceProviderServiceString=new ArrayList<>() ;
-        for (int i = 0; i < serviceProvider.getServices().size(); i++) {
-            String st1 = "Service info : \n";
-            String st = st1 + serviceProvdierServices.get(i).toString() + "\n -------------------------------------------";
-            serviceProviderServiceString.add(st);
 
-        }
-        MenusPrinter.printListofStringWithNumbers(serviceProviderServiceString, "\"Here is Your Service/s:\"");
-
-    }
 
     public static void signout() {
         EventPlanner.setCurrentUser(null);
@@ -212,16 +193,14 @@ public class ServiceProviderControl {
         serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
 return !serviceList.isEmpty();
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> e4b3e5f2064efa2c57236fe44325d831ca9e7545
     public static void respondToRequests(boolean choice,RegisteredEvent event,ServiceProvider choosenServiceProvider) throws FileNotFoundException {
         if (choice) {
             choosenServiceProvider.getBookedDates().add(event.getDate());
             List<ServiceProvider> serviceProviders = new ArrayList<>();
             serviceProviders.add(choosenServiceProvider);
             event.addServices(serviceProviders);
+
 
         } else if (!choice) {
             event.getServiceProviders().remove(choosenServiceProvider);
