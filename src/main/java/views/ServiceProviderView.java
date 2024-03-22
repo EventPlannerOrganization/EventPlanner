@@ -180,7 +180,7 @@ public class ServiceProviderView {
             logger.info("Its The Same Price !");
             return;
         }
-        service.setPrice(Double.parseDouble(newPrice));
+        ServiceProviderControl.editServicePrice(service,newPrice);
     }
 
     private static void changeServiceDescription(Service service) {
@@ -222,40 +222,40 @@ public class ServiceProviderView {
 
         switch (choice) {
             case "1" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.DJ);
+                serviceType = ServiceType.DJ;
                 flag = true;
+
             }
             case "2" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Photography);
+                serviceType = ServiceType.Photography;
                 flag = true;
             }
             case "3" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Security);
+                serviceType = ServiceType.Security;
                 flag = true;
             }
             case "4" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Cleaning);
+                serviceType=ServiceType.Cleaning;
                 flag = true;
             }
             case "5" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Decor_and_Design);
+                serviceType=ServiceType.Decor_and_Design;
                 flag = true;
             }
             case "6" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Catering);
+                serviceType=ServiceType.Catering;
                 flag = true;
             }
             case "7" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Venue);
+                serviceType=ServiceType.Venue;
                 flag = true;
             }
             case "8" -> {
                 serviceProvider.setPackageProvider(true);
                 List<Service> services = ServiceProviderView.addingProcessForPackageProvider();
-                serviceProvider.setServices(services);
+                ServiceProviderControl.changePackageProviderServices(serviceProvider,services);
             }
-            default -> {
-            }
+
         }
         if(flag){
             logger.info("Enter Service Description:\n");
@@ -263,10 +263,7 @@ public class ServiceProviderView {
             logger.info("Enter Service Price :\n ");
             String price = scanner.nextLine();
             Service service = new Service(serviceType,Double.parseDouble(price),description);
-            List<Service> list= new ArrayList<>();
-            list.add(service);
-            serviceProvider.setServices(list);
-            serviceProvider.setPackageProvider(false);
+            ServiceProviderControl.changeServiceProvdierService(serviceProvider,service);
         }
 
     }

@@ -1,6 +1,5 @@
 package models;
 
-import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
@@ -36,6 +35,20 @@ public class EventPlanner {
     }
     public static Person checkUser(String username) throws UserNotFoundException {
         List<Person> result= users.stream().filter(user -> user.getAuthentication().getUsername().equals(username)).toList();
+        if (result.isEmpty())
+            throw new UserNotFoundException();
+
+        return result.get(0);
+    }
+    public static  boolean checkEmailIfExist(String email)  {
+        List<Person> result= users.stream().filter(user -> user.getContactInfo().getEmail().equals(email)).toList();
+        if (result.isEmpty())
+          return false;
+
+        return true;
+    }
+    public static  Person getUserByEmail(String email) throws UserNotFoundException {
+        List<Person> result= users.stream().filter(user -> user.getContactInfo().getEmail().equals(email)).toList();
         if (result.isEmpty())
             throw new UserNotFoundException();
 
@@ -119,7 +132,7 @@ public class EventPlanner {
       services.add(  new Service(ServiceType.DJ,3200,"tesing"));
       ServiceProvider serviceProvider = new ServiceProvider(new Name("mo","munir","shadid"),
               new Authentication("mohammad03","12345"),new Address("palestine","tulkarm"),
-              new ContactInfo("3sfr3sfr@gmail.com","9412412"),
+              new ContactInfo("mohamadabd4112002@gmail.com","9412412"),
             services);
       EventPlanner.addUser(serviceProvider);
 

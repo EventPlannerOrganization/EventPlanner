@@ -3,6 +3,7 @@ package launchers;
 
 import Email.EmailService;
 import Exceptions.UserIsAlreadyExist;
+import Exceptions.UserNotFoundException;
 import Exceptions.WeakPasswordException;
 import models.EventPlanner;
 import views.StartingView;
@@ -14,16 +15,10 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws UserIsAlreadyExist, WeakPasswordException, IOException, MessagingException {
-
-
+    public static void main(String[] args) throws UserIsAlreadyExist, WeakPasswordException, IOException, MessagingException, UserNotFoundException {
 
         EventPlanner.initializeRepositoryWithData();
         StartingView.staringView();
-
-
-
-
 
         }
 }

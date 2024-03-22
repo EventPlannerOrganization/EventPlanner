@@ -211,4 +211,16 @@ return !serviceList.isEmpty();
     public static void changeServicePackageProvider(ServiceProvider serviceProvider, ServiceType serviceType) {
 
     }
+
+    public static void changeServiceProvdierService(ServiceProvider serviceProvider, Service service) {
+        List<Service> list= new ArrayList<>();
+        list.add(service);
+        serviceProvider.setServices(list);
+        serviceProvider.setPackageProvider(false);
+    }
+
+    public static void changePackageProviderServices(ServiceProvider serviceProvider, List<Service> services) {
+        serviceProvider.setPackageProvider(true);
+        serviceProvider.setServices(services);
+    }
 }

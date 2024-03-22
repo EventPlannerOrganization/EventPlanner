@@ -1,5 +1,11 @@
 
-“
-java:S1130"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(ιΫα8Ώ„‡‡ζ1
-–
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(ιΫα8ΐ„‡‡ζ1
+
+java:S1130"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(‹…Άρόÿÿÿÿ8Ύ›ζ1
+›
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(‹…Άρόÿÿÿÿ8Ώ›ζ1
+
+java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(‹…Άρόÿÿÿÿ8ª΄›ζ1
+
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(‹…Άρόÿÿÿÿ8ª΄›ζ1
+›
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.UserNotFoundException', as it cannot be thrown from method's body.(‹…Άρόÿÿÿÿ8°‚›ζ1

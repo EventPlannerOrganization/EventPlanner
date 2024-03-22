@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.Properties;
+import java.util.Random;
 
 public class EmailService {
     private static final SecureRandom random = new SecureRandom(); // don't use the Random
@@ -138,8 +139,40 @@ public class EmailService {
             randomStr.append(generateRandomDigit());
         return randomStr.toString();
     }
+    private static String generateRandomCode(){
+        int code = random.nextInt(9000) + 1000;
+        return String.valueOf(code);
+
+    }
 
     private static int generateRandomDigit() {
         return random.nextInt(10);
+    }
+
+    public String sendResetPasswordCode(String to) throws MessagingException, IOException {
+        Message message = new MimeMessage(createSession());
+        // set the src and dest
+        message.setFrom(new InternetAddress(from));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        // set the subject
+        message.setSubject("Password Change Notification");
+
+        // set the body
+        body = Files.readString(Paths.get("src/main/resources/html/"+"Reset-Password"+".html"));
+        Random random = new Random();
+
+        String code = generateRandomCode();
+        body = body.replace("{{dynamic_text_placeholder}}", "Code : "+code);
+
+        // set the content (Multi part body consists of multi bodies)
+        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+        mimeBodyPart.setContent(body, "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(mimeBodyPart);
+        message.setContent(multipart);
+
+        Transport.send(message);
+        return code;
     }
 }
