@@ -2,10 +2,7 @@ package views;
 
 
 import Email.EmailService;
-import Exceptions.GoToMainMenuException;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
+import Exceptions.*;
 import controllers.EventsControl;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
@@ -26,7 +23,7 @@ public class ServiceProviderView {
 
 
     }
-    public static void showRequset(ServiceProvider serviceProvider) throws UserNotFoundException, IOException, MessagingException {
+    public static void showRequset(ServiceProvider serviceProvider)  {
         List<String> requests=new ArrayList<>();
         if(serviceProvider.getRequests().isEmpty())
             System.out.println("empty list");
@@ -77,10 +74,10 @@ public class ServiceProviderView {
                     ServiceProviderView.updateServices((ServiceProvider) EventPlanner.getCurrentUser());
                     break;
                 case "3":
-                    ServiceProviderView.showEvents();
+                    ServiceProviderView.showEvents((ServiceProvider) EventPlanner.getCurrentUser());
                     break;
                 case "4":
-                    ServiceProviderView.showUpComingEvents();
+                    ServiceProviderView.showUpComingEvents((ServiceProvider) EventPlanner.getCurrentUser());
                     break;
                 case "5":
                     ServiceProvider serviceProvider= (ServiceProvider) EventPlanner.getServiceProviderByUsername(EventPlanner.getCurrentUser().getAuthentication().getUsername());
@@ -207,13 +204,13 @@ public class ServiceProviderView {
         String choice = scanner.nextLine();
 
 
-        while ((!ChoiceChecker.editServiceMenuCheck(choice))||(ServiceProviderControl.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),choice)&&!serviceProvider.isPackageProvider())) {
+        while ((!ChoiceChecker.editServiceMenuCheck(choice))||(ChoiceChecker.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),choice)&&!serviceProvider.isPackageProvider())) {
 
             if(!ChoiceChecker.editServiceMenuCheck(choice)) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
             }
-            else if(ServiceProviderControl.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),choice)){
+            else if(ChoiceChecker.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider),choice)){
                 logger.info("this is your current Service ! , Choose Another Service or Back !");
                 choice=scanner.nextLine();
             }
@@ -314,9 +311,15 @@ public class ServiceProviderView {
     }
 
 
-    private static void showEvents()  {
+    private static void showEvents(ServiceProvider serviceProvider)  {
 
-        ServiceProviderControl.showServiceProviderEvents();
+        try {
+            List<RegisteredEvent> events=ServiceProviderControl.getServiceProviderEvents(serviceProvider);
+            MenusPrinter.printList(events);
+        }
+        catch (EmptyList e){
+            logger.info("You Don't  Have Any Events ");
+        }
         backToServiceProviderMenu();
     }
 
@@ -332,9 +335,8 @@ public class ServiceProviderView {
         MenusPrinter.printListofStringWithNumbers(serviceProviderServiceString, "\"Here is Your Service/s:\"");
 
     }
-    private static void showUpComingEvents() {
-        ServiceProviderControl.showServiceProviderUpcomingEvents();
-        backToServiceProviderMenu();
+    private static void showUpComingEvents(ServiceProvider serviceProvider) {
+       showServiceProviderUpcomingEvents(serviceProvider);
     }
     private static void backToServiceProviderMenu()  {
         logger.info("To Return Back Enter B");
@@ -342,6 +344,40 @@ public class ServiceProviderView {
         while (!(choice.equals("B") || choice.equals("b"))) {
             logger.info("To Return Back Enter B");
             choice = scanner.nextLine();
+        }
+    }
+    public static void showServiceProviderUpcomingEvents(ServiceProvider serviceProvider) {
+        try {
+            String string = new StringBuilder().append("Invalid Input").append("\n If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ").toString();
+            while (1<2){
+                MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
+                logger.info("If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ");
+                String choice = scanner.nextLine();
+                while (!(choice.equalsIgnoreCase("B")||
+                        Integer.parseInt(choice) <= ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider).size())) {
+                    logger.info(string);
+                    choice = scanner.nextLine();
+
+                }
+                if (!choice.equalsIgnoreCase("B") ) {
+
+                    EventsControl.deleteService(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider).get(Integer.parseInt(choice) - 1),
+                            serviceProvider);
+                    MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
+                    backToServiceProviderMenu();
+                    break;
+                }
+                else
+                    return;
+
+            }
+
+
+        } catch(EmptyList  | ServiceNotFoundException emptyList ) {
+            logger.info("You Don't  Have Any Events ");
+            backToServiceProviderMenu();
+
+
         }
     }
 

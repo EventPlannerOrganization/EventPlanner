@@ -3,12 +3,15 @@ package helpers;
 import Exceptions.EventAlreadyExist;
 import Exceptions.GoToMainMenuException;
 import controllers.ServiceProviderControl;
+import enumerations.ServiceType;
 import models.EventPlanner;
 import models.Service;
 import models.ServiceProvider;
 import models.User;
+import views.ServiceProviderView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -141,6 +144,15 @@ return choice;
     }
 
 
+    public static boolean checkIfitsCurrentService(Service service,String choice) {
+        Map<String, ServiceType> map= ServiceProviderView.hashmap();
+        try {
+            return map.get(choice).equals(service.getServiceType());
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
 
 }
 

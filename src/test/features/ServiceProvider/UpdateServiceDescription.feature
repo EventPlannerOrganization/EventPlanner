@@ -1,4 +1,4 @@
-Feature: Update event information
+Feature: Update Service Description
 
   Background: testing
     Given Data Base already filled

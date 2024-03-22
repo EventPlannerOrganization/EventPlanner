@@ -5,6 +5,7 @@ import Email.EmailService;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import Exceptions.WeakPasswordException;
+import enumerations.ServiceType;
 import models.EventPlanner;
 import views.StartingView;
 

@@ -132,7 +132,7 @@ public class EventPlanner {
       services.add(  new Service(ServiceType.DJ,3200,"tesing"));
       ServiceProvider serviceProvider = new ServiceProvider(new Name("mo","munir","shadid"),
               new Authentication("mohammad03","12345"),new Address("palestine","tulkarm"),
-              new ContactInfo("mohamadabd4112002@gmail.com","9412412"),
+              new ContactInfo("3sfr3sfr@gmail.com","9412412"),
             services);
       EventPlanner.addUser(serviceProvider);
 
