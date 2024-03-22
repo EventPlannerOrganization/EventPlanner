@@ -1,7 +1,7 @@
 package controllers;
 
 
-import Exceptions.*;
+
 
 
 
@@ -54,27 +54,27 @@ public class ServiceProviderControl {
 
     }
 
-    public static List<RegisteredEvent> getFilterdEvents(List<RegisteredEvent> reg) {
+    public static List<RegisteredEvent> getFilterdEvents(ServiceProvider serviceProvider,List<RegisteredEvent> reg) {
 
-        return reg.stream().filter(event -> event.getServiceProviders().contains(EventPlanner.getCurrentUser())).toList();
+        return reg.stream().filter(event -> event.getServiceProviders().contains(serviceProvider)).toList();
 
     }
 
     public static List<User> getUsersRelatedWithServiceProvider(ServiceProvider serviceProvider) {
 
         List<User> allUsers = EventPlanner.getUsers();
-        List<User> returendlist = allUsers.stream()
+
+        return   allUsers.stream()
                 .filter(user -> user.getRegisteredEvents().stream()
                         .anyMatch(event -> event.getServiceProviders().contains(serviceProvider)))
                 .toList();
-        return  returendlist;
     }
 
     public static List<RegisteredEvent> getEventsRelatedWithServiceProvider(ServiceProvider serviceProvider) {
         List<User> filteredUsers =getUsersRelatedWithServiceProvider(serviceProvider);// اول اشي اليوزرز اللي الهم علاقة بالسيرفرس بروفايدرر
         List<RegisteredEvent> serviceProvdierEvents = new ArrayList<>();
         for (User user : filteredUsers) {
-            List<RegisteredEvent> filterd = getFilterdEvents(user.getRegisteredEvents()); // بعدها الايفنتس اللي عند اليوزر اللي السيرفس بروفايدر اله علاقة فيها
+            List<RegisteredEvent> filterd = getFilterdEvents(serviceProvider,user.getRegisteredEvents()); // بعدها الايفنتس اللي عند اليوزر اللي السيرفس بروفايدر اله علاقة فيها
             serviceProvdierEvents.addAll(filterd);
         }
             return serviceProvdierEvents;

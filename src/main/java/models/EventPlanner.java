@@ -258,4 +258,53 @@ public class EventPlanner {
     public static void cleanRepositry() {
         users.clear();
     }
+    public static void initializeRepositoryWithDataForTesting() throws UserIsAlreadyExist {
+        EventPlanner.cleanRepositry();
+        List<Service>serviceList= new ArrayList<Service>();
+        serviceList.add(  new Service(ServiceType.DJ,1400,"Best Sound Quality And Music"));
+
+        ServiceProvider serviceProvider = new ServiceProvider(new Name("Mohammed","Munir","Shadid"),
+                new Authentication("moshadid","Mo2003@@"),
+                new Address("Palestine","Tulkarem"),
+                new ContactInfo("3sfr3sfr@gmail.com","0598772189"),
+                serviceList);
+        EventPlanner.addUser(serviceProvider);
+
+
+        List<ServiceProvider>serviceProviderList = new ArrayList<>();
+        serviceProviderList.add(serviceProvider);
+        User user1 = new User(new Name("Naser","Mohammed","Abu Safieh"),
+                              new Authentication("naserabusafieh","Naser2003@"),
+                              new Address("Palestine","Nablus"),
+                                new ContactInfo("naserabusafia1@gmail.com","0597094028"));
+        EventPlanner.addUser(user1);
+        User user2 = new User(new Name("Baha","Khaled","Alawneh"),
+                new Authentication("bahaalawneh","Baha2003@"),
+                new Address("Palestine","Jenin"),
+                new ContactInfo("bahaalawneh@gmail.com","0598223192"));
+        EventPlanner.addUser(user2);
+
+        User user3 = new User(new Name("Faiq","Fehmi","Bakri"),
+                new Authentication("faiqBakri","Faiq2002@"),
+                new Address("Palestine","Nablus"),
+                new ContactInfo("Faiqbakri@gmail.com","0598995326"));
+        EventPlanner.addUser(user3);
+
+       List<String> emails = new ArrayList<>();
+       emails.add("samihadman@gmail.com");
+       emails.add("AliSurakji@gmail.com");
+
+        LocalDate localDate1=LocalDate.of(2024,8,10);
+      RegisteredEvent registeredEvent = new RegisteredEvent("Birthday",serviceProviderList,localDate1,1400,emails);
+       user1.getRegisteredEvents().add(registeredEvent);
+
+        LocalDate localDate2=LocalDate.of(2024,9,12);
+        RegisteredEvent registeredEvent2 = new RegisteredEvent("Wedding",serviceProviderList,localDate2,1400,emails);
+        user2.getRegisteredEvents().add(registeredEvent2);
+
+        LocalDate localDate3=LocalDate.of(2023,9,12);
+        RegisteredEvent registeredEvent3 = new RegisteredEvent("Party",serviceProviderList,localDate3,1400,emails);
+        user3.getRegisteredEvents().add(registeredEvent3);
+
+    }
 }

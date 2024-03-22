@@ -464,7 +464,7 @@ public class AdminView {
                     AdminView.viewAllEvents();
                     break;
                 case "2":
-
+                    AdminView.createEvent();
                     break;
                 case "3":
                     break;
@@ -483,6 +483,10 @@ public class AdminView {
                     // code block
             }
         }
+    }
+
+    private static void createEvent() {
+
     }
 
     private static void viewAllEvents() {

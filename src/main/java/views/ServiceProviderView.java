@@ -1,7 +1,7 @@
 package views;
 
 
-import Email.EmailService;
+
 import Exceptions.*;
 import controllers.EventsControl;
 import controllers.ServiceProviderControl;
@@ -11,7 +11,7 @@ import models.*;
 import printers.MenusPrinter;
 
 import javax.mail.MessagingException;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
@@ -26,7 +26,7 @@ public class ServiceProviderView {
     public static void showRequset(ServiceProvider serviceProvider)  {
         List<String> requests=new ArrayList<>();
         if(serviceProvider.getRequests().isEmpty())
-            System.out.println("empty list");
+            logger.info("empty list");
        else {
             for (Request request : serviceProvider.getRequests()) {
                 requests.add(request.getMessage());
@@ -252,6 +252,9 @@ public class ServiceProviderView {
                 List<Service> services = ServiceProviderView.addingProcessForPackageProvider();
                 ServiceProviderControl.changePackageProviderServices(serviceProvider,services);
             }
+            default ->
+                flag=false;
+
 
         }
         if(flag){
