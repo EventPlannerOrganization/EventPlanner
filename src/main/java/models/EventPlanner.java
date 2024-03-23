@@ -134,7 +134,15 @@ public class EventPlanner {
         new ContactInfo("s12199887@stu.najah.edu","0599715584")
               );
 
-      EventPlanner.addUser(user);
+        User user9 = new User(new Name("Mariam", "Mohammad", "Jamil"),
+                new Authentication("Mariam03", "123"),
+                new Address("Palestine", "Nablus"),
+                new ContactInfo("s12199887@stu.najah.edu","0599715584")
+        );
+        user9.setUsertype(UserType.ADMIN);
+
+
+        EventPlanner.addUser(user);
       List<Service>services=new ArrayList<>();
       services.add(  new Service(ServiceType.DJ,3200,"tesing"));
       ServiceProvider serviceProvider = new ServiceProvider(new Name("mo","munir","shadid"),
@@ -189,7 +197,6 @@ public class EventPlanner {
                 new Address("Palestine", "Nablus"),
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
-            user2.setUsertype(UserType.ADMIN);
             EventPlanner.addUser(user2);
 
         User user3 = new User(new Name("sam", "Mohammad", "Abu-Safieh"),
@@ -238,7 +245,7 @@ public class EventPlanner {
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
-        user3.getRegisteredEvents().add(registeredEvent3);
+        user2.getRegisteredEvents().add(registeredEvent3);
         eventUserMap.put(registeredEvent3,user3);
 
         List<ServiceProvider> serviceProviders22=new ArrayList<>();

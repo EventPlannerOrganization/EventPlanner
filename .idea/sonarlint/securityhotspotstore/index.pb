@@ -37,3 +37,9 @@ s
 Csrc/test/java/testControllers/Event/TestDeleteServiceFromEvent.java,1\8\18951de8a52314a2f329fe61eeafc1da9e1a4c88
 e
 5src/test/java/testControllers/Event/TestAddEvent.java,1\f\1f77dd77f6061c280e8c050ac1ec84feb37b5ba1
+v
+Fsrc/test/features/ServiceProvider/ShowEventsForServiceProvider.feature,8\e\8efd1cc195ef19e1924a51e7497ca7d1678b60f4
+o
+?src/test/java/testControllers/Event/TestAddServicesToEvent.java,0\a\0a4bcb795d00c296f506a8e67c8f1dc53726b9e8
+c
+3src/test/features/Event/AddServicesForEvent.feature,0\f\0f647a4963cbcef551cf94279983471ec1aceab5
