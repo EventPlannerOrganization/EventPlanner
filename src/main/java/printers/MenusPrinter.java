@@ -4,13 +4,18 @@ import enumerations.Colors;
 import models.RegisteredEvent;
 import models.ServiceProvider;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static printers.CollectionsPrinter.getMonthName;
+
 public class MenusPrinter {
     private static final Logger logger = Logger.getLogger(MenusPrinter.class.getName());
     public static final String FORMAT = "%n|%-5s| %-30s|";
+    public static final String SIGN_OUT = "Sign out !";
+
     private MenusPrinter() {
 
     }
@@ -89,7 +94,7 @@ public class MenusPrinter {
         menu.add("Add Event");
         menu.add("Show My Events");
         menu.add("Edit My Upcoming Events");
-        menu.add("Sign out !");
+        menu.add(SIGN_OUT);
 
         printMenu(menu);
     }
@@ -100,7 +105,7 @@ public class MenusPrinter {
         menu.add("Service Provider Management");
         menu.add("Event Management");
         menu.add("");
-        menu.add("Sign out !");
+        menu.add(SIGN_OUT);
 
         printMenu(menu);
     }
@@ -140,7 +145,7 @@ public class MenusPrinter {
         menu.add("Show your Event/s");
         menu.add("Edit your Event/s");
         menu.add("Show requests");
-        menu.add("Sign out !");
+        menu.add(SIGN_OUT);
         printMenu(menu);
     }
 
@@ -217,6 +222,7 @@ public class MenusPrinter {
     public static void printEventManageMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("View a list of all events");
+        menu.add("Show events schedule for a specific year");
         menu.add("Create Event for a specific user");
         menu.add("Search Events");
         menu.add("Delete Event");
@@ -225,4 +231,28 @@ public class MenusPrinter {
         menu.add("Cancel ");
         printMenu(menu);
     }
+
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+
+    public static void printSchedule(int year, List<RegisteredEvent> events) {
+        StringBuilder output=new StringBuilder();
+        for (int month = 1; month <= 12; month++) {
+            output.append(ANSI_YELLOW + "\nMonth: ").append(getMonthName(month)).append(" ").append(year).append(ANSI_RESET);
+            output.append("\n------------------------------\n");
+
+            for (RegisteredEvent event : events) {
+                LocalDate eventDate = event.getDate();
+                if (eventDate.getYear() == year && eventDate.getMonthValue() == month) {
+                    output.append(ANSI_CYAN).append(eventDate.getDayOfMonth()).append(": ").append(event.getEventName()).append(ANSI_RESET).append("\n");
+                }
+            }
+
+        }
+        logger.info( "\n"+output);
+    }
+
+
 }

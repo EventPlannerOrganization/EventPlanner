@@ -453,7 +453,7 @@ public class AdminView {
             MenusPrinter.printEventManageMenu();
             logger.info("What do you want to do ? ");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.serviceProviderMenuChecker(choice))
+            while (!ChoiceChecker.userManageMenuChecker(choice))
             {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
@@ -464,9 +464,10 @@ public class AdminView {
                     AdminView.viewAllEvents();
                     break;
                 case "2":
-                    AdminView.createEvent();
+                    AdminView.showSchedule();
                     break;
                 case "3":
+                    AdminView.createEvent();
                     break;
                 case "4":
                     break;
@@ -485,6 +486,14 @@ public class AdminView {
         }
     }
 
+    private static void showSchedule() {
+        logger.info("Please enter the year for which you want to view the events: ");
+        int year = scanner.nextInt();
+        List<RegisteredEvent> events=AdminControl.getAllEvents();
+        MenusPrinter.printSchedule(year, events);
+        backTouserManagementMenu();
+    }
+
     private static void createEvent() {
 
     }
@@ -495,6 +504,8 @@ public class AdminView {
         events.addAll(getEventsForUser(user));
         }
         MenusPrinter.printListOfStrings(events);
+        backTouserManagementMenu();
+
     }
 
 }

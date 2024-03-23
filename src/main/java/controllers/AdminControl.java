@@ -38,7 +38,18 @@ public class AdminControl {
         }
         return events;
     }
-    public static List<String> getServicesForServiceProvider(ServiceProvider serviceProvider){
+
+    public static List<RegisteredEvent> getAllEvents( ){
+        List<RegisteredEvent> events =new ArrayList<>();
+        for(User user:EventPlanner.getUsers()){
+            events.addAll(user.getRegisteredEvents());
+        }
+        return events;
+    }
+
+
+
+        public static List<String> getServicesForServiceProvider(ServiceProvider serviceProvider){
         List<String> events=new ArrayList<>();
         for (Service service:serviceProvider.getServices()){
             events.add(service.toString());
