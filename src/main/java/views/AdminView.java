@@ -1,6 +1,7 @@
 package views;
 
 import Exceptions.EmptyList;
+import Exceptions.EventAlreadyExist;
 import Exceptions.ServiceNotFoundException;
 import controllers.AdminControl;
 
@@ -476,6 +477,7 @@ public class AdminView {
                 case "6":
                     break;
                 case "7":
+                    flage=false;
                     break;
                 case "8":
                     flage=false;
@@ -495,6 +497,28 @@ public class AdminView {
     }
 
     private static void createEvent() {
+        boolean reTry=true;
+        User user=findModifiedUser();
+        while (reTry){
+            if(user==null){
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else if(user==notUser){
+                reTry=false;
+            }
+            else {
+                reTry=false;
+                try {
+                    AdminControl.addEventForUser(user);
+                }
+                catch (EventAlreadyExist e){
+                    logger.info("sorry, There is an event with the same name ");
+                }
+            }
+        }
+        backTouserManagementMenu();
 
     }
 

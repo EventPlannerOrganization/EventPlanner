@@ -34,8 +34,9 @@ public class EventsControl {
         currentUser.checkEventExisting(name);
         currentUser.getRegisteredEvents().add(registeredEvent);
         currentUser.addToTotalCost(cost);
-
     }
+
+
 
     public static void editEventName(RegisteredEvent event, String newName) {
         event.setEventName(newName);
