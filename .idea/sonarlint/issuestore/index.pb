@@ -13,3 +13,11 @@ Q
 !src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
 `
 0src/main/java/Exceptions/UserIsAlreadyExist.java,2\b\2b93830be2159dcf5f402e5d7312bef91469f44c
+U
+%src/main/java/views/StartingView.java,f\3\f37cc30da36ad676b46320eb4b5c775d45809871
+R
+"src/main/java/views/LoginView.java,d\9\d9c007c1a60eb7b3d452841e748d5c691ad9ade9
+S
+#src/main/java/views/SignUpView.java,3\8\383d99cc642f9d14319c6ab3cae5f2b2ecb2bf88
+Z
+*src/main/java/views/ResetPasswordView.java,f\c\fc8f44779e3cfcb923b0ad5f0ede96f57fc33d86
