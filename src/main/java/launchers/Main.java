@@ -7,6 +7,7 @@ import controllers.AdminControl;
 import enumerations.ServiceType;
 import models.EventPlanner;
 import models.RegisteredEvent;
+import models.User;
 import printers.MenusPrinter;
 import views.StartingView;
 import javax.mail.MessagingException;
@@ -20,4 +21,6 @@ public class Main {
         StartingView.staringView();
 
         }
+
+
 }

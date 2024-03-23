@@ -169,6 +169,10 @@ public class AdminControl {
         for(ServiceProvider serviceProvider:event.getServiceProviders()){
             EventsControl.deleteService(event,serviceProvider);
         }
+            User user = EventPlanner.getUsersEventsMap().get(event);
+            user.getRegisteredEvents().remove(event);
+            EventPlanner.getUsersEventsMap().remove(event);
         }
+
     }
 }

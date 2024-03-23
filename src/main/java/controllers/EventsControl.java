@@ -34,6 +34,8 @@ public class EventsControl {
         currentUser.checkEventExisting(name);
         currentUser.getRegisteredEvents().add(registeredEvent);
         currentUser.addToTotalCost(cost);
+        EventPlanner.getUsersEventsMap().put(registeredEvent,currentUser);
+
     }
 
 
