@@ -7,3 +7,17 @@ e
 ,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
 S
 #src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
+X
+(src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
+U
+%src/main/java/Email/EmailService.java,f\d\fdade210e9a93d0d928922298efc60f16036d043
+Q
+!src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+Z
+*src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
+o
+?src/test/java/testControllers/Event/TestAddServicesToEvent.java,0\a\0a4bcb795d00c296f506a8e67c8f1dc53726b9e8
+e
+5src/test/java/testControllers/Event/TestAddEvent.java,1\f\1f77dd77f6061c280e8c050ac1ec84feb37b5ba1
+c
+3src/test/features/Event/AddServicesForEvent.feature,0\f\0f647a4963cbcef551cf94279983471ec1aceab5
