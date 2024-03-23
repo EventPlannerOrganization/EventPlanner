@@ -5,8 +5,10 @@ W
 java:S1128"5Remove this unused import 'enumerations.ServiceType'.(§ŒÏ‡ıÿÿÿÿ8Ø²åæ1
 U
 java:S1128	"3Remove this unused import 'models.RegisteredEvent'.(Ş»ôğüÿÿÿÿ8Ø²åæ1
-T
+J
 java:S1128
-"2Remove this unused import 'printers.MenusPrinter'.(Ëúö¡üÿÿÿÿ8Ø²åæ1
+"(Remove this unused import 'models.User'.(ì¤·ÿÿÿÿÿ8´‹§çæ1
+T
+java:S1128"2Remove this unused import 'printers.MenusPrinter'.(Ëúö¡üÿÿÿÿ8´‹§çæ1
 M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Ø²åæ1
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8´‹§çæ1

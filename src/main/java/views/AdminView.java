@@ -500,7 +500,7 @@ public class AdminView {
     private static void deleteEvent() {
         RegisteredEvent event=findModifiedEvent();
         try {
-            AdminControl.deleteEvent(event); //this delete event Services, but remain delteing it from user.
+            AdminControl.deleteEvent(event);
         }
         catch (Exception e){
 
