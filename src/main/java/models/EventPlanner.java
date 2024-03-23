@@ -140,7 +140,7 @@ public class EventPlanner {
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
         user9.setUsertype(UserType.ADMIN);
-        EventPlanner.addUser(user);
+        EventPlanner.addUser(user9);
 
 
         EventPlanner.addUser(user);

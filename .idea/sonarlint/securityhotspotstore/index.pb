@@ -11,3 +11,5 @@ f
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 Q
 !src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+`
+0src/main/java/Exceptions/UserIsAlreadyExist.java,2\b\2b93830be2159dcf5f402e5d7312bef91469f44c
