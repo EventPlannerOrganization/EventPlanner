@@ -1,5 +1,9 @@
 package helpers;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class PasswordChecker {
     private PasswordChecker() {
 
@@ -67,5 +71,15 @@ public class PasswordChecker {
         // Append "hi hi hi hi " to x
         return string1.substring(0, 24) + string2;
 
+    }
+
+
+    public static boolean listsContainSameElements(List<String> list1, List<String> list2) {
+        // Convert lists to sets
+        Set<String> set1 = new HashSet<>(list1);
+        Set<String> set2 = new HashSet<>(list2);
+
+        // Check if sets are equal
+        return set1.equals(set2);
     }
 }

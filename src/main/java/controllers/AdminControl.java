@@ -7,6 +7,7 @@ import Exceptions.ServiceNotFoundException;
 import models.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
@@ -23,14 +24,14 @@ public class AdminControl {
     }
 
     public static List<String> getAllUsers(){
-    return getUserNameOfUsers(EventPlanner.getUsers());
+            return getUserNameOfUsers(EventPlanner.getUsers());
     }
     public static List<String> getAllServiceProviders(){
         return getUserNameOfServiceProviders(EventPlanner.getServiceProviders());
     }
 
     public static List<String> getEventsForUser(User user){
-        List<String> events=new ArrayList<>();
+        List<String> events;
         List<RegisteredEvent> sortedEvents = user.getRegisteredEvents().stream()
                 .sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
 
@@ -82,7 +83,7 @@ public class AdminControl {
                 searchResults.add(user);
             }
         }
-        if(searchResults.isEmpty())searchResults=null;
+
         return searchResults;
     }
 

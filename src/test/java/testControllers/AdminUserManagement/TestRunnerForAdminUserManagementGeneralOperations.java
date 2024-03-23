@@ -9,4 +9,5 @@ import org.junit.runner.RunWith;
         glue = "testControllers.AdminUserManagement",
         snippets = CucumberOptions.SnippetType.CAMELCASE)
 public class TestRunnerForAdminUserManagementGeneralOperations {
+
 }
