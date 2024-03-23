@@ -43,3 +43,17 @@ o
 ?src/test/java/testControllers/Event/TestAddServicesToEvent.java,0\a\0a4bcb795d00c296f506a8e67c8f1dc53726b9e8
 c
 3src/test/features/Event/AddServicesForEvent.feature,0\f\0f647a4963cbcef551cf94279983471ec1aceab5
+Q
+!src/main/java/models/Address.java,d\b\db8485a31c7736ee966cfe0ba1df59bc7f686b34
+f
+6src/test/java/testControllers/AdminUserManagement.java,b\b\bb17ce130f0b21b090d23b04736faeadcdf7ba7c
+w
+Gsrc/test/java/testControllers/AdminUserManagement/ShowAllUsersTest.java,1\5\157d904358765115ba8eb5f6f4c52089edf6fc69
+˜
+hsrc/test/java/testControllers/AdminUserManagement/TestRunnerForAdminUserManagementGeneralOperations.java,9\e\9e6b57065fafe2151194112f9b0cac4621f74ef9
+„
+Tsrc/test/java/testControllers/authentication/TestRunnerForUserGeneralOperations.java,0\4\0478368887e4af72d3f174a3ebaee057bbbab4f5
+k
+;src/test/features/AdminUserManagement/ShowAllUsers.featcher,5\c\5cb06f23d2cbcd3315a5f4ed402ff01631cd9866
+w
+Gsrc/test/java/testControllers/AdminUserManagement/TestShowAllUsers.java,4\3\4353c82957ef2a21aca21a5d92d3fb1ef3d411ad
