@@ -1,5 +1,23 @@
 
 M
+<<<<<<< HEAD
 java:S2160"+Override the "equals" method in this class.(ú·°şÿÿÿÿ8ş×«¿æ1
 R
 java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8®Ø«¿æ1
+=======
+<<<<<<< HEAD
+java:S2160"+Override the "equals" method in this class.(ú·°şÿÿÿÿ8šàÆùå1
+R
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8„ÂáÁæ1
+=======
+<<<<<<< HEAD
+java:S2160"+Override the "equals" method in this class.(ú·°şÿÿÿÿ8ş×«¿æ1
+R
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8®Ø«¿æ1
+=======
+java:S2160"+Override the "equals" method in this class.(ú·°şÿÿÿÿ8šàÆùå1
+R
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8ùòÖÀæ1
+>>>>>>> b4fcd7fa73426ee6bb88e2c48845edceb95222a2
+>>>>>>> 947227acabbb37d4fe6026e48b9032c36542b920
+>>>>>>> d933562e9d54a71e95e19625ea58c42d4d8b0c09

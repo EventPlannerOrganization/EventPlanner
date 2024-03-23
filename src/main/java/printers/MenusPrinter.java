@@ -94,8 +94,8 @@ public class MenusPrinter {
         menu.add("Add Event");
         menu.add("Show My Events");
         menu.add("Edit My Upcoming Events");
+        menu.add("sent emails to guests");
         menu.add(SIGN_OUT);
-
         printMenu(menu);
     }
     public static void printAdminMenu()

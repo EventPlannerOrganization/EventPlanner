@@ -106,14 +106,6 @@ public class ServiceProvider extends Person {
     }
 
 
-//    public void RespondToRequests() {
-//        int choice;
-//        MenusPrinter.printMenu(request);
-//        Scanner scanner=new Scanner(System.in);
-//        choice=Integer.valueOf(scanner.nextLine());
-//        if(choice==0||choice>request.size()){
-//
-//        }
-//    }
+
 
 }

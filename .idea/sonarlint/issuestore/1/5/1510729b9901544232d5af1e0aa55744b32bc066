@@ -1,5 +1,11 @@
 
 O
+<<<<<<< HEAD
+java:S1128"-Remove this unused import 'views.EventsView'.(§”‘Œúÿÿÿÿ8—³‚¾æ1
+G
+java:S1068"*Remove this unused "logger" private field.(¬ûÝˆ8—³‚¾æ1
+=======
 java:S1128"-Remove this unused import 'views.EventsView'.(§”‘Œúÿÿÿÿ8½ºã¼æ1
 G
 java:S1068"*Remove this unused "logger" private field.(¬ûÝˆ8Àºã¼æ1
+>>>>>>> 947227acabbb37d4fe6026e48b9032c36542b920

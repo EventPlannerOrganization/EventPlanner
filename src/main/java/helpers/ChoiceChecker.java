@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static java.lang.String.*;
+
 public class ChoiceChecker {
     private static final Logger logger=Logger.getLogger(ChoiceChecker.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
@@ -35,7 +37,7 @@ public class ChoiceChecker {
     }
 
     public static boolean userMenuChecker(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4");
+        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5");
     }
     public static boolean adminMenuChecker(String value) {
         return userMenuChecker(value)||value.equals("5");
@@ -143,6 +145,10 @@ return choice;
 
     }
 
+    public static void createInvalidIntegerMessage(int min, int max) {
+        logger.warning(format("Please enter a valid integer between %d and %d", min, max));
+    }
+
 
     public static boolean checkIfitsCurrentService(Service service,String choice) {
         Map<String, ServiceType> map= ServiceProviderView.hashmap();
@@ -153,6 +159,7 @@ return choice;
             return false;
         }
     }
+
 
 }
 

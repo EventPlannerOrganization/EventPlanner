@@ -116,17 +116,14 @@ public class ServiceProviderControl {
 return !serviceList.isEmpty();
     }
 
-    public static void respondToRequests(boolean choice,RegisteredEvent event,ServiceProvider choosenServiceProvider)  {
+    public static void respondToRequests(boolean choice,Request request,ServiceProvider choosenServiceProvider)  {
         if (choice) {
-            choosenServiceProvider.getBookedDates().add(event.getDate());
+            choosenServiceProvider.getBookedDates().add(request.getEvent().getDate());
             List<ServiceProvider> serviceProviders = new ArrayList<>();
             serviceProviders.add(choosenServiceProvider);
-            event.addServices(serviceProviders);
-
-        } else  {
-            event.getServiceProviders().remove(choosenServiceProvider);
+            request.getEvent().addServices(serviceProviders);
         }
-
+        choosenServiceProvider.getRequests().remove(request);
 
     }
 
