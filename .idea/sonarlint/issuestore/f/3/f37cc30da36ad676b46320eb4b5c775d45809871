@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 
 ˜
-java:S1130"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(‹…¢ñüÿÿÿÿ8¾›æ1
+java:S1130"vRemove the declaration of thrown exception 'Exceptions.UserIsAlreadyExist', as it cannot be thrown from method's body.(‹…¢ñüÿÿÿÿ8áé¸åæ1
 ›
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(‹…¢ñüÿÿÿÿ8¿›æ1
-=======
->>>>>>> 947227acabbb37d4fe6026e48b9032c36542b920
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(‹…¢ñüÿÿÿÿ8áé¸åæ1

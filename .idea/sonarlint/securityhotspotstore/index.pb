@@ -1,36 +1,17 @@
 
-S
-#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
-X
-(src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
-X
-(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
-V
-&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
-Q
-!src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
 [
 +src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
-R
-"src/main/java/views/AdminView.java,1\6\16ef284199890c28cc9f7bf4070df72414a26421
-\
-,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
-e
-5src/main/java/controllers/ServiceProviderControl.java,c\e\ce7bb1b1c1c3f60d56ef31fdacbc69cabbc6fe2c
-Q
-!src/main/java/models/Request.java,4\1\41222acf8ecc09cdd4cd6674d5f0337e6d84205f
-R
-"src/main/java/views/LoginView.java,d\9\d9c007c1a60eb7b3d452841e748d5c691ad9ade9
-T
-$src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
-N
-src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
-[
-+src/main/java/Exceptions/EventNotFound.java,c\9\c9fac0d8aaf6549daa88938622574fbe46a0243a
+V
+&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
 Z
 *src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
+f
+6src/main/java/controllers/ResetPasswordController.java,9\4\946b77017902f490df92bdd5d13dead03f7934e7
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 Q
 !src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+<<<<<<< HEAD
 \
 ,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
 s
@@ -57,3 +38,7 @@ k
 ;src/test/features/AdminUserManagement/ShowAllUsers.featcher,5\c\5cb06f23d2cbcd3315a5f4ed402ff01631cd9866
 w
 Gsrc/test/java/testControllers/AdminUserManagement/TestShowAllUsers.java,4\3\4353c82957ef2a21aca21a5d92d3fb1ef3d411ad
+=======
+`
+0src/main/java/Exceptions/UserIsAlreadyExist.java,2\b\2b93830be2159dcf5f402e5d7312bef91469f44c
+>>>>>>> 0c8dbd5f8b742dbc513ccf8a87e757e66758105b

@@ -110,11 +110,6 @@ public class ServiceProviderControl {
         return String.valueOf(service.getPrice());
     }
 
-    public static boolean checkIfTheServiceAlreadyAdded(List<Service> serviceList,String choice) {
-        Map <String,ServiceType> map =ServiceProviderView.hashmap();
-        serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
-return !serviceList.isEmpty();
-    }
 
     public static void respondToRequests(boolean choice,Request request,ServiceProvider choosenServiceProvider)  {
         if (choice) {

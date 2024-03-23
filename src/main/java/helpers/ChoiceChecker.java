@@ -2,7 +2,6 @@ package helpers;
 
 import Exceptions.EventAlreadyExist;
 import Exceptions.GoToMainMenuException;
-import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import models.EventPlanner;
 import models.Service;
@@ -32,7 +31,7 @@ public class ChoiceChecker {
     public static boolean isValidNumberOfServices(String value) {
         return value.equals("2")||value.equals("3")||value.equals("4");
     }
-    public static boolean isVaildServiceIndex(String value) {
+    public static boolean isValidServiceIndex(String value) {
         return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equals("6")||value.equals("7");
     }
 
@@ -94,15 +93,20 @@ public class ChoiceChecker {
         }
         return eventName;
     }
+    public static boolean checkIfTheServiceAlreadyAdded(List<Service> serviceList,String choice) {
+        Map <String,ServiceType> map =ServiceProviderView.hashmap();
+        serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
+        return !serviceList.isEmpty();
+    }
 
-    public static String checkPackageProviderAddingProccess(List<Service> serviceList, String choice) {
-        while (!ChoiceChecker.isVaildServiceIndex(choice) || (ServiceProviderControl.checkIfTheServiceAlreadyAdded(serviceList,choice))) {
-            if (!ChoiceChecker.isVaildServiceIndex(choice)) {
+    public static String checkPackageProviderAddingProcess(List<Service> serviceList, String choice) {
+        while (!ChoiceChecker.isValidServiceIndex(choice) || (checkIfTheServiceAlreadyAdded(serviceList,choice))) {
+            if (!ChoiceChecker.isValidServiceIndex(choice)) {
                 logger.info("Invalid Input , Choose Correct Service Number :\n");
                 choice = scanner.nextLine();
             }
 
-            else if (ServiceProviderControl.checkIfTheServiceAlreadyAdded(serviceList, choice)) {
+            else if (checkIfTheServiceAlreadyAdded(serviceList, choice)) {
                 if (serviceList.size() > 2) {
                     logger.info("You Already Provide This Service ! , choose Another one or Enter B to Stop Adding :\n");
                     choice = scanner.nextLine();
@@ -119,7 +123,7 @@ public class ChoiceChecker {
         return choice;
     }
 
-    public static String checkPackageProviderServiceChooice(ServiceProvider serviceProvider, String choice) throws GoToMainMenuException {
+    public static String checkPackageProviderServiceChoice(ServiceProvider serviceProvider, String choice) throws GoToMainMenuException {
         boolean again = true;
         int ch;
 
@@ -150,7 +154,7 @@ return choice;
     }
 
 
-    public static boolean checkIfitsCurrentService(Service service,String choice) {
+    public static boolean checkIfItsCurrentService(Service service, String choice) {
         Map<String, ServiceType> map= ServiceProviderView.hashmap();
         try {
             return map.get(choice).equals(service.getServiceType());
@@ -159,6 +163,8 @@ return choice;
             return false;
         }
     }
+
+
 
 
 }

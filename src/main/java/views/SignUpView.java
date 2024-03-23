@@ -118,7 +118,7 @@ public class SignUpView {
             logger.info("Enter The Number Of The Service You Want To Provide : ");
 
             String servicenum=scanner.nextLine();
-            while (!ChoiceChecker.isVaildServiceIndex(servicenum)){
+            while (!ChoiceChecker.isValidServiceIndex(servicenum)){
                  servicenum=scanner.nextLine();
                 logger.info("Enter Valid Number For The Service : ");
 

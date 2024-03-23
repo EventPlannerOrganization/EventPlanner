@@ -9,7 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.*;
-import views.ServiceProviderView;
+
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
