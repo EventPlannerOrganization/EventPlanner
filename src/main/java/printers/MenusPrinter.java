@@ -134,17 +134,6 @@ public class MenusPrinter {
         printMenu(menu);
     }
 
-    public static void manageEventsMenu()
-    {
-        List<String> menu = new ArrayList<>();
-        menu.add("View a list of all events");
-        menu.add("Modifying events for a specific user");
-        menu.add("");
-        menu.add("");
-
-        printMenu(menu);
-    }
-
     public static void printServiceProviderMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("Show your Service/s");
@@ -224,5 +213,17 @@ public class MenusPrinter {
             serviceProvdierEvents.add(events);
         }
         return serviceProvdierEvents;
+    }
+
+    public static void printEventManageMenu() {
+        List<String> menu = new ArrayList<>();
+        menu.add("View a list of all events");
+        menu.add("Create Event for a specific user");
+        menu.add("Search Events");
+        menu.add("Delete Event");
+        menu.add("Modifying Event");
+
+        menu.add("Cancel ");
+        printMenu(menu);
     }
 }

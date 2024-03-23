@@ -38,14 +38,17 @@ public class EventsView {
         logger.info("- Year : ");
         int year = scanner.nextInt();
         LocalDate date = LocalDate.of(year, month, day);
+
         logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
-        User user=(User)EventPlanner.getCurrentUser();
         List<ServiceProvider> list=addingProcess(date);
+
         logger.info("* Add guests :\n");
         List<String> guestsEmails = readeGuestsEmails();
         EventsControl.addEvent(date, name,cost, guestsEmails);
-       for (ServiceProvider element:list){
+
+        User user=(User)EventPlanner.getCurrentUser();
+        for (ServiceProvider element:list){
            UserControl.sendRequestToServiceProvider(element,date,user.getEventByName(name));
            logger.info("Request sent to Service Provider");
        }
@@ -127,7 +130,7 @@ public class EventsView {
 
     }
 
-    public static void editUpCommingEvents()throws EventNotFound {
+    public static void editUpCommingEvents(){
         logger.info("Select Event to Editing it: ");
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();

@@ -1,15 +1,17 @@
 package controllers;
 
 import Email.EmailService;
+import Exceptions.EmptyList;
+import Exceptions.ServiceNotFoundException;
 import models.*;
-
-import javax.mail.MessagingException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Comparator;
 import java.util.List;
+import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
+import static helpers.PasswordChecker.mergeTwoStrings;
+
+
 
 public class AdminControl {
     private AdminControl() {
@@ -28,8 +30,11 @@ public class AdminControl {
 
     public static List<String> getEventsForUser(User user){
         List<String> events=new ArrayList<>();
-        for (RegisteredEvent event:user.getRegisteredEvents()){
-            events.add(event.getEventName());
+        List<RegisteredEvent> sortedEvents = user.getRegisteredEvents().stream()
+                .sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
+
+        for (RegisteredEvent event:sortedEvents){
+            events.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
         }
         return events;
     }
@@ -77,11 +82,21 @@ public class AdminControl {
         return userNames;
     }
 
-    public static void deleteUser(Person deletedUser)  {
+    public static void deleteServiceProvider(ServiceProvider deletedServiceProvider) throws EmptyList, ServiceNotFoundException {
+        List<RegisteredEvent> serviceProviderEvents= getServiceProviderUpComingEvents(deletedServiceProvider);
+        for(RegisteredEvent event:serviceProviderEvents){
+            EventsControl.deleteService(event,deletedServiceProvider);
+        }
+        deleteUser(deletedServiceProvider);
+
+    }
+
+        public static void deleteUser(Person deletedUser)  {
         try{
         EmailService emailForDeletedUserFromAdmin=new EmailService();
         emailForDeletedUserFromAdmin.sendAdminDeleteUserEmail(deletedUser.getContactInfo().getEmail(),deletedUser.getAuthentication().getUsername(),"admin-delete-user");
-        EventPlanner.getUsersList().remove(deletedUser);}
+
+            EventPlanner.getUsersList().remove(deletedUser);}
         catch (Exception e){}
 
     }

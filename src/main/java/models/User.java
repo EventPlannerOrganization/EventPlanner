@@ -70,8 +70,8 @@ public class User extends Person {
         }
 
     }
-public  boolean isThisEventExist(String eventName) {
-    try {
+    public  boolean isThisEventExist(String eventName) {
+        try {
         checkEventExisting(eventName);
         return false;
     }

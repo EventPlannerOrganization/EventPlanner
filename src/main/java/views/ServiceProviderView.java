@@ -6,6 +6,7 @@ import Exceptions.GoToMainMenuException;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import Exceptions.WeakPasswordException;
+
 import Exceptions.*;
 import controllers.EventsControl;
 import controllers.ServiceProviderControl;
@@ -14,6 +15,7 @@ import helpers.ChoiceChecker;
 import models.*;
 import printers.MenusPrinter;
 import javax.mail.MessagingException;
+
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
@@ -78,7 +80,17 @@ public class ServiceProviderView {
                 ChoiceChecker.createInvalidIntegerMessage(min, max);
             } catch (NumberFormatException e) {
                 logger.warning("Please enter a valid integer");
+            }
+        }
+    }
 
+    public static void showRequset(ServiceProvider serviceProvider)  {
+        List<String> requests=new ArrayList<>();
+        if(serviceProvider.getRequests().isEmpty())
+            logger.info("empty list");
+       else {
+            for (Request request : serviceProvider.getRequests()) {
+                requests.add(request.getMessage());
             }
         }
     }
@@ -293,6 +305,9 @@ public class ServiceProviderView {
                 List<Service> services = ServiceProviderView.addingProcessForPackageProvider();
                 ServiceProviderControl.changePackageProviderServices(serviceProvider, services);
             }
+            default ->
+                flag=false;
+
 
         }
         if (flag) {
@@ -400,7 +415,8 @@ public class ServiceProviderView {
     public static void showServiceProviderUpcomingEvents(ServiceProvider serviceProvider) {
         try {
             String string = new StringBuilder().append("Invalid Input").append("\n If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ").toString();
-            while (1 < 2) {
+
+            while (true){
                 MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
                 logger.info("If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ");
                 String choice = scanner.nextLine();
