@@ -201,6 +201,14 @@ public class MenusPrinter {
         printMenu(menu);
     }
 
+    public static void printfindEventMethodsMenu(){
+        List<String> menu = new ArrayList<>();
+        menu.add("Select by search");
+        menu.add("Select from spicific user events");
+        menu.add("Select event from list of all events");
+        printMenu(menu);
+    }
+
     public static void printListOfStrings(List<String> list){
         printMenu(list);
     }

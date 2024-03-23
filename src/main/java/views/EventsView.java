@@ -152,7 +152,7 @@ public class EventsView {
     }
 
 
-    private static void editingEventView(RegisteredEvent event)  {
+    static void editingEventView(RegisteredEvent event)  {
         boolean flage=true;
         while(flage){
             MenusPrinter.printEditingChoices();
@@ -191,7 +191,7 @@ public class EventsView {
     }
 
     private static void deleteService(RegisteredEvent event) {
-        logger.info("Select Event to Editing it: ");
+        logger.info("Select service to delete it: ");
         ServiceProvider deletedService = EventsView.selectedServiceFromServicesList(event.getServiceProviders());
         try{EventsControl.deleteService(event, deletedService);}
         catch (ServiceNotFoundException ignored){}

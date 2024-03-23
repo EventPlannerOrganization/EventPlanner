@@ -27,3 +27,5 @@ N
 src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
 [
 +src/main/java/Exceptions/EventNotFound.java,c\9\c9fac0d8aaf6549daa88938622574fbe46a0243a
+Z
+*src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa

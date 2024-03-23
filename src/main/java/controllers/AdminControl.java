@@ -34,13 +34,20 @@ public class AdminControl {
         List<RegisteredEvent> sortedEvents = user.getRegisteredEvents().stream()
                 .sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
 
-        for (RegisteredEvent event:sortedEvents){
-            events.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
-        }
+        events=getEventNameOfUsers(sortedEvents);
         return events;
     }
 
-    public static List<RegisteredEvent> getAllEvents( ){
+    public static List<String> getEventNameOfUsers(List <RegisteredEvent> events){
+        List<String> eventsNames=new ArrayList<>();
+        for (RegisteredEvent event:events){
+            eventsNames.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
+        }
+        return eventsNames;
+    }
+
+
+        public static List<RegisteredEvent> getAllEvents( ){
         List<RegisteredEvent> events =new ArrayList<>();
         for(User user:EventPlanner.getUsers()){
             events.addAll(user.getRegisteredEvents());
@@ -141,5 +148,27 @@ public class AdminControl {
         user.checkEventExisting(newEvent.getEventName());
         user.getRegisteredEvents().add(newEvent);
         user.addToTotalCost(newEvent.getCost());
+    }
+
+    public static List<RegisteredEvent> searchEvents(String searchTerm) {
+        List<RegisteredEvent> searchResults = new ArrayList<>();
+        String searchTermLowerCase = searchTerm.toLowerCase(); // Convert search term to lowercase
+
+        for (RegisteredEvent event : AdminControl.getAllEvents()) {
+            String userNameLowerCase = event.getEventName(); // Convert event to lowercase
+            if (userNameLowerCase.contains(searchTermLowerCase)) { // Partial match check
+                searchResults.add(event);
+            }
+        }
+        if(searchResults.isEmpty())searchResults=null;
+        return searchResults;
+    }
+
+    public static void deleteEvent(RegisteredEvent event) throws ServiceNotFoundException {
+        if(event!=null){
+        for(ServiceProvider serviceProvider:event.getServiceProviders()){
+            EventsControl.deleteService(event,serviceProvider);
+        }
+        }
     }
 }

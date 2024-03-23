@@ -19,12 +19,13 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 import static controllers.AdminControl.getEventsForUser;
-import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
+import static views.EventsView.editingEventView;
 
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
     private static final Scanner scanner = new Scanner(System.in);
     private static final User notUser = new User();
+    private static final RegisteredEvent notEvent = new RegisteredEvent();
     private static final ServiceProvider notServiceProvider = new ServiceProvider();
 
     static String message = "Sorry, no users were found matching your search criteria.\n" +
@@ -108,8 +109,8 @@ public class AdminView {
 
     private static void resetPassword() {
         boolean reTry = true;
-        User user = findModifiedUser();
         while (reTry) {
+            User user = findModifiedUser();
             if (user == null) {
                 logger.info(message);
                 String choice = scanner.nextLine();
@@ -137,9 +138,9 @@ public class AdminView {
 
         private static void deleteUser() {
         boolean reTry=true;
-        User deletedUser=findModifiedUser();
         while (reTry){
-        if(deletedUser==null){
+            User deletedUser=findModifiedUser();
+            if(deletedUser==null){
             logger.info(message);
             String choice = scanner.nextLine();
             if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
@@ -158,8 +159,8 @@ public class AdminView {
 
     private static void viewEvents() {
         boolean reTry=true;
-        User user=findModifiedUser();
         while (reTry){
+            User user=findModifiedUser();
             if(user==null){
                 logger.info(message);
                 String choice = scanner.nextLine();
@@ -471,10 +472,13 @@ public class AdminView {
                     AdminView.createEvent();
                     break;
                 case "4":
+                    AdminView.searchEvent();
                     break;
                 case "5":
+                    AdminView.deleteEvent();
                     break;
                 case "6":
+                    AdminView.editEvent();
                     break;
                 case "7":
                     flage=false;
@@ -488,6 +492,34 @@ public class AdminView {
         }
     }
 
+    private static void editEvent() {
+        RegisteredEvent event=findModifiedEvent();
+        editingEventView(event);
+    }
+
+    private static void deleteEvent() {
+        RegisteredEvent event=findModifiedEvent();
+        try {
+            AdminControl.deleteEvent(event); //this delete event Services, but remain delteing it from user.
+        }
+        catch (Exception e){
+
+        }
+    }
+
+    private static void searchEvent() {
+            logger.info("Please enter event name to search");
+            String eventName = scanner.nextLine();
+            List<String> searchResult =AdminControl.getEventNameOfUsers(AdminControl.searchEvents(eventName));
+            if(searchResult.isEmpty()){
+                logger.info("Sorry, no events were found matching your search criteria.");
+                return;
+            }
+            MenusPrinter.printListOfStrings(searchResult);
+            backTouserManagementMenu();
+        }
+
+
     private static void showSchedule() {
         logger.info("Please enter the year for which you want to view the events: ");
         int year = scanner.nextInt();
@@ -498,8 +530,8 @@ public class AdminView {
 
     private static void createEvent() {
         boolean reTry=true;
-        User user=findModifiedUser();
         while (reTry){
+            User user=findModifiedUser();
             if(user==null){
                 logger.info(message);
                 String choice = scanner.nextLine();
@@ -532,5 +564,69 @@ public class AdminView {
 
     }
 
+
+
+    private static RegisteredEvent findModifiedEvent()
+    {
+        RegisteredEvent modifiedEvent;
+        String choice=selectEventMethod();
+        List<RegisteredEvent> events;
+        if(choice.equals("1")) {
+            logger.info("Please enter event name to search ");
+            String eventName = scanner.nextLine();
+            events = AdminControl.searchEvents(eventName);
+        }
+        else if (choice.equals("2")){
+            events= AdminView.eventsForUser();
+        }
+
+        else if (choice.equals("3"))
+            events=AdminControl.getAllEvents();
+        else
+            events=null;
+        if (events == null){
+            return null;
+        }
+        List<String>usersNames=AdminControl.getEventNameOfUsers(events);
+        int selectedUser=selectFromList(usersNames);
+        if(selectedUser==usersNames.size())modifiedEvent=notEvent;
+        else modifiedEvent= events.get(selectedUser-1);
+
+        return modifiedEvent;
+
+    }
+
+    private static List<RegisteredEvent> eventsForUser() {
+        boolean reTry=true;
+        User user;
+        while (reTry){
+             user=findModifiedUser();
+            if(user==null){
+                logger.info(message);
+                String choice = scanner.nextLine();
+                if(!(choice.equals("y")||choice.equals("Y")))reTry=false;
+            }
+            else if(user==notUser){
+                reTry=false;
+            }
+            else {
+                return user.getRegisteredEvents();
+
+            }
+        }
+        return null;
+    }
+
+    private static String selectEventMethod() {
+        logger.info("Please select a method to generate the process:");
+        MenusPrinter.printfindEventMethodsMenu();
+        String choice=scanner.nextLine();
+        while (!ChoiceChecker.isOneOrTwo(choice)) {
+            logger.info("Enter Valid Choice: ");
+            choice=scanner.nextLine();
+        }
+        return choice;
+    }
 }
+
 
