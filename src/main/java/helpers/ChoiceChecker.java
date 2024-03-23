@@ -3,12 +3,15 @@ package helpers;
 import Exceptions.EventAlreadyExist;
 import Exceptions.GoToMainMenuException;
 import controllers.ServiceProviderControl;
+import enumerations.ServiceType;
 import models.EventPlanner;
 import models.Service;
 import models.ServiceProvider;
 import models.User;
+import views.ServiceProviderView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -34,7 +37,7 @@ public class ChoiceChecker {
     }
 
     public static boolean userMenuChecker(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4");
+        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5");
     }
     public static boolean adminMenuChecker(String value) {
         return userMenuChecker(value)||value.equals("5");
@@ -141,8 +144,22 @@ public class ChoiceChecker {
 return choice;
 
     }
+
     public static void createInvalidIntegerMessage(int min, int max) {
         logger.warning(format("Please enter a valid integer between %d and %d", min, max));
     }
+
+
+    public static boolean checkIfitsCurrentService(Service service,String choice) {
+        Map<String, ServiceType> map= ServiceProviderView.hashmap();
+        try {
+            return map.get(choice).equals(service.getServiceType());
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+
 }
 

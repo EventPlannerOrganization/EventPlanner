@@ -6,14 +6,14 @@ import Exceptions.GoToMainMenuException;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import Exceptions.WeakPasswordException;
+import Exceptions.*;
+import controllers.EventsControl;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import helpers.ChoiceChecker;
 import models.*;
 import printers.MenusPrinter;
-
 import javax.mail.MessagingException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
@@ -27,6 +27,7 @@ public class ServiceProviderView {
 
 
     }
+
 
     public static void showRequest(ServiceProvider serviceProvider) throws IOException, MessagingException {
         List<Request> requests = serviceProvider.getRequests();
@@ -42,7 +43,7 @@ public class ServiceProviderView {
             return;
         }
 
-        Request request = requests.get(selectedRequest);
+        Request request = requests.get(selectedRequest-1);
         List<String> options = List.of("Accept", "Reject");
         int choice = getMenuChoice(options);
 
@@ -59,12 +60,12 @@ public class ServiceProviderView {
 
     private static int getSelectedRequest(List<Request> requests) {
         logger.info("Please select a request:");
-        return getIntegerInput(1, requests.size() - 1);
+        return getIntegerInput(1, requests.size());
     }
 
     private static int getMenuChoice(List<String> options) {
         MenusPrinter.printMenu(options);
-        return getIntegerInput(1, options.size() - 1);
+        return getIntegerInput(1, options.size());
     }
 
     private static int getIntegerInput(int min, int max) {
@@ -77,29 +78,24 @@ public class ServiceProviderView {
                 ChoiceChecker.createInvalidIntegerMessage(min, max);
             } catch (NumberFormatException e) {
                 logger.warning("Please enter a valid integer");
+
             }
         }
     }
 
-
     private static void handleRequestChoice(int choice, Request request, ServiceProvider serviceProvider) {
-        try {
-            switch (choice) {
-                case 0:
-                    ServiceProviderControl.respondToRequests(true, request.getEvent(), serviceProvider);
-                    break;
-                case 1:
-                    ServiceProviderControl.respondToRequests(false, request.getEvent(), serviceProvider);
-                    break;
-                default:
-                    logger.warning("Invalid choice");
-                    break;
-            }
-        } catch (FileNotFoundException e) {
-            logger.severe("Error occurred while responding to request: " + e.getMessage());
-        } catch (Exception e) {
-            logger.severe("Unexpected error occurred while responding to request: " + e.getMessage());
+        switch (choice) {
+            case 1:
+                ServiceProviderControl.respondToRequests(true, request, serviceProvider);
+                break;
+            case 2:
+                ServiceProviderControl.respondToRequests(false, request, serviceProvider);
+                break;
+            default:
+                logger.warning("Invalid choice");
+                break;
         }
+
     }
 
     private static void displayRequests(List<Request> requests) {
@@ -127,10 +123,10 @@ public class ServiceProviderView {
                     ServiceProviderView.updateServices((ServiceProvider) EventPlanner.getCurrentUser());
                     break;
                 case "3":
-                    ServiceProviderView.showEvents();
+                    ServiceProviderView.showEvents((ServiceProvider) EventPlanner.getCurrentUser());
                     break;
                 case "4":
-                    ServiceProviderView.showUpComingEvents();
+                    ServiceProviderView.showUpComingEvents((ServiceProvider) EventPlanner.getCurrentUser());
                     break;
                 case "5":
                     ServiceProvider serviceProvider = (ServiceProvider) EventPlanner.getServiceProviderByUsername(EventPlanner.getCurrentUser().getAuthentication().getUsername());
@@ -224,7 +220,7 @@ public class ServiceProviderView {
             logger.info("Its The Same Price !");
             return;
         }
-        service.setPrice(Double.parseDouble(newPrice));
+        ServiceProviderControl.editServicePrice(service, newPrice);
     }
 
     private static void changeServiceDescription(Service service) {
@@ -250,12 +246,12 @@ public class ServiceProviderView {
         String choice = scanner.nextLine();
 
 
-        while ((!ChoiceChecker.editServiceMenuCheck(choice)) || (ServiceProviderControl.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
+        while ((!ChoiceChecker.editServiceMenuCheck(choice)) || (ChoiceChecker.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
 
             if (!ChoiceChecker.editServiceMenuCheck(choice)) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
-            } else if (ServiceProviderControl.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
+            } else if (ChoiceChecker.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
                 logger.info("this is your current Service ! , Choose Another Service or Back !");
                 choice = scanner.nextLine();
             }
@@ -264,40 +260,40 @@ public class ServiceProviderView {
 
         switch (choice) {
             case "1" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.DJ);
+                serviceType = ServiceType.DJ;
                 flag = true;
+
             }
             case "2" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Photography);
+                serviceType = ServiceType.Photography;
                 flag = true;
             }
             case "3" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Security);
+                serviceType = ServiceType.Security;
                 flag = true;
             }
             case "4" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Cleaning);
+                serviceType = ServiceType.Cleaning;
                 flag = true;
             }
             case "5" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Decor_and_Design);
+                serviceType = ServiceType.Decor_and_Design;
                 flag = true;
             }
             case "6" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Catering);
+                serviceType = ServiceType.Catering;
                 flag = true;
             }
             case "7" -> {
-                ServiceProviderControl.editServiceType(serviceProvider.getServices().get(0), ServiceType.Venue);
+                serviceType = ServiceType.Venue;
                 flag = true;
             }
             case "8" -> {
                 serviceProvider.setPackageProvider(true);
                 List<Service> services = ServiceProviderView.addingProcessForPackageProvider();
-                serviceProvider.setServices(services);
+                ServiceProviderControl.changePackageProviderServices(serviceProvider, services);
             }
-            default -> {
-            }
+
         }
         if (flag) {
             logger.info("Enter Service Description:\n");
@@ -309,9 +305,12 @@ public class ServiceProviderView {
             list.add(service);
             serviceProvider.setServices(list);
             serviceProvider.setPackageProvider(false);
+            ServiceProviderControl.changeServiceProvdierService(serviceProvider, service);
+
         }
 
     }
+
 
     private static List<Service> addingProcessForPackageProvider() {
         Map<String, ServiceType> map = hashmap();
@@ -359,9 +358,14 @@ public class ServiceProviderView {
     }
 
 
-    private static void showEvents() {
+    private static void showEvents(ServiceProvider serviceProvider) {
 
-        ServiceProviderControl.showServiceProviderEvents();
+        try {
+            List<RegisteredEvent> events = ServiceProviderControl.getServiceProviderEvents(serviceProvider);
+            MenusPrinter.printList(events);
+        } catch (EmptyList e) {
+            logger.info("You Don't  Have Any Events ");
+        }
         backToServiceProviderMenu();
     }
 
@@ -378,10 +382,11 @@ public class ServiceProviderView {
 
     }
 
-    private static void showUpComingEvents() {
-        ServiceProviderControl.showServiceProviderUpcomingEvents();
-        backToServiceProviderMenu();
+
+    private static void showUpComingEvents(ServiceProvider serviceProvider) {
+        showServiceProviderUpcomingEvents(serviceProvider);
     }
+
 
     private static void backToServiceProviderMenu() {
         logger.info("To Return Back Enter B");
@@ -392,5 +397,41 @@ public class ServiceProviderView {
         }
     }
 
+    public static void showServiceProviderUpcomingEvents(ServiceProvider serviceProvider) {
+        try {
+            String string = new StringBuilder().append("Invalid Input").append("\n If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ").toString();
+            while (1 < 2) {
+                MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
+                logger.info("If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ");
+                String choice = scanner.nextLine();
+                while (!(choice.equalsIgnoreCase("B") ||
+                        Integer.parseInt(choice) <= ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider).size())) {
+                    logger.info(string);
+                    choice = scanner.nextLine();
+
+                }
+                if (!choice.equalsIgnoreCase("B")) {
+
+                    EventsControl.deleteService(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider).get(Integer.parseInt(choice) - 1),
+                            serviceProvider);
+                    MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
+                    backToServiceProviderMenu();
+                    break;
+                } else
+                    return;
+
+            }
+
+
+        } catch (EmptyList | ServiceNotFoundException emptyList) {
+            logger.info("You Don't  Have Any Events ");
+            backToServiceProviderMenu();
+
+
+        }
+    }
+
 
 }
+
+

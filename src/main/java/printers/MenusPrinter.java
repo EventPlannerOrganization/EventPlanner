@@ -89,6 +89,7 @@ public class MenusPrinter {
         menu.add("Add Event");
         menu.add("Show My Events");
         menu.add("Edit My Upcoming Events");
+        menu.add("sent emails to guests");
         menu.add("Sign out !");
 
         printMenu(menu);
@@ -209,5 +210,19 @@ public class MenusPrinter {
 
     public static void printListOfStrings(List<String> list){
         printMenu(list);
+    }
+
+    public static void printList(List<RegisteredEvent>filterdEvents){
+        List<String>  serviceProvdierEvents= makeStringListOfEvents(filterdEvents);
+        MenusPrinter.printListofStringWithNumbers(serviceProvdierEvents, "Here is Your Event/s:");
+    }
+    public  static List<String> makeStringListOfEvents(List <RegisteredEvent>filterdEvents ){
+        List<String> serviceProvdierEvents = new ArrayList<>();
+        for(int i = 0;i<filterdEvents.size();i++) {
+            String st1 = "Service info : \n";
+            String events = st1 + filterdEvents.get(i).toString2() + "\n -------------------------------------------";
+            serviceProvdierEvents.add(events);
+        }
+        return serviceProvdierEvents;
     }
 }

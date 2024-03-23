@@ -1,6 +1,5 @@
 package models;
 
-import Exceptions.EventNotFound;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
@@ -36,6 +35,20 @@ public class EventPlanner {
     }
     public static Person checkUser(String username) throws UserNotFoundException {
         List<Person> result= users.stream().filter(user -> user.getAuthentication().getUsername().equals(username)).toList();
+        if (result.isEmpty())
+            throw new UserNotFoundException();
+
+        return result.get(0);
+    }
+    public static  boolean checkEmailIfExist(String email)  {
+        List<Person> result= users.stream().filter(user -> user.getContactInfo().getEmail().equals(email)).toList();
+        if (result.isEmpty())
+          return false;
+
+        return true;
+    }
+    public static  Person getUserByEmail(String email) throws UserNotFoundException {
+        List<Person> result= users.stream().filter(user -> user.getContactInfo().getEmail().equals(email)).toList();
         if (result.isEmpty())
             throw new UserNotFoundException();
 
@@ -198,11 +211,12 @@ public class EventPlanner {
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails));
          localDate=LocalDate.of(2024,8,10);
-
+        List<String> emails1=new ArrayList<>();
+        emails1.add("bahaalawneh07@gmail.com");
         user.getRegisteredEvents().add(new RegisteredEvent("open day1",
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
-                emails));
+                emails1));
         localDate=LocalDate.of(2024,4,10);
 
         user2.getRegisteredEvents().add(new RegisteredEvent("wedding party",

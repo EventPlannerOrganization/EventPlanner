@@ -45,6 +45,8 @@ public class LoginView {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (EmptyList e) {
+            throw new RuntimeException(e);
         }
     }
 }

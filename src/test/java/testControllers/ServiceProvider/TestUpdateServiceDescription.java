@@ -25,10 +25,10 @@ String newDesc;
       Service service= ServiceProviderControl.getServiceFromServiceProvider(serviceProvider);
       String oldDesc=service.getDescription();
       ServiceProviderControl.editServiceDescription(service,newDesc);
-      assertTrue(ServiceProviderControl.
-              getServiceFromServiceProvider(serviceProvider).
-              getDescription().equals(newDesc));
-      assertFalse(service.getDescription().equals(oldDesc));
+        assertEquals(ServiceProviderControl.
+                getServiceFromServiceProvider(serviceProvider).
+                getDescription(), newDesc);
+        assertNotEquals(service.getDescription(), oldDesc);
     }
 
 }
