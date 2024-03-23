@@ -24,5 +24,3 @@ Feature: Add Service To Event
       | username | eventName             | providersNames          |
       | 'khalid' | 'wedding party'       | 'Ibrahim160','saleem04' |
       | 'Naser'  | 'Wedding Celebration' | 'Ibrahim160','saleem04' |
-
-

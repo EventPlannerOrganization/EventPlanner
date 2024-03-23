@@ -1,6 +1,9 @@
 package Email;
 
+import Exceptions.EmptyList;
 import io.YmlHandler;
+import models.EventPlanner;
+import models.RegisteredEvent;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -175,4 +178,40 @@ public class EmailService {
         Transport.send(message);
         return code;
     }
+    public void sendEventInvitations(RegisteredEvent registeredEvent) throws MessagingException, IOException, EmptyList {
+        // Load the email template
+        String emailTemplate = Files.readString(Paths.get("src/main/resources/html/invitaion-body.html"));
+
+        for (String guestEmail : registeredEvent.getGuestsEmails()) {
+            // Create a new MimeMessage
+            Message message = new MimeMessage(createSession());
+
+            // Set sender and recipient
+            message.setFrom(new InternetAddress(from));
+            String []tokens=guestEmail.split("@");
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(guestEmail));
+
+            // Set the subject
+            message.setSubject("Invitation to " + registeredEvent.getEventName());
+
+            // Populate the email body with event details
+            String body = emailTemplate.replace("{{guest name}}", tokens[0]).replace("{{eventName}}", registeredEvent.getEventName())
+                    .replace("{{eventDate}}", String.valueOf(registeredEvent.getDate()))
+                      .replace("{{event owner}}", EventPlanner.getCurrentUser().getName().getfName()+EventPlanner.getCurrentUser().getName().getlName());
+
+
+            // Create and set content
+            MimeBodyPart mimeBodyPart = new MimeBodyPart();
+            mimeBodyPart.setContent(body, "text/html");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(mimeBodyPart);
+            message.setContent(multipart);
+
+            // Send the email
+            Transport.send(message);
+        }
+    }
+
+
 }

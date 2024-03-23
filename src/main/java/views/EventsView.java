@@ -28,6 +28,17 @@ public class EventsView {
     }
 
     public static void registerEventView() throws EventAlreadyExist, EventNotFound, MessagingException, IOException {
+        RegisteredEvent newEvent= readEventInfo();
+        EventsControl.addEvent(newEvent.getDate(), newEvent.getEventName(),newEvent.getCost(), newEvent.getGuestsEmails());
+        User user=(User)EventPlanner.getCurrentUser();
+        for (ServiceProvider element:newEvent.getServiceProviders()){
+           UserControl.sendRequestToServiceProvider(element,newEvent.getDate(),user.getEventByName(newEvent.getEventName()));
+           logger.info("Request sent to Service Provider");
+       }
+    }
+
+    public static RegisteredEvent readEventInfo(){
+        RegisteredEvent newEvent =new RegisteredEvent();
         cost = 0;
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
         String name=ChoiceChecker.readingEventName();
@@ -38,23 +49,20 @@ public class EventsView {
         logger.info("- Year : ");
         int year = scanner.nextInt();
         LocalDate date = LocalDate.of(year, month, day);
-
         logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
         List<ServiceProvider> list=addingProcess(date);
-
         logger.info("* Add guests :\n");
         List<String> guestsEmails = readeGuestsEmails();
-        EventsControl.addEvent(date, name,cost, guestsEmails);
 
-        User user=(User)EventPlanner.getCurrentUser();
-        for (ServiceProvider element:list){
-           UserControl.sendRequestToServiceProvider(element,date,user.getEventByName(name));
-           logger.info("Request sent to Service Provider");
-       }
-
-
+        newEvent.setEventName(name);
+        newEvent.setDate(date);
+        newEvent.setGuestsEmails(guestsEmails);
+        newEvent.setServiceProviders(list);
+        return newEvent;
     }
+
+
 
 
     public static List<ServiceProvider> addingProcess(LocalDate date) {
@@ -119,7 +127,7 @@ public class EventsView {
         List<String> guestsEmails = new ArrayList<>();
         logger.info("Enter the number of guests. You can adjust this number and modify the list as needed:\n");
         int serviceNum = scanner.nextInt();
-        logger.info("For each guest, please enter their email address:\n");
+        logger.info("For each guest, please enter their email address:");
         for (int i = 0; i < serviceNum; i++) {
             String s = "\n" + (i + 1) + "- ";
             logger.info(s);
@@ -144,7 +152,7 @@ public class EventsView {
     }
 
 
-    private static void editingEventView(RegisteredEvent event)  {
+    static void editingEventView(RegisteredEvent event)  {
         boolean flage=true;
         while(flage){
             MenusPrinter.printEditingChoices();
@@ -183,7 +191,7 @@ public class EventsView {
     }
 
     private static void deleteService(RegisteredEvent event) {
-        logger.info("Select Event to Editing it: ");
+        logger.info("Select service to delete it: ");
         ServiceProvider deletedService = EventsView.selectedServiceFromServicesList(event.getServiceProviders());
         try{EventsControl.deleteService(event, deletedService);}
         catch (ServiceNotFoundException ignored){}

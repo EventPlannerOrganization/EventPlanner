@@ -35,8 +35,8 @@ public class TestAddServicesToEvent {
     public void the_service_providers_who_offer_these_services_are(String string, String string2) throws UserNotFoundException {
         // Write code here that turns the phrase above into concrete actions
         addedServiceProviders=new ArrayList<>();
-    addedServiceProviders.add((ServiceProvider) getServiceProviderByUsername(string));
-    addedServiceProviders.add((ServiceProvider) getServiceProviderByUsername(string2));
+        addedServiceProviders.add((ServiceProvider) getServiceProviderByUsername(string));
+        addedServiceProviders.add((ServiceProvider) getServiceProviderByUsername(string2));
 
     }
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Invitation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 32px; /* Larger font size */
+            margin-bottom: 20px;
+            text-align: left; /* Align header to the left */
+        }
+
+        p {
+            margin-bottom: 15px; /* Increased bottom margin */
+            line-height: 1.6;
+            font-size: 18px; /* Larger font size */
+            text-align: left; /* Align paragraphs to the left */
+        }
+
+        .p2 {
+            margin-bottom: 20px; /* Increased bottom margin */
+            line-height: 1.6;
+            font-size: 24px; /* Larger font size for p2 */
+            text-align: center; /* Align header to the left */
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #6666;
+            font-size: 14px;
+        }
+
+        .invitation {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Event Invitation</h1>
+    <div class="invitation">
+        <p><strong>Dear {{guest name}},</strong></p>
+        <p>We are delighted to extend a special invitation to you to join us for our:</p>
+        <p class="p2"><strong>{{eventName}}</strong></p>
+        <p><strong>Event Date:</strong> {{eventDate}}</p>
+        <p>We hope you can join us!</p>
+    </div>
+    <div class="footer">
+        <p>Best regards,</p>
+        <p><strong>{{event owner}}.</strong></p>
+    </div>
+</div>
+</body>
+</html>

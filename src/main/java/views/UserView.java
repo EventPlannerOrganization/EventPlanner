@@ -1,11 +1,16 @@
 package views;
+import Email.EmailService;
 import Exceptions.*;
 import controllers.UserControl;
 import helpers.ChoiceChecker;
+import models.EventPlanner;
+import models.RegisteredEvent;
+import models.User;
 import printers.MenusPrinter;
-
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -19,7 +24,7 @@ public class UserView {
 
     }
 
-    public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, EventAlreadyExist, MessagingException, IOException {
+    public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, EventAlreadyExist, MessagingException, IOException, EmptyList {
 
         MenusPrinter.printUserMenu();
         logger.info("What do you want to do ?");
@@ -43,11 +48,41 @@ public class UserView {
                 UserView.userMenu();
                 break;
             case "4":
+                guestsEmail();
+                break;
+            case "5":
                 UserControl.signout();
                 StartingView.staringView();
                 break;
             default:
                 // code block
         }
+    }
+    public static void showEventsName(){
+        User user= (User) EventPlanner.getCurrentUser();
+        List<String> names=new ArrayList<>();
+        for(RegisteredEvent registeredEvent:user.getRegisteredEvents()){
+            names.add(registeredEvent.getEventName());
+        }
+        MenusPrinter.printMenu(names);
+    }
+    public static void guestsEmail() throws MessagingException, IOException, EmptyList {
+        showEventsName();
+        String choice=scanner.nextLine();
+        while (!ChoiceChecker.userMenuChecker(choice)) {
+            choice = scanner.nextLine();
+            logger.info("Enter Valid Choice !");
+        }
+       User user=(User)EventPlanner.getCurrentUser();
+      try {
+          if (user.getRegisteredEvents().get(Integer.parseInt(choice)-1).getGuestsEmails().isEmpty()){
+              throw new EmptyList();
+          }
+      }catch (EmptyList emptyList) {
+          logger.warning("you didnt add any guest to this event yet");
+          return;
+      }
+        EmailService emailService=new EmailService();
+        emailService.sendEventInvitations(user.getRegisteredEvents().get(Integer.parseInt(choice)-1));
     }
 }

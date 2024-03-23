@@ -1,15 +1,18 @@
 package controllers;
 
 import Email.EmailService;
+import Exceptions.EmptyList;
+import Exceptions.EventAlreadyExist;
+import Exceptions.ServiceNotFoundException;
 import models.*;
-
-import javax.mail.MessagingException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Comparator;
 import java.util.List;
+import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
+import static helpers.PasswordChecker.mergeTwoStrings;
+import static views.EventsView.readEventInfo;
+
 
 public class AdminControl {
     private AdminControl() {
@@ -28,12 +31,33 @@ public class AdminControl {
 
     public static List<String> getEventsForUser(User user){
         List<String> events=new ArrayList<>();
-        for (RegisteredEvent event:user.getRegisteredEvents()){
-            events.add(event.getEventName());
+        List<RegisteredEvent> sortedEvents = user.getRegisteredEvents().stream()
+                .sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
+
+        events=getEventNameOfUsers(sortedEvents);
+        return events;
+    }
+
+    public static List<String> getEventNameOfUsers(List <RegisteredEvent> events){
+        List<String> eventsNames=new ArrayList<>();
+        for (RegisteredEvent event:events){
+            eventsNames.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
+        }
+        return eventsNames;
+    }
+
+
+        public static List<RegisteredEvent> getAllEvents( ){
+        List<RegisteredEvent> events =new ArrayList<>();
+        for(User user:EventPlanner.getUsers()){
+            events.addAll(user.getRegisteredEvents());
         }
         return events;
     }
-    public static List<String> getServicesForServiceProvider(ServiceProvider serviceProvider){
+
+
+
+        public static List<String> getServicesForServiceProvider(ServiceProvider serviceProvider){
         List<String> events=new ArrayList<>();
         for (Service service:serviceProvider.getServices()){
             events.add(service.toString());
@@ -77,11 +101,21 @@ public class AdminControl {
         return userNames;
     }
 
-    public static void deleteUser(Person deletedUser)  {
+    public static void deleteServiceProvider(ServiceProvider deletedServiceProvider) throws EmptyList, ServiceNotFoundException {
+        List<RegisteredEvent> serviceProviderEvents= getServiceProviderUpComingEvents(deletedServiceProvider);
+        for(RegisteredEvent event:serviceProviderEvents){
+            EventsControl.deleteService(event,deletedServiceProvider);
+        }
+        deleteUser(deletedServiceProvider);
+
+    }
+
+        public static void deleteUser(Person deletedUser)  {
         try{
         EmailService emailForDeletedUserFromAdmin=new EmailService();
         emailForDeletedUserFromAdmin.sendAdminDeleteUserEmail(deletedUser.getContactInfo().getEmail(),deletedUser.getAuthentication().getUsername(),"admin-delete-user");
-        EventPlanner.getUsersList().remove(deletedUser);}
+
+            EventPlanner.getUsersList().remove(deletedUser);}
         catch (Exception e){}
 
     }
@@ -107,5 +141,34 @@ public class AdminControl {
         }
         if(searchResults.isEmpty())searchResults=null;
         return searchResults;
+    }
+
+    public static void addEventForUser(User user) throws EventAlreadyExist {
+        RegisteredEvent newEvent =readEventInfo();
+        user.checkEventExisting(newEvent.getEventName());
+        user.getRegisteredEvents().add(newEvent);
+        user.addToTotalCost(newEvent.getCost());
+    }
+
+    public static List<RegisteredEvent> searchEvents(String searchTerm) {
+        List<RegisteredEvent> searchResults = new ArrayList<>();
+        String searchTermLowerCase = searchTerm.toLowerCase(); // Convert search term to lowercase
+
+        for (RegisteredEvent event : AdminControl.getAllEvents()) {
+            String userNameLowerCase = event.getEventName(); // Convert event to lowercase
+            if (userNameLowerCase.contains(searchTermLowerCase)) { // Partial match check
+                searchResults.add(event);
+            }
+        }
+        if(searchResults.isEmpty())searchResults=null;
+        return searchResults;
+    }
+
+    public static void deleteEvent(RegisteredEvent event) throws ServiceNotFoundException {
+        if(event!=null){
+        for(ServiceProvider serviceProvider:event.getServiceProviders()){
+            EventsControl.deleteService(event,serviceProvider);
+        }
+        }
     }
 }
