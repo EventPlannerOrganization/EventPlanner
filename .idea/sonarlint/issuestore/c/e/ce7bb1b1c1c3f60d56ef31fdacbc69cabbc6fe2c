@@ -1,5 +1,10 @@
 
+<<<<<<< HEAD
 W
 java:S1128"5Remove this unused import 'enumerations.ServiceType'.(§ŒÏ‡ýÿÿÿÿ8±ê¬èæ1
 S
 java:S1128"6Remove this unused import 'views.ServiceProviderView'.(Âó½8³ê¬èæ1
+=======
+S
+java:S1128"6Remove this unused import 'views.ServiceProviderView'.(Âó½8ÞíŸææ1
+>>>>>>> 6e125bc856db6117c004a497dc816b5914108f7d

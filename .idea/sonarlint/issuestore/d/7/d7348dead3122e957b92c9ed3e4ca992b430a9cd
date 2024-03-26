@@ -1,0 +1,25 @@
+
+I
+java:S1128"'Remove this unused import 'Exceptions'.(Ц™ЈЁэ€€€€8тЋфез1
+W
+java:S1128"5Remove this unused import 'Exceptions.EventNotFound'.(ыфљГэ€€€€8уЋфез1
+\
+java:S1128":Remove this unused import 'Exceptions.UserIsAlreadyExist'.(№ЯзЯы€€€€8уЋфез1
+_
+java:S1128"=Remove this unused import 'Exceptions.WeakPasswordException'.(ўј“оь€€€€8уЋфез1
+O
+java:S1128"2Remove this unused import 'enumerations.UserType'.(Щ∆“ї8уЋфез1
+U
+java:S1128"3Remove this unused import 'models.ServiceProvider'.(У§Ђ¶ш€€€€8уЋфез1
+J
+java:S1128"(Remove this unused import 'models.User'.(м§ЈП€€€€€8фЋфез1
+N
+java:S1128",Remove this unused import 'views.AdminView'.(£ё÷яэ€€€€8фЋфез1
+S
+java:S1128"6Remove this unused import 'views.ServiceProviderView'.(¬уљН8фЋфез1
+H
+java:S1128"+Remove this unused import 'views.UserView'.(•Ёав8фЋфез1
+W
+java:S1128":Remove this unused import 'javax.mail.MessagingException'.(«оёН8фЋфез1
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(™ЇїЏэ€€€€8фЋфез1

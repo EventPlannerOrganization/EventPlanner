@@ -25,9 +25,5 @@ public class UserControl {
     public static void  signout(){
         EventPlanner.setCurrentUser(null);
     }
-    public  static void sendInvitaionToGuests(RegisteredEvent registeredEvent) throws MessagingException, IOException, EmptyList {
-        EmailService emailService=new EmailService();
-        emailService.sendEventInvitations(registeredEvent);
 
-    }
 }

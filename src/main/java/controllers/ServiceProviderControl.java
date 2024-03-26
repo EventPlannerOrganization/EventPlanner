@@ -9,7 +9,6 @@ import Exceptions.EmptyList;
 
 
 
-import enumerations.ServiceType;
 import models.*;
 
 import views.ServiceProviderView;

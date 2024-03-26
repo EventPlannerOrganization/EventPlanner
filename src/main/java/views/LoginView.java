@@ -3,6 +3,11 @@ package views;
 
 import Exceptions.*;
 import controllers.Login;
+import enumerations.UserType;
+import models.EventPlanner;
+import models.Person;
+import models.ServiceProvider;
+import models.User;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -26,7 +31,7 @@ public class LoginView {
         try {
             if (Login.canLogin(username, password)) {
                 logger.info("Login Successfully..");
-                Login.whosLogin();
+                whosLogin();
             } else {
                 logger.info("invalid password..!");
             }
@@ -49,4 +54,12 @@ public class LoginView {
             throw new RuntimeException(e);
         }
     }
+    public static void whosLogin () throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, MessagingException, IOException, EventAlreadyExist, EmptyList {
+        Person current = EventPlanner.getCurrentUser();
+        if (current instanceof ServiceProvider) ServiceProviderView.providerMenu();
+        else if (((User) current).getUsertype() == UserType.USER) UserView.userMenu();
+        else AdminView.adminMenu();
+
+    }
+
 }

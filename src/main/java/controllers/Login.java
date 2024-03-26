@@ -31,12 +31,5 @@ public class Login {
         return false;
     }
 
-        public static void whosLogin () throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, MessagingException, IOException, EventAlreadyExist, EmptyList {
-            Person current = EventPlanner.getCurrentUser();
-            if (current instanceof ServiceProvider) ServiceProviderView.providerMenu();
-            else if (((User) current).getUsertype() == UserType.USER) UserView.userMenu();
-            else AdminView.adminMenu();
-
-        }
 
 }
