@@ -189,11 +189,12 @@ public class AdminView {
     private static void searchUserView() {
         logger.info("Please enter username to search");
         String username = scanner.nextLine();
-       List<String> searchResult =AdminControl.getUserNameOfUsers(AdminControl.searchUsers(username));
-        if(searchResult.isEmpty()){
+        List<User> users =AdminControl.searchUsers(username);
+        if(users.isEmpty()){
             logger.info("Sorry, no users were found matching your search criteria.");
             return;
         }
+       List<String> searchResult =AdminControl.getUserNameOfUsers(users);
        MenusPrinter.printListOfStrings(searchResult);
         backTouserManagementMenu();
     }
@@ -202,7 +203,9 @@ public class AdminView {
     private static void showUsersView()
     {
         List<String> listOfUsers=AdminControl.getAllUsers();
-        MenusPrinter.printListOfStrings(listOfUsers);
+        if(!listOfUsers.isEmpty()){
+        MenusPrinter.printListOfStrings(listOfUsers);}
+        else logger.info("System does not contain users");
         backTouserManagementMenu();
     }
 
