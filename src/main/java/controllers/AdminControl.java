@@ -25,9 +25,7 @@ public class AdminControl {
     private AdminControl() {
     }
 
-    public static void  signout(){
-        EventPlanner.setCurrentUser(null);
-    }
+
 
     public static List<String> getAllUsers(){
             return getUserNameOfUsers(EventPlanner.getUsers());

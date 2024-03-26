@@ -32,9 +32,7 @@ public class ServiceProviderControl {
     }
 
 
-    public static void signout() {
-        EventPlanner.setCurrentUser(null);
-    }
+
 
 
     public static List<RegisteredEvent> getServiceProviderEvents(ServiceProvider serviceProvider) throws EmptyList {
@@ -97,12 +95,9 @@ public class ServiceProviderControl {
         return service.getDescription();
     }
     public static Service getServiceFromServiceProvider(ServiceProvider serviceProvider){
-        try {
+
             return serviceProvider.getServices().get(0);
-        }
-        catch(Exception e){
-            return null;
-        }
+
     }
 
     public static String getServicePrice(Service service) {

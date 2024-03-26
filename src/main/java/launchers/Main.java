@@ -19,8 +19,5 @@ public class Main {
     public static void main(String[] args) throws UserIsAlreadyExist, WeakPasswordException, IOException, MessagingException, UserNotFoundException {
         EventPlanner.initializeRepositoryWithData();
         StartingView.staringView();
-
         }
-
-
 }

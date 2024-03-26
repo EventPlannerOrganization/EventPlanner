@@ -92,6 +92,9 @@ public class EventPlanner {
         EventPlanner.currentUser = currentUser;
 
     }
+    public static void signout() {
+        EventPlanner.setCurrentUser(null);
+    }
 
     public  static  List<ServiceProvider> getServiceProviders()  {
         List<Person> result = users.stream().filter(user -> ServiceProvider.class.isAssignableFrom(user.getClass())).toList();

@@ -146,7 +146,7 @@ public class ServiceProviderView {
                     break;
 
                 case "6":
-                    ServiceProviderControl.signout();
+                    EventPlanner.signout();
                     flag = false;
                     StartingView.staringView();
                     break;
