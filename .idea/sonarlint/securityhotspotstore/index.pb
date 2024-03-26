@@ -1,5 +1,6 @@
 
 Q
+<<<<<<< HEAD
 !src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
 X
 (src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
@@ -41,3 +42,6 @@ X
 (src/test/features/Event/AddEvent.feature,2\3\23ebbe75cfa349b5b2a4fa9cc5c3efeb6355e47b
 U
 %src/main/java/Email/EmailService.java,f\d\fdade210e9a93d0d928922298efc60f16036d043
+=======
+!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+>>>>>>> a1d9055d894b6511a3bcd60a4f70512a72f68308

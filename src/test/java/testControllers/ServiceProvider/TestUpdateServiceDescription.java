@@ -23,12 +23,12 @@ String newDesc;
     @Then("The Description Will Be Updated Successfully")
     public void theDescriptionWillBeUpdatedSuccessfully() {
       Service service= ServiceProviderControl.getServiceFromServiceProvider(serviceProvider);
-      String oldDesc=service.getDescription();
+      String oldDesc=ServiceProviderControl.getServiceDescription(service);
       ServiceProviderControl.editServiceDescription(service,newDesc);
         assertEquals(ServiceProviderControl.
                 getServiceFromServiceProvider(serviceProvider).
                 getDescription(), newDesc);
-        assertNotEquals(service.getDescription(), oldDesc);
+        assertNotEquals(ServiceProviderControl.getServiceDescription(service), oldDesc);
     }
 
 }
