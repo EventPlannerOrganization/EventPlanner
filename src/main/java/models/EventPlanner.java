@@ -196,7 +196,7 @@ public class EventPlanner {
         User user2 = new User(new Name("khalid", "Mohammad", "Abu-Safieh"),
                 new Authentication("khalid", "123"),
                 new Address("Palestine", "Nablus"),
-                new ContactInfo("s12199887@stu.najah.edu","0599715584")
+                new ContactInfo("s12113028@stu.najah.edu","0599715584")
         );
             EventPlanner.addUser(user2);
 
