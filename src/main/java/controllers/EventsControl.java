@@ -2,9 +2,6 @@ package controllers;
 
 import Exceptions.*;
 import models.*;
-import views.EventsView;
-
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;

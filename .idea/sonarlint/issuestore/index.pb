@@ -25,3 +25,9 @@ Z
 *src/main/java/helpers/PasswordChecker.java,7\e\7e831ad7c59983fd34146cfc1079070079d33602
 ˜
 hsrc/test/java/testControllers/AdminUserManagement/TestRunnerForAdminUserManagementGeneralOperations.java,9\e\9e6b57065fafe2151194112f9b0cac4621f74ef9
+U
+%src/main/java/controllers/SignUp.java,6\9\69abe9c9b4bb9983c22f528ce7bcbed4714e5f0b
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+X
+(src/test/java/testControllers/Event/baha,f\1\f1fb8d988997cafee665c436ac2f2db927f593e2
