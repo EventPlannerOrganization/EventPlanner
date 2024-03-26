@@ -37,3 +37,17 @@ Q
 !src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
 Z
 *src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
+…
+Usrc/test/java/testControllers/ServiceProvider/TestRunnerForUserGeneralOperations.java,f\1\f192020691acaead1628443b4115deb12b5a4076
+ƒ
+Ssrc/test/java/testControllers/ServiceProvider/TestShowEventsForServiceProvider.java,f\e\fe2cb99d9ff726e8ba2a54c255c920ec8931f7ab
+v
+Fsrc/test/features/ServiceProvider/ShowEventsForServiceProvider.feature,8\e\8efd1cc195ef19e1924a51e7497ca7d1678b60f4
+f
+6src/test/features/ServiceProvider/ShowServices.feature,8\4\84bf7492b68246c8a5fc3f10f46778cc534e79c6
+r
+Bsrc/test/features/ServiceProvider/UpdateServiceDescription.feature,b\9\b990af7bbf2375a0410452e2503fe9977dd07032
+l
+<src/test/features/ServiceProvider/UpdateServicePrice.feature,f\a\fa8b7a4b6b290c9ba06b51743f86bcc58b2428e7
+k
+;src/test/features/ServiceProvider/UpdateServiceType.feature,2\c\2c9a9609de00b91cf8ab1629026ceb76093b7d2b
