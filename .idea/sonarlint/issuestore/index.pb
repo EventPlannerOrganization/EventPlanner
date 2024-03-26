@@ -15,3 +15,15 @@ Z
 *src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
 w
 Gsrc/test/java/testControllers/AdminUserManagement/TestShowAllUsers.java,4\3\4353c82957ef2a21aca21a5d92d3fb1ef3d411ad
+s
+Csrc/test/java/testControllers/Event/TestDeleteServiceFromEvent.java,1\8\18951de8a52314a2f329fe61eeafc1da9e1a4c88
+k
+;src/test/features/AdminUserManagement/CreateNewUser.feature,1\c\1c9742198372ff0ab8c883c431882fca89140601
+S
+#src/main/java/views/SignUpView.java,3\8\383d99cc642f9d14319c6ab3cae5f2b2ecb2bf88
+_
+/src/test/features/authentication/SignUp.feature,8\4\8483701b33c80dd33e8930ee60fd00a46eea8e54
+h
+8src/test/features/AdminUserManagement/DeleteUser.feature,b\0\b03bee3f20e8d5e5f05fd577fa8b9a363c0bd9fd
+V
+&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
