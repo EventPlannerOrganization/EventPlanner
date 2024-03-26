@@ -51,7 +51,7 @@ public class UserView {
                 guestsEmail();
                 break;
             case "5":
-                UserControl.signout();
+                EventPlanner.signout();
                 StartingView.staringView();
                 break;
             default:
