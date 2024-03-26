@@ -3,7 +3,6 @@ package views;
 import Exceptions.EmptyList;
 import Exceptions.EventAlreadyExist;
 import Exceptions.ServiceNotFoundException;
-import Exceptions.UserNotFoundException;
 import controllers.AdminControl;
 
 import helpers.ChoiceChecker;
@@ -60,7 +59,7 @@ public class AdminView {
                     break;
                 case "5":
                     flage = false;
-                    EventPlanner.signout();
+                    AdminControl.signout();
                     break;
                 default:
                     // code block
@@ -152,11 +151,7 @@ public class AdminView {
         else {
             reTry=false;
             //you can here send email to notify him that the admin delete him
-            try
-            {AdminControl.deleteUser( deletedUser);}
-            catch (UserNotFoundException e){
-            logger.info("Sorry, Service Provider Not found ");
-                }
+            AdminControl.deleteUser( deletedUser);
         }
 
         }
@@ -404,9 +399,6 @@ public class AdminView {
                     AdminControl.deleteServiceProvider( deletedUser);
                 }
                 catch (EmptyList | ServiceNotFoundException e){e.printStackTrace();}
-                catch (UserNotFoundException e){
-                    logger.info("Sorry, Service Provider Not found ");
-                }
             }
 
         }
