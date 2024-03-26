@@ -5,3 +5,15 @@ R
 +src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
 V
 &src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
+h
+8src/test/features/AdminUserManagement/DeleteUser.feature,b\0\b03bee3f20e8d5e5f05fd577fa8b9a363c0bd9fd
+r
+Bsrc/test/features/AdminUserManagement/SearchUserByUserName.feature,3\f\3f99bfe3f106b407346efed79ab68bfc63ffea79
+s
+Csrc/test/java/testControllers/Event/TestDeleteServiceFromEvent.java,1\8\18951de8a52314a2f329fe61eeafc1da9e1a4c88
+
+Osrc/test/java/testControllers/AdminUserManagement/TestSearchUserByUserName.java,d\9\d965e428051c8ca19a8b960b6b769d21aa198baf
+u
+Esrc/test/java/testControllers/AdminUserManagement/TestDeleteUser.java,6\d\6da9970d2c42873fa63c5cfa815baa968fa3614a
+e
+5src/test/java/testControllers/Event/TestAddEvent.java,1\f\1f77dd77f6061c280e8c050ac1ec84feb37b5ba1
