@@ -31,3 +31,13 @@ U
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 X
 (src/test/java/testControllers/Event/baha,f\1\f1fb8d988997cafee665c436ac2f2db927f593e2
+T
+$src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
+e
+5src/main/java/controllers/ServiceProviderControl.java,c\e\ce7bb1b1c1c3f60d56ef31fdacbc69cabbc6fe2c
+Y
+)src/main/java/models/ServiceProvider.java,6\2\62304a9808b0d416d81e7448da3ca44398f9aa07
+X
+(src/test/features/Event/AddEvent.feature,2\3\23ebbe75cfa349b5b2a4fa9cc5c3efeb6355e47b
+U
+%src/main/java/Email/EmailService.java,f\d\fdade210e9a93d0d928922298efc60f16036d043
