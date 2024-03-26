@@ -4,12 +4,7 @@ import Email.EmailService;
 import Exceptions.EmptyList;
 import Exceptions.EventAlreadyExist;
 import Exceptions.ServiceNotFoundException;
-import Exceptions.UserNotFoundException;
 import models.*;
-
-import javax.mail.MessagingException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +12,6 @@ import java.util.Comparator;
 import java.util.List;
 import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
 import static helpers.PasswordChecker.mergeTwoStrings;
-import static models.EventPlanner.checkUser;
 import static views.EventsView.readEventInfo;
 
 
@@ -25,7 +19,9 @@ public class AdminControl {
     private AdminControl() {
     }
 
-
+    public static void  signout(){
+        EventPlanner.setCurrentUser(null);
+    }
 
     public static List<String> getAllUsers(){
             return getUserNameOfUsers(EventPlanner.getUsers());
@@ -106,7 +102,7 @@ public class AdminControl {
         return userNames;
     }
 
-    public static void deleteServiceProvider(ServiceProvider deletedServiceProvider) throws EmptyList, ServiceNotFoundException, UserNotFoundException {
+    public static void deleteServiceProvider(ServiceProvider deletedServiceProvider) throws EmptyList, ServiceNotFoundException {
         List<RegisteredEvent> serviceProviderEvents= getServiceProviderUpComingEvents(deletedServiceProvider);
         for(RegisteredEvent event:serviceProviderEvents){
             EventsControl.deleteService(event,deletedServiceProvider);
@@ -115,22 +111,15 @@ public class AdminControl {
 
     }
 
-        public static void deleteUser(Person deletedUser) throws UserNotFoundException  {
+        public static void deleteUser(Person deletedUser)  {
         try{
-        checkUser(deletedUser.getAuthentication().getUsername());
         EmailService emailForDeletedUserFromAdmin=new EmailService();
         emailForDeletedUserFromAdmin.sendAdminDeleteUserEmail(deletedUser.getContactInfo().getEmail(),deletedUser.getAuthentication().getUsername(),"admin-delete-user");
 
-        EventPlanner.getUsersList().remove(deletedUser);}
-        catch (MessagingException e) {
-            throw new RuntimeException(e);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            EventPlanner.getUsersList().remove(deletedUser);}
+        catch (Exception e){}
 
-        }
+    }
 
     public static void resetPassword(Person user, String newPassword) {
         try{
