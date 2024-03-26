@@ -2,6 +2,7 @@ package controllers;
 
 import Email.EmailService;
 import Exceptions.EmptyList;
+import Exceptions.EventAlreadyExist;
 import Exceptions.ServiceNotFoundException;
 import models.*;
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
 import static helpers.PasswordChecker.mergeTwoStrings;
-
+import static views.EventsView.readEventInfo;
 
 
 public class AdminControl {
@@ -33,12 +34,30 @@ public class AdminControl {
         List<RegisteredEvent> sortedEvents = user.getRegisteredEvents().stream()
                 .sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
 
-        for (RegisteredEvent event:sortedEvents){
-            events.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
+        events=getEventNameOfUsers(sortedEvents);
+        return events;
+    }
+
+    public static List<String> getEventNameOfUsers(List <RegisteredEvent> events){
+        List<String> eventsNames=new ArrayList<>();
+        for (RegisteredEvent event:events){
+            eventsNames.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
+        }
+        return eventsNames;
+    }
+
+
+        public static List<RegisteredEvent> getAllEvents( ){
+        List<RegisteredEvent> events =new ArrayList<>();
+        for(User user:EventPlanner.getUsers()){
+            events.addAll(user.getRegisteredEvents());
         }
         return events;
     }
-    public static List<String> getServicesForServiceProvider(ServiceProvider serviceProvider){
+
+
+
+        public static List<String> getServicesForServiceProvider(ServiceProvider serviceProvider){
         List<String> events=new ArrayList<>();
         for (Service service:serviceProvider.getServices()){
             events.add(service.toString());
@@ -122,5 +141,38 @@ public class AdminControl {
         }
         if(searchResults.isEmpty())searchResults=null;
         return searchResults;
+    }
+
+    public static void addEventForUser(User user) throws EventAlreadyExist {
+        RegisteredEvent newEvent =readEventInfo();
+        user.checkEventExisting(newEvent.getEventName());
+        user.getRegisteredEvents().add(newEvent);
+        user.addToTotalCost(newEvent.getCost());
+    }
+
+    public static List<RegisteredEvent> searchEvents(String searchTerm) {
+        List<RegisteredEvent> searchResults = new ArrayList<>();
+        String searchTermLowerCase = searchTerm.toLowerCase(); // Convert search term to lowercase
+
+        for (RegisteredEvent event : AdminControl.getAllEvents()) {
+            String userNameLowerCase = event.getEventName(); // Convert event to lowercase
+            if (userNameLowerCase.contains(searchTermLowerCase)) { // Partial match check
+                searchResults.add(event);
+            }
+        }
+        if(searchResults.isEmpty())searchResults=null;
+        return searchResults;
+    }
+
+    public static void deleteEvent(RegisteredEvent event) throws ServiceNotFoundException {
+        if(event!=null){
+        for(ServiceProvider serviceProvider:event.getServiceProviders()){
+            EventsControl.deleteService(event,serviceProvider);
+        }
+            User user = EventPlanner.getUsersEventsMap().get(event);
+            user.getRegisteredEvents().remove(event);
+            EventPlanner.getUsersEventsMap().remove(event);
+        }
+
     }
 }

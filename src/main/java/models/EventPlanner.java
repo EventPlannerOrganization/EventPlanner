@@ -8,13 +8,20 @@ import enumerations.UserType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EventPlanner {
     private static final List<Person> users = new ArrayList<>();
+    private static final Map<RegisteredEvent, User> eventUserMap = new HashMap<>(); // Map to associate RegisteredEvent with User
     public static List<Person> getUsersList(){
         return users;
     }
+    public static  Map<RegisteredEvent, User>  getUsersEventsMap(){
+        return eventUserMap;
+    }
+
 
     private EventPlanner() {
     }
@@ -127,7 +134,16 @@ public class EventPlanner {
         new ContactInfo("s12199887@stu.najah.edu","0599715584")
               );
 
-      EventPlanner.addUser(user);
+        User user9 = new User(new Name("Mariam", "Mohammad", "Jamil"),
+                new Authentication("Mariam03", "123"),
+                new Address("Palestine", "Nablus"),
+                new ContactInfo("s12199887@stu.najah.edu","0599715584")
+        );
+        user9.setUsertype(UserType.ADMIN);
+        EventPlanner.addUser(user9);
+
+
+        EventPlanner.addUser(user);
       List<Service>services=new ArrayList<>();
       services.add(  new Service(ServiceType.DJ,3200,"tesing"));
       ServiceProvider serviceProvider = new ServiceProvider(new Name("mo","munir","shadid"),
@@ -182,7 +198,6 @@ public class EventPlanner {
                 new Address("Palestine", "Nablus"),
                 new ContactInfo("s12199887@stu.najah.edu","0599715584")
         );
-            user2.setUsertype(UserType.ADMIN);
             EventPlanner.addUser(user2);
 
         User user3 = new User(new Name("sam", "Mohammad", "Abu-Safieh"),
@@ -206,36 +221,48 @@ public class EventPlanner {
         emails.add("s12113028@stu.najah.edu");
         emails.add("3sfr3sfr@gmail.com");
 
-        user.getRegisteredEvents().add(new RegisteredEvent("Wedding Celebration",
+        RegisteredEvent registeredEvent5=new RegisteredEvent("Wedding Celebration",
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
-                emails));
-         localDate=LocalDate.of(2024,8,10);
+                emails);
+        user.getRegisteredEvents().add(registeredEvent5);
+        eventUserMap.put(registeredEvent5,user);
+
+        localDate=LocalDate.of(2024,8,10);
         List<String> emails1=new ArrayList<>();
         emails1.add("bahaalawneh07@gmail.com");
 
          List<ServiceProvider> prov=new ArrayList<>(serviceProviders);
-        user.getRegisteredEvents().add(new RegisteredEvent("open day1",
-                prov,localDate,
-                calculateTotalPriceForMultiProviders(serviceProviders),
-                emails1));
+         RegisteredEvent registeredEvent4=new RegisteredEvent("open day1",
+                 prov,localDate,
+                 calculateTotalPriceForMultiProviders(serviceProviders),
+                 emails1);
+        user.getRegisteredEvents().add(registeredEvent4);
+        eventUserMap.put(registeredEvent4,user);
+
         localDate=LocalDate.of(2024,4,10);
 
-        user3.getRegisteredEvents().add(new RegisteredEvent("wedding party",
+        RegisteredEvent registeredEvent3=new RegisteredEvent("wedding party",
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
-                emails));
+                emails);
+        user2.getRegisteredEvents().add(registeredEvent3);
+        eventUserMap.put(registeredEvent3,user3);
 
         List<ServiceProvider> serviceProviders22=new ArrayList<>();
         serviceProviders.add(serviceProvider3);
-        user3.getRegisteredEvents().add(new RegisteredEvent("Birthday Bash",
+        RegisteredEvent registeredEvent2=new RegisteredEvent("Birthday Bash",
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
-                emails));
-        user3.getRegisteredEvents().add(new RegisteredEvent("Food Festival",
+                emails);
+        user3.getRegisteredEvents().add(registeredEvent2);
+        eventUserMap.put(registeredEvent2,user3);
+        RegisteredEvent registeredEvent1=new RegisteredEvent("Food Festival",
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
-                emails));
+                emails);
+        user3.getRegisteredEvents().add(registeredEvent1);
+        eventUserMap.put(registeredEvent1,user3);
         localDate=LocalDate.of(2024,8,10);
 
         RegisteredEvent registeredEvent=new RegisteredEvent("wedding party",
@@ -247,6 +274,7 @@ public class EventPlanner {
         }
         registeredEvent.setLocation("jerusalem");
         user4.getRegisteredEvents().add(registeredEvent);
+        eventUserMap.put(registeredEvent,user4);
 
     }
 

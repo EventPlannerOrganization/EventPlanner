@@ -201,7 +201,7 @@ public class ServiceProviderView {
         ServiceProviderView.showServices(serviceProvider);
         String choice = scanner.nextLine();
         try {
-            choice = ChoiceChecker.checkPackageProviderServiceChooice(serviceProvider, choice);
+            choice = ChoiceChecker.checkPackageProviderServiceChoice(serviceProvider, choice);
             ch = Integer.parseInt(choice);
             changeServicePrice(serviceProvider.getServices().get(ch - 1));
         } catch (GoToMainMenuException e) {
@@ -215,7 +215,7 @@ public class ServiceProviderView {
         ServiceProviderView.showServices(serviceProvider);
         String choice = scanner.nextLine();
         try {
-            choice = ChoiceChecker.checkPackageProviderServiceChooice(serviceProvider, choice);
+            choice = ChoiceChecker.checkPackageProviderServiceChoice(serviceProvider, choice);
             ch = Integer.parseInt(choice);
             changeServiceDescription(serviceProvider.getServices().get(ch - 1));
         } catch (GoToMainMenuException e) {
@@ -258,12 +258,12 @@ public class ServiceProviderView {
         String choice = scanner.nextLine();
 
 
-        while ((!ChoiceChecker.editServiceMenuCheck(choice)) || (ChoiceChecker.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
+        while ((!ChoiceChecker.editServiceMenuCheck(choice)) || (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
 
             if (!ChoiceChecker.editServiceMenuCheck(choice)) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
-            } else if (ChoiceChecker.checkIfitsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
+            } else if (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
                 logger.info("this is your current Service ! , Choose Another Service or Back !");
                 choice = scanner.nextLine();
             }
@@ -336,7 +336,7 @@ public class ServiceProviderView {
             MenusPrinter.printServicesMenu();
             logger.info("Select Service :\n");
             String choice = scanner.nextLine();
-            choice = ChoiceChecker.checkPackageProviderAddingProccess(serviceList, choice);
+            choice = ChoiceChecker.checkPackageProviderAddingProcess(serviceList, choice);
             if (choice.equalsIgnoreCase("B")) {
                 return serviceList;
             }

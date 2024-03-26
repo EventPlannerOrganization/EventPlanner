@@ -1,10 +1,10 @@
 
 ]
-java:S1854"@Remove this useless assignment to local variable "emailService".(±Æ¨œ8ü•ææ1
+java:S1854"@Remove this useless assignment to local variable "emailService".(±Æ¨œ8Ö£•”ç1
 “
-java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ÄŠÊ8ş•ææ1
+java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ÄŠÊ8Ø£•”ç1
 N
-java:S1481"1Remove this unused "emailService" local variable.(±Æ¨œ8ƒ–ææ1
-]	java:S125"<This block of commented-out lines of code should be removed.(ŠÀÀùÿÿÿÿ8ƒ–ææ1
+java:S1481"1Remove this unused "emailService" local variable.(±Æ¨œ8á£•”ç1
+]	java:S125"<This block of commented-out lines of code should be removed.(ŠÀÀùÿÿÿÿ8á£•”ç1
 \
-java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8ˆ–ææ1
+java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8å£•”ç1
