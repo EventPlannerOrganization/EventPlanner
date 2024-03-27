@@ -245,9 +245,10 @@ public class EventPlanner {
         eventUserMap.put(registeredEvent4,user);
 
         localDate=LocalDate.of(2024,4,10);
+        List<ServiceProvider> prov1=new ArrayList<>(serviceProviders);
 
         RegisteredEvent registeredEvent3=new RegisteredEvent("wedding party",
-                serviceProviders,localDate,
+                prov1,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
         user2.getRegisteredEvents().add(registeredEvent3);
@@ -256,21 +257,25 @@ public class EventPlanner {
         List<ServiceProvider> serviceProviders22=new ArrayList<>();
         serviceProviders.add(serviceProvider3);
         RegisteredEvent registeredEvent2=new RegisteredEvent("Birthday Bash",
-                serviceProviders,localDate,
+                serviceProviders22,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
                 emails);
+
         user3.getRegisteredEvents().add(registeredEvent2);
         eventUserMap.put(registeredEvent2,user3);
+        List<ServiceProvider> prov2=new ArrayList<>(serviceProviders);
+
         RegisteredEvent registeredEvent1=new RegisteredEvent("Food Festival",
-                serviceProviders,localDate,
+                prov2,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
                 emails);
         user3.getRegisteredEvents().add(registeredEvent1);
         eventUserMap.put(registeredEvent1,user3);
         localDate=LocalDate.of(2024,8,10);
+        List<ServiceProvider> prov3=new ArrayList<>(serviceProviders);
 
         RegisteredEvent registeredEvent=new RegisteredEvent("wedding party",
-                serviceProviders,localDate,
+                prov3,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
         for(ServiceProvider element:serviceProviders){

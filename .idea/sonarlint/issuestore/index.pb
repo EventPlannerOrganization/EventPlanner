@@ -1,21 +1,11 @@
 
-ù
-msrc/test/java/testControllers/AdminServiceProviderManagement/TestRunnerForAdminServiceProviderManagement.java,2\a\2a9673eaa154db94ea69069abd2d3e6e1d064a03
-l
-<src/test/java/testControllers/authentication/TestSignUp.java,5\4\545f8f31d5025ad761ed09064c911fe3cc788c10
-_
-/src/test/features/authentication/SignUp.feature,8\4\8483701b33c80dd33e8930ee60fd00a46eea8e54
-U
-%src/main/java/controllers/SignUp.java,6\9\69abe9c9b4bb9983c22f528ce7bcbed4714e5f0b
-P
- src/main/java/models/Person.java,4\7\479de81afd9a8cc58e5275bb43b6459a4e7d8f3b
-c
-3src/main/java/Exceptions/GoToMainMenuException.java,4\e\4ea82980cbf1df4eafc58bfbb497674d1b92167f
-h
-8src/main/java/Exceptions/AlreadyBookedDateException.java,7\0\7031de1c708265ac4d0af38aa2c72da7f54163e4
-\
-,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 V
 &src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
-f
-6src/test/features/authentication/resetPassword.feature,9\8\98b4d209195622279352e597aa9ef24d791534d4
+o
+?src/test/java/testControllers/Event/TestAddServicesToEvent.java,0\a\0a4bcb795d00c296f506a8e67c8f1dc53726b9e8
+c
+3src/test/features/Event/AddServicesForEvent.feature,0\f\0f647a4963cbcef551cf94279983471ec1aceab5
+e
+5src/test/java/testControllers/Event/TestAddEvent.java,1\f\1f77dd77f6061c280e8c050ac1ec84feb37b5ba1
+k
+;src/test/java/testControllers/authentication/TestLogin.java,8\d\8d427bf7e17cbd01fb9f07992f801e63a4b57371
