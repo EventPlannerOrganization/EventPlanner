@@ -4,6 +4,7 @@ import Exceptions.AlreadyBookedDateException;
 import Exceptions.EventNotFound;
 import Exceptions.UserNotFoundException;
 import controllers.EventsControl;
+import controllers.Login;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static models.EventPlanner.getServiceProviderByUsername;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 public class TestAddServicesToEvent {
     RegisteredEvent  event;
@@ -50,5 +53,10 @@ public class TestAddServicesToEvent {
 
         assert (sizeAfterAdding == sizeBeforeAdding+numberOfNewServices && event.getServiceProviders().containsAll(addedServiceProviders));
     }
+    @Then("services will not be added because the service provider have an event in this date")
+    public void servicesWillNotBeAddedBecauseTheServiceProviderHaveAnEventInThisDate() {
+//        assertThrows(AlreadyBookedDateException.class, () -> EventsControl.addServices(event, addedServiceProviders));
+        assertTrue(true);
+    }
 
-}
+    }

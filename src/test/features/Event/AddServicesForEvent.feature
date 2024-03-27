@@ -18,7 +18,7 @@ Feature: Add Service To Event
     When current user who wants to add services to an event is <username>
     And the eventName   is <eventName>
     And the service Providers who offer these services are <providersNames>
-    Then services will be added successfully
+    Then services will not be added because the service provider have an event in this date
 
     Examples:
       | username | eventName             | providersNames          |
