@@ -15,3 +15,7 @@ h
 8src/main/java/Exceptions/AlreadyBookedDateException.java,7\0\7031de1c708265ac4d0af38aa2c72da7f54163e4
 \
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+V
+&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
+f
+6src/test/features/authentication/resetPassword.feature,9\8\98b4d209195622279352e597aa9ef24d791534d4
