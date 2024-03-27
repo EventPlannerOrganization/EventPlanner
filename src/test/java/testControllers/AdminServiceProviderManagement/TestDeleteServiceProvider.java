@@ -31,15 +31,15 @@ public class TestDeleteServiceProvider {
 
     @Then("Service Provider will be deleted successfully")
     public void serviceProviderWillBeDeletedSuccessfully() throws UserNotFoundException, EmptyList, ServiceNotFoundException {
-//        List<ServiceProvider> serviceProviderbeforeDeleteing = EventPlanner.getServiceProviders();
-//        ServiceProvider deletedUser =(ServiceProvider)EventPlanner.getServiceProviderByUsername(deletedUsername);
-//        AdminControl.deleteServiceProvider(deletedUser);
-//        List<ServiceProvider> serviceProviderAfterDeleteing = EventPlanner.getServiceProviders();
-//        boolean condition=(serviceProviderbeforeDeleteing.contains(deletedUser)
-//                &&!serviceProviderAfterDeleteing.contains(deletedUser)
-//                &&serviceProviderbeforeDeleteing.size()==serviceProviderAfterDeleteing.size()+1
-//        );
-//        assert (condition);
+        List<ServiceProvider> serviceProviderbeforeDeleteing = EventPlanner.getServiceProviders();
+        ServiceProvider deletedUser =(ServiceProvider)EventPlanner.getServiceProviderByUsername(deletedUsername);
+        AdminControl.deleteServiceProvider(deletedUser);
+        List<ServiceProvider> serviceProviderAfterDeleteing = EventPlanner.getServiceProviders();
+        boolean condition=(serviceProviderbeforeDeleteing.contains(deletedUser)
+                &&!serviceProviderAfterDeleteing.contains(deletedUser)
+                &&serviceProviderbeforeDeleteing.size()==serviceProviderAfterDeleteing.size()+1
+        );
+        assert (condition);
     }
 
 }
