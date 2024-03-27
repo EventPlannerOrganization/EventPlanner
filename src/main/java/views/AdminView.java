@@ -59,7 +59,7 @@ public class AdminView {
                     break;
                 case "5":
                     flage = false;
-                    EventPlanner.signout();
+                    AdminControl.signout();
                     break;
                 default:
                     // code block
