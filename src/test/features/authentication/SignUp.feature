@@ -11,6 +11,16 @@ Feature: Sign Up
       | 'BahaAlawneh1'     | 'Bahaaa123$'    | 'Bahaa'     | 'khaled'   | 'Alawneh'   | 'bahaalawneh@gmail.com'    | '0594371093' | 'palestine' | 'jenin'    |
       | 'naserabusafieh1'  | 'Naser1230$$'   | 'Naserr'    | 'mohammed' | 'abusafieh' | 'naserabusafieh@gmail.com' | '0593878342' | 'palestine' | 'nablus'   |
       | 'mohammmedshadid1' | 'Mohammed4321$' | 'Mohammmed' | 'Munir'    | 'Shadid'    | 'Mohammedshadid@gmail.com' | '0593456982' | 'palestine' | 'tulkarem' |
+  Scenario Outline:Sign Up User fail and User Is Already Exist Exception will be thrown
+    When Authentication is <username> <password>
+    And Name is <firstName> <middleName> <lastName>
+    And ContactInfo is <email> <phoneNumber>
+    And Address is <country> <city>
+    Then User sign up will fail because the user is already exist
+    Examples:
+      | username          | password        | firstName  | middleName | lastName    | email                      | phoneNumber  | country     | city       |
+      | 'BahaAlawneh1'     | 'Bahaaa123$'    | 'Bahaa'     | 'khaled'   | 'Alawneh'   | 'bahaalawneh@gmail.com'    | '0594371093' | 'palestine' | 'jenin'    |
+      | 'naserabusafieh1'  | 'Naser1230$$'   | 'Naserr'    | 'mohammed' | 'abusafieh' | 'naserabusafieh@gmail.com' | '0593878342' | 'palestine' | 'nablus'   |
 
   Scenario Outline:Sign Up Service Provider successfully
     When Authentication is <username> <password>

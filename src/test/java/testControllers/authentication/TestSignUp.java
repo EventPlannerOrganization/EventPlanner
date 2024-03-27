@@ -67,7 +67,11 @@ public class TestSignUp {
     public void userSignUpFailsBecauseOfWeakPassword() {
         assertThrows(WeakPasswordException.class,()->SignUp.signUpUser(this.name,this.address,this.authentication,this.contactInfo));
     }
+    @Then("User sign up will fail because the user is already exist")
+    public void userSignUpWillFailBecauseTheUserIsAlreadyExist() throws UserIsAlreadyExist, WeakPasswordException {
+        assertThrows(UserIsAlreadyExist.class,()->EventPlanner.addUser(new User(this.name,this.authentication,this.address,this.contactInfo)));
 
+    }
 
 
 }
