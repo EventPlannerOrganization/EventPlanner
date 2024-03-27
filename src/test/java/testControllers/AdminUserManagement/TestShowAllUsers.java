@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static controllers.AdminControl.getAllUsers;
 import static helpers.PasswordChecker.listsContainSameElements;
-
 public class TestShowAllUsers {
-
     @Then("there is no users to print")
     public void thereIsNoUsersToPrint() {
         // Write code here that turns the phrase above into concrete actions

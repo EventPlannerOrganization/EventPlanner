@@ -13,18 +13,14 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class UserControl {
-    private UserControl(){
+    private UserControl() {
 
     }
+
     public static void sendRequestToServiceProvider(ServiceProvider serviceProvider, LocalDate date, RegisteredEvent event) throws IOException, MessagingException {
-        String message="hi "+serviceProvider.getName().getfName()+", you have a request from "+EventPlanner.getCurrentUser().getName()+"to have your service in his event "+"\nat: "+date;
-        serviceProvider.addRequest(new Request(EventPlanner.getCurrentUser().getContactInfo().getEmail(),serviceProvider.getContactInfo().getEmail(),message,event));
-        EmailService emailService=new EmailService();
+        String message = "hi " + serviceProvider.getName().getfName() + ", you have a request from " + EventPlanner.getCurrentUser().getName() + "to have your service in his event " + "\nat: " + date;
+        serviceProvider.addRequest(new Request(EventPlanner.getCurrentUser().getContactInfo().getEmail(), serviceProvider.getContactInfo().getEmail(), message, event));
+        EmailService emailService = new EmailService();
 //        emailService.sendEmail(serviceProvider.getContactInfo().getEmail(),"request-body");
-    }
-    public  static void sendInvitaionToGuests(RegisteredEvent registeredEvent) throws MessagingException, IOException, EmptyList {
-        EmailService emailService=new EmailService();
-        emailService.sendEventInvitations(registeredEvent);
-
     }
 }

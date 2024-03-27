@@ -45,10 +45,6 @@ public class EventsControl {
         event.setLocation(newLocation);
     }
 
-    public static void editEventDate(RegisteredEvent event, String newDate) {
-        event.setDate(LocalDate.parse(newDate));
-    }
-
     public static void deleteService(RegisteredEvent event, ServiceProvider service) throws ServiceNotFoundException {
         event.checkServiceProviderExisting(service);
         event.getServiceProviders().remove(service);
