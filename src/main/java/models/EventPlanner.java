@@ -260,6 +260,7 @@ public class EventPlanner {
                 serviceProviders22,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
                 emails);
+
         user3.getRegisteredEvents().add(registeredEvent2);
         eventUserMap.put(registeredEvent2,user3);
         List<ServiceProvider> prov2=new ArrayList<>(serviceProviders);
