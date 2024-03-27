@@ -1,10 +1,3 @@
 
-<<<<<<< HEAD
-W
-java:S1128"5Remove this unused import 'enumerations.ServiceType'.(§ŒÏ‡ıÿÿÿÿ8±ê¬èæ1
 S
-java:S1128"6Remove this unused import 'views.ServiceProviderView'.(Âó½8³ê¬èæ1
-=======
-S
-java:S1128"6Remove this unused import 'views.ServiceProviderView'.(Âó½8ŞíŸææ1
->>>>>>> 6e125bc856db6117c004a497dc816b5914108f7d
+java:S1128"6Remove this unused import 'views.ServiceProviderView'.(Âó½8ıß¡éç1

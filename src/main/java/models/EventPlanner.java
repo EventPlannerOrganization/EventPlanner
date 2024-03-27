@@ -92,6 +92,9 @@ public class EventPlanner {
         EventPlanner.currentUser = currentUser;
 
     }
+    public static void signout() {
+        EventPlanner.setCurrentUser(null);
+    }
 
     public  static  List<ServiceProvider> getServiceProviders()  {
         List<Person> result = users.stream().filter(user -> ServiceProvider.class.isAssignableFrom(user.getClass())).toList();
@@ -231,6 +234,7 @@ public class EventPlanner {
         localDate=LocalDate.of(2024,8,10);
         List<String> emails1=new ArrayList<>();
         emails1.add("bahaalawneh07@gmail.com");
+        emails1.add("s12112925@gmail.com");
 
          List<ServiceProvider> prov=new ArrayList<>(serviceProviders);
          RegisteredEvent registeredEvent4=new RegisteredEvent("open day1",

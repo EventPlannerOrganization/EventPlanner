@@ -60,7 +60,10 @@ public class TestAddEvent {
         newEvent = new RegisteredEvent(string2,
                 convertStringToDate(string),
                 EventPlanner.calculateTotalPriceForMultiProviders(serviceProviders)
-                , emails);
+                ,emails);
+        List <String> emails2=new ArrayList<>();
+        emails2.add("bahaalawneh07@yahoo.com");
+        EventsControl.addNewGuests(newEvent,emails2);
         UserControl.sendRequestToServiceProvider(list.get(0), newEvent.getDate(), newEvent);
         UserControl.sendRequestToServiceProvider(list.get(1), newEvent.getDate(), newEvent);
 
@@ -74,8 +77,11 @@ public class TestAddEvent {
         EventsControl.addEvent(newEvent.getDate(), newEvent.getEventName()
                 , newEvent.getCost()
                 , newEvent.getGuestsEmails());
+        String email="bahaalawneh07@yahoo.com";
+        assert newEvent.getGuestsEmails().contains(email);
         assert (newEvent.getServiceProviders().get(0).equals(list.get(0)));
         assert (newEvent.getServiceProviders().get(1).equals(list.get(1)));
+
         int sizeAfterAdding = currentUser.getRegisteredEvents().size();
         assert (sizeAfterAdding == sizeBeforeAdding + 1 && currentUser.isThisEventExist(newEvent.getEventName()) && !existingBeforeAdding);
 
