@@ -31,7 +31,7 @@ public class TestShowRegisterdEventsForUser {
        List<String> actual= AdminControl.getEventsForUser(user);
        for (int i = 0; i<actual.size();i++){
            assert (actual.get(i).contains(expectedEventsName.get(i)));
-           assert (actual.get(i).contains(expectedEventsName.get(i)));
+           assert (actual.get(i).contains(expectedEventsDates.get(i)));
 
        }
 
