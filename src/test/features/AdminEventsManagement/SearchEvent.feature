@@ -1,6 +1,6 @@
 Feature: Search event by searchTerm
   Background: testing now
-
+    Given Data Base is already filled
     Scenario Outline: there is search result for the entered searchTerm
       When the entered searchTerm is <searchTerm>
       And there is related events with searchTerm with name <searchEventResult> and date <searchEventDate>
@@ -12,7 +12,7 @@ Feature: Search event by searchTerm
         | 'we'       | 'wedding party,wedding party' | '2024-04-10,2024-08-10' |
 
 
-  Scenario Outline: there is search result for the entered searchTerm
+  Scenario Outline: there is no matches result
     When the entered searchTerm is <searchTerm>
     Then there is no results match the searchTerm
     Examples:

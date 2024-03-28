@@ -51,3 +51,7 @@ k
 ;src/test/features/AdminEventsManagement/DeleteEvent.feature,2\2\2246e84300ea22ee2a5f5a047b7166730a826f15
 Y
 )src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+x
+Hsrc/test/java/testControllers/AdminEventsManagement/TestDeleteEvent.java,d\0\d085aaeb4319087985aeed800a084fc1ac9a615b
+r
+Bsrc/test/features/AdminUserManagement/SearchUserByUserName.feature,3\f\3f99bfe3f106b407346efed79ab68bfc63ffea79
