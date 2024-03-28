@@ -5,6 +5,8 @@ import Exceptions.EmptyList;
 import Exceptions.EventAlreadyExist;
 import Exceptions.ServiceNotFoundException;
 import models.*;
+
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -167,15 +169,36 @@ public class AdminControl {
         return searchResults;
     }
 
-    public static void deleteEvent(RegisteredEvent event) throws ServiceNotFoundException {
+    public static void deleteEvent(RegisteredEvent event) {
         if(event!=null){
-        for(ServiceProvider serviceProvider:event.getServiceProviders()){
-            EventsControl.deleteService(event,serviceProvider);
-        }
-            User user = EventPlanner.getUsersEventsMap().get(event);
+        List<ServiceProvider> serviceProviders=event.getServiceProviders();
+        int x=serviceProviders.size();
+            for (int i=0;i<x;i++) {
+               try {
+                   EventsControl.deleteService(event, serviceProviders.get(0));
+               }
+
+               catch (ServiceNotFoundException e){
+                   e.printStackTrace();
+                   System.out.println("svfsssssssssss");
+               }
+            }
+
+            User user =getUserOfEvent(event);
             user.getRegisteredEvents().remove(event);
-            EventPlanner.getUsersEventsMap().remove(event);
+            EventPlanner.getUsersEventsMap().remove(event);}
+
         }
 
-    }
-}
+
+
+
+    private static User getUserOfEvent(RegisteredEvent event){
+    List<User> allUsers=EventPlanner.getUsers();
+        for(User user:allUsers){
+            for(RegisteredEvent element:user.getRegisteredEvents()){
+                if (event==element)return user;
+            }
+        }
+        return null;
+    }}

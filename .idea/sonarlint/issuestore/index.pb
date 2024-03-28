@@ -47,3 +47,7 @@ N
 src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
 x
 Hsrc/test/java/testControllers/AdminEventsManagement/TestSearchEvent.java,2\c\2c284314e6dde4cc09d14bf1809c07c548f9e466
+k
+;src/test/features/AdminEventsManagement/DeleteEvent.feature,2\2\2246e84300ea22ee2a5f5a047b7166730a826f15
+Y
+)src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354

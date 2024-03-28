@@ -507,7 +507,8 @@ public class AdminView {
             AdminControl.deleteEvent(event);
         }
         catch (Exception e){
-
+            e.printStackTrace();
+            System.out.println("elfvnfevervnerivneriov555555555");
         }
     }
 

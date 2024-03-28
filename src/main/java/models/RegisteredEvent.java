@@ -91,12 +91,17 @@ public class RegisteredEvent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RegisteredEvent that = (RegisteredEvent) o;
-        return Double.compare(cost, that.cost) == 0 && Objects.equals(eventName, that.eventName) && Objects.equals(location, that.location) && Objects.equals(serviceProviders, that.serviceProviders) && Objects.equals(date, that.date) && Objects.equals(guestsEmails, that.guestsEmails);
+        return Double.compare(cost, that.cost) == 0 &&
+                Objects.equals(eventName, that.eventName) &&
+                Objects.equals(location, that.location) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(guestsEmails, that.guestsEmails);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventName, location, serviceProviders, date, cost, guestsEmails);
+        return Objects.hash(eventName, location, date, cost, guestsEmails);
     }
 
     @Override
