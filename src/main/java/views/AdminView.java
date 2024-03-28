@@ -514,9 +514,13 @@ public class AdminView {
     private static void searchEvent() {
             logger.info("Please enter event name to search");
             String eventName = scanner.nextLine();
-            List<String> searchResult =AdminControl.getEventNameOfUsers(AdminControl.searchEvents(eventName));
+            List<RegisteredEvent> events=AdminControl.searchEvents(eventName);
+            List<String> searchResult=new ArrayList<>();
+            if(events!=null)
+                searchResult=AdminControl.getEventNameOfUsers(events);
             if(searchResult.isEmpty()){
-                logger.info("Sorry, no events were found matching your search criteria.");
+                logger.info("Sorry, no events were found matching your search criteria.\n");
+                backTouserManagementMenu();
                 return;
             }
             MenusPrinter.printListOfStrings(searchResult);
