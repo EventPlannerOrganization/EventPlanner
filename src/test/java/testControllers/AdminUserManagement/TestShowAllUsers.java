@@ -26,7 +26,7 @@ public class TestShowAllUsers {
     @Then("printAllUsers")
     public void printAllUsers() {
         // Write code here that turns the phrase above into concrete actions
-        List<String> expectedOuput = new ArrayList<>(List.of(new String[]{"Naser", "khalid", "Karim", "Nassar"}));
+        List<String> expectedOuput = new ArrayList<>(List.of(new String[]{"Naser", "khalid", "Karim", "Nassar","ramii"}));
         List<String> actualOutput =getAllUsers();
         assert(listsContainSameElements(expectedOuput,actualOutput));
     }

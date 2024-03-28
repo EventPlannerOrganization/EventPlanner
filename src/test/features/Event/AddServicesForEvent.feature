@@ -22,5 +22,4 @@ Feature: Add Service To Event
 
     Examples:
       | username | eventName             | providersNames          |
-      | 'khalid' | 'wedding party'       | 'Ibrahim160','saleem04' |
-      | 'Naser'  | 'Wedding Celebration' | 'Ibrahim160','saleem04' |
+      | 'khalid'  | 'wedding party' | 'mohammad03','hamid02' |
