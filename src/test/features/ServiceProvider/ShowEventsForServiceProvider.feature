@@ -13,3 +13,9 @@ Feature: Show Events For Service Provider And Package Provider
     Examples:
     |username|
     |"moshadid"|
+  Scenario Outline: there is no event for service provider
+    When Service Provider how's want to Show upcoming Events is <username>
+    Then empty list exception will be thrown
+    Examples:
+      |username|
+      |"osamah"|

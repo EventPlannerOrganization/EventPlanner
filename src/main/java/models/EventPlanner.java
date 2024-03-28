@@ -303,6 +303,7 @@ user5.getRegisteredEvents().add(registeredEvent6);
         for(ServiceProvider element:serviceProviderList){
             element.getBookedDates().add(localDate);
         }
+
     }
 
      public static List<ServiceProvider> getServiceProvidersNotBookedinThisDate(LocalDate date) {
@@ -362,6 +363,11 @@ user5.getRegisteredEvents().add(registeredEvent6);
         LocalDate localDate3=LocalDate.of(2023,9,12);
         RegisteredEvent registeredEvent3 = new RegisteredEvent("Party",serviceProviderList,localDate3,1400,emails);
         user3.getRegisteredEvents().add(registeredEvent3);
+        ServiceProvider serviceProvider7 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
+                new Authentication("osamah","bbaa12"),new Address("palestine","tulkarm"),
+                new ContactInfo("osamah@gmail.com","9412412"),
+                serviceList);
+        EventPlanner.addUser(serviceProvider7);
 
     }
 }
