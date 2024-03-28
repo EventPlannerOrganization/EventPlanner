@@ -1,8 +1,6 @@
 
 V
 &src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
-|
-Lsrc/test/features/AdminServiceProviderManagement/ShowServiceProviderServices,d\2\d22d34ebdca9189e9f2b96cac432e08108a79c78
 à
 Xsrc/test/features/AdminServiceProviderManagement/SearchServiceProviderByUserName.feature,c\c\cc448dc265df2e25e2617a880361b9c17d99290d
 Ñ
@@ -45,8 +43,6 @@ f
 +src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
 U
 %src/main/java/views/StartingView.java,f\3\f37cc30da36ad676b46320eb4b5c775d45809871
-Å
-Qsrc/test/features/AdminServiceProviderManagement/ShowBookedDateForServiceProvider,5\6\563b6ac92ced03e7597264e41b7337c6d1c74766
 â
 Ysrc/test/features/AdminServiceProviderManagement/ShowBookedDateForServiceProvider.feature,5\1\510f1c07c8d2860085a472bb86f582c133eb00c1
 í
@@ -69,8 +65,6 @@ l
 <src/test/java/testControllers/authentication/TestSignUp.java,5\4\545f8f31d5025ad761ed09064c911fe3cc788c10
 R
 "src/main/java/views/AdminView.java,1\6\16ef284199890c28cc9f7bf4070df72414a26421
-k
-;src/test/features/AdminUserManagement/ResetPasswordForAUser,1\8\18bc4fb71bfb61690fb293ed846750ce14a55b56
 r
 Bsrc/test/features/AdminUserManagement/ResetPasswordForUser.feature,0\2\027f659f4e41c878ea8a55ced291c82e842a6b0f
 f
@@ -97,3 +91,5 @@ T
 $src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
 Z
 *src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
+v
+Fsrc/test/features/ServiceProvider/ShowEventsForServiceProvider.feature,8\e\8efd1cc195ef19e1924a51e7497ca7d1678b60f4

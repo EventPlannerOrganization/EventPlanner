@@ -19,9 +19,7 @@ public class AdminControl {
     private AdminControl() {
     }
 
-    public static void  signout(){
-        EventPlanner.setCurrentUser(null);
-    }
+
 
     public static List<String> getAllUsers(){
             return getUserNameOfUsers(EventPlanner.getUsers());
@@ -31,11 +29,10 @@ public class AdminControl {
     }
 
     public static List<String> getEventsForUser(User user){
-        List<String> events;
         List<RegisteredEvent> sortedEvents = user.getRegisteredEvents().stream()
                 .sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
 
-        events=getEventNameOfUsers(sortedEvents);
+        List<String>events=getEventNameOfUsers(sortedEvents);
         return events;
     }
 
