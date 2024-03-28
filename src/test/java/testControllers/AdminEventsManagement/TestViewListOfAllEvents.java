@@ -33,8 +33,8 @@ public class TestViewListOfAllEvents {
     @Then("list of all events and their dates will print")
     public void listOfAllEventsAndTheirDatesWillPrint() {
         // Write code here that turns the phrase above into concrete actions
-        String []names={"wedding party","Birthday Bash","Food Festival","open day1","wedding party","Wedding Celebration"};
-        String [] dates={"2024-04-10","2024-04-10","2024-04-10","2024-08-10","2024-08-10","2024-09-10",};
+        String []names={"wedding party","Birthday Bash","Food Festival","open day1","wedding party","Wedding Celebration","Bash"};
+        String [] dates={"2024-04-10","2024-04-10","2024-04-10","2024-08-10","2024-08-10","2024-09-10","2024-04-10"};
         List<String> expectedOutput=new ArrayList<>();
         for(int i=0;i<names.length;i++){
             expectedOutput.add(mergeTwoStrings(names[i],dates[i]));

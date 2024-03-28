@@ -3,6 +3,7 @@ package testControllers.ServiceProvider;
 import Exceptions.EmptyList;
 import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
+import controllers.Login;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import io.cucumber.java.en.Given;
@@ -117,6 +118,10 @@ EventPlanner.initializeRepositoryWithDataForTesting();
         assertEquals(actualEvents.get(0),registeredEvent);
         assertEquals(actualEvents.get(1),registeredEvent2);
 
+    }
+    @Then("empty list exception will be thrown")
+    public void emptyListExceptionWillBeThrown() {
+        assertThrows(EmptyList.class,() ->ServiceProviderControl.getServiceProviderEvents(serviceProvider1) );
     }
 
 }
