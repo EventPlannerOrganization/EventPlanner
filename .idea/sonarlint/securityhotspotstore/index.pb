@@ -39,3 +39,11 @@ n
 Ksrc/test/java/testControllers/AdminEventsManagement/TestCreateNewEvent.java,5\f\5fbf4585b12b3c62486f8ad7471f5798d5eab3c3
 e
 5src/test/java/testControllers/Event/TestAddEvent.java,1\f\1f77dd77f6061c280e8c050ac1ec84feb37b5ba1
+k
+;src/test/features/AdminEventsManagement/SearchEvent.feature,0\8\08d9498e8d3ad040d1c1fbc6e70ead194a656d09
+Z
+*src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
+N
+src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
+x
+Hsrc/test/java/testControllers/AdminEventsManagement/TestSearchEvent.java,2\c\2c284314e6dde4cc09d14bf1809c07c548f9e466
