@@ -41,3 +41,7 @@ c
 3src/main/java/Exceptions/GoToMainMenuException.java,4\e\4ea82980cbf1df4eafc58bfbb497674d1b92167f
 X
 (src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
+N
+src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
+Z
+*src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
