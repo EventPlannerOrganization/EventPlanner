@@ -29,16 +29,22 @@ public class AdminControl {
     }
 
     public static List<String> getEventsForUser(User user){
+<<<<<<< HEAD
         List<RegisteredEvent> sortedEvents = user.getRegisteredEvents().stream()
                 .sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
 
         List<String>events=getEventNameOfUsers(sortedEvents);
+=======
+        List<String> events;
+        events=getEventNameOfUsers(user.getRegisteredEvents());
+>>>>>>> 313f6954061d2ae0bda8bf0e0b6931661a9b49d0
         return events;
     }
 
     public static List<String> getEventNameOfUsers(List <RegisteredEvent> events){
         List<String> eventsNames=new ArrayList<>();
-        for (RegisteredEvent event:events){
+        List<RegisteredEvent> sortedEvents = sortListOfEvents(events);
+        for (RegisteredEvent event:sortedEvents){
             eventsNames.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
         }
         return eventsNames;
@@ -50,10 +56,17 @@ public class AdminControl {
         for(User user:EventPlanner.getUsers()){
             events.addAll(user.getRegisteredEvents());
         }
-        return events;
+
+        return sortListOfEvents(events);
     }
 
+        public static List<String> getAllEventsNames(){
+        return getEventNameOfUsers(getAllEvents());
+        }
 
+        public static List <RegisteredEvent> sortListOfEvents(List <RegisteredEvent> events){
+            return events.stream().sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
+    }
 
         public static List<String> getServicesForServiceProvider(ServiceProvider serviceProvider){
         List<String> events=new ArrayList<>();

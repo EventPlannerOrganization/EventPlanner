@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static controllers.AdminControl.getEventsForUser;
+import static controllers.AdminControl.*;
 import static views.EventsView.editingEventView;
 
 public class AdminView {
@@ -526,7 +526,7 @@ public class AdminView {
     private static void showSchedule() {
         logger.info("Please enter the year for which you want to view the events: ");
         int year = scanner.nextInt();
-        List<RegisteredEvent> events=AdminControl.getAllEvents();
+        List<RegisteredEvent> events= getAllEvents();
         MenusPrinter.printSchedule(year, events);
         backTouserManagementMenu();
     }
@@ -558,11 +558,12 @@ public class AdminView {
     }
 
     private static void viewAllEvents() {
-        List<String> events=new ArrayList<>();
-        for(User user:EventPlanner.getUsers()){
-        events.addAll(getEventsForUser(user));
-        }
-        MenusPrinter.printListOfStrings(events);
+        List<String> allEventsNames=getAllEventsNames();
+        if(!allEventsNames.isEmpty()){
+            MenusPrinter.printListOfStrings(allEventsNames);}
+        else
+            logger.info("Sorry, system does not have enents.");
+
         backTouserManagementMenu();
 
     }
@@ -584,7 +585,7 @@ public class AdminView {
         }
 
         else if (choice.equals("3"))
-            events=AdminControl.getAllEvents();
+            events= getAllEvents();
         else
             events=null;
         if (events == null){
