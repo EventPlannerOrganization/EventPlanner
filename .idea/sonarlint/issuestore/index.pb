@@ -31,3 +31,11 @@ msrc/test/java/testControllers/AdminServiceProviderManagement/TestRunnerForAdmin
 [src/test/java/testControllers/AdminEventsManagement/TestRunnerForAdminEventsManagement.java,5\e\5e94128c1e0798e9a7bc481736f17ca387428bbf
 Z
 *src/main/java/helpers/PasswordChecker.java,7\e\7e831ad7c59983fd34146cfc1079070079d33602
+n
+>src/test/features/AdminEventsManagement/CreateNewEvent.feature,9\a\9a7929f8c1b2da5a3d7903d377cc658b3203cd3c
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+{
+Ksrc/test/java/testControllers/AdminEventsManagement/TestCreateNewEvent.java,5\f\5fbf4585b12b3c62486f8ad7471f5798d5eab3c3
+e
+5src/test/java/testControllers/Event/TestAddEvent.java,1\f\1f77dd77f6061c280e8c050ac1ec84feb37b5ba1

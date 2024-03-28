@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 
 import static controllers.AdminControl.*;
 import static views.EventsView.editingEventView;
+import static views.EventsView.readEventInfo;
 
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
@@ -546,7 +547,8 @@ public class AdminView {
             else {
                 reTry=false;
                 try {
-                    AdminControl.addEventForUser(user);
+                    RegisteredEvent newEvent=readEventInfo();
+                    AdminControl.addEventForUser(user,newEvent);
                 }
                 catch (EventAlreadyExist e){
                     logger.info("sorry, There is an event with the same name ");

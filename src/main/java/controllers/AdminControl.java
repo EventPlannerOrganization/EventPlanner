@@ -7,12 +7,10 @@ import Exceptions.ServiceNotFoundException;
 import models.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
 import static helpers.PasswordChecker.mergeTwoStrings;
-import static views.EventsView.readEventInfo;
 
 
 public class AdminControl {
@@ -149,8 +147,7 @@ public class AdminControl {
         return searchResults;
     }
 
-    public static void addEventForUser(User user) throws EventAlreadyExist {
-        RegisteredEvent newEvent =readEventInfo();
+    public static void addEventForUser(User user,RegisteredEvent newEvent) throws EventAlreadyExist {
         user.checkEventExisting(newEvent.getEventName());
         user.getRegisteredEvents().add(newEvent);
         user.addToTotalCost(newEvent.getCost());
