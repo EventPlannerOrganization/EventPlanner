@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static helpers.ChoiceChecker.readInt;
+
 public class UserView {
     private static final Logger logger = Logger.getLogger(UserView.class.getName());
     private static final Scanner scanner = new Scanner(System.in);
@@ -34,14 +36,13 @@ public class UserView {
             logger.info("What do you want to do ?");
             String choice = scanner.nextLine();
             while (!ChoiceChecker.userMenuChecker(choice)) {
-                choice = scanner.nextLine();
                 logger.info("Enter Valid Choice !");
+                choice = scanner.nextLine();
             }
 
             switch (choice) {
                 case "1" -> {
                     EventsView.registerEventView();
-                    UserView.userMenu();
                 }
                 case "2" -> EventsView.showMyevents();
                 case "3" -> EventsView.editUpCommingEvents();
@@ -63,19 +64,17 @@ public class UserView {
         for (RegisteredEvent registeredEvent : user.getRegisteredEvents()) {
             names.add(registeredEvent.getEventName());
         }
+        names.add("none, (dont send teckets to any event guests)");
         MenusPrinter.printMenu(names);
     }
 
     public static void guestsEmail() throws MessagingException, IOException {
         showEventsName();
-        String choice = scanner.nextLine();
-        while (!ChoiceChecker.userMenuChecker(choice)) {
-            choice = scanner.nextLine();
-            logger.info("Enter Valid Choice !");
-        }
         User user = (User) EventPlanner.getCurrentUser();
+        int choice=readInt();
+        if((choice>=1&&choice<=user.getRegisteredEvents().size())){
         try {
-            if (user.getRegisteredEvents().get(Integer.parseInt(choice) - 1).getGuestsEmails().isEmpty()) {
+            if (user.getRegisteredEvents().get(choice - 1).getGuestsEmails().isEmpty()) {
                 throw new EmptyList();
             }
         } catch (EmptyList emptyList) {
@@ -83,6 +82,9 @@ public class UserView {
             return;
         }
         EmailService emailService = new EmailService();
-        emailService.sendEventInvitations(user.getRegisteredEvents().get(Integer.parseInt(choice) - 1));
+        emailService.sendEventInvitations(user.getRegisteredEvents().get(choice - 1));
     }
+}
+
+
 }

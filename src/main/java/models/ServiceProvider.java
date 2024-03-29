@@ -71,13 +71,14 @@ public class ServiceProvider extends Person {
     public String toString() {
         String result;
         if (!isPackageProvider) {
-            result =  "\nService Provider "+super.getName().toString()+"\n"+ services.get(0);
+            result =  "\n\tService Provider "+super.getName().toString()+"\n\t"+ services.getFirst();
         }
         //this else statement not correct, this must print list of services...
         else{
-            StringBuilder pack=new StringBuilder("Offer Package items:\n");
+            StringBuilder pack=new StringBuilder("\tOffer Package items:\n");
             int counter=1;
             for(Service element:services){
+                pack.append("\t");
                 pack.append(counter);
                 pack.append("- ");
                 pack.append(element.toString());
@@ -86,7 +87,7 @@ public class ServiceProvider extends Person {
             }
             result =  "\n\tService Provider "+super.getName().toString()+"\n"+ pack   ;
         }
-        return result;
+        return result+"\n";
     }
 
     public  double calculateServiceProviderPrice( ){

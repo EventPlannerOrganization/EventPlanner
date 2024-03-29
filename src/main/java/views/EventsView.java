@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
-
 import static views.AdminView.backTouserManagementMenu;
 
 
@@ -31,16 +30,18 @@ public class EventsView {
         RegisteredEvent newEvent= readEventInfo();
         EventsControl.addEvent(newEvent.getDate(), newEvent.getEventName(),newEvent.getCost(), newEvent.getGuestsEmails());
         User user=(User)EventPlanner.getCurrentUser();
-        StringBuilder requests= new StringBuilder();
-        requests.append("\n"+"\u001B[34m");
-        for (ServiceProvider element:newEvent.getServiceProviders()){
-           UserControl.sendRequestToServiceProvider(element,newEvent.getDate(),user.getEventByName(newEvent.getEventName()));
-            requests.append("--Request sent to Service Provider: ").append(element.getAuthentication().getUsername()).append("\n");
-       }
-        requests.append("\u001B[0m");
-        requests.append("\u001B[35m"+" Please await their responses. Thank you for your patience."+"\u001B[0m");
-        String req= String.valueOf(requests);
-        logger.info(req);
+        if(!newEvent.getServiceProviders().isEmpty()){
+            StringBuilder requests= new StringBuilder();
+            requests.append("\n"+"\u001B[34m");
+            for (ServiceProvider element:newEvent.getServiceProviders()){
+               UserControl.sendRequestToServiceProvider(element,newEvent.getDate(),user.getEventByName(newEvent.getEventName()));
+                requests.append("--Request sent to Service Provider: ").append(element.getAuthentication().getUsername()).append("\n");
+                }
+            requests.append("\u001B[0m");
+            requests.append("\u001B[35m"+" Please await their responses. Thank you for your patience."+"\u001B[0m");
+            String req= String.valueOf(requests);
+            logger.info(req);
+        }
         backTouserManagementMenu();
 
     }
@@ -51,12 +52,21 @@ public class EventsView {
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
         String name=ChoiceChecker.readingEventName();
         logger.info("* Enter Date of your event \n - Day (1-31): ");
-        int day = scanner.nextInt();
-        logger.info(" - Month (1-12): ");
-        int month = scanner.nextInt();
-        logger.info("- Year : ");
-        int year = scanner.nextInt();
-        LocalDate date = LocalDate.of(year, month, day);
+        LocalDate date;
+        while(true) {
+            try {
+                int day = scanner.nextInt();
+                logger.info(" - Month (1-12): ");
+                int month = scanner.nextInt();
+                logger.info("- Year : ");
+                int year = scanner.nextInt();
+                date = LocalDate.of(year, month, day);
+                break;
+            } catch (InputMismatchException ignored){
+                logger.info("Invalid input. Please again enter valid values\n - Day (1-31): ");
+                scanner.nextLine();
+            }
+        }
         logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
         List<ServiceProvider> list=addingProcess(date);
@@ -108,7 +118,7 @@ public class EventsView {
         List<ServiceProvider> addedProviders = new ArrayList<>();
 
         while (again) {
-            logger.info("Select one:\n");
+            logger.info("* Add Services:\nSelect one:\n");
             MenusPrinter.printServicesMenuForRegisterEvent();
             String serviceNum = scanner.nextLine();
             List<ServiceProvider> filteredProvidersList;
@@ -166,7 +176,18 @@ public class EventsView {
     public static List<String> readeGuestsEmails() {
         List<String> guestsEmails = new ArrayList<>();
         logger.info("* Add guests :\nEnter the number of guests. You can adjust this number and modify the list as needed:\n");
-        int serviceNum = scanner.nextInt();
+        int serviceNum;
+        while(true){
+             try {
+                 serviceNum = scanner.nextInt();
+                 break;
+             }
+             catch (InputMismatchException e){
+                 logger.info("Invalid input. Please enter valid integer number:\n");
+                 scanner.nextLine();
+             }
+
+        }
         logger.info("For each guest, please enter their email address:");
         scanner.nextLine();
         for (int i = 0; i < serviceNum; i++) {
