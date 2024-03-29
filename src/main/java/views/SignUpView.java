@@ -60,7 +60,7 @@ public class SignUpView {
                     , list);
         }
         catch (Exception e){
-            e.printStackTrace();
+logger.warning(e.getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ public class SignUpView {
             );
         }
         catch (Exception e){
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 

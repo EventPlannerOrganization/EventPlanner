@@ -41,7 +41,7 @@ public class TestUpdateServiceType {
     }
     @Then("The Service Will Update Successfully")
     public void theServiceWillUpdateSuccessfully() {
-        ServiceProviderControl.changeServiceProvdierService(serviceProvider,service );
+        ServiceProviderControl.changeServiceProviderService(serviceProvider,service );
         assertEquals(serviceProvider.getServices().get(0),service);
     }
 

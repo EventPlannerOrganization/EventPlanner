@@ -1,7 +1,6 @@
 package views;
 import Email.EmailService;
 import Exceptions.*;
-import controllers.UserControl;
 import helpers.ChoiceChecker;
 import models.EventPlanner;
 import models.RegisteredEvent;
@@ -24,7 +23,7 @@ public class UserView {
 
     }
 
-    public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, EventAlreadyExist, MessagingException, IOException, EmptyList {
+    public static void userMenu() throws  UserNotFoundException, EventNotFound, EventAlreadyExist, MessagingException, IOException {
 
         MenusPrinter.printUserMenu();
         logger.info("What do you want to do ?");
@@ -35,27 +34,25 @@ public class UserView {
         }
 
         switch (choice) {
-            case "1":
+            case "1" -> {
                 EventsView.registerEventView();
                 UserView.userMenu();
-                break;
-            case "2":
+            }
+            case "2" -> {
                 EventsView.showMyevents();
                 UserView.userMenu();
-                break;
-            case "3":
+            }
+            case "3" -> {
                 EventsView.editUpCommingEvents();
                 UserView.userMenu();
-                break;
-            case "4":
-                guestsEmail();
-                break;
-            case "5":
+            }
+            case "4" -> guestsEmail();
+            case "5" -> {
                 EventPlanner.signout();
                 StartingView.staringView();
-                break;
-            default:
-                // code block
+            }
+            default -> logger.warning("Unexpected value");
+
         }
     }
     public static void showEventsName(){
@@ -66,7 +63,7 @@ public class UserView {
         }
         MenusPrinter.printMenu(names);
     }
-    public static void guestsEmail() throws MessagingException, IOException, EmptyList {
+    public static void guestsEmail() throws MessagingException, IOException {
         showEventsName();
         String choice=scanner.nextLine();
         while (!ChoiceChecker.userMenuChecker(choice)) {

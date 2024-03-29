@@ -3,8 +3,6 @@ package models;
 import Exceptions.EventAlreadyExist;
 import Exceptions.EventNotFound;
 import enumerations.UserType;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

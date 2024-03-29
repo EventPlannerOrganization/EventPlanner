@@ -4,8 +4,6 @@ import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
 import enumerations.UserType;
-
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,10 +47,7 @@ public class EventPlanner {
     }
     public static  boolean checkEmailIfExist(String email)  {
         List<Person> result= users.stream().filter(user -> user.getContactInfo().getEmail().equals(email)).toList();
-        if (result.isEmpty())
-          return false;
-
-        return true;
+        return !result.isEmpty();
     }
     public static  Person getUserByEmail(String email) throws UserNotFoundException {
         List<Person> result= users.stream().filter(user -> user.getContactInfo().getEmail().equals(email)).toList();
@@ -318,7 +313,7 @@ user5.getRegisteredEvents().add(registeredEvent6);
     }
     public static void initializeRepositoryWithDataForTesting() throws UserIsAlreadyExist {
         EventPlanner.cleanRepositry();
-        List<Service>serviceList= new ArrayList<Service>();
+        List<Service>serviceList= new ArrayList<>();
         serviceList.add(  new Service(ServiceType.DJ,1400,"Best Sound Quality And Music"));
 
         ServiceProvider serviceProvider = new ServiceProvider(new Name("Mohammed","Munir","Shadid"),

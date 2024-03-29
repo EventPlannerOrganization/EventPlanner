@@ -38,23 +38,13 @@ public class LoginView {
 
         } catch (UserNotFoundException exception) {
             logger.info("invalid username..!");
-        } catch (UserIsAlreadyExist e) {
-            logger.info("this account is already signed up");
-        } catch (WeakPasswordException e) {
-            logger.info("weak password");
-        } catch (EventNotFound e) {
-            throw new RuntimeException(e);
-        } catch (EventAlreadyExist e) {
-            throw new RuntimeException(e);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (EmptyList e) {
-            throw new RuntimeException(e);
+        } catch (EventNotFound | EventAlreadyExist | MessagingException | IOException | EmptyList | UserIsAlreadyExist |
+                 WeakPasswordException e) {
+            logger.warning(e.getMessage());
         }
     }
-    public static void whosLogin () throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, MessagingException, IOException, EventAlreadyExist, EmptyList {
+
+    public static void whosLogin() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, MessagingException, IOException, EventAlreadyExist, EmptyList {
         Person current = EventPlanner.getCurrentUser();
         if (current instanceof ServiceProvider) ServiceProviderView.providerMenu();
         else if (((User) current).getUsertype() == UserType.USER) UserView.userMenu();
