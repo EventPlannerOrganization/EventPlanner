@@ -108,7 +108,17 @@ public class RegisteredEvent {
     public String toString() {
 
         return
-                "Event Name: " + eventName  +
+                "\u001B[1m"+"\u001B[32m"+"Event Name: " + eventName +"\u001B[0m"+
+                "\u001B[34m"+"\nServices: \n" + getServicesDetails() +
+                "Date: " + date +
+                "\nTotal Cost: " + cost +
+                "\nGuests List: \n" + guestsEmails +"\n\n"+"\u001B[0m";
+    }
+
+    public String toStringtoMenue() {
+
+        return
+                "\\u001B[1m"+""+"Event Name: " + eventName  +
                 "\nServices: \n" + getServicesDetails() +
                 "\nDate: " + date +
                 "\nTotal Cost: " + cost +
@@ -131,7 +141,6 @@ public String toString2(){
                     services.append(count);
                     services.append("- ");
                     services.append(element.toString());
-                    services.append("\n");
                     count++;
                 }
             }
