@@ -10,9 +10,9 @@
         <sonar.organization>eventplannerorganization</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
-    <groupId>event.planner</groupId>
-    <artifactId>EventPlanner</artifactId>
-    <version>1.0-SNAPSHOT</version>
+<!--    <groupId>event.planner</groupId>-->
+<!--    <artifactId>EventPlanner</artifactId>-->
+<!--    <version>1.0-SNAPSHOT</version>-->
       <dependencies>
           <dependency>
               <groupId>io.cucumber</groupId>
