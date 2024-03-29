@@ -7,3 +7,17 @@ Y
 )src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
 X
 (src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
+T
+$src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
+Q
+!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+U
+%src/main/java/views/StartingView.java,f\3\f37cc30da36ad676b46320eb4b5c775d45809871
+R
+"src/main/java/views/LoginView.java,d\9\d9c007c1a60eb7b3d452841e748d5c691ad9ade9
+Q
+!src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
+X
+(src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306

@@ -9,6 +9,7 @@ import models.ServiceProvider;
 import models.User;
 import views.ServiceProviderView;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -163,6 +164,21 @@ return choice;
 
 
 
+    public static int readInt(){
+        int integer;
+        while(true){
+            try{
+            integer=scanner.nextInt();
+            break;
+            }
+            catch (InputMismatchException e){
+                logger.info("Invalid input, please enter again: \n");
+                scanner.nextLine();
+            }
+        }
+        return integer;
+
+    }
 
 }
 

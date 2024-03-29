@@ -18,8 +18,8 @@ public class StartingView {
             MenusPrinter.printStartingMenu();
             String choice = scanner.nextLine();
             while (!ChoiceChecker.userMenuChecker(choice)) {
-                choice = scanner.nextLine();
                 logger.info("Enter Valid Choice !");
+                choice = scanner.nextLine();
             }
 
             switch (choice) {
