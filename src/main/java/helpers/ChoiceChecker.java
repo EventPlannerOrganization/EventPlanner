@@ -13,9 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
-
-import static java.lang.String.*;
-
 public class ChoiceChecker {
     private static final Logger logger=Logger.getLogger(ChoiceChecker.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
@@ -150,7 +147,7 @@ return choice;
     }
 
     public static void createInvalidIntegerMessage(int min, int max) {
-        logger.warning(format("Please enter a valid integer between %d and %d", min, max));
+        logger.info("Please enter a valid integer between "+min+ " and "+ max);
     }
 
 

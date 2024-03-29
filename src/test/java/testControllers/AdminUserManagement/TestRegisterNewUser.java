@@ -1,7 +1,6 @@
 package testControllers.AdminUserManagement;
 
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
+
 import controllers.SignUp;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -31,7 +30,7 @@ public class TestRegisterNewUser {
         this.address=new Address(country,city);
     }
     @Then("User will sign up seccessfully")
-    public void userWillSignUpSeccessfully() throws UserIsAlreadyExist, WeakPasswordException {
+    public void userWillSignUpSeccessfully()  {
         assertDoesNotThrow(() -> {
             SignUp.signUpUser(this.name,this.address,this.authentication,this.contactInfo);
             EventPlanner.getUserByUsername(this.authentication.getUsername());

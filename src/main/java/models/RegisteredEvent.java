@@ -40,7 +40,7 @@ public class RegisteredEvent {
     public RegisteredEvent(String eventName, LocalDate date, double cost, List<String> guestsEmails) {
         this.eventName = eventName;
         this.date = date;
-        this.cost = cost;
+        setCost(cost);
         this.guestsEmails = guestsEmails;
         serviceProviders=new ArrayList<>();
     }

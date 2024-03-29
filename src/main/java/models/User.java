@@ -16,7 +16,7 @@ public class User extends Person {
         super(name, authentication, address, contactInfo);
         usertype = UserType.USER;
         registeredEvents = new ArrayList<>();
-        totalCost = 0;
+        setTotalCost(0);
     }
 
     public User() {
@@ -32,22 +32,10 @@ public class User extends Person {
     }
 
 
-    public void setRegisteredEvent(List<RegisteredEvent> registeredEvent) {
-
-        this.registeredEvents = registeredEvent;
-    }
-
     public List<RegisteredEvent> getRegisteredEvents() {
         return registeredEvents;
     }
 
-    public void setRegisteredEvents(List<RegisteredEvent> registeredEvents) {
-        this.registeredEvents = registeredEvents;
-    }
-
-    public double getTotalCost() {
-        return totalCost;
-    }
 
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;

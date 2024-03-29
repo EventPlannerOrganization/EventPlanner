@@ -7,8 +7,8 @@ public class ContactInfo {
     private String phoneNumber;
 
     public ContactInfo(String email, String phoneNumber) {
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+       setEmail(email);
+       setPhoneNumber(phoneNumber);
     }
 
     public String getEmail() {

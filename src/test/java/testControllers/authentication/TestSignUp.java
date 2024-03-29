@@ -38,18 +38,18 @@ public class TestSignUp {
         this.address=new Address(country,city);
     }
     @When("Service is {string} {string} {string}")
-    public void serviceIs(String  serviceType,String servicePrice, String serviceDiscription) {
-        this.service=new Service(ServiceType.valueOf(serviceType),Double.parseDouble(servicePrice),serviceDiscription);
+    public void serviceIs(String  serviceType,String servicePrice, String serviceDescription) {
+        this.service=new Service(ServiceType.valueOf(serviceType),Double.parseDouble(servicePrice),serviceDescription);
     }
-    @Then("User will sign up seccessfully")
-    public void userWillSignUpSeccessfully() throws UserIsAlreadyExist, WeakPasswordException {
+    @Then("User will sign up successfully")
+    public void userWillSignUpSeccessfully()  {
         assertDoesNotThrow(() -> {
             SignUp.signUpUser(this.name,this.address,this.authentication,this.contactInfo);
             EventPlanner.getUserByUsername(this.authentication.getUsername());
         });
     }
     @Then("Service Provider will sign up seccessfully")
-    public void serviceProviderWillSignUpSeccessfully() throws UserIsAlreadyExist, WeakPasswordException {
+    public void serviceProviderWillSignUpSeccessfully() {
         List<Service> services=new ArrayList<>();
         services.add(this.service);
         assertDoesNotThrow(() -> {
@@ -68,7 +68,7 @@ public class TestSignUp {
         assertThrows(WeakPasswordException.class,()->SignUp.signUpUser(this.name,this.address,this.authentication,this.contactInfo));
     }
     @Then("User sign up will fail because the user is already exist")
-    public void userSignUpWillFailBecauseTheUserIsAlreadyExist() throws UserIsAlreadyExist, WeakPasswordException {
+    public void userSignUpWillFailBecauseTheUserIsAlreadyExist()  {
         assertThrows(UserIsAlreadyExist.class,()->EventPlanner.addUser(new User(this.name,this.authentication,this.address,this.contactInfo)));
 
     }

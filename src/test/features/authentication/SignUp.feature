@@ -5,7 +5,7 @@ Feature: Sign Up
     And Name is <firstName> <middleName> <lastName>
     And ContactInfo is <email> <phoneNumber>
     And Address is <country> <city>
-    Then User will sign up seccessfully
+    Then User will sign up successfully
     Examples:
       | username          | password        | firstName  | middleName | lastName    | email                      | phoneNumber  | country     | city       |
       | 'BahaAlawneh1'     | 'Bahaaa123$'    | 'Bahaa'     | 'khaled'   | 'Alawneh'   | 'bahaalawneh@gmail.com'    | '0594371093' | 'palestine' | 'jenin'    |

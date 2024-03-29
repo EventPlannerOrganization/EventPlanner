@@ -14,11 +14,7 @@ public class ServiceProvider extends Person {
         return requests;
     }
 
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
-    }
-
-    private List <Request> requests=new ArrayList<>();
+    private final List <Request> requests=new ArrayList<>();
 
     private List<Service> services = new ArrayList<>();
     private List<LocalDate> bookedDates = null;

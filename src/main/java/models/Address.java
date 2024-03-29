@@ -8,8 +8,8 @@ public class Address {
 
 
     public Address(String country, String city) {
-        this.country = country;
-        this.city = city;
+        setCountry(country);
+        setCity(city);
     }
 
     public String getCountry() {

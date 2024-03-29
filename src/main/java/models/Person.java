@@ -24,10 +24,10 @@ private ContactInfo contactInfo;
     }
 
     public Person(Name name, Authentication authentication, Address address, ContactInfo contactInfo) {
-        this.name = name;
-        this.authentication = authentication;
-        this.address = address;
-        this.contactInfo = contactInfo;
+        setName(name);
+        setAuthentication(authentication);
+        setAddress(address);
+        setContactInfo(contactInfo);
     }
 
     public Person() {
