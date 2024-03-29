@@ -25,7 +25,8 @@ public class UserView {
     }
 
     public static void userMenu() throws UserIsAlreadyExist, WeakPasswordException, UserNotFoundException, EventNotFound, EventAlreadyExist, MessagingException, IOException, EmptyList {
-
+        boolean flage = true;
+        while (flage) {
         MenusPrinter.printUserMenu();
         logger.info("What do you want to do ?");
         String choice = scanner.nextLine();
@@ -37,27 +38,24 @@ public class UserView {
         switch (choice) {
             case "1":
                 EventsView.registerEventView();
-                UserView.userMenu();
                 break;
             case "2":
                 EventsView.showMyevents();
-                UserView.userMenu();
                 break;
             case "3":
                 EventsView.editUpCommingEvents();
-                UserView.userMenu();
                 break;
             case "4":
                 guestsEmail();
                 break;
             case "5":
+                flage = false;
                 EventPlanner.signout();
-                StartingView.staringView();
                 break;
             default:
                 // code block
         }
-    }
+    }}
     public static void showEventsName(){
         User user= (User) EventPlanner.getCurrentUser();
         List<String> names=new ArrayList<>();

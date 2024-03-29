@@ -234,6 +234,7 @@ public class EventPlanner {
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
+        registeredEvent5.setLocation("Gaza Grand Hall");
         user.getRegisteredEvents().add(registeredEvent5);
         eventUserMap.put(registeredEvent5,user);
 
@@ -247,6 +248,8 @@ public class EventPlanner {
                  prov,localDate,
                  calculateTotalPriceForMultiProviders(serviceProviders),
                  emails1);
+        registeredEvent4.setLocation("Tulkarm Terrace");
+
         user.getRegisteredEvents().add(registeredEvent4);
         eventUserMap.put(registeredEvent4,user);
 
@@ -257,6 +260,8 @@ public class EventPlanner {
                 prov1,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
+        registeredEvent3.setLocation("Birzeit Ballroom");
+
         user2.getRegisteredEvents().add(registeredEvent3);
         eventUserMap.put(registeredEvent3,user3);
 
@@ -267,6 +272,7 @@ public class EventPlanner {
                 serviceProviders22,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
                 emails);
+        registeredEvent2.setLocation("Qalqilya Quarters");
 
         user3.getRegisteredEvents().add(registeredEvent2);
         eventUserMap.put(registeredEvent2,user3);
@@ -276,6 +282,8 @@ public class EventPlanner {
                 prov2,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
                 emails);
+        registeredEvent1.setLocation("Illar Hills");
+
         user3.getRegisteredEvents().add(registeredEvent1);
         eventUserMap.put(registeredEvent1,user3);
         localDate=LocalDate.of(2024,8,10);
@@ -285,10 +293,11 @@ public class EventPlanner {
                 prov3,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
+        registeredEvent.setLocation("null");
+
         for(ServiceProvider element:serviceProviders){
             element.getBookedDates().add(localDate);
         }
-        registeredEvent.setLocation("jerusalem");
         user4.getRegisteredEvents().add(registeredEvent);
         eventUserMap.put(registeredEvent,user4);
         localDate=LocalDate.of(2024,4,10);
@@ -299,7 +308,9 @@ public class EventPlanner {
                 serviceProviderList,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviderList),
                 emails);
-user5.getRegisteredEvents().add(registeredEvent6);
+        registeredEvent6.setLocation("illar");
+
+        user5.getRegisteredEvents().add(registeredEvent6);
         for(ServiceProvider element:serviceProviderList){
             element.getBookedDates().add(localDate);
         }

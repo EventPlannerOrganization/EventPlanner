@@ -69,3 +69,15 @@ Hsrc/test/java/testControllers/AdminEventsManagement/TestSearchEvent.java,2\c\2
 Ksrc/test/java/testControllers/AdminEventsManagement/TestCreateNewEvent.java,5\f\5fbf4585b12b3c62486f8ad7471f5798d5eab3c3
 [
 +src/main/java/Exceptions/EventNotFound.java,c\9\c9fac0d8aaf6549daa88938622574fbe46a0243a
+X
+(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
+\
+,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
+Q
+!src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+R
+"src/main/java/views/LoginView.java,d\9\d9c007c1a60eb7b3d452841e748d5c691ad9ade9
+Z
+*src/main/java/helpers/PasswordChecker.java,7\e\7e831ad7c59983fd34146cfc1079070079d33602
+k
+;src/test/features/AdminEventsManagement/SearchEvent.feature,0\8\08d9498e8d3ad040d1c1fbc6e70ead194a656d09

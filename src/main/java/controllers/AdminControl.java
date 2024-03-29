@@ -7,13 +7,12 @@ import Exceptions.EventNotFoundException;
 import Exceptions.ServiceNotFoundException;
 import models.*;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
-import static helpers.PasswordChecker.mergeTwoStrings;
+import static helpers.PasswordChecker.mergeThreeStrings;
 
 
 public class AdminControl {
@@ -39,7 +38,7 @@ public class AdminControl {
         List<String> eventsNames=new ArrayList<>();
         List<RegisteredEvent> sortedEvents = sortListOfEvents(events);
         for (RegisteredEvent event:sortedEvents){
-            eventsNames.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
+            eventsNames.add(mergeThreeStrings(event.getEventName(),event.getDate().toString(),event.getLocation()));
         }
         return eventsNames;
     }

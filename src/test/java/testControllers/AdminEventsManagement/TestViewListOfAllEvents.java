@@ -1,7 +1,6 @@
 package testControllers.AdminEventsManagement;
 
 import Exceptions.UserIsAlreadyExist;
-import controllers.AdminControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static controllers.AdminControl.getAllEventsNames;
-import static helpers.PasswordChecker.mergeTwoStrings;
+import static helpers.PasswordChecker.mergeThreeStrings;
 
 public class TestViewListOfAllEvents {
 
@@ -35,9 +34,10 @@ public class TestViewListOfAllEvents {
         // Write code here that turns the phrase above into concrete actions
         String []names={"wedding party","Birthday Bash","Food Festival","open day1","wedding party","Wedding Celebration","Bash"};
         String [] dates={"2024-04-10","2024-04-10","2024-04-10","2024-08-10","2024-08-10","2024-09-10","2024-04-10"};
+        String [] locations={"Birzeit Ballroom","Qalqilya Quarters","Illar Hills","Tulkarm Terrace","null","Gaza Grand Hall","illar"};
         List<String> expectedOutput=new ArrayList<>();
         for(int i=0;i<names.length;i++){
-            expectedOutput.add(mergeTwoStrings(names[i],dates[i]));
+            expectedOutput.add(mergeThreeStrings(names[i],dates[i],locations[i]));
         }
         List<String> actualOutput=getAllEventsNames();
 

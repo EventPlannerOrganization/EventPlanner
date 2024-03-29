@@ -259,7 +259,7 @@ public class AdminView {
         return selectedUser;
     }
 
-    private static void backTouserManagementMenu()  {
+    static void backTouserManagementMenu()  {
         logger.info("To Return Back Enter B");
         String choice = scanner.nextLine();
         while (!(choice.equals("B") || choice.equals("b"))) {
