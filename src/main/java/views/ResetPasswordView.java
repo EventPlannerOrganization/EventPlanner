@@ -3,13 +3,10 @@ package views;
 import Email.EmailService;
 import Exceptions.UserNotFoundException;
 import controllers.ResetPasswordController;
-import helpers.ChoiceChecker;
 import helpers.PasswordChecker;
 import models.EventPlanner;
 import models.Person;
-
 import javax.mail.MessagingException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Logger;

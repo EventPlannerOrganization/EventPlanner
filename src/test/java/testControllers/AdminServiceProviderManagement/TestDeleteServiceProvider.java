@@ -4,17 +4,11 @@ import Exceptions.EmptyList;
 import Exceptions.ServiceNotFoundException;
 import Exceptions.UserNotFoundException;
 import controllers.AdminControl;
-import controllers.ServiceProviderControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
 import models.ServiceProvider;
-import models.User;
-
 import java.util.List;
-
-import static controllers.AdminControl.deleteUser;
-import static models.EventPlanner.getUserByUsername;
 import static org.junit.Assert.assertThrows;
 
 public class TestDeleteServiceProvider {

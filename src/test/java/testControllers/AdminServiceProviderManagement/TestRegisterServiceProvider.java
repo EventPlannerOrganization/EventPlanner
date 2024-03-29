@@ -1,7 +1,6 @@
 package testControllers.AdminServiceProviderManagement;
 
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
+
 import controllers.SignUp;
 import enumerations.ServiceType;
 import io.cucumber.java.en.Then;
@@ -41,7 +40,7 @@ public class TestRegisterServiceProvider {
         this.service=new Service(ServiceType.valueOf(serviceType),Double.parseDouble(servicePrice),serviceDiscription);
     }
     @Then("Service Provider will sign up seccessfully")
-    public void serviceProviderWillSignUpSeccessfully() throws UserIsAlreadyExist, WeakPasswordException {
+    public void serviceProviderWillSignUpSeccessfully()  {
         List<Service> services=new ArrayList<>();
         services.add(this.service);
         assertDoesNotThrow(() -> {

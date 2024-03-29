@@ -1,14 +1,11 @@
 package testControllers.AdminEventsManagement;
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFound;
+
 import Exceptions.EventNotFoundException;
 import Exceptions.ServiceNotFoundException;
 import controllers.AdminControl;
-import controllers.EventsControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import models.EventPlanner;
 import models.RegisteredEvent;
 import org.junit.Assert;
 

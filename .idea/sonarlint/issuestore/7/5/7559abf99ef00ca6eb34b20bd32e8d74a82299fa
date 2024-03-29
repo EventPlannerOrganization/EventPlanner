@@ -1,12 +1,0 @@
-
-]
-java:S1854"@Remove this useless assignment to local variable "emailService".(±Æ¨œ8Ç›„æç1
-“
-java:S1130"vRemove the declaration of thrown exception 'javax.mail.MessagingException', as it cannot be thrown from method's body.(ÄŠÊŽ8È›„æç1
-N
-java:S1481"1Remove this unused "emailService" local variable.(±Æ¨œ8Ì›„æç1
-]	java:S125"<This block of commented-out lines of code should be removed.(ŠÀÀùÿÿÿÿ8Ì›„æç1
-N
-java:S1128"1Remove this unused import 'Exceptions.EmptyList'.(Ò¥æé8Ì›„æç1
-\
-java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8Ì›„æç1

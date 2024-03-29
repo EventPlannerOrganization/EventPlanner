@@ -5,7 +5,6 @@ import controllers.AdminControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
-import models.ServiceProvider;
 import models.User;
 
 public class TestResetPasswordForUser {

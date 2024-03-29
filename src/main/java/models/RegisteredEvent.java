@@ -1,14 +1,10 @@
 package models;
 
-import Exceptions.EventAlreadyExist;
 import Exceptions.ServiceNotFoundException;
-import Exceptions.UserNotFoundException;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import static views.EventsView.addingProcess;
 
 public class RegisteredEvent {
     private String eventName;
@@ -44,7 +40,7 @@ public class RegisteredEvent {
     public RegisteredEvent(String eventName, LocalDate date, double cost, List<String> guestsEmails) {
         this.eventName = eventName;
         this.date = date;
-        this.cost = cost;
+        setCost(cost);
         this.guestsEmails = guestsEmails;
         serviceProviders=new ArrayList<>();
     }

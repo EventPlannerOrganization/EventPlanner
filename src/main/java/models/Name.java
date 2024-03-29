@@ -1,7 +1,7 @@
 package models;
 
 import java.util.Objects;
-import java.util.Date;
+
 
 public class Name {
     private String fName;
@@ -9,9 +9,9 @@ public class Name {
     private String lName;
 
     public Name(String fName, String mName, String lName) {
-        this.fName = fName;
-        this.mName = mName;
-        this.lName = lName;
+       setfName(fName);
+       setmName(mName);
+       setlName(lName);
     }
 
     public String getfName() {

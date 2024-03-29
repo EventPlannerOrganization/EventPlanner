@@ -1,5 +1,6 @@
 
 M
-java:S2160"+Override the "equals" method in this class.(ú·°şÿÿÿÿ8ş×«¿æ1
-R
-java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8®Ø«¿æ1
+java:S2160
+"+Override the "equals" method in this class.(ú·°şÿÿÿÿ8ş×«¿æ1
+J
+java:S1068"-Remove this unused "totalCost" private field.(ÌÙ‡‰8”´±Şè1

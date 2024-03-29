@@ -4,10 +4,10 @@ public class Request {
 
 
     public Request(String userEmail, String serviceProviderEmail, String message, RegisteredEvent event) {
-        this.userEmail = userEmail;
-        this.serviceProviderEmail = serviceProviderEmail;
-        this.message = message;
-        this.event = event;
+        setUserEmail(userEmail);
+        setServiceProviderEmail(serviceProviderEmail);
+        setMessage(message);
+        this.event=event;
     }
 
 
@@ -16,9 +16,6 @@ public class Request {
     private String userEmail;
     private String serviceProviderEmail;
 
-    public String getServiceProviderEmail() {
-        return serviceProviderEmail;
-    }
 
     public void setServiceProviderEmail(String serviceProviderEmail) {
         this.serviceProviderEmail = serviceProviderEmail;

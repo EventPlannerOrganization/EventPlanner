@@ -63,11 +63,13 @@ public class AdminView {
                     flage = false;
                     EventPlanner.signout();
                     break;
-                default:
-                    // code block
+                default:break;
+
+            }
+
             }
         }
-    }
+
 
 
 
@@ -282,34 +284,16 @@ public class AdminView {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
             }
-            switch (choice)
-            {
-                case "1":
-                    AdminView.showServiceProvidersView();
-                    break;
-                case "2":
-                    AdminView.searchServiceProviderView();
-                    break;
-                case "3":
-                    AdminView.createNewServiceProvider();
-                    break;
-                case "4":
-                    AdminView.deleteServiceProvider();
-                    break;
-                case "5":
-                    AdminView.resetServiceProviderPassword();
-                    break;
-                case "6":
-                    AdminView.viewServices();
-                    break;
-                case "7":
-                    AdminView.viewBookedDates();
-                    break;
-                case "8":
-                    flage=false;
-                    break;
-                default:
-                    // code block
+            switch (choice) {
+                case "1" -> AdminView.showServiceProvidersView();
+                case "2" -> AdminView.searchServiceProviderView();
+                case "3" -> AdminView.createNewServiceProvider();
+                case "4" -> AdminView.deleteServiceProvider();
+                case "5" -> AdminView.resetServiceProviderPassword();
+                case "6" -> AdminView.viewServices();
+                case "7" -> AdminView.viewBookedDates();
+                case "8" -> flage = false;
+
             }
         }
     }
@@ -400,7 +384,7 @@ public class AdminView {
                 try {
                     AdminControl.deleteServiceProvider( deletedUser);
                 }
-                catch (EmptyList | ServiceNotFoundException e){e.printStackTrace();}
+                catch (EmptyList | ServiceNotFoundException e){logger.warning(e.getMessage());}
             }
 
         }
@@ -465,34 +449,16 @@ public class AdminView {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
             }
-            switch (choice)
-            {
-                case "1":
-                    AdminView.viewAllEvents();
-                    break;
-                case "2":
-                    AdminView.showSchedule();
-                    break;
-                case "3":
-                    AdminView.createEvent();
-                    break;
-                case "4":
-                    AdminView.searchEvent();
-                    break;
-                case "5":
-                    AdminView.deleteEvent();
-                    break;
-                case "6":
-                    AdminView.editEvent();
-                    break;
-                case "7":
-                    flage=false;
-                    break;
-                case "8":
-                    flage=false;
-                    break;
-                default:
-                    // code block
+            switch (choice) {
+                case "1" -> AdminView.viewAllEvents();
+                case "2" -> AdminView.showSchedule();
+                case "3" -> AdminView.createEvent();
+                case "4" -> AdminView.searchEvent();
+                case "5" -> AdminView.deleteEvent();
+                case "6" -> AdminView.editEvent();
+                case "7" -> flage = false;
+                case "8" -> flage = false;
+
             }
         }
     }

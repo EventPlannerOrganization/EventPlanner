@@ -8,8 +8,6 @@ import models.EventPlanner;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static controllers.AdminControl.getAllUsers;
 import static helpers.PasswordChecker.listsContainSameElements;
 
 public class TestShowAllServiceProvdiers {

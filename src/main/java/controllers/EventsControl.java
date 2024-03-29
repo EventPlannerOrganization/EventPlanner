@@ -4,12 +4,9 @@ import Exceptions.*;
 import models.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.logging.Logger;
-
 import static controllers.AdminControl.getUserOfEvent;
 
 public class EventsControl {
-    private static final Logger logger = Logger.getLogger(EventsControl.class.getName());
 
     private EventsControl() {
     }
