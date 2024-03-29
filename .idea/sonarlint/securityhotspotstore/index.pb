@@ -47,3 +47,5 @@ Z
 *src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+U
+%src/main/java/Email/EmailService.java,f\d\fdade210e9a93d0d928922298efc60f16036d043
