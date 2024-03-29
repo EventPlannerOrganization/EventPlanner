@@ -187,7 +187,16 @@ public class EventsView {
     private static void editEventName(RegisteredEvent event)  {
         logger.info("Please, Enter new name for the event: ");
         String newName = scanner.nextLine();
-        EventsControl.editEventName(event, newName);
+        try {
+            EventsControl.editEventName(event, newName);
+        }
+        catch (EventAlreadyExist e){
+            logger.info("Sorry, This name invalid because there is another event with same name ");
+        }
+        catch (EventNotFoundException e){
+            logger.info("Sorry, This event does not included to any user! ");
+
+        }
     }
 
     private static void deleteService(RegisteredEvent event) {

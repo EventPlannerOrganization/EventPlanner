@@ -2,6 +2,7 @@ package views;
 
 import Exceptions.EmptyList;
 import Exceptions.EventAlreadyExist;
+import Exceptions.EventNotFoundException;
 import Exceptions.ServiceNotFoundException;
 import controllers.AdminControl;
 
@@ -60,7 +61,7 @@ public class AdminView {
                     break;
                 case "5":
                     flage = false;
-                    AdminControl.signout();
+                    EventPlanner.signout();
                     break;
                 default:
                     // code block
@@ -506,9 +507,11 @@ public class AdminView {
         try {
             AdminControl.deleteEvent(event);
         }
+        catch (EventNotFoundException e){
+            logger.info("Sorry, This event does not include to any user ! ");
+        }
         catch (Exception e){
-            e.printStackTrace();
-            System.out.println("elfvnfevervnerivneriov555555555");
+
         }
     }
 

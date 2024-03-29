@@ -1,22 +1,29 @@
 
-c
-3src/main/java/Exceptions/GoToMainMenuException.java,4\e\4ea82980cbf1df4eafc58bfbb497674d1b92167f
-<<<<<<< HEAD
-o
-?src/test/java/testControllers/Event/TestAddServicesToEvent.java,0\a\0a4bcb795d00c296f506a8e67c8f1dc53726b9e8
-[
-+src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
-R
-"src/main/java/views/AdminView.java,1\6\16ef284199890c28cc9f7bf4070df72414a26421
 S
 #src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
-=======
-X
-(src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
+m
+=src/test/features/AdminEventsManagement/EditEventName.feature,1\3\138d8c8e7b0bf77c3c025b5a5aa8d99f471f6ed8
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+[
++src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
 N
 src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
-Z
-*src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
->>>>>>> 39b149b843ad4f85aefda50a7a482acb8f06f979
+g
+7src/test/java/testControllers/Event/TestUpdateInfo.java,c\1\c107a3876515079950eaf57b04e9605413dd9246
+R
+"src/main/java/views/AdminView.java,1\6\16ef284199890c28cc9f7bf4070df72414a26421
+x
+Hsrc/test/java/testControllers/AdminEventsManagement/TestDeleteEvent.java,d\0\d085aaeb4319087985aeed800a084fc1ac9a615b
+d
+4src/main/java/Exceptions/EventNotFoundException.java,b\2\b2ef0bce32b5c497bc855f344b8f1a3818db0507
+h
+8src/main/java/Exceptions/AlreadyBookedDateException.java,7\0\7031de1c708265ac4d0af38aa2c72da7f54163e4
+k
+;src/test/features/AdminEventsManagement/DeleteEvent.feature,2\2\2246e84300ea22ee2a5f5a047b7166730a826f15
+x
+Hsrc/test/java/testControllers/AdminEventsManagement/TestSearchEvent.java,2\c\2c284314e6dde4cc09d14bf1809c07c548f9e466
+{
+Ksrc/test/java/testControllers/AdminEventsManagement/TestCreateNewEvent.java,5\f\5fbf4585b12b3c62486f8ad7471f5798d5eab3c3
+[
++src/main/java/Exceptions/EventNotFound.java,c\9\c9fac0d8aaf6549daa88938622574fbe46a0243a

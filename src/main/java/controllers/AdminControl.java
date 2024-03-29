@@ -3,6 +3,7 @@ package controllers;
 import Email.EmailService;
 import Exceptions.EmptyList;
 import Exceptions.EventAlreadyExist;
+import Exceptions.EventNotFoundException;
 import Exceptions.ServiceNotFoundException;
 import models.*;
 
@@ -19,9 +20,7 @@ public class AdminControl {
     private AdminControl() {
     }
 
-    public static void  signout(){
-        EventPlanner.setCurrentUser(null);
-    }
+
 
     public static List<String> getAllUsers(){
             return getUserNameOfUsers(EventPlanner.getUsers());
@@ -169,22 +168,14 @@ public class AdminControl {
         return searchResults;
     }
 
-    public static void deleteEvent(RegisteredEvent event) {
+    public static void deleteEvent(RegisteredEvent event) throws ServiceNotFoundException, EventNotFoundException {
         if(event!=null){
+        User user =getUserOfEvent(event);
         List<ServiceProvider> serviceProviders=event.getServiceProviders();
         int x=serviceProviders.size();
             for (int i=0;i<x;i++) {
-               try {
-                   EventsControl.deleteService(event, serviceProviders.get(0));
-               }
-
-               catch (ServiceNotFoundException e){
-                   e.printStackTrace();
-                   System.out.println("svfsssssssssss");
-               }
+                EventsControl.deleteService(event, serviceProviders.get(0));
             }
-
-            User user =getUserOfEvent(event);
             user.getRegisteredEvents().remove(event);
             EventPlanner.getUsersEventsMap().remove(event);}
 
@@ -193,12 +184,13 @@ public class AdminControl {
 
 
 
-    private static User getUserOfEvent(RegisteredEvent event){
+    public static User getUserOfEvent(RegisteredEvent event) throws EventNotFoundException {
     List<User> allUsers=EventPlanner.getUsers();
         for(User user:allUsers){
             for(RegisteredEvent element:user.getRegisteredEvents()){
                 if (event==element)return user;
             }
         }
-        return null;
+        throw new EventNotFoundException();
+
     }}
