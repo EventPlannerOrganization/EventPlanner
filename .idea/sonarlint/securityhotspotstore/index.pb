@@ -135,3 +135,31 @@ N
 src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
 ^
 .src/main/java/printers/CollectionsPrinter.java,2\4\242052583b197684432a2679c5c1f15700fd242e
+X
+(src/test/java/TestIo/TestYmlHandler.java,e\8\e8bf60d4545be4c737bddec9f4ff4e85f84d6a39
+P
+ src/main/java/io/YmlHandler.java,3\7\37446a15178b7be99b0d9b321e458eb6c012093e
+h
+8src/test/java/testControllers/TestIo/TestYmlHandler.java,8\8\883bfc0b727424ad9a3566fad4256f26a04f1c2d
+V
+&src/main/java/enumerations/Colors.java,d\1\d160e72514bf507b6927139e4f3496bbcc82c001
+[
++src/main/java/enumerations/ServiceType.java,2\6\26412306aedc2ff4f69dd6c18b01d8b135fe26a1
+s
+Csrc/test/java/testControllers/test_helpers/TestPasswordChecker.java,e\6\e69e16325c13e2dd9b0c4e4b3a329675a0d69d4c
+Z
+*src/main/java/helpers/StringOperation.java,6\e\6eeab17de89eb9640e53efd4c58c26a78d413788
+t
+Dsrc/test/java/testControllers/test_helpers/TestStringOperations.java,8\b\8bdd7fc2e23c1c2d724b40189a61b677d037f884
+[
++src/main/java/helpers/StringOperations.java,3\a\3ad7968a4ba8c72b7046afaf4826fa5beb4210a3
+…
+Usrc/test/java/testControllers/ServiceProvider/TestRunnerForUserGeneralOperations.java,f\1\f192020691acaead1628443b4115deb12b5a4076
+c
+3src/test/java/test_helpers/TestPasswordChecker.java,1\2\12c7d37bd5fcab44860d5409eb4c1c5fb51603e0
+d
+4src/test/java/test_helpers/TestStringOperations.java,6\4\6421f97af6496dae114ab352ffc0c09aafadd66b
+_
+/src/test/java/test_enumerations/TestColors.java,4\5\45974bce4ae243be0228345855a4c753450f62bd
+U
+%src/main/java/Email/EmailService.java,f\d\fdade210e9a93d0d928922298efc60f16036d043

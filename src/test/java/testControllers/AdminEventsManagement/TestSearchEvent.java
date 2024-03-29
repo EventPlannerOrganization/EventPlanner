@@ -8,7 +8,7 @@ import models.RegisteredEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import static helpers.PasswordChecker.mergeThreeStrings;
+import static helpers.StringOperations.mergeThreeStrings;
 
 public class TestSearchEvent {
 

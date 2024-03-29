@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static controllers.AdminControl.getAllEventsNames;
-import static helpers.PasswordChecker.mergeThreeStrings;
+import static helpers.StringOperations.mergeThreeStrings;
 
 public class TestViewListOfAllEvents {
 

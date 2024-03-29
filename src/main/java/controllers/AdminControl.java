@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
-import static helpers.PasswordChecker.mergeThreeStrings;
+import static helpers.StringOperations.mergeThreeStrings;
 
 
 public class AdminControl {
