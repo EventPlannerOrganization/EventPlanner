@@ -2,6 +2,7 @@ package views;
 
 import Exceptions.EmptyList;
 import Exceptions.EventAlreadyExist;
+import Exceptions.EventNotFoundException;
 import Exceptions.ServiceNotFoundException;
 import controllers.AdminControl;
 
@@ -13,12 +14,14 @@ import models.ServiceProvider;
 import models.User;
 import printers.MenusPrinter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 import static controllers.AdminControl.*;
 import static views.EventsView.editingEventView;
+import static views.EventsView.readEventInfo;
 
 public class AdminView {
     private static final Logger logger = Logger.getLogger(AdminView.class.getName());
@@ -45,21 +48,28 @@ public class AdminView {
                 logger.info(messageEnterValid);
             }
             switch (choice) {
-                case "1" -> AdminView.userManagement();
-                case "2" -> AdminView.serviceProviderManagement();
-                case "3" -> AdminView.eventManagement();
-                case "4" -> {
-                }
-                case "5" -> {
+                case "1":
+                    AdminView.userManagement();
+                    break;
+                case "2":
+                    AdminView.serviceProviderManagement();
+                    break;
+                case "3":
+                    AdminView.eventManagement();
+                    break;
+                case "4":
+                    break;
+                case "5":
                     flage = false;
-                    AdminControl.signout();
-                }
-                default -> {
-                }
-                // code block
+                    EventPlanner.signout();
+                    break;
+                default:break;
+
+            }
+
             }
         }
-    }
+
 
 
 
@@ -251,7 +261,7 @@ public class AdminView {
         return selectedUser;
     }
 
-    private static void backTouserManagementMenu()  {
+    static void backTouserManagementMenu()  {
         logger.info("To Return Back Enter B");
         String choice = scanner.nextLine();
         while (!(choice.equals("B") || choice.equals("b"))) {
@@ -463,6 +473,9 @@ public class AdminView {
         try {
             AdminControl.deleteEvent(event);
         }
+        catch (EventNotFoundException e){
+            logger.info("Sorry, This event does not include to any user ! ");
+        }
         catch (Exception e){
 
         }
@@ -471,9 +484,13 @@ public class AdminView {
     private static void searchEvent() {
             logger.info("Please enter event name to search");
             String eventName = scanner.nextLine();
-            List<String> searchResult =AdminControl.getEventNameOfUsers(AdminControl.searchEvents(eventName));
+            List<RegisteredEvent> events=AdminControl.searchEvents(eventName);
+            List<String> searchResult=new ArrayList<>();
+            if(events!=null)
+                searchResult=AdminControl.getEventNameOfUsers(events);
             if(searchResult.isEmpty()){
-                logger.info("Sorry, no events were found matching your search criteria.");
+                logger.info("Sorry, no events were found matching your search criteria.\n");
+                backTouserManagementMenu();
                 return;
             }
             MenusPrinter.printListOfStrings(searchResult);
@@ -504,7 +521,8 @@ public class AdminView {
             else {
                 reTry=false;
                 try {
-                    AdminControl.addEventForUser(user);
+                    RegisteredEvent newEvent=readEventInfo();
+                    AdminControl.addEventForUser(user,newEvent);
                 }
                 catch (EventAlreadyExist e){
                     logger.info("sorry, There is an event with the same name ");

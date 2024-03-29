@@ -3,25 +3,23 @@ package controllers;
 import Email.EmailService;
 import Exceptions.EmptyList;
 import Exceptions.EventAlreadyExist;
+import Exceptions.EventNotFoundException;
 import Exceptions.ServiceNotFoundException;
 import models.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import static controllers.ServiceProviderControl.getServiceProviderUpComingEvents;
-import static helpers.PasswordChecker.mergeTwoStrings;
-import static views.EventsView.readEventInfo;
+import static helpers.PasswordChecker.mergeThreeStrings;
 
 
 public class AdminControl {
     private AdminControl() {
     }
 
-    public static void  signout(){
-        EventPlanner.setCurrentUser(null);
-    }
+
 
     public static List<String> getAllUsers(){
             return getUserNameOfUsers(EventPlanner.getUsers());
@@ -40,7 +38,7 @@ public class AdminControl {
         List<String> eventsNames=new ArrayList<>();
         List<RegisteredEvent> sortedEvents = sortListOfEvents(events);
         for (RegisteredEvent event:sortedEvents){
-            eventsNames.add(mergeTwoStrings(event.getEventName(),event.getDate().toString()));
+            eventsNames.add(mergeThreeStrings(event.getEventName(),event.getDate().toString(),event.getLocation()));
         }
         return eventsNames;
     }
@@ -149,8 +147,7 @@ public class AdminControl {
         return searchResults;
     }
 
-    public static void addEventForUser(User user) throws EventAlreadyExist {
-        RegisteredEvent newEvent =readEventInfo();
+    public static void addEventForUser(User user,RegisteredEvent newEvent) throws EventAlreadyExist {
         user.checkEventExisting(newEvent.getEventName());
         user.getRegisteredEvents().add(newEvent);
         user.addToTotalCost(newEvent.getCost());
@@ -170,15 +167,29 @@ public class AdminControl {
         return searchResults;
     }
 
-    public static void deleteEvent(RegisteredEvent event) throws ServiceNotFoundException {
+    public static void deleteEvent(RegisteredEvent event) throws ServiceNotFoundException, EventNotFoundException {
         if(event!=null){
-        for(ServiceProvider serviceProvider:event.getServiceProviders()){
-            EventsControl.deleteService(event,serviceProvider);
-        }
-            User user = EventPlanner.getUsersEventsMap().get(event);
+        User user =getUserOfEvent(event);
+        List<ServiceProvider> serviceProviders=event.getServiceProviders();
+        int x=serviceProviders.size();
+            for (int i=0;i<x;i++) {
+                EventsControl.deleteService(event, serviceProviders.get(0));
+            }
             user.getRegisteredEvents().remove(event);
-            EventPlanner.getUsersEventsMap().remove(event);
+            EventPlanner.getUsersEventsMap().remove(event);}
+
         }
 
-    }
-}
+
+
+
+    public static User getUserOfEvent(RegisteredEvent event) throws EventNotFoundException {
+    List<User> allUsers=EventPlanner.getUsers();
+        for(User user:allUsers){
+            for(RegisteredEvent element:user.getRegisteredEvents()){
+                if (event==element)return user;
+            }
+        }
+        throw new EventNotFoundException();
+
+    }}

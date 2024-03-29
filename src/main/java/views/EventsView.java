@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
 
-
+import static views.AdminView.backTouserManagementMenu;
 
 
 public class EventsView {
@@ -31,10 +31,18 @@ public class EventsView {
         RegisteredEvent newEvent= readEventInfo();
         EventsControl.addEvent(newEvent.getDate(), newEvent.getEventName(),newEvent.getCost(), newEvent.getGuestsEmails());
         User user=(User)EventPlanner.getCurrentUser();
+        StringBuilder requests= new StringBuilder();
+        requests.append("\n"+"\u001B[34m");
         for (ServiceProvider element:newEvent.getServiceProviders()){
            UserControl.sendRequestToServiceProvider(element,newEvent.getDate(),user.getEventByName(newEvent.getEventName()));
-           logger.info("Request sent to Service Provider");
+            requests.append("--Request sent to Service Provider: ").append(element.getAuthentication().getUsername()).append("\n");
        }
+        requests.append("\u001B[0m");
+        requests.append("\u001B[35m"+" Please await their responses. Thank you for your patience."+"\u001B[0m");
+        String req= String.valueOf(requests);
+        logger.info(req);
+        backTouserManagementMenu();
+
     }
 
     public static RegisteredEvent readEventInfo(){
@@ -52,9 +60,9 @@ public class EventsView {
         logger.info("* Add Services:\n");
         scanner.nextLine();// this to fixing some input problem
         List<ServiceProvider> list=addingProcess(date);
-        logger.info("* Add guests :\n");
         List<String> guestsEmails = readeGuestsEmails();
-
+        String location =readVenue(date);
+        newEvent.setLocation(location);
         newEvent.setEventName(name);
         newEvent.setDate(date);
         newEvent.setGuestsEmails(guestsEmails);
@@ -62,7 +70,37 @@ public class EventsView {
         return newEvent;
     }
 
+    private static String readVenue(LocalDate date) {
+        String venue;
+        logger.info("""
+                Do you have a specific location in mind for your event?\s
+                - If yes, please enter 'y'.
+                - If no, please enter 'n' and we will suggest some venue services for you to choose from.""");
+        boolean hasVenue = ChoiceChecker.againChecker();
+        if(!hasVenue) {
+            List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(ServiceType.Venue, date);
+            if (filteredProvidersList.isEmpty()) {
+                logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
+                return "null";
+            }
+            else {
+                ServiceProvider newServiceProvider = selectedServiceFromServicesList(filteredProvidersList);
+                if (newServiceProvider != null) {
+                venue=newServiceProvider.getServices().getFirst().getDescription();
+                }
+                else venue="null";
+                return venue;
 
+            }
+        }
+        else{
+                logger.info("Enter address of your event location:\n");
+                return scanner.nextLine();
+            }
+
+
+
+    }
 
 
     public static List<ServiceProvider> addingProcess(LocalDate date) {
@@ -71,10 +109,10 @@ public class EventsView {
 
         while (again) {
             logger.info("Select one:\n");
-            MenusPrinter.printServicesMenuWithPcks();
+            MenusPrinter.printServicesMenuForRegisterEvent();
             String serviceNum = scanner.nextLine();
             List<ServiceProvider> filteredProvidersList;
-            if (serviceNum.equals("5")) {
+            if (serviceNum.equals("7")) {
                 filteredProvidersList = EventPlanner.getPakageProviders();
             } else {
                 ServiceType serviceType = switch (serviceNum) {
@@ -82,6 +120,8 @@ public class EventsView {
                     case "2" -> ServiceType.Photography;
                     case "3" -> ServiceType.Security;
                     case "4" -> ServiceType.Cleaning;
+                    case "5" -> ServiceType.Decor_and_Design;
+                    case "6" -> ServiceType.Catering;
                     default -> null;
                 };
                 filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType, date);
@@ -125,9 +165,10 @@ public class EventsView {
 
     public static List<String> readeGuestsEmails() {
         List<String> guestsEmails = new ArrayList<>();
-        logger.info("Enter the number of guests. You can adjust this number and modify the list as needed:\n");
+        logger.info("* Add guests :\nEnter the number of guests. You can adjust this number and modify the list as needed:\n");
         int serviceNum = scanner.nextInt();
         logger.info("For each guest, please enter their email address:");
+        scanner.nextLine();
         for (int i = 0; i < serviceNum; i++) {
             String s = "\n" + (i + 1) + "- ";
             logger.info(s);
@@ -142,12 +183,11 @@ public class EventsView {
         logger.info("Select Event to Editing it: ");
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
-        MenusPrinter.printEventsList(myUpComingEvents);
+        MenusPrinter.printEventsListwithBack(myUpComingEvents);
         int addedNumber = Integer.parseInt(scanner.nextLine());
         if (addedNumber <= myUpComingEvents.size()) {
             editingEventView(myUpComingEvents.get(addedNumber - 1));
         }
-
 
     }
 
@@ -187,7 +227,16 @@ public class EventsView {
     private static void editEventName(RegisteredEvent event)  {
         logger.info("Please, Enter new name for the event: ");
         String newName = scanner.nextLine();
-        EventsControl.editEventName(event, newName);
+        try {
+            EventsControl.editEventName(event, newName);
+        }
+        catch (EventAlreadyExist e){
+            logger.info("Sorry, This name invalid because there is another event with same name ");
+        }
+        catch (EventNotFoundException e){
+            logger.info("Sorry, This event does not included to any user! ");
+
+        }
     }
 
     private static void deleteService(RegisteredEvent event) {
@@ -211,6 +260,7 @@ public class EventsView {
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myEvents = currentUser.getRegisteredEvents();
         MenusPrinter.printEventsList(myEvents);
+        backTouserManagementMenu();
     }
 
     private static void addServices(RegisteredEvent event) {
