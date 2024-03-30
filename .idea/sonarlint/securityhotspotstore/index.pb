@@ -45,3 +45,11 @@ _
 /src/test/features/Event/UpdateEventInfo.feature,f\3\f3d2bf9a7e474f1cb4364c1014fc9358b1cc1415
 \
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+f
+6src/main/java/controllers/ResetPasswordController.java,9\4\946b77017902f490df92bdd5d13dead03f7934e7
+•
+esrc/test/java/testControllers/AdminServiceProviderManagement/TestResetPasswordForServiceProvider.java,c\3\c3c6bf2a3af6adf963df0494b7e796d7d4249bb9
+
+Osrc/test/java/testControllers/AdminUserManagement/TestResetPasswordForUser.java,5\0\5018b8c8d286ed90a28847a0f2e3da3d32bf1d89
+‹
+[src/test/java/testControllers/AdminServiceProviderManagement/TestDeleteServiceProvider.java,b\d\bd7d655b12faea6f16ae51ec5c2909870d7917ba

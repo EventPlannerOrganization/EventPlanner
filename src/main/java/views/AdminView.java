@@ -124,7 +124,11 @@ public class AdminView {
             } else {
                 reTry = false;
                 //you can here send email to notify him that the admin delete him
-                AdminControl.resetPassword(user, readNewPassword());
+               try {
+                   AdminControl.resetPassword(user, readNewPassword());
+               } catch (Exception e){
+                   logger.warning(e.getMessage());
+               }
             }
         }
     }
@@ -155,7 +159,11 @@ public class AdminView {
         else {
             reTry=false;
             //you can here send email to notify him that the admin delete him
-            AdminControl.deleteUser( deletedUser);
+           try {
+               AdminControl.deleteUser( deletedUser);
+           } catch (Exception e){
+               logger.warning(e.getMessage());
+           }
         }
 
         }
@@ -361,7 +369,12 @@ public class AdminView {
             } else {
                 reTry = false;
                 //you can here send email to notify him that the admin delete him
-                AdminControl.resetPassword(serviceProvider, readNewPassword());
+              try {
+                  AdminControl.resetPassword(serviceProvider, readNewPassword());
+              } catch (Exception e){
+                  logger.warning(e.getMessage());
+              }
+
             }
         }
     }
@@ -384,7 +397,7 @@ public class AdminView {
                 try {
                     AdminControl.deleteServiceProvider( deletedUser);
                 }
-                catch (EmptyList | ServiceNotFoundException e){logger.warning(e.getMessage());}
+                catch (EmptyList | Exception e){logger.warning(e.getMessage());}
             }
 
         }
