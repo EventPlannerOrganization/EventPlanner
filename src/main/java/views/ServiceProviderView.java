@@ -3,9 +3,8 @@ package views;
 
 import Email.EmailService;
 import exceptions.GoToMainMenuException;
-import exceptions.UserIsAlreadyExist;
 import exceptions.UserNotFoundException;
-import exceptions.WeakPasswordException;
+
 
 import exceptions.*;
 import controllers.EventsControl;
@@ -24,6 +23,7 @@ import java.util.logging.Logger;
 public class ServiceProviderView {
     private static final Logger logger = Logger.getLogger(ServiceProviderView.class.getName());
     private static final Scanner scanner = new Scanner(System.in);
+    public static final String INVALID_CHOICE = "invalid choice";
 
     private ServiceProviderView() {
 
@@ -62,50 +62,34 @@ public class ServiceProviderView {
 
     private static int getSelectedRequest(List<Request> requests) {
         logger.info("Please select a request:");
-        return getIntegerInput(1, requests.size());
+        return getIntegerInput(requests.size());
     }
 
     private static int getMenuChoice(List<String> options) {
         MenusPrinter.printMenu(options);
-        return getIntegerInput(1, options.size());
+        return getIntegerInput( options.size());
     }
 
-    private static int getIntegerInput(int min, int max) {
+    private static int getIntegerInput(int max) {
         while (true) {
             try {
                 int input = Integer.parseInt(scanner.nextLine());
                 if (input >= 1 && input <= max) {
                     return input;
                 }
-                logger.info("Please enter a valid integer between "+min+ " and "+ max);
+                String s="Please enter a valid integer between "+1+ " and "+ max;
+                logger.info(s);
             } catch (NumberFormatException e) {
                 logger.warning("Please enter a valid integer");
             }
         }
     }
 
-    public static void showRequset(ServiceProvider serviceProvider)  {
-        List<String> requests=new ArrayList<>();
-        if(serviceProvider.getRequests().isEmpty())
-            logger.info("empty list");
-       else {
-            for (Request request : serviceProvider.getRequests()) {
-                requests.add(request.getMessage());
-            }
-        }
-    }
-
     private static void handleRequestChoice(int choice, Request request, ServiceProvider serviceProvider) {
         switch (choice) {
-            case 1:
-                ServiceProviderControl.respondToRequests(true, request, serviceProvider);
-                break;
-            case 2:
-                ServiceProviderControl.respondToRequests(false, request, serviceProvider);
-                break;
-            default:
-                logger.warning("Invalid choice");
-                break;
+            case 1 -> ServiceProviderControl.respondToRequests(true, request, serviceProvider);
+            case 2 -> ServiceProviderControl.respondToRequests(false, request, serviceProvider);
+            default -> logger.warning("Invalid choice");
         }
 
     }
@@ -116,7 +100,7 @@ public class ServiceProviderView {
     }
 
 
-    public static void providerMenu() throws UserNotFoundException, MessagingException, IOException, UserIsAlreadyExist, WeakPasswordException {
+    public static void providerMenu() throws UserNotFoundException, MessagingException, IOException {
         boolean flag = true;
         while (flag) {
             MenusPrinter.printServiceProviderMenu();
@@ -127,31 +111,25 @@ public class ServiceProviderView {
                 logger.info("Enter Valid Choice !");
             }
             switch (choice) {
-                case "1":
+                case "1" -> {
                     ServiceProviderView.showServices((ServiceProvider) EventPlanner.getCurrentUser());
                     backToServiceProviderMenu();
-                    break;
-                case "2":
-                    ServiceProviderView.updateServices((ServiceProvider) EventPlanner.getCurrentUser());
-                    break;
-                case "3":
-                    ServiceProviderView.showEvents((ServiceProvider) EventPlanner.getCurrentUser());
-                    break;
-                case "4":
-                    ServiceProviderView.showUpComingEvents((ServiceProvider) EventPlanner.getCurrentUser());
-                    break;
-                case "5":
+                }
+                case "2" -> ServiceProviderView.updateServices((ServiceProvider) EventPlanner.getCurrentUser());
+                case "3" -> ServiceProviderView.showEvents((ServiceProvider) EventPlanner.getCurrentUser());
+                case "4" -> ServiceProviderView.showUpComingEvents((ServiceProvider) EventPlanner.getCurrentUser());
+                case "5" -> {
                     ServiceProvider serviceProvider = (ServiceProvider) EventPlanner.getServiceProviderByUsername(EventPlanner.getCurrentUser().getAuthentication().getUsername());
                     showRequest(serviceProvider);
-                    break;
-
-                case "6":
+                }
+                case "6" -> {
                     EventPlanner.signout();
                     flag = false;
                     StartingView.staringView();
-                    break;
-                default:
-                    // code block
+                }
+                default -> logger.warning(INVALID_CHOICE);
+
+                // code block
             }
         }
     }
@@ -170,25 +148,24 @@ public class ServiceProviderView {
 
         }
         switch (choice) {
-            case "1":
-                ServiceProviderView.changeServiceProviderServiceView(serviceProvider);
-                break;
-            case "2":
+            case "1" -> ServiceProviderView.changeServiceProviderServiceView(serviceProvider);
+            case "2" -> {
                 if (serviceProvider.isPackageProvider())
                     ServiceProviderView.changeServiceDescriptionForPackageProvider(serviceProvider);
 
                 else {
                     ServiceProviderView.changeServiceDescription(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
                 }
-                break;
-            case "3":
+            }
+            case "3" -> {
                 if (serviceProvider.isPackageProvider()) {
                     ServiceProviderView.changeServicePriceForPackageProvider(serviceProvider);
                 } else {
                     ServiceProviderView.changeServicePrice(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
                 }
-                break;
-            default:
+            }
+            default -> logger.warning(INVALID_CHOICE);
+
         }
     }
 
@@ -302,9 +279,7 @@ public class ServiceProviderView {
                 List<Service> services = ServiceProviderView.addingProcessForPackageProvider();
                 ServiceProviderControl.changePackageProviderServices(serviceProvider, services);
             }
-            default ->
-                flag=false;
-
+            default ->logger.warning(INVALID_CHOICE);
 
         }
         if (flag) {
@@ -411,9 +386,12 @@ public class ServiceProviderView {
 
     public static void showServiceProviderUpcomingEvents(ServiceProvider serviceProvider) {
         try {
-            String string = new StringBuilder().append("Invalid Input").append("\n If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ").toString();
+            String string = """
+                    Invalid Input
+                     If you Want To Discard Event ,Enter Event Number\s
+                     To Go Back Enter B\s""";
 
-            while (true){
+
                 MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
                 logger.info("If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ");
                 String choice = scanner.nextLine();
@@ -429,11 +407,10 @@ public class ServiceProviderView {
                             serviceProvider);
                     MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
                     backToServiceProviderMenu();
-                    break;
-                } else
-                    return;
 
-            }
+                }
+
+
 
 
         } catch (EmptyList | ServiceNotFoundException emptyList) {

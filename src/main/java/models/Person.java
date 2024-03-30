@@ -15,7 +15,6 @@ private ContactInfo contactInfo;
         Person person = (Person) o;
         return person.authentication.getUsername().equals(authentication.getUsername()) &&
                 person.contactInfo.getEmail().equals(contactInfo.getEmail());
-        //return Objects.equals(name, person.name) && Objects.equals(authentication, person.authentication) && Objects.equals(address, person.address) && Objects.equals(contactInfo, person.contactInfo);
     }
 
     @Override

@@ -3,8 +3,22 @@ package models;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ServiceProvider extends Person {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ServiceProvider that)) return false;
+        if (!super.equals(o)) return false;
+        return isPackageProvider == that.isPackageProvider && Objects.equals(requests, that.requests) && Objects.equals(services, that.services) && Objects.equals(bookedDates, that.bookedDates)&&getAuthentication().getUsername().equals(that.getAuthentication().getUsername()) &&
+                getContactInfo().getEmail().equals(that.getContactInfo().getEmail());
+
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), requests, services, bookedDates, isPackageProvider);
+    }
 
     public ServiceProvider() {
 
@@ -20,17 +34,6 @@ public class ServiceProvider extends Person {
     private List<LocalDate> bookedDates = null;
     private boolean isPackageProvider = false;
 
-    public ServiceProvider(ServiceProvider cpy){
-        super(new Name(cpy.getName().getfName(), cpy.getName().getmName(), cpy.getName().getlName())
-                , new Authentication(cpy.getAuthentication().getUsername(), cpy.getAuthentication().getPassword()),
-                new Address(cpy.getAddress().getCountry(), cpy.getAddress().getCity()),
-                new ContactInfo(cpy.getContactInfo().getEmail(),cpy.getContactInfo().getPhoneNumber()));
-
-        for(Service cpyService  : cpy.getServices()){
-            Service service=new Service(cpyService.getServiceType(),cpyService.getPrice(),cpyService.getDescription());
-            this.getServices().add(service);
-        }
-    }
     public ServiceProvider(Name name, Authentication authentication, Address address, ContactInfo contactInfo, List<Service> service) {
 
         super(new Name(name.getfName(), name.getmName(), name.getlName())
@@ -53,10 +56,6 @@ public class ServiceProvider extends Person {
 
     public List<LocalDate> getBookedDates() {
         return bookedDates;
-    }
-
-    public void setBookedDates(List<LocalDate> bookedDates) {
-        this.bookedDates = bookedDates;
     }
 
     public boolean isPackageProvider() {

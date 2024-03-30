@@ -41,9 +41,7 @@ public class UserView {
             }
 
             switch (choice) {
-                case "1" -> {
-                    EventsView.registerEventView();
-                }
+                case "1" -> EventsView.registerEventView();
                 case "2" -> EventsView.showMyevents();
                 case "3" -> EventsView.editUpCommingEvents();
                 case "4" -> guestsEmail();
