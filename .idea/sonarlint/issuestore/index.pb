@@ -39,6 +39,7 @@ X
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 [
 +src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
+<<<<<<< HEAD
 Y
 )src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
 T
@@ -49,3 +50,11 @@ h
 8src/main/java/exceptions/AlreadyBookedDateException.java,1\e\1e7963bc0eba6d3d09f572491ae456b39b11389b
 W
 'src/main/java/exceptions/EmptyList.java,6\e\6e0b26e12b6f2cccd101afb86c78400b24c94750
+=======
+g
+7src/test/java/testControllers/Event/TestUpdateInfo.java,c\1\c107a3876515079950eaf57b04e9605413dd9246
+_
+/src/test/features/Event/UpdateEventInfo.feature,f\3\f3d2bf9a7e474f1cb4364c1014fc9358b1cc1415
+\
+,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
+>>>>>>> b8dd5a28b2401c10f18cff3d2efa0b56e5d534c9
