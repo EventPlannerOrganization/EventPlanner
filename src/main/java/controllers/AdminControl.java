@@ -1,6 +1,6 @@
 package controllers;
 
-import Email.EmailService;
+import email.EmailService;
 import exceptions.EmptyList;
 import exceptions.EventAlreadyExist;
 import exceptions.EventNotFoundException;

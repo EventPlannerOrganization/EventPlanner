@@ -1,7 +1,7 @@
 package views;
 
 
-import Email.EmailService;
+import email.EmailService;
 import exceptions.GoToMainMenuException;
 import exceptions.UserNotFoundException;
 

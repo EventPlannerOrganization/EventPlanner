@@ -27,3 +27,5 @@ U
 %src/main/java/views/StartingView.java,f\3\f37cc30da36ad676b46320eb4b5c775d45809871
 ^
 .src/main/java/printers/CollectionsPrinter.java,2\4\242052583b197684432a2679c5c1f15700fd242e
+U
+%src/main/java/email/EmailService.java,4\6\4631193b3e60655c3bb6d16618ae75b37865a257

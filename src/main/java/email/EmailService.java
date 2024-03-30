@@ -1,4 +1,4 @@
-package Email;
+package email;
 
 import io.YmlHandler;
 import models.EventPlanner;
