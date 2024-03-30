@@ -9,3 +9,5 @@ U
 %src/main/java/views/StartingView.java,f\3\f37cc30da36ad676b46320eb4b5c775d45809871
 Q
 !src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+d
+4src/test/java/test_helpers/TestStringOperations.java,6\4\6421f97af6496dae114ab352ffc0c09aafadd66b
