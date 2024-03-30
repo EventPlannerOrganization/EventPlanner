@@ -43,7 +43,7 @@ public class AdminView {
             MenusPrinter.printAdminMenu();
             logger.info("What do you want to do ?");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.adminMenuChecker(choice)) {
+            while (!ChoiceChecker.isValidChoice(choice,5)) {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
             }
@@ -79,7 +79,7 @@ public class AdminView {
             MenusPrinter.printUserManageMenu();
             logger.info("What do you want to do ? ");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.userManageMenuChecker(choice)) {
+            while (!ChoiceChecker.isValidChoice(choice,7)) {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
             }
@@ -217,7 +217,7 @@ public class AdminView {
         logger.info("Please select a method to generate the process:");
         MenusPrinter.printfindUserMethodsMenu();
         String choice=scanner.nextLine();
-        while (!ChoiceChecker.isOneOrTwo(choice)) {
+        while (!ChoiceChecker.isValidChoice(choice,2)) {
             logger.info("Enter Valid Choice: ");
             choice=scanner.nextLine();
         }
@@ -279,7 +279,7 @@ public class AdminView {
             MenusPrinter.printServiceProviderManageMenu();
             logger.info("What do you want to do ? ");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.serviceProviderManageMenuChecker(choice))
+            while (!ChoiceChecker.isValidChoice(choice,8))
             {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
@@ -444,7 +444,7 @@ public class AdminView {
             MenusPrinter.printEventManageMenu();
             logger.info("What do you want to do ? ");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.userManageMenuChecker(choice))
+            while (!ChoiceChecker.isValidChoice(choice,7))
             {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
@@ -601,7 +601,7 @@ public class AdminView {
         logger.info("Please select a method to generate the process:");
         MenusPrinter.printfindEventMethodsMenu();
         String choice=scanner.nextLine();
-        while (!ChoiceChecker.isOneOrTwo(choice)) {
+        while (!ChoiceChecker.isValidChoice(choice,2)) {
             logger.info("Enter Valid Choice: ");
             choice=scanner.nextLine();
         }

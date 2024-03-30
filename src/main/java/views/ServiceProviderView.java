@@ -77,7 +77,7 @@ public class ServiceProviderView {
                 if (input >= 1 && input <= max) {
                     return input;
                 }
-                ChoiceChecker.createInvalidIntegerMessage(min, max);
+                logger.info("Please enter a valid integer between "+min+ " and "+ max);
             } catch (NumberFormatException e) {
                 logger.warning("Please enter a valid integer");
             }
@@ -122,7 +122,7 @@ public class ServiceProviderView {
             MenusPrinter.printServiceProviderMenu();
             logger.info("What do you want to do ?");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.serviceProviderMenuChecker(choice)) {
+            while (!ChoiceChecker.isValidChoice(choice,6)) {
                 choice = scanner.nextLine();
                 logger.info("Enter Valid Choice !");
             }
@@ -163,7 +163,7 @@ public class ServiceProviderView {
         logger.info(" Please Choose Number from Menu or Press B To Back To Main Menu");
         String choice = scanner.nextLine();
 
-        while (!(ChoiceChecker.editServiceMenuCheck(choice))) {
+        while (!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) {
             logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
             choice = scanner.nextLine();
 
@@ -258,9 +258,9 @@ public class ServiceProviderView {
         String choice = scanner.nextLine();
 
 
-        while ((!ChoiceChecker.editServiceMenuCheck(choice)) || (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
+        while ((!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) || (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
 
-            if (!ChoiceChecker.editServiceMenuCheck(choice)) {
+            if (!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
             } else if (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {

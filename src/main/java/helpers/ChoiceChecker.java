@@ -20,35 +20,27 @@ public class ChoiceChecker {
     private ChoiceChecker() {
 
     }
-    public static boolean isOneOrTwo(String value){
-       return value.equals("1")||value.equals("2");
+    public static boolean isValidChoice(String choice,int range) {
+        int readedNum=Integer.parseInt(choice);
+        for(int i=1;i<=range;i++) {
+            if(i==readedNum) {
+                return true;
+            }
+        }
+        return false;
     }
-
 
 
     public static boolean isValidNumberOfServices(String value) {
         return value.equals("2")||value.equals("3")||value.equals("4");
     }
-    public static boolean isValidServiceIndex(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equals("6")||value.equals("7");
-    }
 
-    public static boolean userMenuChecker(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5");
-    }
-    public static boolean adminMenuChecker(String value) {
-        return userMenuChecker(value)||value.equals("5");
-    }
-    public static boolean userManageMenuChecker(String value) {
-        return adminMenuChecker(value)||value.equals("6")||value.equals("7");
-    }
-    public static boolean serviceProviderManageMenuChecker(String value) {
-        return userManageMenuChecker(value)||value.equals("8");
-    }
-    public static boolean serviceProviderMenuChecker(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equals("6");
 
-    }
+
+
+
+
+
     public static boolean againChecker(){
         boolean again=true;
         String choice = scanner.nextLine();
@@ -67,19 +59,7 @@ public class ChoiceChecker {
         return again;
     }
 
-
-    public static boolean editServiceMenuCheck(String value) {
-        return value.equals("1")||value.equals("2")||value.equals("3")||value.equals("4")||value.equals("5")||value.equals("6")||value.equals("7")||value.equals("8")||value.equalsIgnoreCase("b");
-
-    }
-    public static boolean checkIfB(String value) {
-        return value.equals("b") ||value.equals("B");
-    }
-
-
-
-    public static String readingEventName(){
-        String eventName = scanner.nextLine();
+    public static String readingEventName(String eventName){
         while (true){
             try {
                 ((User) EventPlanner.getCurrentUser()).checkEventExisting(eventName);
@@ -98,8 +78,8 @@ public class ChoiceChecker {
     }
 
     public static String checkPackageProviderAddingProcess(List<Service> serviceList, String choice) {
-        while (!ChoiceChecker.isValidServiceIndex(choice) || (checkIfTheServiceAlreadyAdded(serviceList,choice))) {
-            if (!ChoiceChecker.isValidServiceIndex(choice)) {
+        while (!ChoiceChecker.isValidChoice(choice,7) || (checkIfTheServiceAlreadyAdded(serviceList,choice))) {
+            if (!ChoiceChecker.isValidChoice(choice,7)) {
                 logger.info("Invalid Input , Choose Correct Service Number :\n");
                 choice = scanner.nextLine();
             }
@@ -147,9 +127,7 @@ return choice;
 
     }
 
-    public static void createInvalidIntegerMessage(int min, int max) {
-        logger.info("Please enter a valid integer between "+min+ " and "+ max);
-    }
+
 
 
     public static boolean checkIfItsCurrentService(Service service, String choice) {

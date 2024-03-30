@@ -50,7 +50,8 @@ public class EventsView {
         RegisteredEvent newEvent =new RegisteredEvent();
         cost = 0;
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
-        String name=ChoiceChecker.readingEventName();
+        String eventName=scanner.nextLine();
+        String name=ChoiceChecker.readingEventName(eventName);
         logger.info("* Enter Date of your event \n - Day (1-31): ");
         LocalDate date;
         while(true) {
