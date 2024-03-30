@@ -29,15 +29,8 @@ public class AdminControl {
     }
 
     public static List<String> getEventsForUser(User user){
-<<<<<<< HEAD
-        List<RegisteredEvent> sortedEvents = user.getRegisteredEvents().stream()
-                .sorted(Comparator.comparing(RegisteredEvent::getDate)).toList();
-
-        List<String>events=getEventNameOfUsers(sortedEvents);
-=======
         List<String> events;
         events=getEventNameOfUsers(user.getRegisteredEvents());
->>>>>>> 313f6954061d2ae0bda8bf0e0b6931661a9b49d0
         return events;
     }
 

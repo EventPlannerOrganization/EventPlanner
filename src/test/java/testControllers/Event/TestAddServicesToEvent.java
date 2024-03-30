@@ -55,8 +55,7 @@ public class TestAddServicesToEvent {
     }
     @Then("services will not be added because the service provider have an event in this date")
     public void servicesWillNotBeAddedBecauseTheServiceProviderHaveAnEventInThisDate() {
-//        assertThrows(AlreadyBookedDateException.class, () -> EventsControl.addServices(event, addedServiceProviders));
-        assertTrue(true);
+        assertThrows(AlreadyBookedDateException.class, () -> EventsControl.addServices(event, addedServiceProviders));
     }
 
     }
