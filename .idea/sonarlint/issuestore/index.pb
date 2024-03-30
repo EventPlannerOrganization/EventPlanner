@@ -29,3 +29,11 @@ N
 src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
 [
 +src/main/java/helpers/StringOperations.java,3\a\3ad7968a4ba8c72b7046afaf4826fa5beb4210a3
+U
+%src/main/java/Email/EmailService.java,f\d\fdade210e9a93d0d928922298efc60f16036d043
+d
+4src/test/java/testEmailService/TestEmailService.java,7\e\7e4389bfb58ffa5fd9366c1b35fd731121b1e346
+X
+(src/test/java/TestIo/TestYmlHandler.java,e\8\e8bf60d4545be4c737bddec9f4ff4e85f84d6a39
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
