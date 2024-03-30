@@ -7,6 +7,10 @@ import io.cucumber.java.en.When;
 import models.EventPlanner;
 import models.User;
 
+import javax.mail.MessagingException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class TestResetPasswordForUser {
     User user;
     String newPassword;
@@ -20,7 +24,7 @@ public class TestResetPasswordForUser {
        newPassword = string;
     }
     @Then("Password will Change Successfuly")
-    public void passwordWillChangeSuccessfuly() {
+    public void passwordWillChangeSuccessfuly() throws IOException, MessagingException {
         String oldPassword = user.getAuthentication().getPassword();
         AdminControl.resetPassword(user,newPassword);
         assert(user.getAuthentication().getPassword().equals(newPassword));
