@@ -89,7 +89,7 @@ public class EventsView {
                 - If no, please enter 'n' and we will suggest some venue services for you to choose from.""");
         boolean hasVenue = ChoiceChecker.againChecker();
         if(!hasVenue) {
-            List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(ServiceType.Venue, date);
+            List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(ServiceType.VENUE, date);
             if (filteredProvidersList.isEmpty()) {
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
                 return "null";
@@ -128,11 +128,11 @@ public class EventsView {
             } else {
                 ServiceType serviceType = switch (serviceNum) {
                     case "1" -> ServiceType.DJ;
-                    case "2" -> ServiceType.Photography;
-                    case "3" -> ServiceType.Security;
-                    case "4" -> ServiceType.Cleaning;
-                    case "5" -> ServiceType.Decor_and_Design;
-                    case "6" -> ServiceType.Catering;
+                    case "2" -> ServiceType.PHOTOGRAPHY;
+                    case "3" -> ServiceType.SECURITY;
+                    case "4" -> ServiceType.CLEANING;
+                    case "5" -> ServiceType.DECOR_AND_DESIGN;
+                    case "6" -> ServiceType.CATERING;
                     default -> null;
                 };
                 filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType, date);

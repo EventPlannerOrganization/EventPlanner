@@ -152,7 +152,7 @@ public class EventPlanner {
 
 
         List<Service>services2=new ArrayList<>();
-        services2.add(  new Service(ServiceType.Security,3200,"tesing"));
+        services2.add(  new Service(ServiceType.SECURITY,3200,"tesing"));
         ServiceProvider serviceProvider2 = new ServiceProvider(new Name("baha","khalid","alawneh"),
                 new Authentication("baha02","0000"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
@@ -160,8 +160,8 @@ public class EventPlanner {
         EventPlanner.addUser(serviceProvider2);
 
         List<Service>services3=new ArrayList<>();
-        services3.add(  new Service(ServiceType.Photography,3200,"tesing"));
-        services3.add(new Service(ServiceType.Security,3200,"tesing"));
+        services3.add(  new Service(ServiceType.PHOTOGRAPHY,3200,"tesing"));
+        services3.add(new Service(ServiceType.SECURITY,3200,"tesing"));
         ServiceProvider serviceProvider3 = new ServiceProvider(new Name("jamil","munir","shadid"),
                 new Authentication("Ibrahim160","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
@@ -169,7 +169,7 @@ public class EventPlanner {
         EventPlanner.addUser(serviceProvider3);
 
         List<Service>services4=new ArrayList<>();
-        services3.add(  new Service(ServiceType.Cleaning,3200,"tesing"));
+        services3.add(  new Service(ServiceType.CLEANING,3200,"tesing"));
         ServiceProvider serviceProvider4 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
                 new Authentication("saleem04","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
@@ -177,14 +177,14 @@ public class EventPlanner {
         EventPlanner.addUser(serviceProvider4);
 
         List<Service>services5=new ArrayList<>();
-        services5.add(  new Service(ServiceType.Cleaning,3200,"tesing"));
+        services5.add(  new Service(ServiceType.CLEANING,3200,"tesing"));
         ServiceProvider serviceProvider5 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
                 new Authentication("hamid02","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),
                 services5);
         EventPlanner.addUser(serviceProvider5);
         List<Service> service6=new ArrayList<>();
-        service6.add(new Service(ServiceType.Cleaning,2000,"helllo"));
+        service6.add(new Service(ServiceType.CLEANING,2000,"helllo"));
         ServiceProvider serviceProvider6 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
                 new Authentication("aliii","bbaa12"),new Address("palestine","tulkarm"),
                 new ContactInfo("mo@gmail.com","9412412"),

@@ -45,24 +45,24 @@ public class MenusPrinter {
     public static void printServicesMenu() {
         List<String> menu = new ArrayList<>();
         menu.add("DJ");
-        menu.add("Photography");
-        menu.add("Security");
-        menu.add("Cleaning");
+        menu.add("PHOTOGRAPHY");
+        menu.add("SECURITY");
+        menu.add("CLEANING");
         menu.add("Decor And Design");
-        menu.add("Catering");
-        menu.add("Venue");
+        menu.add("CATERING");
+        menu.add("VENUE");
         printMenu(menu);
     }
 
     public static void printServicesMenuWithPcks() {
         List<String> menu = new ArrayList<>();
         menu.add("DJ");
-        menu.add("Photography");
-        menu.add("Security");
-        menu.add("Cleaning");
+        menu.add("PHOTOGRAPHY");
+        menu.add("SECURITY");
+        menu.add("CLEANING");
         menu.add("Decor And Design");
-        menu.add("Catering");
-        menu.add("Venue");
+        menu.add("CATERING");
+        menu.add("VENUE");
         menu.add("packages Offers");
         printMenu(menu);
     }
@@ -70,11 +70,11 @@ public class MenusPrinter {
     public static void printServicesMenuForRegisterEvent() {
         List<String> menu = new ArrayList<>();
         menu.add("DJ");
-        menu.add("Photography");
-        menu.add("Security");
-        menu.add("Cleaning");
+        menu.add("PHOTOGRAPHY");
+        menu.add("SECURITY");
+        menu.add("CLEANING");
         menu.add("Decor And Design");
-        menu.add("Catering");
+        menu.add("CATERING");
         menu.add("packages Offers");
         printMenu(menu);
     }

@@ -125,12 +125,12 @@ logger.warning(e.getMessage());
             }
         ServiceType serviceType = switch (servicenum) {
             case "1" -> ServiceType.DJ;
-            case "2" -> ServiceType.Photography;
-            case "3" -> ServiceType.Security;
-            case "4" -> ServiceType.Cleaning;
-            case "5" -> ServiceType.Decor_and_Design;
-            case "6" -> ServiceType.Catering;
-            case "7" -> ServiceType.Venue;
+            case "2" -> ServiceType.PHOTOGRAPHY;
+            case "3" -> ServiceType.SECURITY;
+            case "4" -> ServiceType.CLEANING;
+            case "5" -> ServiceType.DECOR_AND_DESIGN;
+            case "6" -> ServiceType.CATERING;
+            case "7" -> ServiceType.VENUE;
             default -> null;
         };
         logger.info("Enter price for this service: ");

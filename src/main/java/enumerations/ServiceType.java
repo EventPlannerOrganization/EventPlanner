@@ -2,13 +2,13 @@ package enumerations;
 
 public enum ServiceType {
     DJ,
-    Photography,
-    Security,
-    Cleaning,
+    PHOTOGRAPHY,
+    SECURITY,
+    CLEANING,
 
-    Decor_and_Design,
-    Venue,
-    Catering,
+    DECOR_AND_DESIGN,
+    VENUE,
+    CATERING,
 
-    Null // JUST FOR THING IN MY HEAD
+    NULL // JUST FOR THING IN MY HEAD
 }
