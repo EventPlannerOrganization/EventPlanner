@@ -3,9 +3,9 @@ package views;
 import exceptions.EmptyList;
 import exceptions.EventAlreadyExist;
 import exceptions.EventNotFoundException;
-import exceptions.ServiceNotFoundException;
 import controllers.AdminControl;
 
+import exceptions.ServiceNotFoundException;
 import helpers.ChoiceChecker;
 import helpers.PasswordChecker;
 import models.EventPlanner;
@@ -15,6 +15,7 @@ import models.User;
 import printers.MenusPrinter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -29,6 +30,8 @@ public class AdminView {
     private static final User notUser = new User();
     private static final RegisteredEvent notEvent = new RegisteredEvent();
     private static final ServiceProvider notServiceProvider = new ServiceProvider();
+    public static final String WHAT_DO_YOU_WANT_TO_DO = "What do you want to do ? ";
+    public static final String INVALID_CHOICE = "invalid choice";
 
     static String message = "Sorry, no users were found matching your search criteria.\n" +
             "do need to retry process? Enter 'Y' if yes, enter any button to return to menu";
@@ -48,23 +51,14 @@ public class AdminView {
                 logger.info(messageEnterValid);
             }
             switch (choice) {
-                case "1":
-                    AdminView.userManagement();
-                    break;
-                case "2":
-                    AdminView.serviceProviderManagement();
-                    break;
-                case "3":
-                    AdminView.eventManagement();
-                    break;
-                case "4":
-                    break;
-                case "5":
+                case "1" -> AdminView.userManagement();
+                case "2" -> AdminView.serviceProviderManagement();
+                case "3" -> AdminView.eventManagement();
+                case "4" -> {
                     flage = false;
                     EventPlanner.signout();
-                    break;
-                default:break;
-
+                }
+                default -> logger.warning(INVALID_CHOICE);
             }
 
             }
@@ -77,36 +71,23 @@ public class AdminView {
         boolean flage = true;
         while (flage) {
             MenusPrinter.printUserManageMenu();
-            logger.info("What do you want to do ? ");
+            logger.info(WHAT_DO_YOU_WANT_TO_DO);
             String choice = scanner.nextLine();
             while (!ChoiceChecker.isValidChoice(choice,7)) {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
             }
             switch (choice) {
-                case "1":
-                    AdminView.showUsersView();
-                    break;
-                case "2":
-                    AdminView.searchUserView();
-                    break;
-                case "3":
-                    AdminView.createNewUser();
-                    break;
-                case "4":
-                    AdminView.deleteUser();
-                    break;
-                case "5":
-                    AdminView.resetPassword();
-                    break;
-                case "6":
-                    AdminView.viewEvents();
-                    break;
-                case "7":
-                    flage = false;
-                    break;
-                default:
-                    // code block
+                case "1" -> AdminView.showUsersView();
+                case "2" -> AdminView.searchUserView();
+                case "3" -> AdminView.createNewUser();
+                case "4" -> AdminView.deleteUser();
+                case "5" -> AdminView.resetPassword();
+                case "6" -> AdminView.viewEvents();
+                case "7" -> flage = false;
+                default -> logger.warning(INVALID_CHOICE);
+
+
             }
         }
     }
@@ -285,7 +266,7 @@ public class AdminView {
         while(flage)
         {
             MenusPrinter.printServiceProviderManageMenu();
-            logger.info("What do you want to do ? ");
+            logger.info(WHAT_DO_YOU_WANT_TO_DO);
             String choice = scanner.nextLine();
             while (!ChoiceChecker.isValidChoice(choice,8))
             {
@@ -301,6 +282,7 @@ public class AdminView {
                 case "6" -> AdminView.viewServices();
                 case "7" -> AdminView.viewBookedDates();
                 case "8" -> flage = false;
+                default -> logger.warning(INVALID_CHOICE);
 
             }
         }
@@ -455,7 +437,7 @@ public class AdminView {
         while(flage)
         {
             MenusPrinter.printEventManageMenu();
-            logger.info("What do you want to do ? ");
+            logger.info(WHAT_DO_YOU_WANT_TO_DO);
             String choice = scanner.nextLine();
             while (!ChoiceChecker.isValidChoice(choice,7))
             {
@@ -470,8 +452,7 @@ public class AdminView {
                 case "5" -> AdminView.deleteEvent();
                 case "6" -> AdminView.editEvent();
                 case "7" -> flage = false;
-                case "8" -> flage = false;
-
+                default ->logger.warning(INVALID_CHOICE);
             }
         }
     }
@@ -486,12 +467,10 @@ public class AdminView {
         try {
             AdminControl.deleteEvent(event);
         }
-        catch (EventNotFoundException e){
+        catch (EventNotFoundException | ServiceNotFoundException e){
             logger.info("Sorry, This event does not include to any user ! ");
         }
-        catch (Exception e){
 
-        }
     }
 
     private static void searchEvent() {
@@ -564,19 +543,16 @@ public class AdminView {
         RegisteredEvent modifiedEvent;
         String choice=selectEventMethod();
         List<RegisteredEvent> events;
-        if(choice.equals("1")) {
-            logger.info("Please enter event name to search ");
-            String eventName = scanner.nextLine();
-            events = AdminControl.searchEvents(eventName);
+        switch (choice) {
+            case "1" -> {
+                logger.info("Please enter event name to search ");
+                String eventName = scanner.nextLine();
+                events = AdminControl.searchEvents(eventName);
+            }
+            case "2" -> events = AdminView.eventsForUser();
+            case "3" -> events = getAllEvents();
+            default -> events = null;
         }
-        else if (choice.equals("2")){
-            events= AdminView.eventsForUser();
-        }
-
-        else if (choice.equals("3"))
-            events= getAllEvents();
-        else
-            events=null;
         if (events == null){
             return null;
         }
@@ -607,7 +583,7 @@ public class AdminView {
 
             }
         }
-        return null;
+        return Collections.emptyList();
     }
 
     private static String selectEventMethod() {

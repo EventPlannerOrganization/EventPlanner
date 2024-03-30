@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
+
+import static views.AdminView.INVALID_CHOICE;
 import static views.AdminView.backTouserManagementMenu;
 
 
@@ -21,6 +23,7 @@ public class EventsView {
     private static final Logger logger = Logger.getLogger(EventsView.class.getName());
     private static final Scanner scanner = new Scanner(System.in);
     private static double cost;
+
 
     private EventsView() {
 
@@ -78,6 +81,7 @@ public class EventsView {
         newEvent.setDate(date);
         newEvent.setGuestsEmails(guestsEmails);
         newEvent.setServiceProviders(list);
+        newEvent.setCost(cost);
         return newEvent;
     }
 
@@ -144,9 +148,6 @@ public class EventsView {
                 ServiceProvider newServiceProvider = selectedServiceFromServicesList(filteredProvidersList);
 
                if (newServiceProvider != null) {
-////                    UserControl.sendRequestToServiceProvider(newServiceProvider,date);
-////                    //here add the accept & reject
-                newServiceProvider.getBookedDates().add(date);
                 addedProviders.add(newServiceProvider);
                 }
 
@@ -220,27 +221,18 @@ public class EventsView {
             MenusPrinter.printEditingChoices();
             String choice = scanner.nextLine();
             switch (choice) {
-                case "1":
-                   editEventName(event);
-                    break;
-                case "2":
-                    addServices(event);
-                    break;
-                case "3":
-                    deleteService(event);
-                    break;
-                case "4":
-                    List <String> newGuests= EventsView.readeGuestsEmails();
-                    EventsControl.addNewGuests(event,newGuests);
-                    break;
-                case "5":
-                    deleteGuest(event);
-                    break;
-                case "6":
-                    flage=false;
-                    break;
-                default:
-                    // code block
+                case "1" -> editEventName(event);
+                case "2" -> addServices(event);
+                case "3" -> deleteService(event);
+                case "4" -> {
+                    List<String> newGuests = EventsView.readeGuestsEmails();
+                    EventsControl.addNewGuests(event, newGuests);
+                }
+                case "5" -> deleteGuest(event);
+                case "6" -> flage = false;
+                default -> logger.warning(INVALID_CHOICE);
+
+                // code block
             }
         }
     }
@@ -265,7 +257,9 @@ public class EventsView {
         logger.info("Select service to delete it: ");
         ServiceProvider deletedService = EventsView.selectedServiceFromServicesList(event.getServiceProviders());
         try{EventsControl.deleteService(event, deletedService);}
-        catch (ServiceNotFoundException ignored){}
+        catch (ServiceNotFoundException e){
+            logger.warning(e.getMessage());
+        }
     }
 
     private static void deleteGuest(RegisteredEvent event) {
@@ -293,6 +287,9 @@ public class EventsView {
         }
 
     }
+
+
+
 }
 
 

@@ -12,6 +12,9 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class ResetPasswordView {
+    private ResetPasswordView() {
+
+    }
     private static final Logger logger=Logger.getLogger(ResetPasswordView.class.getName());
     private static final Scanner scanner=new Scanner(System.in);
     public static void resetPasswordView() throws IOException, MessagingException, UserNotFoundException {
