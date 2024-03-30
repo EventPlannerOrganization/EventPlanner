@@ -186,11 +186,8 @@ public class ServiceProviderView {
                     ServiceProviderView.changeServicePriceForPackageProvider(serviceProvider);
                 } else {
                     ServiceProviderView.changeServicePrice(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
-
                 }
                 break;
-
-
             default:
         }
     }

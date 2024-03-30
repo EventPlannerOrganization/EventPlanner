@@ -44,7 +44,9 @@ public class User extends Person {
     public void addToTotalCost(double newCost) {
         this.totalCost += newCost;
     }
-
+    public double getTotalCost( ) {
+    return totalCost;
+    }
 
 
 

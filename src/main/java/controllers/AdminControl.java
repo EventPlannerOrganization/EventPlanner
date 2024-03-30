@@ -180,6 +180,7 @@ public class AdminControl {
                 EventsControl.deleteService(event, serviceProviders.get(0));
             }
             user.getRegisteredEvents().remove(event);
+            user.setTotalCost(user.getTotalCost()-event.getCost());
             EventPlanner.getUsersEventsMap().remove(event);
         }
 
