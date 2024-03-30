@@ -1,6 +1,6 @@
 package controllers;
 
-import Exceptions.*;
+import exceptions.*;
 import models.*;
 import java.time.LocalDate;
 import java.util.List;

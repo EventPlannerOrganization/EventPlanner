@@ -1,7 +1,7 @@
 package models;
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFound;
+import exceptions.EventAlreadyExist;
+import exceptions.EventNotFound;
 import enumerations.UserType;
 import java.util.ArrayList;
 import java.util.List;

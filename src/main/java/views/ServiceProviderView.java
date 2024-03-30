@@ -2,12 +2,12 @@ package views;
 
 
 import Email.EmailService;
-import Exceptions.GoToMainMenuException;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
+import exceptions.GoToMainMenuException;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
+import exceptions.WeakPasswordException;
 
-import Exceptions.*;
+import exceptions.*;
 import controllers.EventsControl;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;

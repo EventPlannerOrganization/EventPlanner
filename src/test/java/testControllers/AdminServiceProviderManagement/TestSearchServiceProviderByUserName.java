@@ -1,6 +1,6 @@
 package testControllers.AdminServiceProviderManagement;
 
-import Exceptions.UserIsAlreadyExist;
+import exceptions.UserIsAlreadyExist;
 import controllers.AdminControl;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

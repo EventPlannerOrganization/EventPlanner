@@ -1,9 +1,9 @@
 package testEmailService;
 
 import Email.EmailService;
-import Exceptions.EventNotFound;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import exceptions.EventNotFound;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
 import models.EventPlanner;
 import models.RegisteredEvent;
 import models.User;

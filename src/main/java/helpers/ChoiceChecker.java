@@ -1,7 +1,7 @@
 package helpers;
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.GoToMainMenuException;
+import exceptions.EventAlreadyExist;
+import exceptions.GoToMainMenuException;
 import enumerations.ServiceType;
 import models.EventPlanner;
 import models.Service;

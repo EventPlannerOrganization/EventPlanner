@@ -1,6 +1,6 @@
 package testControllers.ServiceProvider;
 
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import io.cucumber.java.en.Then;

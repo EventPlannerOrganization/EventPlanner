@@ -1,6 +1,6 @@
 package models;
 
-import Exceptions.ServiceNotFoundException;
+import exceptions.ServiceNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

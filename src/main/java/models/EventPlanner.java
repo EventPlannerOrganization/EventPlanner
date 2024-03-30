@@ -1,7 +1,7 @@
 package models;
 
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
 import enumerations.ServiceType;
 import enumerations.UserType;
 import java.time.LocalDate;

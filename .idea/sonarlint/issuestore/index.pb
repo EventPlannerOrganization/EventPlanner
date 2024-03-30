@@ -39,3 +39,13 @@ X
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 [
 +src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
+Y
+)src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+T
+$src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
+R
+"src/main/java/views/LoginView.java,d\9\d9c007c1a60eb7b3d452841e748d5c691ad9ade9
+h
+8src/main/java/exceptions/AlreadyBookedDateException.java,1\e\1e7963bc0eba6d3d09f572491ae456b39b11389b
+W
+'src/main/java/exceptions/EmptyList.java,6\e\6e0b26e12b6f2cccd101afb86c78400b24c94750

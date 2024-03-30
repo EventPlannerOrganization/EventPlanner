@@ -1,6 +1,6 @@
 package views;
 
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
 import javax.mail.MessagingException;

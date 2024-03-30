@@ -1,6 +1,6 @@
 package testControllers.authentication;
 
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import controllers.ResetPasswordController;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

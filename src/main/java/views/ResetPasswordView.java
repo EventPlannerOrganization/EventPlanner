@@ -1,7 +1,7 @@
 package views;
 
 import Email.EmailService;
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import controllers.ResetPasswordController;
 import helpers.PasswordChecker;
 import models.EventPlanner;

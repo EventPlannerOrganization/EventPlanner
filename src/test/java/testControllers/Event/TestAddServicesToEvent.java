@@ -1,8 +1,8 @@
 package testControllers.Event;
 
-import Exceptions.AlreadyBookedDateException;
-import Exceptions.EventNotFound;
-import Exceptions.UserNotFoundException;
+import exceptions.AlreadyBookedDateException;
+import exceptions.EventNotFound;
+import exceptions.UserNotFoundException;
 import controllers.EventsControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

@@ -1,7 +1,7 @@
 package views;
 
 
-import Exceptions.*;
+import exceptions.*;
 import controllers.EventsControl;
 import controllers.UserControl;
 import enumerations.ServiceType;
