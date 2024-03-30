@@ -1,16 +1,3 @@
 
 •
-java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(χ¨Π&8Ώχ²αθ1
-Q
-java:S1128"5Remove this unused import 'controllers.AdminControl'.(ϋπΣ8η°γη1
-W
-java:S1128"5Remove this unused import 'enumerations.ServiceType'.(§Ο‡ύÿÿÿÿ8‹η°γη1
-U
-java:S1128	"3Remove this unused import 'models.RegisteredEvent'.(ή»τπόÿÿÿÿ8‹η°γη1
-J
-java:S1128
-"(Remove this unused import 'models.User'.(μ¤·ÿÿÿÿÿ8‹η°γη1
-T
-java:S1128"2Remove this unused import 'printers.MenusPrinter'.(Λϊφ΅όÿÿÿÿ8‹η°γη1
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Υλ±Δψÿÿÿÿ8‹η°γη1
+java:S1130"yRemove the declaration of thrown exception 'Exceptions.WeakPasswordException', as it cannot be thrown from method's body.(χ¨Π&8Ώχ²αθ1
