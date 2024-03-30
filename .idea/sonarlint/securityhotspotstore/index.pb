@@ -21,3 +21,13 @@ Q
 ,src/main/java/controllers/EventsControl.java,1\5\1510729b9901544232d5af1e0aa55744b32bc066
 N
 src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
+T
+$src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
+f
+6src/main/java/controllers/ResetPasswordController.java,9\4\946b77017902f490df92bdd5d13dead03f7934e7
+U
+%src/main/java/controllers/SignUp.java,6\9\69abe9c9b4bb9983c22f528ce7bcbed4714e5f0b
+e
+5src/main/java/controllers/ServiceProviderControl.java,c\e\ce7bb1b1c1c3f60d56ef31fdacbc69cabbc6fe2c
+X
+(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
