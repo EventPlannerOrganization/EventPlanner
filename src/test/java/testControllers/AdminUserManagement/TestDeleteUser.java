@@ -1,7 +1,7 @@
 package testControllers.AdminUserManagement;
 
 
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;

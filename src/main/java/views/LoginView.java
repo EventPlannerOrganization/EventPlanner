@@ -1,7 +1,7 @@
 package views;
 
 
-import Exceptions.*;
+import exceptions.*;
 import controllers.Login;
 import enumerations.UserType;
 import models.EventPlanner;

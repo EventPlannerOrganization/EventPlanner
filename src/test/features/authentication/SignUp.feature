@@ -32,8 +32,8 @@ Feature: Sign Up
     Examples:
       | username        | password       | firstName | middleName | lastName   | email                   | phoneNumber  | country     | city       | serviceType | servicePrice | serviceDiscription         |
       | 'nassarharashi' | 'Nassar2135$$' | 'Nassassr'  | 'Mohammed' | 'Harashi'  | 'Nassar@gmail.com'      | '0599288345' | 'palestine' | 'Tulkarem' | 'DJ'        | '90.0'       | 'dj for parties'           |
-      | 'hayasamarah'   | 'Hayaa12345$$' | 'Hayaa'    | 'Mohammed' | 'Samaanah' | 'Haya@gmail.com'        | '0594365892' | 'palestine' | 'Nablus'   | 'Security'  | '90.0'       | 'party security'           |
-      | 'BahaAlawneh'   | 'Bahaaa123$'   | 'Bahaaa'    | 'khaled'   | 'Alawneh'  | 'bahaalawneh@gmail.com' | '0594371093' | 'palestine' | 'jenin'    | 'Cleaning'  | '90.0'       | 'cleannin the party place' |
+      | 'hayasamarah'   | 'Hayaa12345$$' | 'Hayaa'    | 'Mohammed' | 'Samaanah' | 'Haya@gmail.com'        | '0594365892' | 'palestine' | 'Nablus'   | 'SECURITY'  | '90.0'       | 'party security'           |
+      | 'BahaAlawneh'   | 'Bahaaa123$'   | 'Bahaaa'    | 'khaled'   | 'Alawneh'  | 'bahaalawneh@gmail.com' | '0594371093' | 'palestine' | 'jenin'    | 'CLEANING'  | '90.0'       | 'cleannin the party place' |
 
   Scenario Outline: Sign Up Service Provider fail and Weak Password Exception Will be thrown
     When Authentication is <username> <password>
@@ -45,8 +45,8 @@ Feature: Sign Up
     Examples:
       | username        | password     | firstName | middleName | lastName  | email                   | phoneNumber  | country     | city       | serviceType | servicePrice | serviceDiscription         |
       | 'nassarharashi' | 'nassar2135' | 'Nassar'  | 'Mohammed' | 'Harashi' | 'Nassar@gmail.com'      | '0599288345' | 'palestine' | 'Tulkarem' | 'DJ'        | '90.0'       | 'dj for parties'           |
-      | 'hayasamarah'   | 'hayaa12345' | 'Haya'    | 'Mohammed' | 'Samarah' | 'Haya@gmail.com'        | '0594365892' | 'palestine' | 'Nablus'   | 'Security'  | '90.0'       | 'party security'           |
-      | 'BahaAlawneh'   | 'bahaaa123'  | 'Baha'    | 'khaled'   | 'Alawneh' | 'bahaalawneh@gmail.com' | '0594371093' | 'palestine' | 'jenin'    | 'Cleaning'  | '90.0'       | 'cleannin the party place' |
+      | 'hayasamarah'   | 'hayaa12345' | 'Haya'    | 'Mohammed' | 'Samarah' | 'Haya@gmail.com'        | '0594365892' | 'palestine' | 'Nablus'   | 'SECURITY'  | '90.0'       | 'party security'           |
+      | 'BahaAlawneh'   | 'bahaaa123'  | 'Baha'    | 'khaled'   | 'Alawneh' | 'bahaalawneh@gmail.com' | '0594371093' | 'palestine' | 'jenin'    | 'CLEANING'  | '90.0'       | 'cleannin the party place' |
 
   Scenario Outline:Sign Up User fail and Weak Password Exception will be thrown
     When Authentication is <username> <password>

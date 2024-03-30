@@ -1,7 +1,7 @@
 package testControllers.authentication;
 
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
 import controllers.Login;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

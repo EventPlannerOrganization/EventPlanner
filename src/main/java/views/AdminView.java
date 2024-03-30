@@ -1,9 +1,9 @@
 package views;
 
-import Exceptions.EmptyList;
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFoundException;
-import Exceptions.ServiceNotFoundException;
+import exceptions.EmptyList;
+import exceptions.EventAlreadyExist;
+import exceptions.EventNotFoundException;
+import exceptions.ServiceNotFoundException;
 import controllers.AdminControl;
 
 import helpers.ChoiceChecker;

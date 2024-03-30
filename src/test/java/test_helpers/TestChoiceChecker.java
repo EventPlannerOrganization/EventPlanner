@@ -1,7 +1,7 @@
 package test_helpers;
 
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
 import helpers.ChoiceChecker;
 import models.EventPlanner;
 import models.User;

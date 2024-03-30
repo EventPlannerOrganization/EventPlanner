@@ -1,10 +1,10 @@
 package controllers;
 
 import Email.EmailService;
-import Exceptions.EmptyList;
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFoundException;
-import Exceptions.ServiceNotFoundException;
+import exceptions.EmptyList;
+import exceptions.EventAlreadyExist;
+import exceptions.EventNotFoundException;
+import exceptions.ServiceNotFoundException;
 import models.*;
 
 import javax.mail.MessagingException;
@@ -86,7 +86,7 @@ public class AdminControl {
         String searchTermLowerCase = searchTerm.toLowerCase(); // Convert search term to lowercase
 
         for (User user : EventPlanner.getUsers()) {
-            String userNameLowerCase = user.getAuthentication().getUsername().toLowerCase(); // Convert user name to lowercase
+            String userNameLowerCase = user.getAuthentication().getUsername().toLowerCase(); // Convert username to lowercase
             if (userNameLowerCase.contains(searchTermLowerCase)) { // Partial match check
                 searchResults.add(user);
             }
@@ -180,6 +180,7 @@ public class AdminControl {
                 EventsControl.deleteService(event, serviceProviders.get(0));
             }
             user.getRegisteredEvents().remove(event);
+            user.setTotalCost(user.getTotalCost()-event.getCost());
             EventPlanner.getUsersEventsMap().remove(event);
         }
 

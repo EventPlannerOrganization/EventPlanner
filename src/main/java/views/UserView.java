@@ -1,7 +1,7 @@
 package views;
 
 import Email.EmailService;
-import Exceptions.*;
+import exceptions.*;
 import helpers.ChoiceChecker;
 import models.EventPlanner;
 import models.RegisteredEvent;

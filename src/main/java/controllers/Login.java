@@ -1,7 +1,7 @@
 package controllers;
 
 
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import models.EventPlanner;
 import models.Person;
 

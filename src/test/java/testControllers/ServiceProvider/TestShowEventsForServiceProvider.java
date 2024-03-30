@@ -1,8 +1,8 @@
 package testControllers.ServiceProvider;
 
-import Exceptions.EmptyList;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import exceptions.EmptyList;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import io.cucumber.java.en.Given;

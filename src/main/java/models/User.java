@@ -1,7 +1,7 @@
 package models;
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFound;
+import exceptions.EventAlreadyExist;
+import exceptions.EventNotFound;
 import enumerations.UserType;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +59,9 @@ public class User extends Person {
     public void addToTotalCost(double newCost) {
         this.totalCost += newCost;
     }
-
+    public double getTotalCost( ) {
+    return totalCost;
+    }
 
 
 

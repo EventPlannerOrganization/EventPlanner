@@ -2,12 +2,12 @@ package views;
 
 
 import Email.EmailService;
-import Exceptions.GoToMainMenuException;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
+import exceptions.GoToMainMenuException;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
+import exceptions.WeakPasswordException;
 
-import Exceptions.*;
+import exceptions.*;
 import controllers.EventsControl;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
@@ -186,11 +186,8 @@ public class ServiceProviderView {
                     ServiceProviderView.changeServicePriceForPackageProvider(serviceProvider);
                 } else {
                     ServiceProviderView.changeServicePrice(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
-
                 }
                 break;
-
-
             default:
         }
     }
@@ -251,7 +248,7 @@ public class ServiceProviderView {
 
     private static void changeServiceProviderServiceView(ServiceProvider serviceProvider) {
         boolean flag = false;
-        ServiceType serviceType = ServiceType.Null;
+        ServiceType serviceType = ServiceType.NULL;
         MenusPrinter.printServicesMenuWithPcks();
         String string = "What is The Service You Want To Provide ? \n" + "If You Want To Go Back Press B";
         logger.info(string);
@@ -277,27 +274,27 @@ public class ServiceProviderView {
 
             }
             case "2" -> {
-                serviceType = ServiceType.Photography;
+                serviceType = ServiceType.PHOTOGRAPHY;
                 flag = true;
             }
             case "3" -> {
-                serviceType = ServiceType.Security;
+                serviceType = ServiceType.SECURITY;
                 flag = true;
             }
             case "4" -> {
-                serviceType = ServiceType.Cleaning;
+                serviceType = ServiceType.CLEANING;
                 flag = true;
             }
             case "5" -> {
-                serviceType = ServiceType.Decor_and_Design;
+                serviceType = ServiceType.DECOR_AND_DESIGN;
                 flag = true;
             }
             case "6" -> {
-                serviceType = ServiceType.Catering;
+                serviceType = ServiceType.CATERING;
                 flag = true;
             }
             case "7" -> {
-                serviceType = ServiceType.Venue;
+                serviceType = ServiceType.VENUE;
                 flag = true;
             }
             case "8" -> {
@@ -363,12 +360,12 @@ public class ServiceProviderView {
     public static Map<String, ServiceType> hashmap() {
         Map<String, ServiceType> map = new HashMap<>();
         map.put("1", ServiceType.DJ);
-        map.put("2", ServiceType.Photography);
-        map.put("3", ServiceType.Security);
-        map.put("4", ServiceType.Cleaning);
-        map.put("5", ServiceType.Decor_and_Design);
-        map.put("6", ServiceType.Catering);
-        map.put("7", ServiceType.Venue);
+        map.put("2", ServiceType.PHOTOGRAPHY);
+        map.put("3", ServiceType.SECURITY);
+        map.put("4", ServiceType.CLEANING);
+        map.put("5", ServiceType.DECOR_AND_DESIGN);
+        map.put("6", ServiceType.CATERING);
+        map.put("7", ServiceType.VENUE);
         return map;
     }
 

@@ -1,7 +1,7 @@
 package models;
 
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
 import enumerations.ServiceType;
 import enumerations.UserType;
 import java.time.LocalDate;
@@ -155,38 +155,39 @@ public class EventPlanner {
 
 
         List<Service>services2=new ArrayList<>();
-        services2.add(  new Service(ServiceType.Security,3200,TESING));
-        ServiceProvider serviceProvider2 = new ServiceProvider(new Name("baha","khaliid","alawneh"),
-                new Authentication("baha02","0000"),new Address(PALESTINE, TULKARM),
-                new ContactInfo("moh@gmail.com","94124142"),
+        services2.add(  new Service(ServiceType.SECURITY,3200,"tesing"));
+        ServiceProvider serviceProvider2 = new ServiceProvider(new Name("baha","khalid","alawneh"),
+                new Authentication("baha02","0000"),new Address("palestine","tulkarm"),
+                new ContactInfo("mo@gmail.com","9412412"),
                 services2);
         EventPlanner.addUser(serviceProvider2);
 
         List<Service>services3=new ArrayList<>();
-        services3.add(  new Service(ServiceType.Photography,3200,TESING));
-        services3.add(new Service(ServiceType.Security,3200,TESING));
+
+        services3.add(  new Service(ServiceType.PHOTOGRAPHY,3200,TESING));
+        services3.add(new Service(ServiceType.SECURITY,3200,TESING));
         ServiceProvider serviceProvider3 = new ServiceProvider(new Name("jamiil","munir","shaddid"),
                 new Authentication("Ibrahim160", BBAA_12),new Address(PALESTINE,TULKARM),
                 new ContactInfo("moha@gmail.com","94124123"),
                 services3);
         EventPlanner.addUser(serviceProvider3);
 
-        services3.add(  new Service(ServiceType.Cleaning,3200,TESING));
+        services3.add(  new Service(ServiceType.CLEANING,3200,TESING));
         ServiceProvider serviceProvider4 = new ServiceProvider(new Name("jaamil",MOHAMMAD,"shadiid"),
                 new Authentication("saleem04",BBAA_12),new Address(PALESTINE,TULKARM),
-                new ContactInfo("moham@gmail.com","94312412"),
-                services3);
+                new ContactInfo("moham@gmail.com","94312412"),services3);
+        List<Service> services4=new ArrayList<>();
         EventPlanner.addUser(serviceProvider4);
 
         List<Service>services5=new ArrayList<>();
-        services5.add(  new Service(ServiceType.Cleaning,3200,TESING));
-        ServiceProvider serviceProvider5 = new ServiceProvider(new Name("jammil",MOHAMMAD,"shaAdid"),
-                new Authentication("hamid02",BBAA_12),new Address(PALESTINE,TULKARM),
-                new ContactInfo("mo@gmail.com","941241222"),
+        services5.add(  new Service(ServiceType.CLEANING,3200,"tesing"));
+        ServiceProvider serviceProvider5 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
+                new Authentication("hamid02","bbaa12"),new Address("palestine","tulkarm"),
+                new ContactInfo("mo@gmail.com","9412412"),
                 services5);
         EventPlanner.addUser(serviceProvider5);
         List<Service> service6=new ArrayList<>();
-        service6.add(new Service(ServiceType.Cleaning,2000,"helllo"));
+        service6.add(new Service(ServiceType.CLEANING,2000,"helllo"));
         ServiceProvider serviceProvider6 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
                 new Authentication("aliii",BBAA_12),new Address("palestine",TULKARM),
                 new ContactInfo("mo@gmail.com","9412412"),

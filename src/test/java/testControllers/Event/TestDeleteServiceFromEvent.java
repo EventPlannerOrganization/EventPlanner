@@ -1,8 +1,7 @@
 package testControllers.Event;
 
-import Exceptions.*;
+import exceptions.*;
 import controllers.EventsControl;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;

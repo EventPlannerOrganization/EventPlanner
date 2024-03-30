@@ -1,6 +1,6 @@
 package testControllers.AdminUserManagement;
 
-import Exceptions.UserIsAlreadyExist;
+import exceptions.UserIsAlreadyExist;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
