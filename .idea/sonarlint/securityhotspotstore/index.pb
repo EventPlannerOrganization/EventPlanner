@@ -37,3 +37,5 @@ X
 (src/test/java/TestIo/TestYmlHandler.java,e\8\e8bf60d4545be4c737bddec9f4ff4e85f84d6a39
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+[
++src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
