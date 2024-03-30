@@ -251,7 +251,7 @@ public class ServiceProviderView {
 
     private static void changeServiceProviderServiceView(ServiceProvider serviceProvider) {
         boolean flag = false;
-        ServiceType serviceType = ServiceType.Null;
+        ServiceType serviceType = ServiceType.NULL;
         MenusPrinter.printServicesMenuWithPcks();
         String string = "What is The Service You Want To Provide ? \n" + "If You Want To Go Back Press B";
         logger.info(string);

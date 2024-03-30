@@ -5,10 +5,8 @@ public enum ServiceType {
     PHOTOGRAPHY,
     SECURITY,
     CLEANING,
-
     DECOR_AND_DESIGN,
     VENUE,
     CATERING,
-
     NULL // JUST FOR THING IN MY HEAD
 }
