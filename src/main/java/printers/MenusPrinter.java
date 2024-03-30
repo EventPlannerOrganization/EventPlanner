@@ -12,9 +12,16 @@ import java.util.logging.Logger;
 import static printers.CollectionsPrinter.getMonthName;
 
 public class MenusPrinter {
+    public static final String DJ = "DJ";
+    public static final String PHOTOGRAPHY = "PHOTOGRAPHY";
+    public static final String SECURITY = "SECURITY";
     private static final Logger logger = Logger.getLogger(MenusPrinter.class.getName());
     public static final String FORMAT = "%n|%-5s| %-30s|";
     public static final String SIGN_OUT = "Sign out !";
+    public static final String CLEANING = "CLEANING";
+    public static final String DECOR_AND_DESIGN = "Decor And Design";
+    public static final String CATERING = "CATERING";
+    public static final String PACKAGES_OFFERS = "packages Offers";
 
     private MenusPrinter() {
 
@@ -44,38 +51,38 @@ public class MenusPrinter {
 
     public static void printServicesMenu() {
         List<String> menu = new ArrayList<>();
-        menu.add("DJ");
-        menu.add("PHOTOGRAPHY");
-        menu.add("SECURITY");
-        menu.add("CLEANING");
-        menu.add("Decor And Design");
-        menu.add("CATERING");
+        menu.add(DJ);
+        menu.add(PHOTOGRAPHY);
+        menu.add(SECURITY);
+        menu.add(CLEANING);
+        menu.add(DECOR_AND_DESIGN);
+        menu.add(CATERING);
         menu.add("VENUE");
         printMenu(menu);
     }
 
     public static void printServicesMenuWithPcks() {
         List<String> menu = new ArrayList<>();
-        menu.add("DJ");
-        menu.add("PHOTOGRAPHY");
-        menu.add("SECURITY");
-        menu.add("CLEANING");
-        menu.add("Decor And Design");
-        menu.add("CATERING");
+        menu.add(DJ);
+        menu.add(PHOTOGRAPHY);
+        menu.add(SECURITY);
+        menu.add(CLEANING);
+        menu.add(DECOR_AND_DESIGN);
+        menu.add(CATERING);
         menu.add("VENUE");
-        menu.add("packages Offers");
+        menu.add(PACKAGES_OFFERS);
         printMenu(menu);
     }
 
     public static void printServicesMenuForRegisterEvent() {
         List<String> menu = new ArrayList<>();
-        menu.add("DJ");
-        menu.add("PHOTOGRAPHY");
-        menu.add("SECURITY");
-        menu.add("CLEANING");
-        menu.add("Decor And Design");
-        menu.add("CATERING");
-        menu.add("packages Offers");
+        menu.add(DJ);
+        menu.add(PHOTOGRAPHY);
+        menu.add(SECURITY);
+        menu.add(CLEANING);
+        menu.add(DECOR_AND_DESIGN);
+        menu.add(CATERING);
+        menu.add(PACKAGES_OFFERS);
         printMenu(menu);
     }
 
@@ -123,7 +130,6 @@ public class MenusPrinter {
         menu.add("User Management");
         menu.add("Service Provider Management");
         menu.add("Event Management");
-        menu.add("");
         menu.add(SIGN_OUT);
 
         printMenu(menu);
@@ -278,7 +284,8 @@ public class MenusPrinter {
             }
 
         }
-        logger.info("\n" + output);
+        String out="\n"+output;
+        logger.info(out );
     }
 
 
