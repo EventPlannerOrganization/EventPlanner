@@ -1,9 +1,7 @@
 package testControllers.AdminUserManagement;
 
-import Exceptions.EventAlreadyExist;
+
 import Exceptions.UserNotFoundException;
-import controllers.AdminControl;
-import controllers.EventsControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
@@ -25,7 +23,7 @@ public class TestDeleteUser {
     deletedUsername=string;
     }
     @Then("deleteing will not be complete")
-    public void deleteingWillNotBeComplete() throws UserNotFoundException {
+    public void deleteingWillNotBeComplete()  {
         // Write code here that turns the phrase above into concrete actions
         //User deletedUser =(User)getUserByUsername(deletedUsername);
         //deleteUser(deletedUser);

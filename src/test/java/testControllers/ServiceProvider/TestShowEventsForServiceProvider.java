@@ -118,5 +118,9 @@ EventPlanner.initializeRepositoryWithDataForTesting();
         assertEquals(actualEvents.get(1),registeredEvent2);
 
     }
+    @Then("empty list exception will be thrown")
+    public void emptyListExceptionWillBeThrown() {
+        assertThrows(EmptyList.class,() ->ServiceProviderControl.getServiceProviderEvents(serviceProvider1) );
+    }
 
 }

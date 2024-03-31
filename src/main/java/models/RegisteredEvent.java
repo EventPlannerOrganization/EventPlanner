@@ -1,14 +1,10 @@
 package models;
 
-import Exceptions.EventAlreadyExist;
 import Exceptions.ServiceNotFoundException;
-import Exceptions.UserNotFoundException;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import static views.EventsView.addingProcess;
 
 public class RegisteredEvent {
     private String eventName;
@@ -44,7 +40,7 @@ public class RegisteredEvent {
     public RegisteredEvent(String eventName, LocalDate date, double cost, List<String> guestsEmails) {
         this.eventName = eventName;
         this.date = date;
-        this.cost = cost;
+        setCost(cost);
         this.guestsEmails = guestsEmails;
         serviceProviders=new ArrayList<>();
     }
@@ -91,19 +87,34 @@ public class RegisteredEvent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RegisteredEvent that = (RegisteredEvent) o;
-        return Double.compare(cost, that.cost) == 0 && Objects.equals(eventName, that.eventName) && Objects.equals(location, that.location) && Objects.equals(serviceProviders, that.serviceProviders) && Objects.equals(date, that.date) && Objects.equals(guestsEmails, that.guestsEmails);
+        return Double.compare(cost, that.cost) == 0 &&
+                Objects.equals(eventName, that.eventName) &&
+                Objects.equals(location, that.location) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(guestsEmails, that.guestsEmails);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventName, location, serviceProviders, date, cost, guestsEmails);
+        return Objects.hash(eventName, location, date, cost, guestsEmails);
     }
 
     @Override
     public String toString() {
 
         return
-                "Event Name: " + eventName  +
+                "\u001B[1m"+"\u001B[32m"+"Event Name: " + eventName +"\u001B[0m"+
+                "\u001B[34m"+"\nServices: \n" + getServicesDetails() +
+                "Date: " + date +
+                "\nTotal Cost: " + cost +
+                "\nGuests List: \n" + guestsEmails +"\n\n"+"\u001B[0m";
+    }
+
+    public String toStringtoMenue() {
+
+        return
+                "\\u001B[1m"+""+"Event Name: " + eventName  +
                 "\nServices: \n" + getServicesDetails() +
                 "\nDate: " + date +
                 "\nTotal Cost: " + cost +
@@ -126,7 +137,6 @@ public String toString2(){
                     services.append(count);
                     services.append("- ");
                     services.append(element.toString());
-                    services.append("\n");
                     count++;
                 }
             }

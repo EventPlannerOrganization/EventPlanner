@@ -7,7 +7,7 @@ import models.EventPlanner;
 import java.util.ArrayList;
 import java.util.List;
 import static controllers.AdminControl.getAllUsers;
-import static helpers.PasswordChecker.listsContainSameElements;
+import static helpers.StringOperations.listsContainSameElements;
 public class TestShowAllUsers {
     @Then("there is no users to print")
     public void thereIsNoUsersToPrint() {

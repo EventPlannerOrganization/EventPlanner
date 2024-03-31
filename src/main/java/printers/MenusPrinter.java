@@ -67,6 +67,18 @@ public class MenusPrinter {
         printMenu(menu);
     }
 
+    public static void printServicesMenuForRegisterEvent() {
+        List<String> menu = new ArrayList<>();
+        menu.add("DJ");
+        menu.add("Photography");
+        menu.add("Security");
+        menu.add("Cleaning");
+        menu.add("Decor And Design");
+        menu.add("Catering");
+        menu.add("packages Offers");
+        printMenu(menu);
+    }
+
 
         public static void printServicesList(List<ServiceProvider> services) {
         List<String> menu = new ArrayList<>();
@@ -81,11 +93,18 @@ public class MenusPrinter {
 
     public static void printEventsList(List<RegisteredEvent> events) {
         List<String> menu = new ArrayList<>();
-
         for(RegisteredEvent element:events){
             menu.add(element.toString());
         }
-        menu.add("Back to menue");
+        printMenu(menu);
+    }
+
+    public static void printEventsListwithBack(List<RegisteredEvent> events) {
+        List<String> menu = new ArrayList<>();
+        for(RegisteredEvent element:events){
+            menu.add(element.toString());
+        }
+        menu.add("back to menue");
         printMenu(menu);
     }
 
@@ -94,7 +113,7 @@ public class MenusPrinter {
         menu.add("Add Event");
         menu.add("Show My Events");
         menu.add("Edit My Upcoming Events");
-        menu.add("sent emails to guests");
+        menu.add("Send Event Tickets to Guests");
         menu.add(SIGN_OUT);
         printMenu(menu);
     }
@@ -219,9 +238,9 @@ public class MenusPrinter {
     }
     public  static List<String> makeStringListOfEvents(List <RegisteredEvent>filterdEvents ){
         List<String> serviceProvdierEvents = new ArrayList<>();
-        for(int i = 0;i<filterdEvents.size();i++) {
+        for (RegisteredEvent filterdEvent : filterdEvents) {
             String st1 = "Service info : \n";
-            String events = st1 + filterdEvents.get(i).toString2() + "\n -------------------------------------------";
+            String events = st1 + filterdEvent.toString2() + "\n -------------------------------------------";
             serviceProvdierEvents.add(events);
         }
         return serviceProvdierEvents;
@@ -259,7 +278,7 @@ public class MenusPrinter {
             }
 
         }
-        logger.info( "\n"+output);
+        logger.info("\n" + output);
     }
 
 

@@ -4,7 +4,6 @@ import Exceptions.AlreadyBookedDateException;
 import Exceptions.EventNotFound;
 import Exceptions.UserNotFoundException;
 import controllers.EventsControl;
-import controllers.Login;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;

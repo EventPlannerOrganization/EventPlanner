@@ -4,15 +4,14 @@ import Exceptions.*;
 import models.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.logging.Logger;
+import static controllers.AdminControl.getUserOfEvent;
 
 public class EventsControl {
-    private static final Logger logger = Logger.getLogger(EventsControl.class.getName());
 
     private EventsControl() {
     }
 
-    public static void updateEventInformation(String eventName, String field, String value) throws EventNotFound {
+    public static void updateEventInformation(String eventName, String field, String value) throws EventNotFound, EventAlreadyExist, EventNotFoundException {
         User user = (User) EventPlanner.getCurrentUser();
         if (!user.isThisEventExist(eventName)) {
             throw new EventNotFound();
@@ -37,7 +36,9 @@ public class EventsControl {
 
 
 
-    public static void editEventName(RegisteredEvent event, String newName) {
+    public static void editEventName(RegisteredEvent event, String newName) throws EventAlreadyExist, EventNotFoundException {
+        User user=getUserOfEvent(event);
+        user.checkEventExisting(newName);
         event.setEventName(newName);
     }
 

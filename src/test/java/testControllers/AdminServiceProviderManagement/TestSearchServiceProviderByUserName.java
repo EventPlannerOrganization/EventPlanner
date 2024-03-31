@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
 import models.ServiceProvider;
-import models.User;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;

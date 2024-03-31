@@ -4,8 +4,6 @@ import Exceptions.UserIsAlreadyExist;
 import Exceptions.UserNotFoundException;
 import enumerations.ServiceType;
 import enumerations.UserType;
-
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,10 +47,7 @@ public class EventPlanner {
     }
     public static  boolean checkEmailIfExist(String email)  {
         List<Person> result= users.stream().filter(user -> user.getContactInfo().getEmail().equals(email)).toList();
-        if (result.isEmpty())
-          return false;
-
-        return true;
+        return !result.isEmpty();
     }
     public static  Person getUserByEmail(String email) throws UserNotFoundException {
         List<Person> result= users.stream().filter(user -> user.getContactInfo().getEmail().equals(email)).toList();
@@ -234,6 +229,7 @@ public class EventPlanner {
                 serviceProviders,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
+        registeredEvent5.setLocation("Gaza Grand Hall");
         user.getRegisteredEvents().add(registeredEvent5);
         eventUserMap.put(registeredEvent5,user);
 
@@ -247,6 +243,8 @@ public class EventPlanner {
                  prov,localDate,
                  calculateTotalPriceForMultiProviders(serviceProviders),
                  emails1);
+        registeredEvent4.setLocation("Tulkarm Terrace");
+
         user.getRegisteredEvents().add(registeredEvent4);
         eventUserMap.put(registeredEvent4,user);
 
@@ -257,6 +255,8 @@ public class EventPlanner {
                 prov1,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
+        registeredEvent3.setLocation("Birzeit Ballroom");
+
         user2.getRegisteredEvents().add(registeredEvent3);
         eventUserMap.put(registeredEvent3,user3);
 
@@ -267,6 +267,7 @@ public class EventPlanner {
                 serviceProviders22,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
                 emails);
+        registeredEvent2.setLocation("Qalqilya Quarters");
 
         user3.getRegisteredEvents().add(registeredEvent2);
         eventUserMap.put(registeredEvent2,user3);
@@ -276,6 +277,8 @@ public class EventPlanner {
                 prov2,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders22),
                 emails);
+        registeredEvent1.setLocation("Illar Hills");
+
         user3.getRegisteredEvents().add(registeredEvent1);
         eventUserMap.put(registeredEvent1,user3);
         localDate=LocalDate.of(2024,8,10);
@@ -285,10 +288,11 @@ public class EventPlanner {
                 prov3,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviders),
                 emails);
+        registeredEvent.setLocation("null");
+
         for(ServiceProvider element:serviceProviders){
             element.getBookedDates().add(localDate);
         }
-        registeredEvent.setLocation("jerusalem");
         user4.getRegisteredEvents().add(registeredEvent);
         eventUserMap.put(registeredEvent,user4);
         localDate=LocalDate.of(2024,4,10);
@@ -299,10 +303,13 @@ public class EventPlanner {
                 serviceProviderList,localDate,
                 calculateTotalPriceForMultiProviders(serviceProviderList),
                 emails);
-user5.getRegisteredEvents().add(registeredEvent6);
+        registeredEvent6.setLocation("illar");
+
+        user5.getRegisteredEvents().add(registeredEvent6);
         for(ServiceProvider element:serviceProviderList){
             element.getBookedDates().add(localDate);
         }
+
     }
 
      public static List<ServiceProvider> getServiceProvidersNotBookedinThisDate(LocalDate date) {
@@ -317,7 +324,7 @@ user5.getRegisteredEvents().add(registeredEvent6);
     }
     public static void initializeRepositoryWithDataForTesting() throws UserIsAlreadyExist {
         EventPlanner.cleanRepositry();
-        List<Service>serviceList= new ArrayList<Service>();
+        List<Service>serviceList= new ArrayList<>();
         serviceList.add(  new Service(ServiceType.DJ,1400,"Best Sound Quality And Music"));
 
         ServiceProvider serviceProvider = new ServiceProvider(new Name("Mohammed","Munir","Shadid"),
@@ -362,6 +369,11 @@ user5.getRegisteredEvents().add(registeredEvent6);
         LocalDate localDate3=LocalDate.of(2023,9,12);
         RegisteredEvent registeredEvent3 = new RegisteredEvent("Party",serviceProviderList,localDate3,1400,emails);
         user3.getRegisteredEvents().add(registeredEvent3);
+        ServiceProvider serviceProvider7 = new ServiceProvider(new Name("jamil","mohammad","shadid"),
+                new Authentication("osamah","bbaa12"),new Address("palestine","tulkarm"),
+                new ContactInfo("osamah@gmail.com","9412412"),
+                serviceList);
+        EventPlanner.addUser(serviceProvider7);
 
     }
 }

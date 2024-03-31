@@ -11,7 +11,6 @@ import Exceptions.EmptyList;
 
 import models.*;
 
-import views.ServiceProviderView;
 
 
 
@@ -25,9 +24,7 @@ public class ServiceProviderControl {
 
     }
     public static List<Service> getServiceProviderServices(ServiceProvider serviceProvider){
-        List<Service> serviceProvdierServices = new ArrayList<>();
-        serviceProvdierServices.addAll(serviceProvider.getServices());
-        return serviceProvdierServices;
+        return new ArrayList<>(serviceProvider.getServices());
 
     }
 
@@ -45,13 +42,13 @@ public class ServiceProviderControl {
 
     public static List<RegisteredEvent>  getServiceProviderUpComingEvents(ServiceProvider serviceProvider) throws EmptyList {
 
-           List<RegisteredEvent> filterdEvents = getServiceProviderEvents(serviceProvider);
-           return filterdEvents.stream().filter(registeredEvent -> registeredEvent.getDate().isAfter(LocalDate.now())).toList();
+           List<RegisteredEvent> filteredEvents = getServiceProviderEvents(serviceProvider);
+           return filteredEvents.stream().filter(registeredEvent -> registeredEvent.getDate().isAfter(LocalDate.now())).toList();
 
 
     }
 
-    public static List<RegisteredEvent> getFilterdEvents(ServiceProvider serviceProvider,List<RegisteredEvent> reg) {
+    public static List<RegisteredEvent> getFilteredEvents(ServiceProvider serviceProvider, List<RegisteredEvent> reg) {
 
         return reg.stream().filter(event -> event.getServiceProviders().contains(serviceProvider)).toList();
 
@@ -68,21 +65,21 @@ public class ServiceProviderControl {
     }
 
     public static List<RegisteredEvent> getEventsRelatedWithServiceProvider(ServiceProvider serviceProvider) {
-        List<User> filteredUsers =getUsersRelatedWithServiceProvider(serviceProvider);// اول اشي اليوزرز اللي الهم علاقة بالسيرفرس بروفايدرر
-        List<RegisteredEvent> serviceProvdierEvents = new ArrayList<>();
+        List<User> filteredUsers =getUsersRelatedWithServiceProvider(serviceProvider);
+        List<RegisteredEvent> serviceProviderEvents = new ArrayList<>();
         for (User user : filteredUsers) {
-            List<RegisteredEvent> filterd = getFilterdEvents(serviceProvider,user.getRegisteredEvents()); // بعدها الايفنتس اللي عند اليوزر اللي السيرفس بروفايدر اله علاقة فيها
-            serviceProvdierEvents.addAll(filterd);
+            List<RegisteredEvent> filtered = getFilteredEvents(serviceProvider,user.getRegisteredEvents());
+            serviceProviderEvents.addAll(filtered);
         }
-            return serviceProvdierEvents;
+            return serviceProviderEvents;
 
     }
 
 
 
 
-    public static void editServiceDescription(Service service,String descritpion){
-        service.setDescription(descritpion);
+    public static void editServiceDescription(Service service,String description){
+        service.setDescription(description);
 
     }
 
@@ -117,7 +114,7 @@ public class ServiceProviderControl {
     }
 
 
-    public static void changeServiceProvdierService(ServiceProvider serviceProvider, Service service) {
+    public static void changeServiceProviderService(ServiceProvider serviceProvider, Service service) {
         List<Service> list= new ArrayList<>();
         list.add(service);
         serviceProvider.setServices(list);

@@ -320,7 +320,7 @@ public class ServiceProviderView {
             list.add(service);
             serviceProvider.setServices(list);
             serviceProvider.setPackageProvider(false);
-            ServiceProviderControl.changeServiceProvdierService(serviceProvider, service);
+            ServiceProviderControl.changeServiceProviderService(serviceProvider, service);
 
         }
 

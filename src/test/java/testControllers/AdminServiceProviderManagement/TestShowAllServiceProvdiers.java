@@ -8,9 +8,7 @@ import models.EventPlanner;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static controllers.AdminControl.getAllUsers;
-import static helpers.PasswordChecker.listsContainSameElements;
+import static helpers.StringOperations.listsContainSameElements;
 
 public class TestShowAllServiceProvdiers {
     @When("Data Base already filled")

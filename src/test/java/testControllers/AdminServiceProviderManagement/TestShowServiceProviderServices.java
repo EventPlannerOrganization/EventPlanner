@@ -2,11 +2,9 @@ package testControllers.AdminServiceProviderManagement;
 
 import Exceptions.UserNotFoundException;
 import controllers.AdminControl;
-import enumerations.ServiceType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
-import models.Service;
 import models.ServiceProvider;
 
 import java.util.List;

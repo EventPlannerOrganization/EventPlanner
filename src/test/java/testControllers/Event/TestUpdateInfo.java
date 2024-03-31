@@ -1,8 +1,6 @@
 package testControllers.Event;
 
-import Exceptions.EventNotFound;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import Exceptions.*;
 import controllers.EventsControl;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -39,7 +37,7 @@ public class TestUpdateInfo {
        this.value=string;
     }
     @Then("the event information will be updated successfully")
-    public void theEventInformationWillBeUpdatedSuccessfully() throws EventNotFound {
+    public void theEventInformationWillBeUpdatedSuccessfully() throws EventNotFound, EventAlreadyExist, EventNotFoundException {
         User user= (User) EventPlanner.getCurrentUser();
         RegisteredEvent registeredEvent=user.getEventByName(eventName);
         EventsControl.updateEventInformation(eventName,field,value);
