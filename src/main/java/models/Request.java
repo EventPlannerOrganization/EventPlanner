@@ -24,6 +24,11 @@ public class Request {
 
 
     private String userEmail;
+
+    public String getServiceProviderEmail() {
+        return serviceProviderEmail;
+    }
+
     private String serviceProviderEmail;
 
 
