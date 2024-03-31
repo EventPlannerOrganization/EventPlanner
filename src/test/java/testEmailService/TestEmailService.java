@@ -1,6 +1,6 @@
 package testEmailService;
 
-import Email.EmailService;
+import email.EmailService;
 import exceptions.EventNotFound;
 import exceptions.UserIsAlreadyExist;
 import exceptions.UserNotFoundException;
