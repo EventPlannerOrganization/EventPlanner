@@ -8,10 +8,7 @@ import controllers.AdminControl;
 import exceptions.ServiceNotFoundException;
 import helpers.ChoiceChecker;
 import helpers.PasswordChecker;
-import models.EventPlanner;
-import models.RegisteredEvent;
-import models.ServiceProvider;
-import models.User;
+import models.*;
 import printers.MenusPrinter;
 
 import java.util.ArrayList;
@@ -96,23 +93,33 @@ public class AdminView {
         boolean reTry = true;
         while (reTry) {
             User user = findModifiedUser();
-            if (user == null) {
-                logger.info(message);
-                String choice = scanner.nextLine();
-                if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
-            } else if (user == notUser) {
-                reTry = false;
-            } else {
-                reTry = false;
-                //you can here send email to notify him that the admin delete him
-               try {
-                   AdminControl.resetPassword(user, readNewPassword());
-               } catch (Exception e){
-                   logger.warning(e.getMessage());
-               }
+            reTry=modifiedPersonChecker(user);
+
             }
         }
+
+    private static boolean modifiedPersonChecker(Person person){
+        boolean reTry = true;
+
+        if (person == null) {
+            logger.info(message);
+            String choice = scanner.nextLine();
+            if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
+        }
+        else if(person==notServiceProvider||person==notUser)reTry = false;
+        else {
+            reTry = false;
+            //you can here send email to notify him that the admin delete him
+            try {
+                AdminControl.resetPassword(person, readNewPassword());
+            } catch (Exception e){
+                logger.warning(e.getMessage());
+            }    }
+
+
+        return reTry;
     }
+
 
     private static String readNewPassword() {
         logger.info("Enter New Password: ");
@@ -340,25 +347,25 @@ public class AdminView {
 
     private static void resetServiceProviderPassword() {
         boolean reTry = true;
-        ServiceProvider serviceProvider = findModifiedServiceProvider();
         while (reTry) {
+            ServiceProvider serviceProvider = findModifiedServiceProvider();
+            reTry=modifiedPersonChecker(serviceProvider);
             if (serviceProvider == null) {
-                logger.info(message);
-                String choice = scanner.nextLine();
-                if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
-            } else if (serviceProvider == notServiceProvider) {
-                reTry = false;
-            } else {
-                reTry = false;
-                //you can here send email to notify him that the admin delete him
-              try {
-                  AdminControl.resetPassword(serviceProvider, readNewPassword());
-              } catch (Exception e){
-                  logger.warning(e.getMessage());
-              }
-
+            logger.info(message);
+            String choice = scanner.nextLine();
+            if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
+        } else if (serviceProvider == notServiceProvider) {
+            reTry = false;
+        } else {
+            reTry = false;
+            //you can here send email to notify him that the admin delete him
+            try {
+                AdminControl.resetPassword(serviceProvider, readNewPassword());
+            } catch (Exception e) {
+                logger.warning(e.getMessage());
             }
-        }
+
+        }}
     }
 
     private static void deleteServiceProvider() {
