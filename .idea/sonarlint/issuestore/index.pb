@@ -1,5 +1,17 @@
 
+X
+(src/test/java/testModels/TestPerson.java,5\d\5d514a64648b3eedb66343631d4d6b2bc294fb0c
+a
+1src/test/java/testModels/TestServiceProvider.java,e\1\e16df36f0247705d3fbccdf9988cfdc7f47d05f9
+c
+3src/main/java/exceptions/GoToMainMenuException.java,7\6\7675363dbf89a970a3c1d1d2eaf3e2660c20521f
+c
+3src/test/java/test_helpers/TestPasswordChecker.java,1\2\12c7d37bd5fcab44860d5409eb4c1c5fb51603e0
+X
+(src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
+\
+,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
 Q
-!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
-V
-&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
+!src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02

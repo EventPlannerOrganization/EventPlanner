@@ -1,13 +1,12 @@
 package testModels;
 
-import models.Address;
-import models.Authentication;
-import models.ContactInfo;
-import models.Name;
-import models.Person;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
+import models.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import static models.EventPlanner.*;
 import static org.junit.Assert.*;
 
 public class TestPerson {
@@ -16,7 +15,7 @@ public class TestPerson {
     private Person person3;
 
     @Before
-    public void setup() {
+    public void setup() throws UserIsAlreadyExist {
         Name name1 = new Name("John", "Doe", "Smith");
         Name name2 = new Name("Jane", "Doe", "Smith");
         Authentication auth1 = new Authentication("john.smith", "password1");
@@ -29,6 +28,8 @@ public class TestPerson {
         person1 = new Person(name1, auth1, address1, contactInfo1);
         person2 = new Person(name2, auth2, address2, contactInfo2);
         person3= new Person(name2, auth2, address2, contactInfo2);
+
+
 
     }
 
@@ -85,5 +86,30 @@ public class TestPerson {
         assertNull(defaultPerson.getAddress());
         assertNull(defaultPerson.getContactInfo());
     }
+    @Test
+    public void testSignout() {
+        signout();
+        assertNull(getCurrentUser());
+
+    }
+    @Test
+    public void testCheckEmailIfExist() throws UserIsAlreadyExist {
+        EventPlanner.addUser(person1);
+        assertTrue(checkEmailIfExist("john.smith@example.com"));
+        assertFalse(checkEmailIfExist("john.smith@exampleeeeeeeeee.com"));
+
+    }
+
+    @Test
+    public void testGetUserByEmail() throws UserNotFoundException, UserIsAlreadyExist {
+        EventPlanner.addUser(person2);
+        Person person;
+        person=getUserByEmail("jane.doe@example.com");
+        assertEquals(person,person2);
+        assertThrows(UserNotFoundException.class,()->getUserByEmail("john.smith@exampleeeeeee.com"));
+
+    }
+
+
 
 }

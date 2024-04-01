@@ -175,7 +175,7 @@ public class ServiceProviderView {
         ServiceProviderView.showServices(serviceProvider);
         String choice = scanner.nextLine();
         try {
-            choice = ChoiceChecker.checkPackageProviderServiceChoice(serviceProvider, choice);
+            choice = checkPackageProviderServiceChoice(serviceProvider, choice);
             ch = Integer.parseInt(choice);
             changeServicePrice(serviceProvider.getServices().get(ch - 1));
         } catch (GoToMainMenuException e) {
@@ -189,7 +189,7 @@ public class ServiceProviderView {
         ServiceProviderView.showServices(serviceProvider);
         String choice = scanner.nextLine();
         try {
-            choice = ChoiceChecker.checkPackageProviderServiceChoice(serviceProvider, choice);
+            choice = checkPackageProviderServiceChoice(serviceProvider, choice);
             ch = Integer.parseInt(choice);
             changeServiceDescription(serviceProvider.getServices().get(ch - 1));
         } catch (GoToMainMenuException e) {
@@ -232,12 +232,12 @@ public class ServiceProviderView {
         String choice = scanner.nextLine();
 
 
-        while ((!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) || (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
+        while ((!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) || (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
 
             if (!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
-            } else if (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
+            } else if (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
                 logger.info("this is your current Service ! , Choose Another Service or Back !");
                 choice = scanner.nextLine();
             }
@@ -308,7 +308,7 @@ public class ServiceProviderView {
             MenusPrinter.printServicesMenu();
             logger.info("Select Service :\n");
             String choice = scanner.nextLine();
-            choice = ChoiceChecker.checkPackageProviderAddingProcess(serviceList, choice);
+            choice = checkPackageProviderAddingProcess(serviceList, choice);
             if (choice.equalsIgnoreCase("B")) {
                 return serviceList;
             }
@@ -320,7 +320,7 @@ public class ServiceProviderView {
             serviceList.add(new Service(serviceType, price, description));
             if (serviceList.size() >= 2) {
                 logger.info("Do you Want To Add More Services ? Enter Y for Yes , N for No");
-                again = ChoiceChecker.againChecker();
+                again =EventsView.againChecker();
             }
             if (serviceList.size() == 4) {
                 logger.info("Your Package Contains All The Services you Cant Add Any Thing More");
@@ -418,6 +418,70 @@ public class ServiceProviderView {
             backToServiceProviderMenu();
 
 
+        }
+    }
+    public static boolean checkIfTheServiceAlreadyAdded(List<Service> serviceList,String choice) {
+        Map <String,ServiceType> map =ServiceProviderView.hashmap();
+        serviceList = serviceList.stream().filter(service -> service.getServiceType().equals(map.get(choice))).toList();
+        return !serviceList.isEmpty();
+    }
+
+    public static String checkPackageProviderAddingProcess(List<Service> serviceList, String choice) {
+        while (!ChoiceChecker.isValidChoice(choice,7) || (checkIfTheServiceAlreadyAdded(serviceList,choice))) {
+            if (!ChoiceChecker.isValidChoice(choice,7)) {
+                logger.info("Invalid Input , Choose Correct Service Number :\n");
+                choice = scanner.nextLine();
+            }
+
+            else if (checkIfTheServiceAlreadyAdded(serviceList, choice)) {
+                if (serviceList.size() > 2) {
+                    logger.info("You Already Provide This Service ! , choose Another one or Enter B to Stop Adding :\n");
+                    choice = scanner.nextLine();
+                    if (choice.equalsIgnoreCase("b")) {
+                        return "b";
+                    }
+                } else {
+                    logger.info("You Already Provide This Service !,Choose Another One Because The Package Cannot Contain One Service  :\n");
+                    choice = scanner.nextLine();
+                }
+
+            }
+        }
+        return choice;
+    }
+
+    public static String checkPackageProviderServiceChoice(ServiceProvider serviceProvider, String choice) throws GoToMainMenuException {
+        boolean again = true;
+        int ch;
+
+        while (again) {
+            try {
+                ch = Integer.parseInt(choice);
+                if (ch <= serviceProvider.getServices().size()) {
+                    again=false;
+                } else {
+                    logger.info("Invalid Choice,Choose Again Or Enter B to Go Back");
+                    choice = scanner.nextLine();
+                }
+            } catch (Exception e) {
+                logger.info("Invalid Choice,Choose Again Or Enter B to Go Back");
+                choice = scanner.nextLine();
+                if(choice.equalsIgnoreCase("b")){
+                    throw new GoToMainMenuException();
+                }
+
+            }
+        }
+        return choice;
+
+    }
+    public static boolean checkIfItsCurrentService(Service service, String choice) {
+        Map<String, ServiceType> map= ServiceProviderView.hashmap();
+        try {
+            return map.get(choice).equals(service.getServiceType());
+        }
+        catch (Exception e){
+            return false;
         }
     }
 

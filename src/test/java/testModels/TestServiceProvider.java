@@ -1,17 +1,22 @@
 package testModels;
 
 import enumerations.ServiceType;
+import exceptions.UserIsAlreadyExist;
 import models.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static models.EventPlanner.*;
 import static org.junit.Assert.*;
 
 public class TestServiceProvider {
     private ServiceProvider serviceProvider;
+    private ServiceProvider serviceProvider2;
+
 
     @Before
     public void setup() {
@@ -46,7 +51,7 @@ public class TestServiceProvider {
         serviceProvider.setServices(newServices);
 
         assertEquals(1, serviceProvider.getServices().size());
-        assertEquals(ServiceType.CATERING, serviceProvider.getServices().get(0).getServiceType());
+        assertEquals(ServiceType.CATERING, serviceProvider.getServices().getFirst().getServiceType());
     }
 
     @Test
@@ -67,7 +72,7 @@ public class TestServiceProvider {
 
     @Test
     public void testToString() {
-        String expected = "\n\tService Provider "+serviceProvider.getName().toString()+"\n\t"+ serviceProvider.getServices().get(0).toString()+"\n";
+        String expected = "\n\tService Provider "+serviceProvider.getName().toString()+"\n\t"+ serviceProvider.getServices().getFirst().toString()+"\n";
         assertEquals(expected, serviceProvider.toString());
         serviceProvider.setPackageProvider(true);
         serviceProvider.getServices().add(new Service(ServiceType.DJ, 20.0, "dj"));
@@ -87,6 +92,8 @@ public class TestServiceProvider {
 
         // Assert that the actual string representation matches the expected one
         assertEquals(result, serviceProvider.toString());
+        serviceProvider.setPackageProvider(false);
+
     }
 
     @Test
@@ -115,4 +122,30 @@ public class TestServiceProvider {
         ServiceProvider sameServiceProvider = new ServiceProvider(new Name("John", "Doe", "Smith"), new Authentication("john.smith", "password1"), new Address("USA", "New York"), new ContactInfo("john.smith@example.com", "1234567890"), serviceProvider.getServices());
         assertEquals(serviceProvider.hashCode(), sameServiceProvider.hashCode());
     }
+
+    @Test
+    public void testGetPackageProviders() throws UserIsAlreadyExist {
+        cleanRepositry();
+        addUser(serviceProvider);
+        assertTrue(getPakageProviders().isEmpty());
+        serviceProvider.setPackageProvider(true);
+        serviceProvider.getServices().add(new Service(ServiceType.CATERING, 20.0, "dj"));
+        assertFalse(getPakageProviders().isEmpty());
+        cleanRepositry();
+
+    }
+
+    @Test
+    public void testGetServiceProviderByServiceType() throws UserIsAlreadyExist {
+        cleanRepositry();
+        assertTrue((getServiceProviderByServiceType(ServiceType.CLEANING, LocalDate.of(2024, 8, 17))).isEmpty());
+        addUser(serviceProvider);
+        serviceProvider.getServices().clear();
+        serviceProvider.getServices().add(new Service(ServiceType.CLEANING, 20.0, "dj"));
+        serviceProvider.getBookedDates().add(LocalDate.of(2024, 11, 20));
+        assertFalse((getServiceProviderByServiceType(ServiceType.CLEANING, LocalDate.of(2024, 8, 17))).isEmpty());
+
+
+    }
+
 }
