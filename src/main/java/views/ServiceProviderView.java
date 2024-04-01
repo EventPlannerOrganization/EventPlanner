@@ -232,9 +232,9 @@ public class ServiceProviderView {
         String choice = scanner.nextLine();
 
 
-        while ((!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) || (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
+        while ((!(ChoiceChecker.isValidChoice(choice, 8) || choice.equalsIgnoreCase("b"))) || (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
 
-            if (!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) {
+            if (!(ChoiceChecker.isValidChoice(choice, 8) || choice.equalsIgnoreCase("b"))) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
             } else if (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
@@ -279,7 +279,7 @@ public class ServiceProviderView {
                 List<Service> services = ServiceProviderView.addingProcessForPackageProvider();
                 ServiceProviderControl.changePackageProviderServices(serviceProvider, services);
             }
-            default ->logger.warning(INVALID_CHOICE);
+            default -> logger.warning(INVALID_CHOICE);
 
         }
         if (flag) {
