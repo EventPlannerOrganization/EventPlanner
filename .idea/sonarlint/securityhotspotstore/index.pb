@@ -65,3 +65,5 @@ s
 Csrc/test/features/AdminEventsManagement/ViewListOfAllEvents.feature,5\2\52ef68849f8bb038f2c12d01a39f27db397fd368
 k
 ;src/test/features/AdminEventsManagement/SearchEvent.feature,0\8\08d9498e8d3ad040d1c1fbc6e70ead194a656d09
+Y
+)src/test/java/testModels/TestService.java,5\b\5bbd029ab1074b5905075a432aa423fa134c150b

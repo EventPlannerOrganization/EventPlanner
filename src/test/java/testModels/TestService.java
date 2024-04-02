@@ -36,7 +36,7 @@ public class TestService {
     @Test
     public void testToString() {
         Service service = new Service(ServiceType.PHOTOGRAPHY, 50.0, "wedding photography");
-        String expected = "\tType: PHOTOGRAPHY \n\t\tPrice: 50.0$\n\t\tDescription: wedding photography";
+        String expected = "\tType: PHOTOGRAPHY \n\tPrice: 50.0$\n\tDescription: wedding photography";
         assertEquals(expected, service.toString());
     }
 
