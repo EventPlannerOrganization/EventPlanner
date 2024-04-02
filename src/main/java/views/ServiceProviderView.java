@@ -18,6 +18,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
+import enumerations.Colors;
 
 
 public class ServiceProviderView {
@@ -230,7 +231,7 @@ public class ServiceProviderView {
         String string = "What is The Service You Want To Provide ? \n" + "If You Want To Go Back Press B";
         logger.info(string);
         String choice = scanner.nextLine();
-
+        if(choice.equalsIgnoreCase("b")) return;
 
         while ((!(ChoiceChecker.isValidChoice(choice, 8) || choice.equalsIgnoreCase("b"))) || (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
 
@@ -361,11 +362,11 @@ public class ServiceProviderView {
         List<String> serviceProviderServiceString = new ArrayList<>();
         for (int i = 0; i < serviceProvider.getServices().size(); i++) {
             String st1 = "Service info : \n";
-            String st = st1 + serviceProvdierServices.get(i).toString() + "\n -------------------------------------------";
+            String st =st1 + serviceProvdierServices.get(i).toString() + "\n";
             serviceProviderServiceString.add(st);
 
         }
-        MenusPrinter.printListofStringWithNumbers(serviceProviderServiceString, "\"Here is Your Service/s:\"");
+        MenusPrinter.showPrinter("Your Services",serviceProviderServiceString,"\u001B[37m" );
 
     }
 

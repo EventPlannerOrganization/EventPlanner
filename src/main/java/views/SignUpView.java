@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUpView {
     private static final Logger logger=Logger.getLogger(SignUpView.class.getName());
@@ -88,27 +90,45 @@ logger.warning(e.getMessage());
         String mname=scanner.nextLine();
         logger.info("Enter last name: ");
         String lname=scanner.nextLine();
+        logger.info("Enter User Name :");
+        String userName=scanner.nextLine();
         logger.info("Enter Country: ");
         String country=scanner.nextLine();
         logger.info("Enter city: ");
         String city=scanner.nextLine();
         logger.info("Enter email: ");
         String email=scanner.nextLine();
+        while (!isEmail(email)){
+            logger.info("Invalid Email,please Enter valid Email : ");
+            email=scanner.nextLine();
+        }
         logger.info("Enter password: ");
         String password=scanner.nextLine();
         while (!PasswordChecker.isStrongPassword(password)) {
-            logger.info("re enter password: ");
+            logger.info("Weak Password , Please Enter a Strong Password (Contains letters ,Symbols,Numbers) :");
             password=scanner.nextLine();
         }
         logger.info("Enter phone number: ");
         String phone=scanner.nextLine();
 
         return new Person(new Name(fname,mname,lname)
-                ,new Authentication(email,password)
+                ,new Authentication(userName,password)
                 ,new Address(country,city)
                 ,new ContactInfo(email,phone)
                 );
     }
+
+    public static boolean isEmail(String email) {
+        String emailPattern =
+                new StringBuilder().append("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@").append("(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$").toString();
+        Pattern pattern = Pattern.compile(emailPattern);
+        if (email == null) {
+            return false;
+        }
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
     public static List<Service> serviceList(String numberOfService)
     {
         List <Service> list = new ArrayList<>();
