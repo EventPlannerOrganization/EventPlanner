@@ -22,6 +22,7 @@ public class MenusPrinter {
     public static final String DECOR_AND_DESIGN = "Decor And Design";
     public static final String CATERING = "CATERING";
     public static final String PACKAGES_OFFERS = "packages Offers";
+    public static final String MENU_COLOR= "\u001B[34m";
 
     private MenusPrinter() {
 
@@ -41,6 +42,56 @@ public class MenusPrinter {
     }
 
 
+    public static void printnewMenu(String header, List<String> options, String color) {         // Find the maximum length of the options
+        // Find the maximum length of the options
+        StringBuilder stringBuilder = new StringBuilder("\n");
+        int maxOptionLength = 0;
+        for (String option : options) {
+            maxOptionLength = Math.max(maxOptionLength, option.length());
+        }
+
+        // Calculate the width of the entire menu
+        int menuWidth = maxOptionLength + 6; // Adjust according to your design
+        stringBuilder.append(color).append("╔").append(repeatChar("═", menuWidth)).append("╗").append("\n");
+        stringBuilder.append("║").append("\u001B[1m").append(centerText(header, menuWidth)).append(ANSI_RESET).append(color).append("║").append("\n");
+        stringBuilder.append("╠").append(repeatChar("═", menuWidth)).append("╣").append("\n");
+
+        // Print options with color
+        for (int i = 0; i < options.size(); i++) {
+            stringBuilder.append("║  ").append(i + 1).append(". ").append(options.get(i)).append(getSpaces(maxOptionLength - options.get(i).length() + 1)).append("║").append("\n");
+        }
+
+        // Print footer with color
+        stringBuilder.append("╚").append(repeatChar("═", menuWidth)).append("╝").append("\n");
+
+        // Reset color
+        stringBuilder.append(ANSI_RESET).append("\n");
+        String str = stringBuilder.toString();
+        logger.info(str);
+    }
+
+    public static String getSpaces(int count) {
+        StringBuilder spaces = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            spaces.append(" ");
+        }
+        return spaces.toString();
+    }
+
+    public static String repeatChar(String character, int count) {
+        StringBuilder repeated = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            repeated.append(character);
+        }
+        return repeated.toString();
+    }
+
+    public static String centerText(String text, int width) {
+        int spacesNeeded = width - text.length();
+        int spacesBefore = spacesNeeded / 2;
+        int spacesAfter = spacesNeeded - spacesBefore;
+        return getSpaces(spacesBefore) + text + getSpaces(spacesAfter);
+    }
 
     public static void printSignUpAsMenu() {
         List<String> mainMenu = new ArrayList<>();
@@ -122,7 +173,7 @@ public class MenusPrinter {
         menu.add("Edit My Upcoming Events");
         menu.add("Send Event Tickets to Guests");
         menu.add(SIGN_OUT);
-        printMenu(menu);
+        printnewMenu("User Menu",menu,MENU_COLOR);
     }
     public static void printAdminMenu()
     {
@@ -132,7 +183,7 @@ public class MenusPrinter {
         menu.add("Event Management");
         menu.add(SIGN_OUT);
 
-        printMenu(menu);
+        printnewMenu("Admin",menu,MENU_COLOR);
     }
 
     public static void printUserManageMenu()
@@ -146,7 +197,7 @@ public class MenusPrinter {
         menu.add("view registered events for user");
 
         menu.add("Cancel");
-        printMenu(menu);
+        printnewMenu("User Managment",menu,MENU_COLOR);
     }
     public static void printServiceProviderManageMenu()
     {
@@ -160,7 +211,7 @@ public class MenusPrinter {
         menu.add("Show Booked Dates for Service Provider");
 
         menu.add("Cancel ");
-        printMenu(menu);
+        printnewMenu("Service Provider Managment",menu,MENU_COLOR);
     }
 
     public static void printServiceProviderMenu() {
@@ -171,7 +222,7 @@ public class MenusPrinter {
         menu.add("Edit your Event/s");
         menu.add("Show requests");
         menu.add(SIGN_OUT);
-        printMenu(menu);
+        printnewMenu("Service Provider",menu,MENU_COLOR);
     }
 
 
@@ -183,7 +234,7 @@ public class MenusPrinter {
         menu.add("Add new Guests");
         menu.add("Delete Guest");
         menu.add("Cancel");
-        printMenu(menu);
+        printnewMenu("Modify Event",menu,MENU_COLOR);
     }
     public static void printGuestsList(List<String> menu) {
         menu.add("Back to menue");
@@ -209,7 +260,7 @@ public class MenusPrinter {
         menu.add("Reset Your Password");
         menu.add("Exit");
 
-        printMenu(menu);
+       printnewMenu("Main Menu",menu,MENU_COLOR);
     }
 
     public static void printServiceProviderEditMenu() {
@@ -223,7 +274,7 @@ public class MenusPrinter {
         List<String> menu = new ArrayList<>();
         menu.add("Search for a specific user");
         menu.add("Show all users and select from the list");
-        printMenu(menu);
+        printnewMenu("Search Options",menu,MENU_COLOR);
     }
 
     public static void printfindEventMethodsMenu(){
@@ -231,7 +282,8 @@ public class MenusPrinter {
         menu.add("Select by search");
         menu.add("Select from spicific user events");
         menu.add("Select event from list of all events");
-        printMenu(menu);
+        printnewMenu("Search Options",menu,MENU_COLOR);
+
     }
 
     public static void printListOfStrings(List<String> list){
@@ -262,7 +314,8 @@ public class MenusPrinter {
         menu.add("Modifying Event");
 
         menu.add("Cancel ");
-        printMenu(menu);
+        printnewMenu("Event Managment",menu,MENU_COLOR);
+
     }
 
 

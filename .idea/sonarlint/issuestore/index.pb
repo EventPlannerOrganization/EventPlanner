@@ -1,18 +1,17 @@
 
 X
-(src/test/java/testModels/TestPerson.java,5\d\5d514a64648b3eedb66343631d4d6b2bc294fb0c
-a
-1src/test/java/testModels/TestServiceProvider.java,e\1\e16df36f0247705d3fbccdf9988cfdc7f47d05f9
-c
-3src/main/java/exceptions/GoToMainMenuException.java,7\6\7675363dbf89a970a3c1d1d2eaf3e2660c20521f
-c
-3src/test/java/test_helpers/TestPasswordChecker.java,1\2\12c7d37bd5fcab44860d5409eb4c1c5fb51603e0
-X
 (src/main/java/helpers/ChoiceChecker.java,1\0\10d4450c5a6596d7edb0de95c22d102560d41306
-\
-,src/main/java/views/ServiceProviderView.java,9\c\9c2d0c476bea553419086711b2e1bac7f69b3822
+Y
+)src/main/java/models/RegisteredEvent.java,8\3\83659537ee34b1ed397e27924b7d620056e46354
+T
+$src/main/java/controllers/Login.java,d\7\d7348dead3122e957b92c9ed3e4ca992b430a9cd
+X
+(src/main/java/printers/MenusPrinter.java,0\2\021c2be62f013ceace91f2c2ed3a341579499f30
+S
+#src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
 Q
 !src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
+<<<<<<< HEAD
 S
 #src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
 \
@@ -39,3 +38,21 @@ u
 Esrc/test/java/testControllers/AdminUserManagement/TestDeleteUser.java,6\d\6da9970d2c42873fa63c5cfa815baa968fa3614a
 [
 +src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
+=======
+R
+"src/main/java/views/LoginView.java,d\9\d9c007c1a60eb7b3d452841e748d5c691ad9ade9
+e
+5src/main/java/controllers/ServiceProviderControl.java,c\e\ce7bb1b1c1c3f60d56ef31fdacbc69cabbc6fe2c
+U
+%src/main/java/controllers/SignUp.java,6\9\69abe9c9b4bb9983c22f528ce7bcbed4714e5f0b
+Z
+*src/main/java/controllers/UserControl.java,7\5\7559abf99ef00ca6eb34b20bd32e8d74a82299fa
+N
+src/main/java/models/Name.java,0\f\0f27e1a9e3c3dd534467d7c7d74566155dc3abda
+N
+src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
+[
++src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
+R
+"src/main/java/views/AdminView.java,1\6\16ef284199890c28cc9f7bf4070df72414a26421
+>>>>>>> 9f88c85b3484090d16041ce691c4ce15dc76cba9

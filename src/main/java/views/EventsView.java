@@ -101,7 +101,7 @@ public class EventsView {
             else {
                 ServiceProvider newServiceProvider = selectedServiceFromServicesList(filteredProvidersList);
                 if (newServiceProvider != null) {
-                venue=newServiceProvider.getServices().getFirst().getDescription();
+                venue=newServiceProvider.getServices().get(0).getDescription();
                 }
                 else venue="null";
                 return venue;
