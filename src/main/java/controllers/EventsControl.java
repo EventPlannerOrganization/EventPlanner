@@ -1,6 +1,6 @@
 package controllers;
 
-import Exceptions.*;
+import exceptions.*;
 import models.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -11,17 +11,6 @@ public class EventsControl {
     private EventsControl() {
     }
 
-    public static void updateEventInformation(String eventName, String field, String value) throws EventNotFound, EventAlreadyExist, EventNotFoundException {
-        User user = (User) EventPlanner.getCurrentUser();
-        if (!user.isThisEventExist(eventName)) {
-            throw new EventNotFound();
-        }
-        if (field.equalsIgnoreCase("name")) {
-            editEventName(user.getEventByName(eventName), value);
-        } else if (field.equalsIgnoreCase("location")) {
-            editEventLocation(user.getEventByName(eventName), value);
-        }
-    }
 
     public static void addEvent(LocalDate date, String name, double cost, List<String> guestsEmails) throws EventAlreadyExist {
         RegisteredEvent registeredEvent = new RegisteredEvent(name,  date ,cost, guestsEmails);

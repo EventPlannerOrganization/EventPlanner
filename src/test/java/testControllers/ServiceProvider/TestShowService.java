@@ -1,6 +1,6 @@
 package testControllers.ServiceProvider;
 
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
 import io.cucumber.java.en.Then;
@@ -23,7 +23,7 @@ public class TestShowService {
     @Then("The Service Will Display Correctly")
     public void theServiceWillDisplayCorrectly() {
       List< Service> serviceList = new ArrayList<>();
-      serviceList.add(new Service(ServiceType.Cleaning,3200,"tesing"));
+      serviceList.add(new Service(ServiceType.CLEANING,3200,"tesing"));
         List<Service> serviceProvdierServices = ServiceProviderControl.getServiceProviderServices(serviceProvider);
         assertEquals(serviceList.get(0).toString(), serviceProvdierServices.get(0).toString());
     }
@@ -35,8 +35,8 @@ public class TestShowService {
     @Then("The Servicess Will Display Correctly")
     public void theServicessWillDisplayCorrectly() {
         List< Service> serviceList = new ArrayList<>();
-        serviceList.add(  new Service(ServiceType.Photography,3200,"tesing"));
-        serviceList.add(new Service(ServiceType.Security,3200,"tesing"));
+        serviceList.add(  new Service(ServiceType.PHOTOGRAPHY,3200,"tesing"));
+        serviceList.add(new Service(ServiceType.SECURITY,3200,"tesing"));
         List<Service> serviceProvdierServices = ServiceProviderControl.getServiceProviderServices(serviceProvider);
         assertEquals(serviceProvdierServices.get(0).toString(),serviceList.get(0).toString());
         assertEquals(serviceProvdierServices.get(1).toString(),serviceProvdierServices.get(1).toString());

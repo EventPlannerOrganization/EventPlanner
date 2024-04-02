@@ -12,9 +12,16 @@ import java.util.logging.Logger;
 import static printers.CollectionsPrinter.getMonthName;
 
 public class MenusPrinter {
+    public static final String DJ = "DJ";
+    public static final String PHOTOGRAPHY = "PHOTOGRAPHY";
+    public static final String SECURITY = "SECURITY";
     private static final Logger logger = Logger.getLogger(MenusPrinter.class.getName());
     public static final String FORMAT = "%n|%-5s| %-30s|";
     public static final String SIGN_OUT = "Sign out !";
+    public static final String CLEANING = "CLEANING";
+    public static final String DECOR_AND_DESIGN = "Decor And Design";
+    public static final String CATERING = "CATERING";
+    public static final String PACKAGES_OFFERS = "packages Offers";
 
     private MenusPrinter() {
 
@@ -34,6 +41,56 @@ public class MenusPrinter {
     }
 
 
+    public static void printnewMenu(String header, List<String> options, String color) {         // Find the maximum length of the options
+        // Find the maximum length of the options
+        StringBuilder stringBuilder = new StringBuilder("\n");
+        int maxOptionLength = 0;
+        for (String option : options) {
+            maxOptionLength = Math.max(maxOptionLength, option.length());
+        }
+
+        // Calculate the width of the entire menu
+        int menuWidth = maxOptionLength + 6; // Adjust according to your design
+        stringBuilder.append(color).append("╔").append(repeatChar("═", menuWidth)).append("╗").append("\n");
+        stringBuilder.append("║").append("\u001B[1m").append(centerText(header, menuWidth)).append(ANSI_RESET).append(color).append("║").append("\n");
+        stringBuilder.append("╠").append(repeatChar("═", menuWidth)).append("╣").append("\n");
+
+        // Print options with color
+        for (int i = 0; i < options.size(); i++) {
+            stringBuilder.append("║  ").append(i + 1).append(". ").append(options.get(i)).append(getSpaces(maxOptionLength - options.get(i).length() + 1)).append("║").append("\n");
+        }
+
+        // Print footer with color
+        stringBuilder.append("╚").append(repeatChar("═", menuWidth)).append("╝").append("\n");
+
+        // Reset color
+        stringBuilder.append(ANSI_RESET).append("\n");
+        String str = stringBuilder.toString();
+        logger.info(str);
+    }
+
+    public static String getSpaces(int count) {
+        StringBuilder spaces = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            spaces.append(" ");
+        }
+        return spaces.toString();
+    }
+
+    public static String repeatChar(String character, int count) {
+        StringBuilder repeated = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            repeated.append(character);
+        }
+        return repeated.toString();
+    }
+
+    public static String centerText(String text, int width) {
+        int spacesNeeded = width - text.length();
+        int spacesBefore = spacesNeeded / 2;
+        int spacesAfter = spacesNeeded - spacesBefore;
+        return getSpaces(spacesBefore) + text + getSpaces(spacesAfter);
+    }
 
     public static void printSignUpAsMenu() {
         List<String> mainMenu = new ArrayList<>();
@@ -44,38 +101,38 @@ public class MenusPrinter {
 
     public static void printServicesMenu() {
         List<String> menu = new ArrayList<>();
-        menu.add("DJ");
-        menu.add("Photography");
-        menu.add("Security");
-        menu.add("Cleaning");
-        menu.add("Decor And Design");
-        menu.add("Catering");
-        menu.add("Venue");
+        menu.add(DJ);
+        menu.add(PHOTOGRAPHY);
+        menu.add(SECURITY);
+        menu.add(CLEANING);
+        menu.add(DECOR_AND_DESIGN);
+        menu.add(CATERING);
+        menu.add("VENUE");
         printMenu(menu);
     }
 
     public static void printServicesMenuWithPcks() {
         List<String> menu = new ArrayList<>();
-        menu.add("DJ");
-        menu.add("Photography");
-        menu.add("Security");
-        menu.add("Cleaning");
-        menu.add("Decor And Design");
-        menu.add("Catering");
-        menu.add("Venue");
-        menu.add("packages Offers");
+        menu.add(DJ);
+        menu.add(PHOTOGRAPHY);
+        menu.add(SECURITY);
+        menu.add(CLEANING);
+        menu.add(DECOR_AND_DESIGN);
+        menu.add(CATERING);
+        menu.add("VENUE");
+        menu.add(PACKAGES_OFFERS);
         printMenu(menu);
     }
 
     public static void printServicesMenuForRegisterEvent() {
         List<String> menu = new ArrayList<>();
-        menu.add("DJ");
-        menu.add("Photography");
-        menu.add("Security");
-        menu.add("Cleaning");
-        menu.add("Decor And Design");
-        menu.add("Catering");
-        menu.add("packages Offers");
+        menu.add(DJ);
+        menu.add(PHOTOGRAPHY);
+        menu.add(SECURITY);
+        menu.add(CLEANING);
+        menu.add(DECOR_AND_DESIGN);
+        menu.add(CATERING);
+        menu.add(PACKAGES_OFFERS);
         printMenu(menu);
     }
 
@@ -123,7 +180,6 @@ public class MenusPrinter {
         menu.add("User Management");
         menu.add("Service Provider Management");
         menu.add("Event Management");
-        menu.add("");
         menu.add(SIGN_OUT);
 
         printMenu(menu);
@@ -203,7 +259,7 @@ public class MenusPrinter {
         menu.add("Reset Your Password");
         menu.add("Exit");
 
-        printMenu(menu);
+       printnewMenu("Main Menu",menu,"\u001B[34m");
     }
 
     public static void printServiceProviderEditMenu() {
@@ -278,7 +334,8 @@ public class MenusPrinter {
             }
 
         }
-        logger.info("\n" + output);
+        String out="\n"+output;
+        logger.info(out );
     }
 
 

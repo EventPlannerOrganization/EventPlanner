@@ -1,8 +1,8 @@
 package testControllers.AdminEventsManagement;
 
 
-import Exceptions.EventNotFoundException;
-import Exceptions.ServiceNotFoundException;
+import exceptions.EventNotFoundException;
+import exceptions.ServiceNotFoundException;
 import controllers.AdminControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,7 +11,6 @@ import org.junit.Assert;
 
 import java.util.List;
 
-import static controllers.AdminControl.addEventForUser;
 import static controllers.AdminControl.deleteEvent;
 
 public class TestDeleteEvent {

@@ -1,7 +1,7 @@
 package views;
 
 
-import Exceptions.*;
+import exceptions.*;
 import controllers.EventsControl;
 import controllers.UserControl;
 import enumerations.ServiceType;
@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
+
+import static views.AdminView.INVALID_CHOICE;
 import static views.AdminView.backTouserManagementMenu;
 
 
@@ -21,6 +23,7 @@ public class EventsView {
     private static final Logger logger = Logger.getLogger(EventsView.class.getName());
     private static final Scanner scanner = new Scanner(System.in);
     private static double cost;
+
 
     private EventsView() {
 
@@ -50,7 +53,8 @@ public class EventsView {
         RegisteredEvent newEvent =new RegisteredEvent();
         cost = 0;
         logger.info("To get started, please provide the following information: \n* Enter Event Name");
-        String name=ChoiceChecker.readingEventName();
+        String eventName=scanner.nextLine();
+        String name=ChoiceChecker.readingEventName(eventName);
         logger.info("* Enter Date of your event \n - Day (1-31): ");
         LocalDate date;
         while(true) {
@@ -77,6 +81,7 @@ public class EventsView {
         newEvent.setDate(date);
         newEvent.setGuestsEmails(guestsEmails);
         newEvent.setServiceProviders(list);
+        newEvent.setCost(cost);
         return newEvent;
     }
 
@@ -88,7 +93,7 @@ public class EventsView {
                 - If no, please enter 'n' and we will suggest some venue services for you to choose from.""");
         boolean hasVenue = ChoiceChecker.againChecker();
         if(!hasVenue) {
-            List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(ServiceType.Venue, date);
+            List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(ServiceType.VENUE, date);
             if (filteredProvidersList.isEmpty()) {
                 logger.info("No Services Available:\nUnfortunately, there are no services available for the specified service type and time.\n");
                 return "null";
@@ -127,11 +132,11 @@ public class EventsView {
             } else {
                 ServiceType serviceType = switch (serviceNum) {
                     case "1" -> ServiceType.DJ;
-                    case "2" -> ServiceType.Photography;
-                    case "3" -> ServiceType.Security;
-                    case "4" -> ServiceType.Cleaning;
-                    case "5" -> ServiceType.Decor_and_Design;
-                    case "6" -> ServiceType.Catering;
+                    case "2" -> ServiceType.PHOTOGRAPHY;
+                    case "3" -> ServiceType.SECURITY;
+                    case "4" -> ServiceType.CLEANING;
+                    case "5" -> ServiceType.DECOR_AND_DESIGN;
+                    case "6" -> ServiceType.CATERING;
                     default -> null;
                 };
                 filteredProvidersList = EventPlanner.getServiceProviderByServiceType(serviceType, date);
@@ -143,9 +148,6 @@ public class EventsView {
                 ServiceProvider newServiceProvider = selectedServiceFromServicesList(filteredProvidersList);
 
                if (newServiceProvider != null) {
-////                    UserControl.sendRequestToServiceProvider(newServiceProvider,date);
-////                    //here add the accept & reject
-                newServiceProvider.getBookedDates().add(date);
                 addedProviders.add(newServiceProvider);
                 }
 
@@ -219,27 +221,18 @@ public class EventsView {
             MenusPrinter.printEditingChoices();
             String choice = scanner.nextLine();
             switch (choice) {
-                case "1":
-                   editEventName(event);
-                    break;
-                case "2":
-                    addServices(event);
-                    break;
-                case "3":
-                    deleteService(event);
-                    break;
-                case "4":
-                    List <String> newGuests= EventsView.readeGuestsEmails();
-                    EventsControl.addNewGuests(event,newGuests);
-                    break;
-                case "5":
-                    deleteGuest(event);
-                    break;
-                case "6":
-                    flage=false;
-                    break;
-                default:
-                    // code block
+                case "1" -> editEventName(event);
+                case "2" -> addServices(event);
+                case "3" -> deleteService(event);
+                case "4" -> {
+                    List<String> newGuests = EventsView.readeGuestsEmails();
+                    EventsControl.addNewGuests(event, newGuests);
+                }
+                case "5" -> deleteGuest(event);
+                case "6" -> flage = false;
+                default -> logger.warning(INVALID_CHOICE);
+
+                // code block
             }
         }
     }
@@ -264,7 +257,9 @@ public class EventsView {
         logger.info("Select service to delete it: ");
         ServiceProvider deletedService = EventsView.selectedServiceFromServicesList(event.getServiceProviders());
         try{EventsControl.deleteService(event, deletedService);}
-        catch (ServiceNotFoundException ignored){}
+        catch (ServiceNotFoundException e){
+            logger.warning(e.getMessage());
+        }
     }
 
     private static void deleteGuest(RegisteredEvent event) {
@@ -292,6 +287,9 @@ public class EventsView {
         }
 
     }
+
+
+
 }
 
 

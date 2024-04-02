@@ -1,7 +1,7 @@
 package testControllers.AdminEventsManagement;
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.UserNotFoundException;
+import exceptions.EventAlreadyExist;
+import exceptions.UserNotFoundException;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;

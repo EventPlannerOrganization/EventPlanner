@@ -6,6 +6,6 @@ Feature: Search Service Provider by UserName
     And Service Provider has <serviceType> <ServicePrice> <ServiceDescription>
     Then Services Will Display Successfully
     Examples:
-      |  username  | serviceType |ServicePrice|ServiceDescription|
-      |"mohammad03"|      "DJ"   |    "3200"   |   "tesing"       |
-      |  "hamid02" |  "Cleaning" |    "3200"    |  "tesing"  |
+      | username     | serviceType | ServicePrice | ServiceDescription |
+      | "mohammad03" | "DJ"        | "3200"       | "tesing"           |
+      | "hamid02"    | "CLEANING"  | "3200"       | "tesing"           |

@@ -1,13 +1,28 @@
 package models;
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFound;
+import exceptions.EventAlreadyExist;
+import exceptions.EventNotFound;
 import enumerations.UserType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class User extends Person {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        if (!super.equals(o)) return false;
+        return Double.compare(totalCost, user.totalCost) == 0 && usertype == user.usertype && Objects.equals(registeredEvents, user.registeredEvents)&&getAuthentication().getUsername().equals(user.getAuthentication().getUsername()) &&
+                getContactInfo().getEmail().equals( user.getContactInfo().getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), usertype, registeredEvents, totalCost);
+    }
+
     private UserType usertype;
     private List<RegisteredEvent> registeredEvents;
     private double totalCost;
@@ -44,7 +59,9 @@ public class User extends Person {
     public void addToTotalCost(double newCost) {
         this.totalCost += newCost;
     }
-
+    public double getTotalCost( ) {
+    return totalCost;
+    }
 
 
 

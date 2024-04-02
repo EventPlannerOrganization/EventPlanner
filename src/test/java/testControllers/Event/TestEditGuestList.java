@@ -1,7 +1,7 @@
 package testControllers.Event;
 
-import Exceptions.EventNotFound;
-import Exceptions.UserNotFoundException;
+import exceptions.EventNotFound;
+import exceptions.UserNotFoundException;
 import controllers.EventsControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

@@ -1,20 +1,18 @@
 package views;
 
-import Exceptions.EmptyList;
-import Exceptions.EventAlreadyExist;
-import Exceptions.EventNotFoundException;
-import Exceptions.ServiceNotFoundException;
+import exceptions.EmptyList;
+import exceptions.EventAlreadyExist;
+import exceptions.EventNotFoundException;
 import controllers.AdminControl;
 
+import exceptions.ServiceNotFoundException;
 import helpers.ChoiceChecker;
 import helpers.PasswordChecker;
-import models.EventPlanner;
-import models.RegisteredEvent;
-import models.ServiceProvider;
-import models.User;
+import models.*;
 import printers.MenusPrinter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -29,6 +27,8 @@ public class AdminView {
     private static final User notUser = new User();
     private static final RegisteredEvent notEvent = new RegisteredEvent();
     private static final ServiceProvider notServiceProvider = new ServiceProvider();
+    public static final String WHAT_DO_YOU_WANT_TO_DO = "What do you want to do ? ";
+    public static final String INVALID_CHOICE = "invalid choice";
 
     static String message = "Sorry, no users were found matching your search criteria.\n" +
             "do need to retry process? Enter 'Y' if yes, enter any button to return to menu";
@@ -43,28 +43,19 @@ public class AdminView {
             MenusPrinter.printAdminMenu();
             logger.info("What do you want to do ?");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.adminMenuChecker(choice)) {
+            while (!ChoiceChecker.isValidChoice(choice,5)) {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
             }
             switch (choice) {
-                case "1":
-                    AdminView.userManagement();
-                    break;
-                case "2":
-                    AdminView.serviceProviderManagement();
-                    break;
-                case "3":
-                    AdminView.eventManagement();
-                    break;
-                case "4":
-                    break;
-                case "5":
+                case "1" -> AdminView.userManagement();
+                case "2" -> AdminView.serviceProviderManagement();
+                case "3" -> AdminView.eventManagement();
+                case "4" -> {
                     flage = false;
                     EventPlanner.signout();
-                    break;
-                default:break;
-
+                }
+                default -> logger.warning(INVALID_CHOICE);
             }
 
             }
@@ -77,36 +68,23 @@ public class AdminView {
         boolean flage = true;
         while (flage) {
             MenusPrinter.printUserManageMenu();
-            logger.info("What do you want to do ? ");
+            logger.info(WHAT_DO_YOU_WANT_TO_DO);
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.userManageMenuChecker(choice)) {
+            while (!ChoiceChecker.isValidChoice(choice,7)) {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
             }
             switch (choice) {
-                case "1":
-                    AdminView.showUsersView();
-                    break;
-                case "2":
-                    AdminView.searchUserView();
-                    break;
-                case "3":
-                    AdminView.createNewUser();
-                    break;
-                case "4":
-                    AdminView.deleteUser();
-                    break;
-                case "5":
-                    AdminView.resetPassword();
-                    break;
-                case "6":
-                    AdminView.viewEvents();
-                    break;
-                case "7":
-                    flage = false;
-                    break;
-                default:
-                    // code block
+                case "1" -> AdminView.showUsersView();
+                case "2" -> AdminView.searchUserView();
+                case "3" -> AdminView.createNewUser();
+                case "4" -> AdminView.deleteUser();
+                case "5" -> AdminView.resetPassword();
+                case "6" -> AdminView.viewEvents();
+                case "7" -> flage = false;
+                default -> logger.warning(INVALID_CHOICE);
+
+
             }
         }
     }
@@ -115,19 +93,33 @@ public class AdminView {
         boolean reTry = true;
         while (reTry) {
             User user = findModifiedUser();
-            if (user == null) {
-                logger.info(message);
-                String choice = scanner.nextLine();
-                if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
-            } else if (user == notUser) {
-                reTry = false;
-            } else {
-                reTry = false;
-                //you can here send email to notify him that the admin delete him
-                AdminControl.resetPassword(user, readNewPassword());
+            reTry=modifiedPersonChecker(user);
+
             }
         }
+
+    private static boolean modifiedPersonChecker(Person person){
+        boolean reTry = true;
+
+        if (person == null) {
+            logger.info(message);
+            String choice = scanner.nextLine();
+            if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
+        }
+        else if(person==notServiceProvider||person==notUser)reTry = false;
+        else {
+            reTry = false;
+            //you can here send email to notify him that the admin delete him
+            try {
+                AdminControl.resetPassword(person, readNewPassword());
+            } catch (Exception e){
+                logger.warning(e.getMessage());
+            }    }
+
+
+        return reTry;
     }
+
 
     private static String readNewPassword() {
         logger.info("Enter New Password: ");
@@ -155,7 +147,11 @@ public class AdminView {
         else {
             reTry=false;
             //you can here send email to notify him that the admin delete him
-            AdminControl.deleteUser( deletedUser);
+           try {
+               AdminControl.deleteUser( deletedUser);
+           } catch (Exception e){
+               logger.warning(e.getMessage());
+           }
         }
 
         }
@@ -217,7 +213,7 @@ public class AdminView {
         logger.info("Please select a method to generate the process:");
         MenusPrinter.printfindUserMethodsMenu();
         String choice=scanner.nextLine();
-        while (!ChoiceChecker.isOneOrTwo(choice)) {
+        while (!ChoiceChecker.isValidChoice(choice,2)) {
             logger.info("Enter Valid Choice: ");
             choice=scanner.nextLine();
         }
@@ -277,9 +273,9 @@ public class AdminView {
         while(flage)
         {
             MenusPrinter.printServiceProviderManageMenu();
-            logger.info("What do you want to do ? ");
+            logger.info(WHAT_DO_YOU_WANT_TO_DO);
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.serviceProviderManageMenuChecker(choice))
+            while (!ChoiceChecker.isValidChoice(choice,8))
             {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
@@ -293,6 +289,7 @@ public class AdminView {
                 case "6" -> AdminView.viewServices();
                 case "7" -> AdminView.viewBookedDates();
                 case "8" -> flage = false;
+                default -> logger.warning(INVALID_CHOICE);
 
             }
         }
@@ -350,20 +347,25 @@ public class AdminView {
 
     private static void resetServiceProviderPassword() {
         boolean reTry = true;
-        ServiceProvider serviceProvider = findModifiedServiceProvider();
         while (reTry) {
+            ServiceProvider serviceProvider = findModifiedServiceProvider();
+            reTry=modifiedPersonChecker(serviceProvider);
             if (serviceProvider == null) {
-                logger.info(message);
-                String choice = scanner.nextLine();
-                if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
-            } else if (serviceProvider == notServiceProvider) {
-                reTry = false;
-            } else {
-                reTry = false;
-                //you can here send email to notify him that the admin delete him
+            logger.info(message);
+            String choice = scanner.nextLine();
+            if (!(choice.equals("y") || choice.equals("Y"))) reTry = false;
+        } else if (serviceProvider == notServiceProvider) {
+            reTry = false;
+        } else {
+            reTry = false;
+            //you can here send email to notify him that the admin delete him
+            try {
                 AdminControl.resetPassword(serviceProvider, readNewPassword());
+            } catch (Exception e) {
+                logger.warning(e.getMessage());
             }
-        }
+
+        }}
     }
 
     private static void deleteServiceProvider() {
@@ -384,7 +386,7 @@ public class AdminView {
                 try {
                     AdminControl.deleteServiceProvider( deletedUser);
                 }
-                catch (EmptyList | ServiceNotFoundException e){logger.warning(e.getMessage());}
+                catch (EmptyList | Exception e){logger.warning(e.getMessage());}
             }
 
         }
@@ -442,9 +444,9 @@ public class AdminView {
         while(flage)
         {
             MenusPrinter.printEventManageMenu();
-            logger.info("What do you want to do ? ");
+            logger.info(WHAT_DO_YOU_WANT_TO_DO);
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.userManageMenuChecker(choice))
+            while (!ChoiceChecker.isValidChoice(choice,7))
             {
                 choice = scanner.nextLine();
                 logger.info(messageEnterValid);
@@ -457,8 +459,7 @@ public class AdminView {
                 case "5" -> AdminView.deleteEvent();
                 case "6" -> AdminView.editEvent();
                 case "7" -> flage = false;
-                case "8" -> flage = false;
-
+                default ->logger.warning(INVALID_CHOICE);
             }
         }
     }
@@ -473,12 +474,10 @@ public class AdminView {
         try {
             AdminControl.deleteEvent(event);
         }
-        catch (EventNotFoundException e){
+        catch (EventNotFoundException | ServiceNotFoundException e){
             logger.info("Sorry, This event does not include to any user ! ");
         }
-        catch (Exception e){
 
-        }
     }
 
     private static void searchEvent() {
@@ -551,19 +550,16 @@ public class AdminView {
         RegisteredEvent modifiedEvent;
         String choice=selectEventMethod();
         List<RegisteredEvent> events;
-        if(choice.equals("1")) {
-            logger.info("Please enter event name to search ");
-            String eventName = scanner.nextLine();
-            events = AdminControl.searchEvents(eventName);
+        switch (choice) {
+            case "1" -> {
+                logger.info("Please enter event name to search ");
+                String eventName = scanner.nextLine();
+                events = AdminControl.searchEvents(eventName);
+            }
+            case "2" -> events = AdminView.eventsForUser();
+            case "3" -> events = getAllEvents();
+            default -> events = null;
         }
-        else if (choice.equals("2")){
-            events= AdminView.eventsForUser();
-        }
-
-        else if (choice.equals("3"))
-            events= getAllEvents();
-        else
-            events=null;
         if (events == null){
             return null;
         }
@@ -594,14 +590,14 @@ public class AdminView {
 
             }
         }
-        return null;
+        return Collections.emptyList();
     }
 
     private static String selectEventMethod() {
         logger.info("Please select a method to generate the process:");
         MenusPrinter.printfindEventMethodsMenu();
         String choice=scanner.nextLine();
-        while (!ChoiceChecker.isOneOrTwo(choice)) {
+        while (!ChoiceChecker.isValidChoice(choice,2)) {
             logger.info("Enter Valid Choice: ");
             choice=scanner.nextLine();
         }

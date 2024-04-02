@@ -1,6 +1,6 @@
 package controllers;
 
-import Email.EmailService;
+import email.EmailService;
 import models.EventPlanner;
 import models.RegisteredEvent;
 import models.Request;

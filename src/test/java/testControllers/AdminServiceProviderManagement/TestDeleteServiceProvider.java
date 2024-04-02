@@ -1,13 +1,16 @@
 package testControllers.AdminServiceProviderManagement;
 
-import Exceptions.EmptyList;
-import Exceptions.ServiceNotFoundException;
-import Exceptions.UserNotFoundException;
+import exceptions.EmptyList;
+import exceptions.ServiceNotFoundException;
+import exceptions.UserNotFoundException;
 import controllers.AdminControl;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
 import models.ServiceProvider;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.List;
 import static org.junit.Assert.assertThrows;
 
@@ -24,7 +27,7 @@ public class TestDeleteServiceProvider {
     }
 
     @Then("Service Provider will be deleted successfully")
-    public void serviceProviderWillBeDeletedSuccessfully() throws UserNotFoundException, EmptyList, ServiceNotFoundException {
+    public void serviceProviderWillBeDeletedSuccessfully() throws UserNotFoundException, EmptyList, ServiceNotFoundException, MessagingException, IOException {
         List<ServiceProvider> serviceProviderbeforeDeleteing = EventPlanner.getServiceProviders();
         ServiceProvider deletedUser =(ServiceProvider)EventPlanner.getServiceProviderByUsername(deletedUsername);
         AdminControl.deleteServiceProvider(deletedUser);

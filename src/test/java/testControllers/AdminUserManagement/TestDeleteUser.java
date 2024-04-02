@@ -1,12 +1,14 @@
 package testControllers.AdminUserManagement;
 
 
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.EventPlanner;
 import models.User;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.List;
 
 import static controllers.AdminControl.deleteUser;
@@ -32,7 +34,7 @@ public class TestDeleteUser {
 
     }
     @Then("user will be deleted successfully")
-    public void userWillBeDeletedSuccessfully() throws UserNotFoundException {
+    public void userWillBeDeletedSuccessfully() throws UserNotFoundException, MessagingException, IOException {
         // Write code here that turns the phrase above into concrete actions
         List<User> usersBeforeDeleteing = EventPlanner.getUsers();
         User deletedUser =(User)getUserByUsername(deletedUsername);

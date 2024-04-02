@@ -21,7 +21,7 @@ public class SignUpView {
     public static void signUpView()  {
         MenusPrinter.printSignUpAsMenu();
         String signUpAs=scanner.nextLine();
-        while (!ChoiceChecker.isOneOrTwo(signUpAs)) {
+        while (!ChoiceChecker.isValidChoice(signUpAs,2)) {
             logger.info("Enter Valid Choice: ");
             signUpAs=scanner.nextLine();
         }
@@ -35,7 +35,7 @@ public class SignUpView {
         List<Service> list = new ArrayList<>();
         logger.info("if you want to become Package Provider Enter 1 ,Else Enter 2 ");
         String choiceBetweenPackageOrNormal = scanner.nextLine();
-        while (!ChoiceChecker.isOneOrTwo(choiceBetweenPackageOrNormal)) {
+        while (!ChoiceChecker.isValidChoice(choiceBetweenPackageOrNormal,2)) {
             logger.info("Enter Valid Choice: ");
             choiceBetweenPackageOrNormal =scanner.nextLine();
         }
@@ -118,19 +118,19 @@ logger.warning(e.getMessage());
             logger.info("Enter The Number Of The Service You Want To Provide : ");
 
             String servicenum=scanner.nextLine();
-            while (!ChoiceChecker.isValidServiceIndex(servicenum)){
+            while (!ChoiceChecker.isValidChoice(servicenum,7)){
                  servicenum=scanner.nextLine();
                 logger.info("Enter Valid Number For The Service : ");
 
             }
         ServiceType serviceType = switch (servicenum) {
             case "1" -> ServiceType.DJ;
-            case "2" -> ServiceType.Photography;
-            case "3" -> ServiceType.Security;
-            case "4" -> ServiceType.Cleaning;
-            case "5" -> ServiceType.Decor_and_Design;
-            case "6" -> ServiceType.Catering;
-            case "7" -> ServiceType.Venue;
+            case "2" -> ServiceType.PHOTOGRAPHY;
+            case "3" -> ServiceType.SECURITY;
+            case "4" -> ServiceType.CLEANING;
+            case "5" -> ServiceType.DECOR_AND_DESIGN;
+            case "6" -> ServiceType.CATERING;
+            case "7" -> ServiceType.VENUE;
             default -> null;
         };
         logger.info("Enter price for this service: ");

@@ -1,8 +1,8 @@
 package testControllers.Event;
 
-import Exceptions.EventAlreadyExist;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
+import exceptions.EventAlreadyExist;
+import exceptions.UserIsAlreadyExist;
+import exceptions.UserNotFoundException;
 import controllers.EventsControl;
 import controllers.ServiceProviderControl;
 import controllers.UserControl;

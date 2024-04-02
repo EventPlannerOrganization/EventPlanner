@@ -1,7 +1,7 @@
 package testControllers.authentication;
 
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.WeakPasswordException;
+import exceptions.UserIsAlreadyExist;
+import exceptions.WeakPasswordException;
 import controllers.SignUp;
 import enumerations.ServiceType;
 import io.cucumber.java.en.Then;

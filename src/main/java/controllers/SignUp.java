@@ -1,8 +1,8 @@
 package controllers;
 
-import Exceptions.UserIsAlreadyExist;
+import exceptions.UserIsAlreadyExist;
 
-import Exceptions.WeakPasswordException;
+import exceptions.WeakPasswordException;
 import helpers.PasswordChecker;
 import models.*;
 

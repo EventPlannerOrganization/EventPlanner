@@ -1,13 +1,12 @@
 package views;
 
 
-import Email.EmailService;
-import Exceptions.GoToMainMenuException;
-import Exceptions.UserIsAlreadyExist;
-import Exceptions.UserNotFoundException;
-import Exceptions.WeakPasswordException;
+import email.EmailService;
+import exceptions.GoToMainMenuException;
+import exceptions.UserNotFoundException;
 
-import Exceptions.*;
+
+import exceptions.*;
 import controllers.EventsControl;
 import controllers.ServiceProviderControl;
 import enumerations.ServiceType;
@@ -24,6 +23,7 @@ import java.util.logging.Logger;
 public class ServiceProviderView {
     private static final Logger logger = Logger.getLogger(ServiceProviderView.class.getName());
     private static final Scanner scanner = new Scanner(System.in);
+    public static final String INVALID_CHOICE = "invalid choice";
 
     private ServiceProviderView() {
 
@@ -62,50 +62,34 @@ public class ServiceProviderView {
 
     private static int getSelectedRequest(List<Request> requests) {
         logger.info("Please select a request:");
-        return getIntegerInput(1, requests.size());
+        return getIntegerInput(requests.size());
     }
 
     private static int getMenuChoice(List<String> options) {
         MenusPrinter.printMenu(options);
-        return getIntegerInput(1, options.size());
+        return getIntegerInput( options.size());
     }
 
-    private static int getIntegerInput(int min, int max) {
+    private static int getIntegerInput(int max) {
         while (true) {
             try {
                 int input = Integer.parseInt(scanner.nextLine());
                 if (input >= 1 && input <= max) {
                     return input;
                 }
-                ChoiceChecker.createInvalidIntegerMessage(min, max);
+                String s="Please enter a valid integer between "+1+ " and "+ max;
+                logger.info(s);
             } catch (NumberFormatException e) {
                 logger.warning("Please enter a valid integer");
             }
         }
     }
 
-    public static void showRequset(ServiceProvider serviceProvider)  {
-        List<String> requests=new ArrayList<>();
-        if(serviceProvider.getRequests().isEmpty())
-            logger.info("empty list");
-       else {
-            for (Request request : serviceProvider.getRequests()) {
-                requests.add(request.getMessage());
-            }
-        }
-    }
-
     private static void handleRequestChoice(int choice, Request request, ServiceProvider serviceProvider) {
         switch (choice) {
-            case 1:
-                ServiceProviderControl.respondToRequests(true, request, serviceProvider);
-                break;
-            case 2:
-                ServiceProviderControl.respondToRequests(false, request, serviceProvider);
-                break;
-            default:
-                logger.warning("Invalid choice");
-                break;
+            case 1 -> ServiceProviderControl.respondToRequests(true, request, serviceProvider);
+            case 2 -> ServiceProviderControl.respondToRequests(false, request, serviceProvider);
+            default -> logger.warning("Invalid choice");
         }
 
     }
@@ -116,42 +100,36 @@ public class ServiceProviderView {
     }
 
 
-    public static void providerMenu() throws UserNotFoundException, MessagingException, IOException, UserIsAlreadyExist, WeakPasswordException {
+    public static void providerMenu() throws UserNotFoundException, MessagingException, IOException {
         boolean flag = true;
         while (flag) {
             MenusPrinter.printServiceProviderMenu();
             logger.info("What do you want to do ?");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.serviceProviderMenuChecker(choice)) {
+            while (!ChoiceChecker.isValidChoice(choice,6)) {
                 choice = scanner.nextLine();
                 logger.info("Enter Valid Choice !");
             }
             switch (choice) {
-                case "1":
+                case "1" -> {
                     ServiceProviderView.showServices((ServiceProvider) EventPlanner.getCurrentUser());
                     backToServiceProviderMenu();
-                    break;
-                case "2":
-                    ServiceProviderView.updateServices((ServiceProvider) EventPlanner.getCurrentUser());
-                    break;
-                case "3":
-                    ServiceProviderView.showEvents((ServiceProvider) EventPlanner.getCurrentUser());
-                    break;
-                case "4":
-                    ServiceProviderView.showUpComingEvents((ServiceProvider) EventPlanner.getCurrentUser());
-                    break;
-                case "5":
+                }
+                case "2" -> ServiceProviderView.updateServices((ServiceProvider) EventPlanner.getCurrentUser());
+                case "3" -> ServiceProviderView.showEvents((ServiceProvider) EventPlanner.getCurrentUser());
+                case "4" -> ServiceProviderView.showUpComingEvents((ServiceProvider) EventPlanner.getCurrentUser());
+                case "5" -> {
                     ServiceProvider serviceProvider = (ServiceProvider) EventPlanner.getServiceProviderByUsername(EventPlanner.getCurrentUser().getAuthentication().getUsername());
                     showRequest(serviceProvider);
-                    break;
-
-                case "6":
+                }
+                case "6" -> {
                     EventPlanner.signout();
                     flag = false;
                     StartingView.staringView();
-                    break;
-                default:
-                    // code block
+                }
+                default -> logger.warning(INVALID_CHOICE);
+
+                // code block
             }
         }
     }
@@ -163,35 +141,31 @@ public class ServiceProviderView {
         logger.info(" Please Choose Number from Menu or Press B To Back To Main Menu");
         String choice = scanner.nextLine();
 
-        while (!(ChoiceChecker.editServiceMenuCheck(choice))) {
+        while (!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) {
             logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
             choice = scanner.nextLine();
 
 
         }
         switch (choice) {
-            case "1":
-                ServiceProviderView.changeServiceProviderServiceView(serviceProvider);
-                break;
-            case "2":
+            case "1" -> ServiceProviderView.changeServiceProviderServiceView(serviceProvider);
+            case "2" -> {
                 if (serviceProvider.isPackageProvider())
                     ServiceProviderView.changeServiceDescriptionForPackageProvider(serviceProvider);
 
                 else {
                     ServiceProviderView.changeServiceDescription(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
                 }
-                break;
-            case "3":
+            }
+            case "3" -> {
                 if (serviceProvider.isPackageProvider()) {
                     ServiceProviderView.changeServicePriceForPackageProvider(serviceProvider);
                 } else {
                     ServiceProviderView.changeServicePrice(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider));
-
                 }
-                break;
+            }
+            default -> logger.warning(INVALID_CHOICE);
 
-
-            default:
         }
     }
 
@@ -251,16 +225,16 @@ public class ServiceProviderView {
 
     private static void changeServiceProviderServiceView(ServiceProvider serviceProvider) {
         boolean flag = false;
-        ServiceType serviceType = ServiceType.Null;
+        ServiceType serviceType = ServiceType.NULL;
         MenusPrinter.printServicesMenuWithPcks();
         String string = "What is The Service You Want To Provide ? \n" + "If You Want To Go Back Press B";
         logger.info(string);
         String choice = scanner.nextLine();
 
 
-        while ((!ChoiceChecker.editServiceMenuCheck(choice)) || (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
+        while ((!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) || (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
 
-            if (!ChoiceChecker.editServiceMenuCheck(choice)) {
+            if (!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
             } else if (ChoiceChecker.checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
@@ -277,27 +251,27 @@ public class ServiceProviderView {
 
             }
             case "2" -> {
-                serviceType = ServiceType.Photography;
+                serviceType = ServiceType.PHOTOGRAPHY;
                 flag = true;
             }
             case "3" -> {
-                serviceType = ServiceType.Security;
+                serviceType = ServiceType.SECURITY;
                 flag = true;
             }
             case "4" -> {
-                serviceType = ServiceType.Cleaning;
+                serviceType = ServiceType.CLEANING;
                 flag = true;
             }
             case "5" -> {
-                serviceType = ServiceType.Decor_and_Design;
+                serviceType = ServiceType.DECOR_AND_DESIGN;
                 flag = true;
             }
             case "6" -> {
-                serviceType = ServiceType.Catering;
+                serviceType = ServiceType.CATERING;
                 flag = true;
             }
             case "7" -> {
-                serviceType = ServiceType.Venue;
+                serviceType = ServiceType.VENUE;
                 flag = true;
             }
             case "8" -> {
@@ -305,9 +279,7 @@ public class ServiceProviderView {
                 List<Service> services = ServiceProviderView.addingProcessForPackageProvider();
                 ServiceProviderControl.changePackageProviderServices(serviceProvider, services);
             }
-            default ->
-                flag=false;
-
+            default ->logger.warning(INVALID_CHOICE);
 
         }
         if (flag) {
@@ -363,12 +335,12 @@ public class ServiceProviderView {
     public static Map<String, ServiceType> hashmap() {
         Map<String, ServiceType> map = new HashMap<>();
         map.put("1", ServiceType.DJ);
-        map.put("2", ServiceType.Photography);
-        map.put("3", ServiceType.Security);
-        map.put("4", ServiceType.Cleaning);
-        map.put("5", ServiceType.Decor_and_Design);
-        map.put("6", ServiceType.Catering);
-        map.put("7", ServiceType.Venue);
+        map.put("2", ServiceType.PHOTOGRAPHY);
+        map.put("3", ServiceType.SECURITY);
+        map.put("4", ServiceType.CLEANING);
+        map.put("5", ServiceType.DECOR_AND_DESIGN);
+        map.put("6", ServiceType.CATERING);
+        map.put("7", ServiceType.VENUE);
         return map;
     }
 
@@ -414,9 +386,12 @@ public class ServiceProviderView {
 
     public static void showServiceProviderUpcomingEvents(ServiceProvider serviceProvider) {
         try {
-            String string = new StringBuilder().append("Invalid Input").append("\n If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ").toString();
+            String string = """
+                    Invalid Input
+                     If you Want To Discard Event ,Enter Event Number\s
+                     To Go Back Enter B\s""";
 
-            while (true){
+
                 MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
                 logger.info("If you Want To Discard Event ,Enter Event Number \n To Go Back Enter B ");
                 String choice = scanner.nextLine();
@@ -432,11 +407,10 @@ public class ServiceProviderView {
                             serviceProvider);
                     MenusPrinter.printList(ServiceProviderControl.getServiceProviderUpComingEvents(serviceProvider));
                     backToServiceProviderMenu();
-                    break;
-                } else
-                    return;
 
-            }
+                }
+
+
 
 
         } catch (EmptyList | ServiceNotFoundException emptyList) {

@@ -1,6 +1,6 @@
 package views;
 
-import Exceptions.UserNotFoundException;
+import exceptions.UserNotFoundException;
 import helpers.ChoiceChecker;
 import printers.MenusPrinter;
 import javax.mail.MessagingException;
@@ -17,7 +17,7 @@ public class StartingView {
         while (flag) {
             MenusPrinter.printStartingMenu();
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.userMenuChecker(choice)) {
+            while (!ChoiceChecker.isValidChoice(choice,5)) {
                 logger.info("Enter Valid Choice !");
                 choice = scanner.nextLine();
             }

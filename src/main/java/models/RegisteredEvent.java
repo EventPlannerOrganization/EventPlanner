@@ -1,6 +1,6 @@
 package models;
 
-import Exceptions.ServiceNotFoundException;
+import exceptions.ServiceNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,15 +111,7 @@ public class RegisteredEvent {
                 "\nGuests List: \n" + guestsEmails +"\n\n"+"\u001B[0m";
     }
 
-    public String toStringtoMenue() {
 
-        return
-                "\\u001B[1m"+""+"Event Name: " + eventName  +
-                "\nServices: \n" + getServicesDetails() +
-                "\nDate: " + date +
-                "\nTotal Cost: " + cost +
-                "\nGuests List: \n" + guestsEmails +"\n\n";
-    }
 public String toString2(){
         return
                 "\nEvent Name : "+ eventName+
@@ -136,7 +128,7 @@ public String toString2(){
                     services.append("\t");
                     services.append(count);
                     services.append("- ");
-                    services.append(element.toString());
+                    services.append(element);
                     count++;
                 }
             }

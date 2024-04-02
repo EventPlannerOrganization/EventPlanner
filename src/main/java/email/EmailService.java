@@ -1,4 +1,4 @@
-package Email;
+package email;
 
 import io.YmlHandler;
 import models.EventPlanner;
@@ -21,7 +21,7 @@ public class EmailService {
     private static final String HTML_EXTENSION = ".html";
     private static final String HTML_RESOURCES_PATH = "src/main/resources/html/";
     private static final String HTML_MIME_TYPE = "text/html";
-    private static final SecureRandom random = new SecureRandom(); // don't use the Random
+    private static final SecureRandom random = new SecureRandom();
     private static final String SUBJECT = "Verification Code";
     private final String from;
     private final String password;
@@ -35,9 +35,7 @@ public class EmailService {
         newPassword = "";
     }
 
-    public String getNewPassword() {
-        return newPassword;
-    }
+
 
     private void setBody(String path) throws IOException {
         body = Files.readString(Paths.get(HTML_RESOURCES_PATH + path + HTML_EXTENSION));
@@ -57,7 +55,7 @@ public class EmailService {
         return prop;
     }
 
-    private Session createSession() {
+    public Session createSession() {
         return Session.getInstance(defineProperties(), new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -68,16 +66,12 @@ public class EmailService {
 
     public void sendEmail(String to, String path) throws MessagingException, IOException {
         Message message = new MimeMessage(createSession());
-        // set the src and dest
         message.setFrom(new InternetAddress(from));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-        // set the subject
         message.setSubject(SUBJECT);
 
-        // set the body
         setBody(path);
 
-        // set the content (Multi part body consists of multi bodies)
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(body, HTML_MIME_TYPE);
 
@@ -90,17 +84,13 @@ public class EmailService {
 
     public void sendAdminDeleteUserEmail(String to, String userName, String path) throws MessagingException, IOException {
         Message message = new MimeMessage(createSession());
-        // set the src and dest
         message.setFrom(new InternetAddress(from));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-        // set the subject
         message.setSubject("Account Deletion Notification");
 
-        // set the body
         body = Files.readString(Paths.get(HTML_RESOURCES_PATH + path + HTML_EXTENSION));
         body = body.replace(DYNAMIC_TEXT_PLACEHOLDER, "Dear " + userName + ",");
 
-        // set the content (Multi part body consists of multi bodies)
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(body, HTML_MIME_TYPE);
 
@@ -114,18 +104,14 @@ public class EmailService {
 
     public void sendAdminChangePasswordEmail(String to, String userName, String newChangePassword, String path) throws MessagingException, IOException {
         Message message = new MimeMessage(createSession());
-        // set the src and dest
         message.setFrom(new InternetAddress(from));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-        // set the subject
         message.setSubject("Password Change Notification");
 
-        // set the body
         body = Files.readString(Paths.get(HTML_RESOURCES_PATH + path + HTML_EXTENSION));
         body = body.replace(DYNAMIC_TEXT_PLACEHOLDER, "Dear " + userName);
         body = body.replace(DYNAMIC_TEXT_PLACEHOLDER, "New Password: " + newChangePassword);
 
-        // set the content (Multi part body consists of multi bodies)
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(body, HTML_MIME_TYPE);
 
@@ -136,17 +122,11 @@ public class EmailService {
         Transport.send(message);
     }
 
-    private static String generateRandomString() {
+    public static String generateRandomString() {
         StringBuilder randomStr = new StringBuilder();
         for (int i = 0; i < 4; i++)
             randomStr.append(generateRandomDigit());
         return randomStr.toString();
-    }
-
-    private static String generateRandomCode() {
-        int code = random.nextInt(9000) + 1000;
-        return String.valueOf(code);
-
     }
 
     private static int generateRandomDigit() {
@@ -155,19 +135,15 @@ public class EmailService {
 
     public String sendResetPasswordCode(String to) throws MessagingException, IOException {
         Message message = new MimeMessage(createSession());
-        // set the src and dest
         message.setFrom(new InternetAddress(from));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-        // set the subject
         message.setSubject("Password Change Notification");
 
-        // set the body
         body = Files.readString(Paths.get(HTML_RESOURCES_PATH+ "Reset-Password" + HTML_EXTENSION));
 
-        String code = generateRandomCode();
+        String code = generateRandomString();
         body = body.replace(DYNAMIC_TEXT_PLACEHOLDER, "Code : " + code);
 
-        // set the content (Multi part body consists of multi bodies)
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(body, HTML_MIME_TYPE);
 
@@ -180,26 +156,20 @@ public class EmailService {
     }
 
     public void sendEventInvitations(RegisteredEvent registeredEvent) throws MessagingException, IOException {
-        // Load the email template
         String emailTemplate = Files.readString(Paths.get(HTML_RESOURCES_PATH+"invitation-body"+HTML_EXTENSION));
 
         for (String guestEmail : registeredEvent.getGuestsEmails()) {
-            // Create a new MimeMessage
             Message message = new MimeMessage(createSession());
 
-            // Set sender and recipient
             message.setFrom(new InternetAddress(from));
             String[] tokens = guestEmail.split("@");
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(guestEmail));
 
-            // Set the subject
             message.setSubject("Invitation to " + registeredEvent.getEventName());
 
-            // Populate the email body with event details
             Multipart multipart = getMultipart(registeredEvent, emailTemplate, tokens);
             message.setContent(multipart);
 
-            // Send the email
             Transport.send(message);
         }
     }
@@ -210,7 +180,6 @@ public class EmailService {
                 .replace("{{event owner}}", EventPlanner.getCurrentUser().getName().getfName() + EventPlanner.getCurrentUser().getName().getlName());
 
 
-        // Create and set content
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(body, HTML_MIME_TYPE);
 

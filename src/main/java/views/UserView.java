@@ -1,7 +1,7 @@
 package views;
 
-import Email.EmailService;
-import Exceptions.*;
+import email.EmailService;
+import exceptions.*;
 import helpers.ChoiceChecker;
 import models.EventPlanner;
 import models.RegisteredEvent;
@@ -35,15 +35,13 @@ public class UserView {
             MenusPrinter.printUserMenu();
             logger.info("What do you want to do ?");
             String choice = scanner.nextLine();
-            while (!ChoiceChecker.userMenuChecker(choice)) {
+            while (!ChoiceChecker.isValidChoice(choice,5)) {
                 logger.info("Enter Valid Choice !");
                 choice = scanner.nextLine();
             }
 
             switch (choice) {
-                case "1" -> {
-                    EventsView.registerEventView();
-                }
+                case "1" -> EventsView.registerEventView();
                 case "2" -> EventsView.showMyevents();
                 case "3" -> EventsView.editUpCommingEvents();
                 case "4" -> guestsEmail();
