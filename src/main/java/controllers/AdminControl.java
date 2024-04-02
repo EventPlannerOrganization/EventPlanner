@@ -19,8 +19,8 @@ import static helpers.StringOperations.mergeThreeStrings;
 
 
 public class AdminControl {
-
     private AdminControl() {
+
     }
 
 

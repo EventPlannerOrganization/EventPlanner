@@ -15,3 +15,17 @@ Q
 !src/main/java/views/UserView.java,8\8\8878a02fbb68f89a6749ee15ce2fb11540aa3604
 S
 #src/main/java/views/EventsView.java,f\2\f2878ae64050db058f6ce560de1ba9209ffdff02
+Y
+)src/test/java/testModels/TestRequest.java,e\f\ef54235df0bc8535abfec9a1218ec5e393ef4686
+Q
+!src/main/java/launchers/Main.java,0\6\0629a6c541c440e68a61c01a03f3224f072556d3
+V
+&src/main/java/models/EventPlanner.java,5\d\5dfffa661285c32fbe8b07fa1ac73ede122045a6
+[
++src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
+_
+/src/test/features/authentication/SignUp.feature,8\4\8483701b33c80dd33e8930ee60fd00a46eea8e54
+^
+.src/test/features/authentication/Login.feature,e\4\e4deda65f3a91c4a3d4401f87335c6b181cb84a6
+f
+6src/test/features/authentication/resetPassword.feature,9\8\98b4d209195622279352e597aa9ef24d791534d4
