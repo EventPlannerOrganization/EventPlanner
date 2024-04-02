@@ -60,16 +60,20 @@ public class UserView {
         for (RegisteredEvent registeredEvent : user.getRegisteredEvents()) {
             names.add(registeredEvent.getEventName());
         }
-        names.add("none, (dont send teckets to any event guests)");
-        MenusPrinter.printMenu(names);
+        names.add("none, (Don't send Tickets to any Event Guests)");
+        MenusPrinter.printnewMenu("Send Tickets",names,"\u001B[34m");
+
+
     }
 
     public static void guestsEmail() throws MessagingException, IOException {
         showEventsName();
         User user = (User) EventPlanner.getCurrentUser();
         int choice=readInt();
+        scanner.nextLine();
         if((choice>=1&&choice<=user.getRegisteredEvents().size())){
         try {
+
             if (user.getRegisteredEvents().get(choice - 1).getGuestsEmails().isEmpty()) {
                 throw new EmptyList();
             }
@@ -80,6 +84,8 @@ public class UserView {
         EmailService emailService = new EmailService();
         emailService.sendEventInvitations(user.getRegisteredEvents().get(choice - 1));
     }
+
+
 }
     public static int readInt(){
         int integer;

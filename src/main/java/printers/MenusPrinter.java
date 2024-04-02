@@ -22,6 +22,7 @@ public class MenusPrinter {
     public static final String DECOR_AND_DESIGN = "Decor And Design";
     public static final String CATERING = "CATERING";
     public static final String PACKAGES_OFFERS = "packages Offers";
+    public static final String MENU_COLOR= "\u001B[34m";
 
     private MenusPrinter() {
 
@@ -172,7 +173,7 @@ public class MenusPrinter {
         menu.add("Edit My Upcoming Events");
         menu.add("Send Event Tickets to Guests");
         menu.add(SIGN_OUT);
-        printnewMenu("User Menu",menu,"\u001B[34m");
+        printnewMenu("User Menu",menu,MENU_COLOR);
     }
     public static void printAdminMenu()
     {
@@ -182,7 +183,7 @@ public class MenusPrinter {
         menu.add("Event Management");
         menu.add(SIGN_OUT);
 
-        printnewMenu("Admin",menu,"\u001B[34m");
+        printnewMenu("Admin",menu,MENU_COLOR);
     }
 
     public static void printUserManageMenu()
@@ -196,7 +197,7 @@ public class MenusPrinter {
         menu.add("view registered events for user");
 
         menu.add("Cancel");
-        printnewMenu("User Managment",menu,"\u001B[34m");
+        printnewMenu("User Managment",menu,MENU_COLOR);
     }
     public static void printServiceProviderManageMenu()
     {
@@ -210,7 +211,7 @@ public class MenusPrinter {
         menu.add("Show Booked Dates for Service Provider");
 
         menu.add("Cancel ");
-        printnewMenu("Service Provider Managment",menu,"\u001B[34m");
+        printnewMenu("Service Provider Managment",menu,MENU_COLOR);
     }
 
     public static void printServiceProviderMenu() {
@@ -221,7 +222,7 @@ public class MenusPrinter {
         menu.add("Edit your Event/s");
         menu.add("Show requests");
         menu.add(SIGN_OUT);
-        printnewMenu("Service Provider",menu,"\u001B[34m");
+        printnewMenu("Service Provider",menu,MENU_COLOR);
     }
 
 
@@ -233,7 +234,7 @@ public class MenusPrinter {
         menu.add("Add new Guests");
         menu.add("Delete Guest");
         menu.add("Cancel");
-        printMenu(menu);
+        printnewMenu("Modify Event",menu,MENU_COLOR);
     }
     public static void printGuestsList(List<String> menu) {
         menu.add("Back to menue");
@@ -259,7 +260,7 @@ public class MenusPrinter {
         menu.add("Reset Your Password");
         menu.add("Exit");
 
-       printnewMenu("Main Menu",menu,"\u001B[34m");
+       printnewMenu("Main Menu",menu,MENU_COLOR);
     }
 
     public static void printServiceProviderEditMenu() {
@@ -312,7 +313,8 @@ public class MenusPrinter {
         menu.add("Modifying Event");
 
         menu.add("Cancel ");
-        printMenu(menu);
+        printnewMenu("Event Managment",menu,MENU_COLOR);
+
     }
 
 
