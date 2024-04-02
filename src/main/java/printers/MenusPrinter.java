@@ -172,7 +172,7 @@ public class MenusPrinter {
         menu.add("Edit My Upcoming Events");
         menu.add("Send Event Tickets to Guests");
         menu.add(SIGN_OUT);
-        printMenu(menu);
+        printnewMenu("User Menu",menu,"\u001B[34m");
     }
     public static void printAdminMenu()
     {
@@ -182,7 +182,7 @@ public class MenusPrinter {
         menu.add("Event Management");
         menu.add(SIGN_OUT);
 
-        printMenu(menu);
+        printnewMenu("Admin",menu,"\u001B[34m");
     }
 
     public static void printUserManageMenu()
@@ -196,7 +196,7 @@ public class MenusPrinter {
         menu.add("view registered events for user");
 
         menu.add("Cancel");
-        printMenu(menu);
+        printnewMenu("User Managment",menu,"\u001B[34m");
     }
     public static void printServiceProviderManageMenu()
     {
@@ -210,7 +210,7 @@ public class MenusPrinter {
         menu.add("Show Booked Dates for Service Provider");
 
         menu.add("Cancel ");
-        printMenu(menu);
+        printnewMenu("Service Provider Managment",menu,"\u001B[34m");
     }
 
     public static void printServiceProviderMenu() {
