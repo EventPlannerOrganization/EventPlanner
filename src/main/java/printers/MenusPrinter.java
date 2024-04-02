@@ -221,7 +221,7 @@ public class MenusPrinter {
         menu.add("Edit your Event/s");
         menu.add("Show requests");
         menu.add(SIGN_OUT);
-        printMenu(menu);
+        printnewMenu("Service Provider",menu,"\u001B[34m");
     }
 
 
