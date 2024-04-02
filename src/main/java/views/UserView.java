@@ -69,6 +69,7 @@ public class UserView {
     public static void guestsEmail() throws MessagingException, IOException {
         showEventsName();
         User user = (User) EventPlanner.getCurrentUser();
+        logger.info("Choose Event : ");
         int choice=readInt();
         scanner.nextLine();
         if((choice>=1&&choice<=user.getRegisteredEvents().size())){

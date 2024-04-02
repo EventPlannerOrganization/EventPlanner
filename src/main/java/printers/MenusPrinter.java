@@ -40,6 +40,33 @@ public class MenusPrinter {
         String result = String.valueOf(outputString);
         logger.info(result);
     }
+    public static void showPrinter(String header, List<String> options, String color) {         // Find the maximum length of the options
+        // Find the maximum length of the options
+        StringBuilder stringBuilder = new StringBuilder("\n");
+        int maxOptionLength = 0;
+        for (String option : options) {
+            maxOptionLength = Math.max(maxOptionLength, option.length());
+        }
+
+        // Calculate the width of the entire menu
+        int menuWidth = maxOptionLength + 6; // Adjust according to your design
+        stringBuilder.append(color).append("╔").append(repeatChar("═", menuWidth)).append("╗").append("\n");
+        stringBuilder.append("║").append("\u001B[1m").append(centerText(header, menuWidth)).append(ANSI_RESET).append(color).append("║").append("\n");
+        stringBuilder.append("╠").append(repeatChar("═", menuWidth)).append("╣").append("\n").append(ANSI_RESET);
+
+        // Print options with color
+        for (int i = 0; i < options.size(); i++) {
+            stringBuilder.append(MENU_COLOR).append(i + 1).append(". ").append(options.get(i)).append(getSpaces(maxOptionLength - options.get(i).length() + 1)).append("\n");
+        }
+
+        // Print footer with color
+        stringBuilder.append(color).append("╚").append(repeatChar("═", menuWidth)).append("╝").append("\n");
+
+        // Reset color
+        stringBuilder.append(ANSI_RESET).append("\n");
+        String str = stringBuilder.toString();
+        logger.info(str);
+    }
 
 
     public static void printnewMenu(String header, List<String> options, String color) {         // Find the maximum length of the options
@@ -97,7 +124,7 @@ public class MenusPrinter {
         List<String> mainMenu = new ArrayList<>();
         mainMenu.add("User");
         mainMenu.add("Service provider");
-        printMenu(mainMenu);
+        printnewMenu("User Type",mainMenu,MENU_COLOR);
     }
 
     public static void printServicesMenu() {
@@ -109,7 +136,7 @@ public class MenusPrinter {
         menu.add(DECOR_AND_DESIGN);
         menu.add(CATERING);
         menu.add("VENUE");
-        printMenu(menu);
+        printnewMenu("Services",menu,MENU_COLOR);
     }
 
     public static void printServicesMenuWithPcks() {
@@ -122,7 +149,7 @@ public class MenusPrinter {
         menu.add(CATERING);
         menu.add("VENUE");
         menu.add(PACKAGES_OFFERS);
-        printMenu(menu);
+        printnewMenu("Service Type",menu,MENU_COLOR);
     }
 
     public static void printServicesMenuForRegisterEvent() {
@@ -265,10 +292,10 @@ public class MenusPrinter {
 
     public static void printServiceProviderEditMenu() {
         List<String> menu = new ArrayList<>();
-        menu.add("Edit Service type");
-        menu.add("Edit Service description");
+        menu.add("Change Your Service");
+        menu.add("Edit Service Description");
         menu.add("Edit Service Price");
-        printMenu(menu);
+        printnewMenu("Edit Your Service/s",menu,MENU_COLOR);
     }
     public static void printfindUserMethodsMenu(){
         List<String> menu = new ArrayList<>();
@@ -292,13 +319,12 @@ public class MenusPrinter {
 
     public static void printList(List<RegisteredEvent>filterdEvents){
         List<String>  serviceProvdierEvents= makeStringListOfEvents(filterdEvents);
-        MenusPrinter.printListofStringWithNumbers(serviceProvdierEvents, "Here is Your Event/s:");
+        MenusPrinter.showPrinter("Event/s:",serviceProvdierEvents,"\u001B[37m");
     }
     public  static List<String> makeStringListOfEvents(List <RegisteredEvent>filterdEvents ){
         List<String> serviceProvdierEvents = new ArrayList<>();
         for (RegisteredEvent filterdEvent : filterdEvents) {
-            String st1 = "Service info : \n";
-            String events = st1 + filterdEvent.toString2() + "\n -------------------------------------------";
+            String events =  filterdEvent.toString2()+"\n" ;
             serviceProvdierEvents.add(events);
         }
         return serviceProvdierEvents;
