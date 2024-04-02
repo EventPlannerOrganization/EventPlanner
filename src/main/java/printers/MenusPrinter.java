@@ -97,7 +97,7 @@ public class MenusPrinter {
         List<String> mainMenu = new ArrayList<>();
         mainMenu.add("User");
         mainMenu.add("Service provider");
-        printMenu(mainMenu);
+        printnewMenu("User Type",mainMenu,MENU_COLOR);
     }
 
     public static void printServicesMenu() {

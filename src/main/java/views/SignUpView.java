@@ -20,6 +20,7 @@ public class SignUpView {
     }
     public static void signUpView()  {
         MenusPrinter.printSignUpAsMenu();
+        logger.info("Choose User Type :");
         String signUpAs=scanner.nextLine();
         while (!ChoiceChecker.isValidChoice(signUpAs,2)) {
             logger.info("Enter Valid Choice: ");
