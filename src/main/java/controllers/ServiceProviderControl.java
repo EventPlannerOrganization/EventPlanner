@@ -60,8 +60,7 @@ public class ServiceProviderControl {
 
         return   allUsers.stream()
                 .filter(user -> user.getRegisteredEvents().stream()
-                        .anyMatch(event -> event.getServiceProviders().contains(serviceProvider)))
-                .toList();
+                        .anyMatch(event -> event.getServiceProviders().contains(serviceProvider))).toList();
     }
 
     public static List<RegisteredEvent> getEventsRelatedWithServiceProvider(ServiceProvider serviceProvider) {

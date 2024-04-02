@@ -70,7 +70,7 @@ public class ServiceProvider extends Person {
     public String toString() {
         String result;
         if (!isPackageProvider) {
-            result =  "\n\tService Provider "+super.getName().toString()+"\n\t"+ services.getFirst();
+            result =  "\n\tService Provider "+super.getName().toString()+"\n\t"+ services.get(0);
         }
         //this else statement not correct, this must print list of services...
         else{
