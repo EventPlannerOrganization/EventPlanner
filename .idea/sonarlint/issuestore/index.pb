@@ -23,3 +23,7 @@ N
 src/main/java/models/Name.java,0\f\0f27e1a9e3c3dd534467d7c7d74566155dc3abda
 N
 src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b
+[
++src/main/java/controllers/AdminControl.java,9\8\98b0a7e504a38a2901871a358d0965a79b0f576f
+R
+"src/main/java/views/AdminView.java,1\6\16ef284199890c28cc9f7bf4070df72414a26421

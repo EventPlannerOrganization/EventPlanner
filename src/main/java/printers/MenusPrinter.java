@@ -274,7 +274,7 @@ public class MenusPrinter {
         List<String> menu = new ArrayList<>();
         menu.add("Search for a specific user");
         menu.add("Show all users and select from the list");
-        printMenu(menu);
+        printnewMenu("Search Options",menu,MENU_COLOR);
     }
 
     public static void printfindEventMethodsMenu(){
@@ -282,7 +282,8 @@ public class MenusPrinter {
         menu.add("Select by search");
         menu.add("Select from spicific user events");
         menu.add("Select event from list of all events");
-        printMenu(menu);
+        printnewMenu("Search Options",menu,MENU_COLOR);
+
     }
 
     public static void printListOfStrings(List<String> list){

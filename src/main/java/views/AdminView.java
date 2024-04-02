@@ -248,7 +248,9 @@ public class AdminView {
 
     private static int selectFromList(List<String> usersNames) {
         usersNames.add("None (Do not delete any one)");
-        MenusPrinter.printListOfStrings(usersNames);
+
+        MenusPrinter.printnewMenu("Users",usersNames,"\u001B[34m");
+
         int selectedUser = Integer.parseInt(scanner.nextLine());
         while(selectedUser > usersNames.size()||selectedUser<=0){
             logger.info("Enter Valid number: ");
@@ -466,7 +468,11 @@ public class AdminView {
 
     private static void editEvent() {
         RegisteredEvent event=findModifiedEvent();
-        editingEventView(event);
+        if(event!=null) {
+            editingEventView(event);
+        }
+        else
+            logger.info("There isn't Events With this Name");
     }
 
     private static void deleteEvent() {
