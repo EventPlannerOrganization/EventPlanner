@@ -1,5 +1,6 @@
 package test_helpers;
 
+import exceptions.GoToMainMenuException;
 import helpers.PasswordChecker;
 import org.junit.Test;
 
@@ -16,6 +17,10 @@ public class TestPasswordChecker {
         assertFalse(PasswordChecker.isStrongPassword("baha#$%1")); // missing capital letters
         assertFalse(PasswordChecker.isStrongPassword("BAHAALAWNEH#@!$22")); // missing small letters
         assertTrue(PasswordChecker.isStrongPassword("BAHAAal$$%2003")); // strong password
+    }
+    @Test(expected = GoToMainMenuException.class)
+    public void testGoToMainMenuException() throws GoToMainMenuException {
+        throw new GoToMainMenuException();
     }
 
 }

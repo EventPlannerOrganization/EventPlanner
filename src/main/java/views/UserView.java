@@ -11,12 +11,10 @@ import printers.MenusPrinter;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
-
-import static helpers.ChoiceChecker.readInt;
-
 public class UserView {
     private static final Logger logger = Logger.getLogger(UserView.class.getName());
     private static final Scanner scanner = new Scanner(System.in);
@@ -83,6 +81,21 @@ public class UserView {
         emailService.sendEventInvitations(user.getRegisteredEvents().get(choice - 1));
     }
 }
+    public static int readInt(){
+        int integer;
+        while(true){
+            try{
+                integer=scanner.nextInt();
+                break;
+            }
+            catch (InputMismatchException e){
+                logger.info("Invalid input, please enter again: \n");
+                scanner.nextLine();
+            }
+        }
+        return integer;
+
+    }
 
 
 }

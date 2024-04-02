@@ -91,7 +91,7 @@ public class EventsView {
                 Do you have a specific location in mind for your event?\s
                 - If yes, please enter 'y'.
                 - If no, please enter 'n' and we will suggest some venue services for you to choose from.""");
-        boolean hasVenue = ChoiceChecker.againChecker();
+        boolean hasVenue = againChecker();
         if(!hasVenue) {
             List<ServiceProvider> filteredProvidersList = EventPlanner.getServiceProviderByServiceType(ServiceType.VENUE, date);
             if (filteredProvidersList.isEmpty()) {
@@ -158,7 +158,7 @@ public class EventsView {
                     - Enter 'y' to add another service.
                     - Enter 'n' to finish and proceed.
                     """);
-            again = ChoiceChecker.againChecker();
+            again = againChecker();
         }
         return addedProviders;
     }
@@ -286,6 +286,23 @@ public class EventsView {
             logger.info("Can not be added, \n there is a service already Scheduled in this event date");
         }
 
+    }
+    public static boolean againChecker(){
+        boolean again=true;
+        String choice = scanner.nextLine();
+        boolean wrongChoice = true;
+        while (wrongChoice) {
+            if (choice.equals("y")) {
+                wrongChoice = false;
+            } else if (choice.equals(("n"))) {
+                again = false;
+                wrongChoice = false;
+            } else{
+                logger.info("Invalid choice. Please enter either 'y' or 'n'.\n");
+                choice = scanner.nextLine();
+            }
+        }
+        return again;
     }
 
 

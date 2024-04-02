@@ -119,7 +119,7 @@ public String toString2(){
                   "\n Guests List :\n"+guestsEmails;
 }
 
-    private String getServicesDetails() {
+    public String getServicesDetails() {
         StringBuilder services = new StringBuilder();
         int count = 1;
         if (serviceProviders != null) { // Check if serviceProviders is not null
