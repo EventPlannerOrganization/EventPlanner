@@ -20,6 +20,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 
+
 public class ServiceProviderView {
     private static final Logger logger = Logger.getLogger(ServiceProviderView.class.getName());
     private static final Scanner scanner = new Scanner(System.in);
@@ -96,7 +97,7 @@ public class ServiceProviderView {
 
     private static void displayRequests(List<Request> requests) {
         List<String> requestMessages = requests.stream().map(Request::getMessage).toList();
-        MenusPrinter.printMenu(requestMessages);
+        MenusPrinter.showPrinter("Requests",requestMessages,"\u001B[37m");
     }
 
 
@@ -141,7 +142,7 @@ public class ServiceProviderView {
         logger.info(" Please Choose Number from Menu or Press B To Back To Main Menu");
         String choice = scanner.nextLine();
 
-        while (!(ChoiceChecker.isValidChoice(choice,8)||choice.equalsIgnoreCase("b"))) {
+        while (!(choice.equalsIgnoreCase("b")||ChoiceChecker.isValidChoice(choice,8))) {
             logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
             choice = scanner.nextLine();
 
@@ -231,10 +232,9 @@ public class ServiceProviderView {
         logger.info(string);
         String choice = scanner.nextLine();
 
+        while ((!(choice.equalsIgnoreCase("b")||ChoiceChecker.isValidChoice(choice, 8))) || (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
 
-        while ((!(ChoiceChecker.isValidChoice(choice, 8) || choice.equalsIgnoreCase("b"))) || (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice) && !serviceProvider.isPackageProvider())) {
-
-            if (!(ChoiceChecker.isValidChoice(choice, 8) || choice.equalsIgnoreCase("b"))) {
+            if (!( choice.equalsIgnoreCase("b") ||ChoiceChecker.isValidChoice(choice, 8))) {
                 logger.info("Invalid Input , Please Choose Number from Menu or Press B To Back To Main Menu");
                 choice = scanner.nextLine();
             } else if (checkIfItsCurrentService(ServiceProviderControl.getServiceFromServiceProvider(serviceProvider), choice)) {
@@ -357,15 +357,15 @@ public class ServiceProviderView {
     }
 
     private static void showServices(ServiceProvider serviceProvider) {
-        List<Service> serviceProvdierServices = ServiceProviderControl.getServiceProviderServices(serviceProvider);
+        List<Service> serviceProviderServices = ServiceProviderControl.getServiceProviderServices(serviceProvider);
         List<String> serviceProviderServiceString = new ArrayList<>();
         for (int i = 0; i < serviceProvider.getServices().size(); i++) {
             String st1 = "Service info : \n";
-            String st = st1 + serviceProvdierServices.get(i).toString() + "\n -------------------------------------------";
+            String st =st1 + serviceProviderServices.get(i).toString() + "\n";
             serviceProviderServiceString.add(st);
 
         }
-        MenusPrinter.printListofStringWithNumbers(serviceProviderServiceString, "\"Here is Your Service/s:\"");
+        MenusPrinter.showPrinter("Your Services",serviceProviderServiceString,"\u001B[37m" );
 
     }
 

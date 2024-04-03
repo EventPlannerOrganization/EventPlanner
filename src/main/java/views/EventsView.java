@@ -206,6 +206,10 @@ public class EventsView {
             String s = "\n" + (i + 1) + "- ";
             logger.info(s);
             String email = scanner.nextLine();
+            while (!SignUpView.isEmail(email)){
+                logger.info("Invalid Email,please Enter valid Email : ");
+                email=scanner.nextLine();
+            }
             guestsEmails.add(email);
         }
         return guestsEmails;
@@ -217,6 +221,7 @@ public class EventsView {
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
         MenusPrinter.printEventsListwithBack(myUpComingEvents);
+        logger.info("Choose The Event Thats you Want To Edit :");
         int addedNumber = Integer.parseInt(scanner.nextLine());
         if (addedNumber <= myUpComingEvents.size()) {
             editingEventView(myUpComingEvents.get(addedNumber - 1));
@@ -302,9 +307,9 @@ public class EventsView {
         String choice = scanner.nextLine();
         boolean wrongChoice = true;
         while (wrongChoice) {
-            if (choice.equals("y")) {
+            if (choice.equalsIgnoreCase("y")) {
                 wrongChoice = false;
-            } else if (choice.equals(("n"))) {
+            } else if (choice.equalsIgnoreCase(("n"))) {
                 again = false;
                 wrongChoice = false;
             } else{

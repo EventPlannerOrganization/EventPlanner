@@ -16,6 +16,7 @@ public class StartingView {
         boolean flag = true;
         while (flag) {
             MenusPrinter.printStartingMenu();
+            logger.info("Enter Your Choice : ");
             String choice = scanner.nextLine();
             while (!ChoiceChecker.isValidChoice(choice,5)) {
                 logger.info("Enter Valid Choice !");

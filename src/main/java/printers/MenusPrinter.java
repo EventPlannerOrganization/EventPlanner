@@ -1,8 +1,12 @@
 package printers;
 
+import controllers.AdminControl;
 import enumerations.Colors;
+import exceptions.EventNotFoundException;
+
 import models.RegisteredEvent;
 import models.ServiceProvider;
+import models.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +27,7 @@ public class MenusPrinter {
     public static final String CATERING = "CATERING";
     public static final String PACKAGES_OFFERS = "packages Offers";
     public static final String MENU_COLOR= "\u001B[34m";
+    public static final String WHITE_COLOR="\u001B[37m";
 
     private MenusPrinter() {
 
@@ -39,6 +44,33 @@ public class MenusPrinter {
         outputString.append("\n\n");
         String result = String.valueOf(outputString);
         logger.info(result);
+    }
+    public static void showPrinter(String header, List<String> options, String color) {         // Find the maximum length of the options
+        // Find the maximum length of the options
+        StringBuilder stringBuilder = new StringBuilder("\n");
+        int maxOptionLength = 0;
+
+            maxOptionLength = 50;
+
+
+        // Calculate the width of the entire menu
+        int menuWidth = maxOptionLength + 6; // Adjust according to your design
+        stringBuilder.append(color).append("╔").append(repeatChar("═", menuWidth)).append("╗").append("\n");
+        stringBuilder.append("║").append("\u001B[1m").append(centerText(header, menuWidth)).append(ANSI_RESET).append(color).append("║").append("\n");
+        stringBuilder.append("╠").append(repeatChar("═", menuWidth)).append("╣").append("\n").append(ANSI_RESET);
+
+        // Print options with color
+        for (int i = 0; i < options.size(); i++) {
+            stringBuilder.append(MENU_COLOR).append(i + 1).append(". ").append(options.get(i)).append(getSpaces(maxOptionLength - options.get(i).length() + 1)).append("\n");
+        }
+
+        // Print footer with color
+        stringBuilder.append(color).append("╚").append(repeatChar("═", menuWidth)).append("╝").append("\n");
+
+        // Reset color
+        stringBuilder.append(ANSI_RESET).append("\n");
+        String str = stringBuilder.toString();
+        logger.info(str);
     }
 
 
@@ -97,7 +129,7 @@ public class MenusPrinter {
         List<String> mainMenu = new ArrayList<>();
         mainMenu.add("User");
         mainMenu.add("Service provider");
-        printMenu(mainMenu);
+        printnewMenu("User Type",mainMenu,MENU_COLOR);
     }
 
     public static void printServicesMenu() {
@@ -109,7 +141,7 @@ public class MenusPrinter {
         menu.add(DECOR_AND_DESIGN);
         menu.add(CATERING);
         menu.add("VENUE");
-        printMenu(menu);
+        printnewMenu("Services",menu,MENU_COLOR);
     }
 
     public static void printServicesMenuWithPcks() {
@@ -122,7 +154,7 @@ public class MenusPrinter {
         menu.add(CATERING);
         menu.add("VENUE");
         menu.add(PACKAGES_OFFERS);
-        printMenu(menu);
+        printnewMenu("Service Type",menu,MENU_COLOR);
     }
 
     public static void printServicesMenuForRegisterEvent() {
@@ -152,18 +184,24 @@ public class MenusPrinter {
     public static void printEventsList(List<RegisteredEvent> events) {
         List<String> menu = new ArrayList<>();
         for(RegisteredEvent element:events){
-            menu.add(element.toString());
+            String line =WHITE_COLOR+ "═══════════════════════════════════════════════════════";
+            String str = element.toString() +line;
+            menu.add(str);
+
         }
-        printMenu(menu);
+        showPrinter("User Events",menu,WHITE_COLOR);
     }
 
     public static void printEventsListwithBack(List<RegisteredEvent> events) {
         List<String> menu = new ArrayList<>();
         for(RegisteredEvent element:events){
-            menu.add(element.toString());
+            String line =WHITE_COLOR+ "═══════════════════════════════════════════════════════";
+            String str = element.toString() +line;
+            menu.add(str);
         }
-        menu.add("back to menue");
-        printMenu(menu);
+        menu.add("back to menu\n");
+        showPrinter("User Upcoming Events",menu,WHITE_COLOR);
+
     }
 
     public static void printUserMenu() {
@@ -265,10 +303,10 @@ public class MenusPrinter {
 
     public static void printServiceProviderEditMenu() {
         List<String> menu = new ArrayList<>();
-        menu.add("Edit Service type");
-        menu.add("Edit Service description");
+        menu.add("Change Your Service");
+        menu.add("Edit Service Description");
         menu.add("Edit Service Price");
-        printMenu(menu);
+        printnewMenu("Edit Your Service/s",menu,MENU_COLOR);
     }
     public static void printfindUserMethodsMenu(){
         List<String> menu = new ArrayList<>();
@@ -291,15 +329,28 @@ public class MenusPrinter {
     }
 
     public static void printList(List<RegisteredEvent>filterdEvents){
-        List<String>  serviceProvdierEvents= makeStringListOfEvents(filterdEvents);
-        MenusPrinter.printListofStringWithNumbers(serviceProvdierEvents, "Here is Your Event/s:");
+        try {
+            List<String>  serviceProvdierEvents= makeStringListOfEvents(filterdEvents);
+            MenusPrinter.showPrinter("Event/s:",serviceProvdierEvents,WHITE_COLOR);
+        }
+       catch (EventNotFoundException e){
+            logger.info("No Events");
+       }
     }
-    public  static List<String> makeStringListOfEvents(List <RegisteredEvent>filterdEvents ){
+    public  static List<String> makeStringListOfEvents(List <RegisteredEvent>filterdEvents ) throws EventNotFoundException {
         List<String> serviceProvdierEvents = new ArrayList<>();
         for (RegisteredEvent filterdEvent : filterdEvents) {
-            String st1 = "Service info : \n";
-            String events = st1 + filterdEvent.toString2() + "\n -------------------------------------------";
+
+                User user= AdminControl.getUserOfEvent(filterdEvent);
+                String events =  filterdEvent.toString2()+"\n" ;
+               String name= "Event Onwer :"+user.getName().getfName()+" "+ user.getName().getmName()+" "+ user.getName().getlName();
+                String email = "\nOnwer Email :"+user.getContactInfo().getEmail()+"\n";
+                String phone = "Onwer Phone :"+user.getContactInfo().getPhoneNumber()+"\n";
+            String line = "═══════════════════════════════════════════════════════════";
+                events+=name+email+phone+line;
             serviceProvdierEvents.add(events);
+
+
         }
         return serviceProvdierEvents;
     }
