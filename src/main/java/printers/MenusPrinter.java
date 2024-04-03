@@ -1,8 +1,12 @@
 package printers;
 
+import controllers.AdminControl;
 import enumerations.Colors;
+import exceptions.EventNotFoundException;
+
 import models.RegisteredEvent;
 import models.ServiceProvider;
+import models.User;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -318,14 +322,28 @@ public class MenusPrinter {
     }
 
     public static void printList(List<RegisteredEvent>filterdEvents){
-        List<String>  serviceProvdierEvents= makeStringListOfEvents(filterdEvents);
-        MenusPrinter.showPrinter("Event/s:",serviceProvdierEvents,"\u001B[37m");
+        try {
+            List<String>  serviceProvdierEvents= makeStringListOfEvents(filterdEvents);
+            MenusPrinter.showPrinter("Event/s:",serviceProvdierEvents,"\u001B[37m");
+        }
+       catch (EventNotFoundException e){
+            logger.info("No Events");
+       }
     }
-    public  static List<String> makeStringListOfEvents(List <RegisteredEvent>filterdEvents ){
+    public  static List<String> makeStringListOfEvents(List <RegisteredEvent>filterdEvents ) throws EventNotFoundException {
         List<String> serviceProvdierEvents = new ArrayList<>();
         for (RegisteredEvent filterdEvent : filterdEvents) {
-            String events =  filterdEvent.toString2()+"\n" ;
+
+                User user= AdminControl.getUserOfEvent(filterdEvent);
+                String events =  filterdEvent.toString2()+"\n" ;
+               String name= "Event Onwer :"+user.getName().getfName()+" "+ user.getName().getmName()+" "+ user.getName().getlName();
+                String email = "\nOnwer Email :"+user.getContactInfo().getEmail()+"\n";
+                String phone = "Onwer Phone :"+user.getContactInfo().getPhoneNumber()+"\n";
+                String line = "═══════════════════════════════════════════════════════════════════════════════";
+                events+=name+email+phone+line;
             serviceProvdierEvents.add(events);
+
+
         }
         return serviceProvdierEvents;
     }
