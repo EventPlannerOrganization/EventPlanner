@@ -168,7 +168,17 @@ public class EventsView {
         MenusPrinter.printServicesList(filteredProvidersList);
         int addedNumber = Integer.parseInt(scanner.nextLine());
         if (addedNumber <= filteredProvidersList.size()) {
+            ServiceProvider serviceProvider=filteredProvidersList.get(addedNumber - 1);
+            if(!serviceProvider.isPackageProvider()){
             cost += filteredProvidersList.get(addedNumber - 1).getServices().get(0).getPrice();
+            }
+            else
+            {
+                for (Service element:serviceProvider.getServices()){
+                    cost+=element.getPrice();
+                }
+
+            }
             return filteredProvidersList.get(addedNumber - 1);
         }
         return null;

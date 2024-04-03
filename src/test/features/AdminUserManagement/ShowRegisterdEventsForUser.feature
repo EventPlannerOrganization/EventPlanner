@@ -6,6 +6,6 @@ Feature: Show Registerd Events For User
     And User Has <eventName><EventDate>
     Then The User Events Will Display Correctly
     Examples:
-    |username|eventName|EventDate|
-    |"Naser"   |"open day1,Wedding Celebration"|"2024-08-10,2024-09-10"|
-    |"Nassar"  |"wedding party"                |  "2024-08-10"|
+      | username | eventName                       | EventDate               |
+      | "Naser"  | "open day1,Wedding Celebration" | "2024-08-10,2024-09-10" |
+      | "Nassar" | "wedding party"                 | "2024-08-10"|

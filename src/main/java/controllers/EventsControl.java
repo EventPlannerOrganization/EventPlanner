@@ -10,8 +10,7 @@ public class EventsControl {
 
     private EventsControl() {
     }
-
-
+    
     public static void addEvent(LocalDate date, String name, double cost, List<String> guestsEmails) throws EventAlreadyExist {
         RegisteredEvent registeredEvent = new RegisteredEvent(name,  date ,cost, guestsEmails);
         User currentUser = (User) (EventPlanner.getCurrentUser());
