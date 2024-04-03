@@ -211,6 +211,7 @@ public class EventsView {
         User currentUser = (User) EventPlanner.getCurrentUser();
         List<RegisteredEvent> myUpComingEvents = currentUser.getRegisteredEvents().stream().filter(event -> !event.getDate().isBefore(LocalDate.now())).toList();
         MenusPrinter.printEventsListwithBack(myUpComingEvents);
+        logger.info("Choose The Event Thats you Want To Edit :");
         int addedNumber = Integer.parseInt(scanner.nextLine());
         if (addedNumber <= myUpComingEvents.size()) {
             editingEventView(myUpComingEvents.get(addedNumber - 1));

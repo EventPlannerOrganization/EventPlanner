@@ -27,6 +27,7 @@ public class MenusPrinter {
     public static final String CATERING = "CATERING";
     public static final String PACKAGES_OFFERS = "packages Offers";
     public static final String MENU_COLOR= "\u001B[34m";
+    public static final String WHITE_COLOR="\u001B[37m";
 
     private MenusPrinter() {
 
@@ -48,9 +49,9 @@ public class MenusPrinter {
         // Find the maximum length of the options
         StringBuilder stringBuilder = new StringBuilder("\n");
         int maxOptionLength = 0;
-        for (String option : options) {
-            maxOptionLength = Math.max(maxOptionLength, option.length());
-        }
+
+            maxOptionLength = 50;
+
 
         // Calculate the width of the entire menu
         int menuWidth = maxOptionLength + 6; // Adjust according to your design
@@ -183,18 +184,24 @@ public class MenusPrinter {
     public static void printEventsList(List<RegisteredEvent> events) {
         List<String> menu = new ArrayList<>();
         for(RegisteredEvent element:events){
-            menu.add(element.toString());
+            String line =WHITE_COLOR+ "═══════════════════════════════════════════════════════";
+            String str = element.toString() +line;
+            menu.add(str);
+
         }
-        printMenu(menu);
+        showPrinter("User Events",menu,WHITE_COLOR);
     }
 
     public static void printEventsListwithBack(List<RegisteredEvent> events) {
         List<String> menu = new ArrayList<>();
         for(RegisteredEvent element:events){
-            menu.add(element.toString());
+            String line =WHITE_COLOR+ "═══════════════════════════════════════════════════════";
+            String str = element.toString() +line;
+            menu.add(str);
         }
-        menu.add("back to menue");
-        printMenu(menu);
+        menu.add("back to menu\n");
+        showPrinter("User Upcoming Events",menu,WHITE_COLOR);
+
     }
 
     public static void printUserMenu() {
@@ -324,7 +331,7 @@ public class MenusPrinter {
     public static void printList(List<RegisteredEvent>filterdEvents){
         try {
             List<String>  serviceProvdierEvents= makeStringListOfEvents(filterdEvents);
-            MenusPrinter.showPrinter("Event/s:",serviceProvdierEvents,"\u001B[37m");
+            MenusPrinter.showPrinter("Event/s:",serviceProvdierEvents,WHITE_COLOR);
         }
        catch (EventNotFoundException e){
             logger.info("No Events");
@@ -339,7 +346,7 @@ public class MenusPrinter {
                String name= "Event Onwer :"+user.getName().getfName()+" "+ user.getName().getmName()+" "+ user.getName().getlName();
                 String email = "\nOnwer Email :"+user.getContactInfo().getEmail()+"\n";
                 String phone = "Onwer Phone :"+user.getContactInfo().getPhoneNumber()+"\n";
-                String line = "═══════════════════════════════════════════════════════════════════════════════";
+            String line = "═══════════════════════════════════════════════════════════";
                 events+=name+email+phone+line;
             serviceProvdierEvents.add(events);
 
