@@ -103,11 +103,13 @@ public class ServiceProviderControl {
 
     public static void respondToRequests(boolean choice,Request request,ServiceProvider choosenServiceProvider)  {
         if (choice) {
+            request.getEvent().setCost(request.getEvent().getCost()+choosenServiceProvider.getServices().get(0).getPrice());
             choosenServiceProvider.getBookedDates().add(request.getEvent().getDate());
             List<ServiceProvider> serviceProviders = new ArrayList<>();
             serviceProviders.add(choosenServiceProvider);
             request.getEvent().addServices(serviceProviders);
         }
+
         choosenServiceProvider.getRequests().remove(request);
 
     }

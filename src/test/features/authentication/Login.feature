@@ -11,7 +11,7 @@ Feature: Login
     Then login successfully
     Examples:
       | username  | password |
-      | 'Naser'   | 'm123'   |
+      | 'Naser'   | 'Naser123$'  |
       | 'khalid'  | '123'    |
       | 'hamid02' | 'bbaa12' |
 

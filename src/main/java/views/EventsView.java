@@ -75,6 +75,7 @@ public class EventsView {
         scanner.nextLine();// this to fixing some input problem
         List<ServiceProvider> list=addingProcess(date);
         List<String> guestsEmails = readeGuestsEmails();
+        cost=0;
         String location =readVenue(date);
         newEvent.setLocation(location);
         newEvent.setEventName(name);
@@ -86,6 +87,7 @@ public class EventsView {
     }
 
     private static String readVenue(LocalDate date) {
+
         String venue;
         logger.info("""
                 Do you have a specific location in mind for your event?\s
@@ -102,6 +104,7 @@ public class EventsView {
                 ServiceProvider newServiceProvider = selectedServiceFromServicesList(filteredProvidersList);
                 if (newServiceProvider != null) {
                 venue=newServiceProvider.getServices().get(0).getDescription();
+                cost=newServiceProvider.getServices().get(0).getPrice();
                 }
                 else venue="null";
                 return venue;

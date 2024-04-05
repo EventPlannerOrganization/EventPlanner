@@ -128,10 +128,8 @@ public class AdminControl {
 
     }
 
-    public static void resetPassword(Person user, String newPassword) throws IOException, MessagingException {
+    public static void resetPassword(Person user, String newPassword) {
 
-        EmailService emailForDeletedUserFromAdmin = new EmailService();
-        emailForDeletedUserFromAdmin.sendAdminChangePasswordEmail(user.getContactInfo().getEmail(), user.getAuthentication().getUsername(), newPassword, "admin-delete-user");
         user.getAuthentication().setPassword(newPassword);
 
 

@@ -19,7 +19,7 @@ public class TestShowAllServiceProvdiers {
 
     @Then("All The Service Provider Will Appear Successfuly")
     public void allTheServiceProviderWillAppearSuccessfuly() {
-        List<String> expectedOuput = new ArrayList<>(List.of(new String[]{"mohammad03", "baha02", "Ibrahim160", "saleem04","hamid02","aliii"}));
+        List<String> expectedOuput = new ArrayList<>(List.of(new String[]{"mohammad03", "baha02", "Ibrahim160", "saleem04","hamid02","aliii","Karam03"}));
         List<String> actualOutput =AdminControl.getAllServiceProviders();
         assert(listsContainSameElements(expectedOuput,actualOutput));
     }

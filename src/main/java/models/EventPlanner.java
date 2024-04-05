@@ -130,13 +130,13 @@ public class EventPlanner {
         cleanRepositry();
 
         User user = new User(new Name(NASER, MOHAMMAD, "Abu-Safiehh"),
-                new Authentication(NASER, "m123"),
+                new Authentication(NASER, "Naser123$"),
                 new Address(PALESTINE, NABLUS),
-                new ContactInfo("s121998877@stu.najah.edu","05997155844")
+                new ContactInfo("s12113028@stu.najah.edu ","05997155844")
         );
 
         User user9 = new User(new Name("Mariam", "Mohammaqd", "Jamil"),
-                new Authentication("Mariam03", "123"),
+                new Authentication("Mariam03", "Mariam123$"),
                 new Address(PALESTINE, NABLUS),
                 new ContactInfo("s12199887@stu.najah.eduu","05997155845")
         );
@@ -148,10 +148,20 @@ public class EventPlanner {
         List<Service>services=new ArrayList<>();
         services.add(  new Service(ServiceType.DJ,3200, TESING));
         ServiceProvider serviceProvider = new ServiceProvider(new Name("mo","munir","shadiid"),
-                new Authentication("mohammad03","12345"),new Address(PALESTINE,"tulkarrm"),
-                new ContactInfo(MAIL,"94124142"),
+                new Authentication("mohammad03","Mohammad123$"),new Address(PALESTINE,"tulkarrm"),
+                new ContactInfo(MAIL,"9412414244"),
                 services);
         EventPlanner.addUser(serviceProvider);
+
+        List<Service>services00=new ArrayList<>();
+        services00.add(  new Service(ServiceType.VENUE,3200, "Tulkarm venue"));
+        ServiceProvider vinueProvider = new ServiceProvider(new Name("Karam",MOHAMMAD,"khallid"),
+                new Authentication("Karam03","Mohammad123$"),new Address(PALESTINE,"tulkarrm"),
+                new ContactInfo(MAIL,"94124142"),
+                services00);
+        EventPlanner.addUser(vinueProvider);
+
+
 
 
         List<Service>services2=new ArrayList<>();
